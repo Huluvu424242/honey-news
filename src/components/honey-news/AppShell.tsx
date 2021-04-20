@@ -109,8 +109,6 @@ export class AppShell {
 
   public connectedCallback() {
     // external objects initialisieren
-    // router.setRoutenPrefix(window.location.pathname);
-    // router.setRoutenPrefix("/honey-news");
     const origin: string = window.location.origin;
     const baseURI: string = document.baseURI;
     const basePath: string = baseURI.replace(origin, "");
@@ -175,14 +173,6 @@ export class AppShell {
 
   public render() {
     Logger.debugMessage('##RENDER##');
-
-    // addRoute("", "<h1>Root empty</h1>");
-    // addRoute("/", "<h1>Root</h1>");
-    // addRoute("/news", "<h1>News</h1>");
-    // addRoute("/feeds", "<h1>Feeds</h1>");
-    // addRoute("/statistic", "<h1>Statistik</h1>");
-    // addRoute("/about", "<h1>About</h1>");
-
 
     return (
       <Host

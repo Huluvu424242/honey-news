@@ -109,10 +109,11 @@ export class AppShell {
 
   public connectedCallback() {
     // external objects initialisieren
-    const origin: string = window.location.origin;
-    const baseURI: string = document.baseURI;
-    const basePath: string = baseURI.replace(origin, "");
-    router.setRoutenPrefix(basePath);
+    // const origin: string = window.location.origin;
+    // const baseURI: string = document.baseURI;
+    // const basePath: string = baseURI.replace(origin, "");
+    // router.setRoutenPrefix(basePath);
+    router.setRoutenPrefix("/honey-news");
     // States initialisieren
     this.ident = this.hostElement.id ? this.hostElement.id : Math.random().toString(36).substring(7);
     this.initialHostClass = this.hostElement.getAttribute("class") || null;

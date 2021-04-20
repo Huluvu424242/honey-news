@@ -6,11 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Stencil Component Starter</title>
+  <!-- infrastructur to load the app from route -->
+  <script type="text/javascript" src="./redirect.js"></script>
+  <script type="text/javascript">recieveRedirect()</script>
+  <!-- app entry point  so load the app  -->
   <script type="module" src="../dist/honey-news/honey-news.esm.js"></script>
   <script nomodule
           src="../dist/esm/honey-news.js"></script>
   <link rel="stylesheet" href="../dist/honey-news/honey-news.css"/>
-
+  <base href="/honey-news/docs">
 </head>
 <body id="seite">
   <honey-news />

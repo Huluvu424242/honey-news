@@ -188,7 +188,7 @@ export class AppShell {
         <honey-news-header/>
 
         <div class="row flex-left">
-          <div class="sm-8 col background-primary">Route: {window.location.pathname}</div>
+          <div class="sm-8 col background-primary">Route: {this.route}</div>
         </div>
 
         {!this.route || this.route === "/" || this.route === "/news" ? <honey-news-feed ref={(el) => {

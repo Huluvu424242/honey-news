@@ -225,7 +225,7 @@ export class News {
 
   getNeuesteMeldung() {
     if (this.lastUpdate) {
-      return <span>(neueste Meldung: {this.lastUpdate?.toLocaleDateString() + "  " + this.lastUpdate?.toLocaleTimeString()} )</span>
+      return <span>(Neueste Meldung: {this.lastUpdate?.toLocaleDateString() + "  " + this.lastUpdate?.toLocaleTimeString()} )</span>
     }
   }
 
@@ -239,7 +239,7 @@ export class News {
         class={this.getHostClass()}
         disabled={this.hasNoFeeds()}
       >
-        <h2>News Feed
+        <h2>
           {
             this.getNeuesteMeldung()
           }

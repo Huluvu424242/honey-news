@@ -111,7 +111,10 @@ export class AppShell {
     // external objects initialisieren
     // router.setRoutenPrefix(window.location.pathname);
     // router.setRoutenPrefix("/honey-news");
-    router.setRoutenPrefix(document.baseURI);
+    const origin: string = window.location.origin;
+    const baseURI: string = document.baseURI;
+    const basePath: string = baseURI.replace(origin, "");
+    router.setRoutenPrefix(basePath);
     // States initialisieren
     this.ident = this.hostElement.id ? this.hostElement.id : Math.random().toString(36).substring(7);
     this.initialHostClass = this.hostElement.getAttribute("class") || null;

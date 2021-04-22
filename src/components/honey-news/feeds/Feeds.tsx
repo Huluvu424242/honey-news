@@ -27,21 +27,8 @@ export class Feeds {
     if(!this.feedLoader) return;
     const url = this.inputNewUrl.value;
     if (!this.feedLoader.getFeedURLs().includes(url)) {
-
       this.feedLoader.addFeedUrl(url);
       from(getFeedsSingleObserver([url], true)).subscribe();
-      // setTimeout(
-      //   () => {
-      //     from(getFeedsSingleObserver([url], false)).subscribe();
-      //     // from(loadFeedRanking("https://huluvu424242.herokuapp.com/feeds")).pipe(catchError(() => EMPTY))
-      //     //   .subscribe(
-      //     //     (statisticDatas: StatisticData[]) => {
-      //     //       this.statistic = [...statisticDatas];
-      //     //     }
-      //     //   );
-      //   }
-      //   , 3000
-      // );
     }
   }
 

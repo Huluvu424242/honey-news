@@ -117,14 +117,9 @@ export class AppShell {
 
 
   public connectedCallback() {
-    // external objects initialisieren
-    // const origin: string = window.location.origin;
-    // const baseURI: string = document.baseURI;
-    // const basePath: string = baseURI.replace(origin, "");
+    // attribute initialisieren wenn defaults notwendig
     this.localBasePath = this.hostElement.getAttribute("local-basepath") || "/";
     this.siteBasePath = this.hostElement.getAttribute("site-basepath") || "/";
-    // States initialisieren
-
     /// base initialisieren
     const curLocation:string = window.location.origin;
     const isLocal:boolean = curLocation.startsWith("http://localhost") || curLocation.startsWith("https://localhost");
@@ -213,7 +208,7 @@ export class AppShell {
           <div class="sm-8 col background-primary">Route: {this.route}</div>
         </div>
 
-        {!this.route || this.route === "/" || this.route === "/news" ? <honey-news-feed ref={(el) => {
+        {!this.route || this.route === "/" || this.route === "/index.html" || this.route === "/news" ? <honey-news-feed ref={(el) => {
           // @ts-ignore
           this.newsFeed = el as HTMLHoneyNewsFeedElement
         }}/> : null}

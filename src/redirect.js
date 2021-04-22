@@ -6,7 +6,7 @@
 
 let computeSegmentCount = () => {
   let originURL = window.location.origin
-  if(originURLstartsWith("http://localhost")|| originURLstartsWith("https://localhost")){
+  if(originURL.startsWith("http://localhost")|| originURL.startsWith("https://localhost")){
     return 0;
   }else {
     return 1;

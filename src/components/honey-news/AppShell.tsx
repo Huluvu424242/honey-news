@@ -50,7 +50,8 @@ export class AppShell {
   /**
    * Routing
    */
-  @Prop({reflect: true, attribute: "basepath"}) basePath;
+  @Prop({reflect: true, attribute: "site-basepath"}) siteBasePath;
+  @Prop({reflect: true, attribute: "local-basepath"}) localBasePath;
   routerSubscription: Subscription = null;
   @State() route: string = "";
 
@@ -113,14 +114,22 @@ export class AppShell {
     // const origin: string = window.location.origin;
     // const baseURI: string = document.baseURI;
     // const basePath: string = baseURI.replace(origin, "");
-    this.basePath = this.hostElement.getAttribute("basepath") || "/";
-    router.setRoutenPrefix(this.basePath);
+    this.localBasePath = this.hostElement.getAttribute("local-basepath") || "/";
+    this.siteBasePath = this.hostElement.getAttribute("site-basepath") || "/";
     // States initialisieren
-    if (this.basePath === "/") {
+
+    /// base initialisieren
+    const curLocation:string = window.location.origin;
+    const isLocal:boolean = curLocation.startsWith("http://localhost") || curLocation.startsWith("https://localhost");
+    const basePath = isLocal? this.localBasePath:this.siteBasePath;
+    router.setRoutenPrefix(basePath);
+    // route initialisieren
+    if (basePath === "/") {
       this.route = window.location.pathname;
     }else{
-      this.route = window.location.pathname.replace(this.basePath, "");
+      this.route = window.location.pathname.replace(basePath, "");
     }
+
     this.ident = this.hostElement.id ? this.hostElement.id : Math.random().toString(36).substring(7);
     this.initialHostClass = this.hostElement.getAttribute("class") || null;
     this.createTitleText = !this.hostElement.title;

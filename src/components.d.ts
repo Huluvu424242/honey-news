@@ -11,17 +11,18 @@ import { StatisticOptions } from "./components/honey-news/statistic/StatisticOpt
 export namespace Components {
     interface HoneyNews {
         /**
-          * Routing
-         */
-        "basePath": any;
-        /**
           * Feeds Administration Komponente
          */
         "feedAdministration": HTMLHoneyNewsFeedsElement;
+        "localBasePath": any;
         /**
           * News reader Komponente
          */
         "newsFeed": HTMLHoneyNewsFeedElement;
+        /**
+          * Routing
+         */
+        "siteBasePath": any;
         /**
           * enable console logging
          */
@@ -104,17 +105,18 @@ declare global {
 declare namespace LocalJSX {
     interface HoneyNews {
         /**
-          * Routing
-         */
-        "basePath"?: any;
-        /**
           * Feeds Administration Komponente
          */
         "feedAdministration"?: HTMLHoneyNewsFeedsElement;
+        "localBasePath"?: any;
         /**
           * News reader Komponente
          */
         "newsFeed"?: HTMLHoneyNewsFeedElement;
+        /**
+          * Routing
+         */
+        "siteBasePath"?: any;
         /**
           * enable console logging
          */

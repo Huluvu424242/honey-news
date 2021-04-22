@@ -6,7 +6,7 @@
 const isLocal = () => {
   const originURL = window.location.origin;
   return originURL.startsWith("http://localhost") || originURL.startsWith("https://localhost")
-}
+};
 
 const computeSegmentCount = (localCount, remoteCount) => {
   if (isLocal()) {
@@ -14,7 +14,7 @@ const computeSegmentCount = (localCount, remoteCount) => {
   } else {
     return remoteCount;
   }
-}
+};
 //
 // const computeBaseURL = () => {
 //   if (isLocal()) {
@@ -25,8 +25,8 @@ const computeSegmentCount = (localCount, remoteCount) => {
 // }
 
 
-const redirect404 = (localSegmentCount,remoteSegmentCount) => {
-  const segmentCount = isLocal()? localSegmentCount:remoteSegmentCount;
+const redirect404 = (localSegmentCount, remoteSegmentCount) => {
+  const segmentCount = isLocal() ? localSegmentCount : remoteSegmentCount;
   const location = window.location;
   const origin = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '');
   const base = location.pathname.split('/').slice(0, 1 + segmentCount).join('/');

@@ -8,11 +8,11 @@ const isLocal = () => {
   return originURL.startsWith("http://localhost") || originURL.startsWith("https://localhost")
 };
 
-const computeSegmentCount = (localCount, remoteCount) => {
+const computeSegmentCount = (paramObject) => {
   if (isLocal()) {
-    return localCount;
+    return paramObject.localCount;
   } else {
-    return remoteCount;
+    return paramObject.remoteCount;
   }
 };
 //

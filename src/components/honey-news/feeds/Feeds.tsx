@@ -39,9 +39,9 @@ export class Feeds {
         <div class="form-group">
           <h2>Verwaltung</h2>
           <div class="row">
-            <label class="sm-1 col border label" htmlFor="newurl">Feed URL:</label>
+            <label class="col border label" htmlFor="newurl">Feed URL:</label>
             <input id="newurl" class="col-fill col" type="text" ref={(el) => this.inputNewUrl = el as HTMLInputElement}/>
-            <button id="addurl" class="paper-btn btn-primary"
+            <button id="addurl" class="col paper-btn btn-primary"
                     onClick={(event: UIEvent) => this.addUrl(event)}>Add Feed URL</button>
           </div>
         </div>

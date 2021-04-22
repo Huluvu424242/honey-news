@@ -47,10 +47,17 @@ export class AppShell {
   taborder: string = "0";
 
 
+  //
+  // Routing
+  //
+
   /**
-   * Routing
+   * base of remote site
    */
   @Prop({reflect: true, attribute: "site-basepath"}) siteBasePath;
+  /**
+   * base of local site
+   */
   @Prop({reflect: true, attribute: "local-basepath"}) localBasePath;
   routerSubscription: Subscription = null;
   @State() route: string = "";

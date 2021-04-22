@@ -3,28 +3,31 @@
 // Copyright (c) 2016 Rafael Pedicini, licensed under the MIT License
 // modified by Huluvu424242 at 2021
 
-
-let computeSegmentCount = () => {
-  let originURL = window.location.origin
-  if(originURL.startsWith("http://localhost")|| originURL.startsWith("https://localhost")){
-    return 0;
-  }else {
-    return 1;
-  }
+const isLocal = () => {
+  const originURL = window.location.origin;
+  return originURL.startsWith("http://localhost") || originURL.startsWith("https://localhost")
 }
 
-let computeBaseURL = () => {
-  if(computeSegmentCount()===0){
-    return "/";
-  }else{
-    return "/honey-news";
+const computeSegmentCount = (localCount, remoteCount) => {
+  if (isLocal()) {
+    return localCount;
+  } else {
+    return remoteCount;
   }
 }
+//
+// const computeBaseURL = () => {
+//   if (isLocal()) {
+//     return "/";
+//   } else {
+//     return "/honey-news";
+//   }
+// }
 
 
-let redirect404 = (segmentcount) => {
-  var location = window.location;
-
+const redirect404 = (localSegmentCount,remoteSegmentCount) => {
+  const segmentCount = isLocal()? localSegmentCount:remoteSegmentCount;
+  const location = window.location;
   const origin = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '');
   const base = location.pathname.split('/').slice(0, 1 + segmentCount).join('/');
 
@@ -37,11 +40,11 @@ let redirect404 = (segmentcount) => {
   );
 };
 
-let recieveRedirect = () => {
-  (function(location) {
+const recieveRedirect = () => {
+  (function (location) {
     if (location.search) {
       var q = {};
-      location.search.slice(1).split('&').forEach(function(v) {
+      location.search.slice(1).split('&').forEach(function (v) {
         var a = v.split('=');
         q[a[0]] = a.slice(1).join('=').replace(/~and~/g, '&');
       });

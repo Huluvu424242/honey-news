@@ -14,13 +14,16 @@ export namespace Components {
           * Feeds Administration Komponente
          */
         "feedAdministration": HTMLHoneyNewsFeedsElement;
+        /**
+          * base of local site
+         */
         "localBasePath": any;
         /**
           * News reader Komponente
          */
         "newsFeed": HTMLHoneyNewsFeedElement;
         /**
-          * Routing
+          * base of remote site
          */
         "siteBasePath": any;
         /**
@@ -108,13 +111,16 @@ declare namespace LocalJSX {
           * Feeds Administration Komponente
          */
         "feedAdministration"?: HTMLHoneyNewsFeedsElement;
+        /**
+          * base of local site
+         */
         "localBasePath"?: any;
         /**
           * News reader Komponente
          */
         "newsFeed"?: HTMLHoneyNewsFeedElement;
         /**
-          * Routing
+          * base of remote site
          */
         "siteBasePath"?: any;
         /**

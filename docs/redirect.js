@@ -8,26 +8,11 @@ const isLocal = () => {
   return originURL.startsWith("http://localhost") || originURL.startsWith("https://localhost")
 };
 
-const computeSegmentCount = (paramObject) => {
-  if (isLocal()) {
-    return paramObject.localCount;
-  } else {
-    return paramObject.remoteCount;
-  }
+const computeSegmentCount = (localSegmentCount,remoteSegmentCount) => {
+  return isLocal()? localSegmentCount:remoteSegmentCount;
 };
-//
-// const computeBaseURL = () => {
-//   if (isLocal()) {
-//     return "/";
-//   } else {
-//     return "/honey-news";
-//   }
-// }
 
-
-let redirect404 = (localSegmentCount, remoteSegmentCount) => {
-  const segmentCount = isLocal() ? localSegmentCount : remoteSegmentCount;
-  console.log("segment count:"+segmentCount);
+let redirect404 = (segmentCount) => {
   const location = window.location;
   const origin = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '');
   const base = location.pathname.split('/').slice(0, 1 + segmentCount).join('/');

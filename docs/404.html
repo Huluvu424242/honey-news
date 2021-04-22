@@ -2,13 +2,10 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8"/>
   <link rel=canonical href="..">
   <script type="text/javascript" src="redirect.js"></script>
-  <script>
-    let segmentCount=computeSegmentCount({localCount:2,remoteCount:1});
-    redirect404( segmentCount );
-  </script>
+  <script> redirect404(computeSegmentCount(2, 1)); </script>
 </head>
 
 <body>

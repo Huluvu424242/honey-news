@@ -157,27 +157,33 @@ export class Statistic {
         title={this.getTitleText()}
         aria-label={this.getAriaLabel()}
         tabindex={this.hasNoStatistics() ? -1 : this.taborder}
-        class={this.getHostClass()}
+        class="paper"
         disabled={this.hasNoStatistics()}
       >
-        <table>
-          <tr>
-            <th>Score</th>
-            <th>Url</th>
-            <th>Angefragt</th>
-            <th>Kontaktiert</th>
-            <th>Geantwortet</th>
-          </tr>
-          {this.statistic?.map((item: StatisticData) =>
+        <div class="section">
+          <table>
+            <thead>
             <tr>
-              <td>{item.score}</td>
-              <td><a href={item.url} target="_blank">{item.url}</a></td>
-              <td>{item.countRequested}</td>
-              <td>{item.countContacted}</td>
-              <td>{item.countResponseOK}</td>
+              <th>Score</th>
+              <th>Url</th>
+              <th>Angefragt</th>
+              <th>Kontaktiert</th>
+              <th>Geantwortet</th>
             </tr>
-          )}
-        </table>
+            </thead>
+            <tbody>
+            {this.statistic?.map((item: StatisticData) =>
+              <tr>
+                <td>{item.score}</td>
+                <td><a href={item.url} target="_blank">{item.url}</a></td>
+                <td>{item.countRequested}</td>
+                <td>{item.countContacted}</td>
+                <td>{item.countResponseOK}</td>
+              </tr>
+            )}
+            </tbody>
+          </table>
+        </div>
       </Host>
     );
   }

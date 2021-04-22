@@ -225,7 +225,10 @@ export class News {
 
   getNeuesteMeldung() {
     if (this.lastUpdate) {
-      return <span>Neueste Meldung: {this.lastUpdate?.toLocaleDateString() + "  " + this.lastUpdate?.toLocaleTimeString()}</span>
+      return ([
+        <div>Neueste Meldung</div>,
+        <div>{this.lastUpdate?.toLocaleDateString() + "  " + this.lastUpdate?.toLocaleTimeString()}</div>
+      ]);
     }
   }
 

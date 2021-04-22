@@ -25,8 +25,9 @@ const computeSegmentCount = (localCount, remoteCount) => {
 // }
 
 
-const redirect404 = (localSegmentCount, remoteSegmentCount) => {
+let redirect404 = (localSegmentCount, remoteSegmentCount) => {
   const segmentCount = isLocal() ? localSegmentCount : remoteSegmentCount;
+  console.log("segment count:"+segmentCount);
   const location = window.location;
   const origin = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '');
   const base = location.pathname.split('/').slice(0, 1 + segmentCount).join('/');

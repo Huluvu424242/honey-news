@@ -50,6 +50,7 @@ export class AppShell {
   /**
    * Routing
    */
+  @Prop({reflect: true, attribute: "basepath"}) basePath;
   routerSubscription: Subscription = null;
   @State() route: string = "";
 
@@ -109,12 +110,17 @@ export class AppShell {
 
   public connectedCallback() {
     // external objects initialisieren
-    const origin: string = window.location.origin;
-    const baseURI: string = document.baseURI;
-    const basePath: string = baseURI.replace(origin, "");
-    router.setRoutenPrefix(basePath);
+    // const origin: string = window.location.origin;
+    // const baseURI: string = document.baseURI;
+    // const basePath: string = baseURI.replace(origin, "");
+    this.basePath = this.hostElement.getAttribute("basepath") || "/";
+    router.setRoutenPrefix(this.basePath);
     // States initialisieren
-    this.route = window.location.pathname.replace(basePath, "");
+    if (this.basePath === "/") {
+      this.route = window.location.pathname;
+    }else{
+      this.route = window.location.pathname.replace(this.basePath, "");
+    }
     this.ident = this.hostElement.id ? this.hostElement.id : Math.random().toString(36).substring(7);
     this.initialHostClass = this.hostElement.getAttribute("class") || null;
     this.createTitleText = !this.hostElement.title;

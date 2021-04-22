@@ -11,6 +11,10 @@ import { StatisticOptions } from "./components/honey-news/statistic/StatisticOpt
 export namespace Components {
     interface HoneyNews {
         /**
+          * Routing
+         */
+        "basePath": any;
+        /**
           * Feeds Administration Komponente
          */
         "feedAdministration": HTMLHoneyNewsFeedsElement;
@@ -99,6 +103,10 @@ declare global {
 }
 declare namespace LocalJSX {
     interface HoneyNews {
+        /**
+          * Routing
+         */
+        "basePath"?: any;
         /**
           * Feeds Administration Komponente
          */

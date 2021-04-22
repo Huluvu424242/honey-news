@@ -1,9 +1,28 @@
 // Single Page Apps for GitHub Pages
 // https://github.com/rafrex/spa-github-pages
 // Copyright (c) 2016 Rafael Pedicini, licensed under the MIT License
+// modified by Huluvu424242 at 2021
 
-let redirect404 = () => {
-  var segmentCount = 1;
+
+let computeSegmentCount = () => {
+  let originURL = window.location.origin
+  if(originURLstartsWith("http://localhost")|| originURLstartsWith("https://localhost")){
+    return 0;
+  }else {
+    return 1;
+  }
+}
+
+let computeBaseURL = () => {
+  if(computeSegmentCount()===0){
+    return "/";
+  }else{
+    return "/honey-news";
+  }
+}
+
+
+let redirect404 = (segmentcount) => {
   var location = window.location;
 
   const origin = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '');

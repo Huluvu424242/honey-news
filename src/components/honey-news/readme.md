@@ -5,11 +5,12 @@
 
 ## Properties
 
-| Property             | Attribute | Description                     | Type                        | Default     |
-| -------------------- | --------- | ------------------------------- | --------------------------- | ----------- |
-| `feedAdministration` | --        | Feeds Administration Komponente | `HTMLHoneyNewsFeedsElement` | `undefined` |
-| `newsFeed`           | --        | News reader Komponente          | `HTMLHoneyNewsFeedElement`  | `undefined` |
-| `verbose`            | `verbose` | enable console logging          | `boolean`                   | `false`     |
+| Property             | Attribute  | Description                     | Type                        | Default     |
+| -------------------- | ---------- | ------------------------------- | --------------------------- | ----------- |
+| `basePath`           | `basepath` | Routing                         | `any`                       | `undefined` |
+| `feedAdministration` | --         | Feeds Administration Komponente | `HTMLHoneyNewsFeedsElement` | `undefined` |
+| `newsFeed`           | --         | News reader Komponente          | `HTMLHoneyNewsFeedElement`  | `undefined` |
+| `verbose`            | `verbose`  | enable console logging          | `boolean`                   | `false`     |
 
 
 ## Dependencies

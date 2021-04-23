@@ -157,27 +157,32 @@ export class Statistic {
         title={this.getTitleText()}
         aria-label={this.getAriaLabel()}
         tabindex={this.hasNoStatistics() ? -1 : this.taborder}
-        class={this.getHostClass()}
         disabled={this.hasNoStatistics()}
       >
-        <table>
-          <tr>
-            <th>Score</th>
-            <th>Url</th>
-            <th>Angefragt</th>
-            <th>Kontaktiert</th>
-            <th>Geantwortet</th>
-          </tr>
-          {this.statistic?.map((item: StatisticData) =>
+        <div class="section">
+          <table class="table-alternating">
+            <thead>
             <tr>
-              <td>{item.score}</td>
-              <td><a href={item.url} target="_blank">{item.url}</a></td>
-              <td>{item.countRequested}</td>
-              <td>{item.countContacted}</td>
-              <td>{item.countResponseOK}</td>
+              <th class="col">Score</th>
+              <th class="col">Url</th>
+              <th class="col">Angefragt</th>
+              <th class="col">Kontaktiert</th>
+              <th class="col">Geantwortet</th>
             </tr>
-          )}
-        </table>
+            </thead>
+            <tbody>
+            {this.statistic?.map((item: StatisticData) =>
+              <tr>
+                <td class="col border border-1">{item.score}</td>
+                <td class="col border border-1"><a href={item.url} target="_blank">{item.url}</a></td>
+                <td class="col border border-1">{item.countRequested}</td>
+                <td class="col border border-1">{item.countContacted}</td>
+                <td class="col border border-1">{item.countResponseOK}</td>
+              </tr>
+            )}
+            </tbody>
+          </table>
+        </div>
       </Host>
     );
   }

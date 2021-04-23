@@ -1,6 +1,6 @@
 import {BehaviorSubject, Subject} from "rxjs";
 
-class Router {
+class NoneRouter {
 
   protected route: Subject<string> = new BehaviorSubject<string>("/");
 
@@ -10,6 +10,7 @@ class Router {
 
   public navigateTo(route: string) {
     this.route.next(route);
+    // history.pushState({}, route, window.location.origin + route);
   }
 
   public getSubject(): Subject<string> {
@@ -18,7 +19,7 @@ class Router {
 
 }
 
-export const router: Router = new Router();
+export const router: NoneRouter = new NoneRouter();
 let internalRoute: string;
 const routerSubscription = router.getSubject().subscribe((route: string) => {
     internalRoute = route;
@@ -44,8 +45,8 @@ export const closeRouter = (): void => {
 };
 
 
-export function getClass(elem: HTMLAnchorElement, ...classNames:string[]): string {
-  if(!elem) return null;
+export function getClass(elem: HTMLAnchorElement, ...classNames: string[]): string {
+  if (!elem) return null;
 
   const path = elem?.pathname;
   if (path && path === internalRoute) {
@@ -53,13 +54,13 @@ export function getClass(elem: HTMLAnchorElement, ...classNames:string[]): strin
   } else {
     elem.classList.remove("selected");
   }
-  classNames.forEach((className:string)=>{
+  classNames.forEach((className: string) => {
     elem.classList.add(className);
   });
 
-  if(elem.classList.length===0){
+  if (elem.classList.length === 0) {
     return null;
-  }else {
+  } else {
     return elem.classList.toString();
   }
 }

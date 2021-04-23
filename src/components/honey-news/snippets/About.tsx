@@ -22,13 +22,30 @@ export const About: FunctionalComponent<AboutProps> = () => ([
   <p>
     Das Routing der SPA wurde versucht über stencil-router sowie stencil-router-v2 zu realisieren. Leider konnte dies
     nicht erfolgreich durchgeführt werden. Daher wurde begonnen einen eigenen Hilfsrouter zu schreiben.
-    Dieser verdient den Namen Router noch gar nicht, da er weder die URL noch die Browserhistorie verändert. Eigentlich
-    ist es nur ein Zustandsgesteuerter Komponenten Ein-/Ausblender. Vielleicht wird er mal ein richtiger Router aber
-    aktuell genügt sein Verhalten um die fachlichen Anforderungen abzudecken.
+
+    Mein besonderer Dank gilt hier Bryan Manuele (Fermi Dirak) dessen
+    <a href="https://medium.com/@bryanmanuele/how-i-implemented-my-own-spa-routing-system-in-vanilla-js-49942e3c4573"
+       target="_blank">
+      Artikel
+    </a> und <a href="https://github.com/FermiDirak/fermidirak.github.io" target="_blank">
+    Projekt</a> mit halfen den Router
+    zu implementieren.
   </p>,
   <p>
     Für das Backend wurde ein nodejs express server verwendet und auf heroku deployed. Ein separates Backend war
     leider auf Grund der üblcihen CORS Problematiken notwendig (CORS-PROXY im Service Worker habe ich leider nicht
     realisiert bekommen - da hat halt der Browser strikt was dagegen).
+  </p>,
+  <p>
+  Mein weiterer Dank gilt allen Plattformen, welche sich intensiv um die Unterstützung von Open Source Projekten bemühen.
+    <ul>
+      <li><a href="https://heroku.com" target="_blank">Heroku.com</a></li>
+      <li><a href="https://github.com" target="_blank">Github.com</a></li>
+      <li><a href="https://travis-ci.com" target="_blank">Travis-ci.com</a></li>
+      <li><a href="https://bintray.com" target="_blank">Bintray.com</a></li>
+      <li><a href="https://sourceforge.net" target="_blank">Sourceforge.net</a></li>
+      <li><a href="https://www.openhub.net" target="_blank">Ohloh (openhub.net)</a></li>
+    <li> und viele weitere</li>
+    </ul>
   </p>
 ]);

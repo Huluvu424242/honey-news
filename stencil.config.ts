@@ -1,5 +1,6 @@
 import {Config} from '@stencil/core';
 import nodePolyfills from 'rollup-plugin-node-polyfills';
+import {docs} from "jest-cli/build/cli/args";
 // import resolvePlugin from 'rollup-plugin-commonjs';
 
 export const config: Config = {
@@ -34,7 +35,9 @@ export const config: Config = {
       type: 'www',
       dir: 'docs',
       copy: [
-        { src: 'demo.html' }
+        { src: "demo.html"},
+        { src: "404.html"},
+        { src: "redirect.js"}
       ],
       serviceWorker: null // disable service workers
     }

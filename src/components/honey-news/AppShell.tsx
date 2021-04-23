@@ -1,11 +1,11 @@
 import {Component, Element, h, Host, Prop, State, Watch} from "@stencil/core";
 import {Logger} from "../../shared/logger";
 import {AppShellOptions} from "./AppShellOptions";
-import {About} from "./snippets/About";
 import {Subscription} from "rxjs";
-import {listenRouteChanges} from "../../Router";
+import {router} from "./routing/SimpleRouter";
 import {NewsLoader} from "./news/NewsLoader";
 import {News} from "./news/News";
+import {About} from "./snippets/About";
 
 @Component({
   tag: "honey-news",
@@ -19,7 +19,6 @@ export class AppShell {
    * Host Element
    */
   @Element() hostElement: HTMLElement;
-
 
 
   /**
@@ -48,6 +47,18 @@ export class AppShell {
   taborder: string = "0";
 
 
+  //
+  // Routing
+  //
+
+  /**
+   * base of remote site
+   */
+  @Prop({reflect: true, attribute: "site-basepath"}) siteBasePath;
+  /**
+   * base of local site
+   */
+  @Prop({reflect: true, attribute: "local-basepath"}) localBasePath;
   routerSubscription: Subscription = null;
   @State() route: string = "";
 
@@ -68,19 +79,20 @@ export class AppShell {
   /**
    * Shared State of AppShell
    */
-  feedLoader:NewsLoader = new NewsLoader([]);
+  feedLoader: NewsLoader = new NewsLoader([]);
 
 
   /**
    * News reader Komponente
    */
     // @ts-ignore
-  @Prop({mutable:true}) newsFeed: HTMLHoneyNewsFeedElement;
+  @Prop({mutable: true}) newsFeed: HTMLHoneyNewsFeedElement;
 
   @Watch("newsFeed")
-  newsWatcher(newValue: HTMLHoneyNewsFeedElement, oldValue: HTMLHoneyNewsFeedElement){
-    if(!oldValue && newValue){
-      if(this.newsFeed) {
+  newsWatcher(newValue: HTMLHoneyNewsFeedElement, oldValue: HTMLHoneyNewsFeedElement) {
+    oldValue = oldValue;
+    if (newValue) {
+      if (this.newsFeed) {
         this.newsFeed.feedLoader = this.feedLoader;
       }
     }
@@ -91,12 +103,13 @@ export class AppShell {
    * Feeds Administration Komponente
    */
     // @ts-ignore
-  @Prop({mutable:true}) feedAdministration: HTMLHoneyNewsFeedsElement;
+  @Prop({mutable: true}) feedAdministration: HTMLHoneyNewsFeedsElement;
 
-  @Watch("newsFeed")
-  feedWatcher(newValue: News, oldValue: News){
-    if(!oldValue && newValue){
-      if(this.feedAdministration) {
+  @Watch("feedAdministration")
+  feedWatcher(newValue: News, oldValue: News) {
+    oldValue = oldValue;
+    if (newValue) {
+      if (this.feedAdministration) {
         this.feedAdministration.feedLoader = this.feedLoader;
       }
     }
@@ -104,13 +117,27 @@ export class AppShell {
 
 
   public connectedCallback() {
-    // States initialisieren
+    // attribute initialisieren wenn defaults notwendig
+    this.localBasePath = this.hostElement.getAttribute("local-basepath") || "/";
+    this.siteBasePath = this.hostElement.getAttribute("site-basepath") || "/";
+    /// base initialisieren
+    const curLocation:string = window.location.origin;
+    const isLocal:boolean = curLocation.startsWith("http://localhost") || curLocation.startsWith("https://localhost");
+    const basePath = isLocal? this.localBasePath:this.siteBasePath;
+    router.setRoutenPrefix(basePath);
+    // route initialisieren
+    if (basePath === "/") {
+      this.route = window.location.pathname;
+    }else{
+      this.route = window.location.pathname.replace(basePath, "");
+    }
+
     this.ident = this.hostElement.id ? this.hostElement.id : Math.random().toString(36).substring(7);
     this.initialHostClass = this.hostElement.getAttribute("class") || null;
     this.createTitleText = !this.hostElement.title;
     this.createAriaLabel = !this.hostElement["aria-label"];
     this.taborder = this.hostElement.getAttribute("tabindex") ? (this.hostElement.tabIndex + "") : "0";
-    this.routerSubscription = listenRouteChanges().subscribe((route: string) => {
+    this.routerSubscription = router.getRouteListener().subscribe((route: string) => {
         this.route = route;
       },
       (error) => {
@@ -161,19 +188,10 @@ export class AppShell {
     return hostClass;
   }
 
-  protected getBody(): string {
-    switch (window.location.pathname) {
-      case "/statistic":
-        return <honey-news-statistic/>;
-      case "/feeds":
-        return <honey-news-feeds/>;
-      default:
-        return <honey-news-feed/>;
-    }
-  }
 
   public render() {
     Logger.debugMessage('##RENDER##');
+
     return (
       <Host
         title={this.getTitleText()}
@@ -187,16 +205,17 @@ export class AppShell {
         <honey-news-header/>
 
         <div class="row flex-left">
-          <div class="sm-2 col background-primary">Route: {this.route}</div>
+          <div class="border border-1 col background-primary">Route: {this.route}</div>
         </div>
 
-        {!this.route || this.route === "/" || this.route === "/news" ? <honey-news-feed ref={(el)=> {
+        {!this.route || this.route === "/" || this.route === "/index.html" || this.route === "/news" ? <honey-news-feed ref={(el) => {
           // @ts-ignore
           this.newsFeed = el as HTMLHoneyNewsFeedElement
         }}/> : null}
-        {this.route === "/feeds" ? <honey-news-feeds ref={(el)=> {
+        {this.route === "/feeds" ? <honey-news-feeds ref={(el) => {
           // @ts-ignore
-          this.newsFeed = el as HTMLHoneyNewsFeedElement}
+          this.feedAdministration = el as HTMLHoneyNewsFeedsElement
+        }
         }/> : null}
         {this.route === "/statistic" ? <honey-news-statistic/> : null}
         {this.route === "/about" ? <About/> : null}

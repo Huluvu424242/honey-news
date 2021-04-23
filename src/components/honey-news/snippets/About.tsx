@@ -36,10 +36,14 @@ export const About: FunctionalComponent<AboutProps> = () => ([
   </p>,
   <p>
   Mein weiterer Dank gilt allen Plattformen, welche sich intensiv um die Unterstützung von Open Source Projekten bemühen.
-    * heroku.com
-    * Github.com
-    * Travis-ci.org
-    * bintray.com
-    * und viele weitere
+    <ul>
+      <li><a href="https://heroku.com">Heroku.com</a></li>
+      <li><a href="https://github.com">Github.com</a></li>
+      <li><a href="https://travis-ci.com">Travis-ci.com</a></li>
+      <li><a href="https://bintray.com">Bintray.com</a></li>
+      <li><a href="https://sourceforge.net/">Sourceforge.net</a></li>
+      <li><a href="https://www.openhub.net//">Ohloh (openhub.net)</a></li>
+    <li> und viele weitere</li>
+    </ul>
   </p>
 ]);

@@ -24,9 +24,11 @@ export const About: FunctionalComponent<AboutProps> = () => ([
     nicht erfolgreich durchgeführt werden. Daher wurde begonnen einen eigenen Hilfsrouter zu schreiben.
 
     Mein besonderer Dank gilt hier Bryan Manuele (Fermi Dirak) dessen
-    <a href="https://medium.com/@bryanmanuele/how-i-implemented-my-own-spa-routing-system-in-vanilla-js-49942e3c4573">
+    <a href="https://medium.com/@bryanmanuele/how-i-implemented-my-own-spa-routing-system-in-vanilla-js-49942e3c4573"
+       target="_blank">
       Artikel
-    </a> und <a href="https://github.com/FermiDirak/fermidirak.github.io">Projekt</a> mit halfen den Router
+    </a> und <a href="https://github.com/FermiDirak/fermidirak.github.io" target="_blank">
+    Projekt</a> mit halfen den Router
     zu implementieren.
   </p>,
   <p>
@@ -37,12 +39,12 @@ export const About: FunctionalComponent<AboutProps> = () => ([
   <p>
   Mein weiterer Dank gilt allen Plattformen, welche sich intensiv um die Unterstützung von Open Source Projekten bemühen.
     <ul>
-      <li><a href="https://heroku.com">Heroku.com</a></li>
-      <li><a href="https://github.com">Github.com</a></li>
-      <li><a href="https://travis-ci.com">Travis-ci.com</a></li>
-      <li><a href="https://bintray.com">Bintray.com</a></li>
-      <li><a href="https://sourceforge.net/">Sourceforge.net</a></li>
-      <li><a href="https://www.openhub.net//">Ohloh (openhub.net)</a></li>
+      <li><a href="https://heroku.com" target="_blank">Heroku.com</a></li>
+      <li><a href="https://github.com" target="_blank">Github.com</a></li>
+      <li><a href="https://travis-ci.com" target="_blank">Travis-ci.com</a></li>
+      <li><a href="https://bintray.com" target="_blank">Bintray.com</a></li>
+      <li><a href="https://sourceforge.net" target="_blank">Sourceforge.net</a></li>
+      <li><a href="https://www.openhub.net" target="_blank">Ohloh (openhub.net)</a></li>
     <li> und viele weitere</li>
     </ul>
   </p>

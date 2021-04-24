@@ -2,10 +2,10 @@ import {Component, Element, h, Host, Prop, State, Watch} from "@stencil/core";
 import {Logger} from "../../shared/logger";
 import {AppShellOptions} from "./AppShellOptions";
 import {Subscription} from "rxjs";
-import {router} from "./routing/SimpleRouter";
 import {NewsLoader} from "./news/NewsLoader";
 import {News} from "./news/News";
 import {About} from "./snippets/About";
+import {router, subscribeRoute} from "@huluvu424242/liona-router/dist/esm";
 
 @Component({
   tag: "honey-news",
@@ -121,14 +121,16 @@ export class AppShell {
     this.localBasePath = this.hostElement.getAttribute("local-basepath") || "/";
     this.siteBasePath = this.hostElement.getAttribute("site-basepath") || "/";
     /// base initialisieren
-    const curLocation:string = window.location.origin;
-    const isLocal:boolean = curLocation.startsWith("http://localhost") || curLocation.startsWith("https://localhost");
-    const basePath = isLocal? this.localBasePath:this.siteBasePath;
-    router.setRoutenPrefix(basePath);
+    const curLocation: string = window.location.origin;
+    const isLocal: boolean = curLocation.startsWith("http://localhost") || curLocation.startsWith("https://localhost");
+    const basePath = isLocal ? this.localBasePath : this.siteBasePath;
+    if(basePath!=="/") {
+      router.setBasePath(basePath);
+    }
     // route initialisieren
     if (basePath === "/") {
       this.route = window.location.pathname;
-    }else{
+    } else {
       this.route = window.location.pathname.replace(basePath, "");
     }
 
@@ -137,7 +139,7 @@ export class AppShell {
     this.createTitleText = !this.hostElement.title;
     this.createAriaLabel = !this.hostElement["aria-label"];
     this.taborder = this.hostElement.getAttribute("tabindex") ? (this.hostElement.tabIndex + "") : "0";
-    this.routerSubscription = router.getRouteListener().subscribe((route: string) => {
+    this.routerSubscription = subscribeRoute((route: string) => {
         this.route = route;
       },
       (error) => {
@@ -208,10 +210,11 @@ export class AppShell {
           <div class="border border-1 col background-primary">Route: {this.route}</div>
         </div>
 
-        {!this.route || this.route === "/" || this.route === "/index.html" || this.route === "/news" ? <honey-news-feed ref={(el) => {
-          // @ts-ignore
-          this.newsFeed = el as HTMLHoneyNewsFeedElement
-        }}/> : null}
+        {!this.route || this.route === "/" || this.route === "/index.html" || this.route === "/news" ?
+          <honey-news-feed ref={(el) => {
+            // @ts-ignore
+            this.newsFeed = el as HTMLHoneyNewsFeedElement
+          }}/> : null}
         {this.route === "/feeds" ? <honey-news-feeds ref={(el) => {
           // @ts-ignore
           this.feedAdministration = el as HTMLHoneyNewsFeedsElement

@@ -49,6 +49,7 @@
     "object-hash": "2.1.1",
     "rxjs": "6.6.3",
     "feedme": "2.0.2",
+    "@huluvu424242/liona-router": "0.0.1",
     "@huluvu424242/liona-feeds": "2.3.0"
   },
   "devDependencies": {

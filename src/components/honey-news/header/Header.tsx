@@ -1,7 +1,7 @@
 import {Component, Element, h, Host, State} from '@stencil/core';
-import {navigateToRoute, router} from "../routing/SimpleRouter";
 import {Disclaimer} from "../snippets/Disclaimer";
 import {Subscription} from "rxjs";
+import {navigateToRoute, subscribeRoute} from "@huluvu424242/liona-router/dist/esm";
 
 @Component({
   tag: "honey-news-header",
@@ -19,7 +19,7 @@ export class Header {
 
   public connectedCallback() {
     // States initialisieren
-    this.routerSubscription = router.getRouteListener().subscribe((route: string) => {
+    this.routerSubscription = subscribeRoute((route: string) => {
         this.route = route;
       },
       (error) => {

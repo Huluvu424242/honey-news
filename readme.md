@@ -66,6 +66,12 @@ To the [live demo](https://huluvu424242.github.io/honey-news/index.html)
 
 ### v1.0.0 unpublished
 
+* 
+
+### v0.0.3 published at 2021-04-25
+
+* [issue 16](https://github.com/Huluvu424242/honey-news/issues/16) add feed working
+* [issue 13](https://github.com/Huluvu424242/honey-news/issues/13) routing added
 * [issue 11](https://github.com/Huluvu424242/honey-news/issues/11) split into multiple webcomponents
 
 ### v0.0.2 published at 2021-04-11

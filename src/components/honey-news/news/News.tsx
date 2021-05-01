@@ -112,6 +112,7 @@ export class News {
 
   protected initialisiereUrls() {
     const predefinedURLs: string[] = [
+      "https://www.presseportal.de/rss/presseportal.rss2",
       "https://www.tagesschau.de/xml/atom/",
       "https://www.zdf.de/rss/zdf/nachrichten",
       "https://kenfm.de/feed/",

@@ -247,7 +247,6 @@ export class News {
         title={this.getTitleText()}
         alt={this.getAltText()}
         tabindex={this.hasNoFeeds() ? -1 : this.taborder}
-        class="paper"
         disabled={this.hasNoFeeds()}
       >
         {

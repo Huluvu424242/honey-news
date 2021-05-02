@@ -68,6 +68,11 @@ To the [live demo](https://huluvu424242.github.io/honey-news/index.html)
 
 * 
 
+### v0.0.4 published at 2021-05-02
+
+* [issue 10](https://github.com/Huluvu424242/honey-news/issues/10) cleanup
+* finalizing layout
+
 ### v0.0.3 published at 2021-04-25
 
 * [issue 16](https://github.com/Huluvu424242/honey-news/issues/16) add feed working

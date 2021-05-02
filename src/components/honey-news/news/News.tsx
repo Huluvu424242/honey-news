@@ -134,7 +134,7 @@ export class News {
 
 
   /**
-   * Update speaker options
+   * Update honey-news options
    * @param options : NewsOptions plain object to set the options
    */
   @Method()
@@ -252,13 +252,13 @@ export class News {
         {
           this.getNeuesteMeldung()
         }
-        <div>
+        {/*<div>*/}
           {this.feeds.map((post) => [
               this.getUeberschrift(post),
               this.getPostEntry(post)
             ]
           )}
-        </div>
+        {/*</div>*/}
       </Host>
     );
   }

@@ -37,7 +37,7 @@ export namespace Components {
          */
         "feedLoader": NewsLoader;
         /**
-          * Update speaker options
+          * Update honey-news options
           * @param options : NewsOptions plain object to set the options
          */
         "updateOptions": (options: NewsOptions) => Promise<void>;

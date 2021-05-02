@@ -17,7 +17,7 @@
 
 ### `updateOptions(options: NewsOptions) => Promise<void>`
 
-Update speaker options
+Update honey-news options
 
 #### Returns
 

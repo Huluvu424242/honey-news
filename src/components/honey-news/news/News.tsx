@@ -48,7 +48,7 @@ export class News {
   /**
    * Hilfsklasse zum Laden der Daten
    */
-  @Prop({mutable:true}) feedLoader: NewsLoader;
+  @Prop({mutable: true}) feedLoader: NewsLoader;
 
   @State() feeds: Post[] = [];
   feedsSubscription: Subscription;
@@ -134,7 +134,7 @@ export class News {
 
 
   /**
-   * Update speaker options
+   * Update honey-news options
    * @param options : NewsOptions plain object to set the options
    */
   @Method()
@@ -217,19 +217,26 @@ export class News {
   }
 
   getPostEntry(post: Post) {
-    return <li>
-      <div>({post.pubdate})[{post.feedtitle}]</div>
-      <div><a href={this.getPostLink(post.item)}
-              target="_blank">{post.item.title}</a></div>
-    </li>;
+    return ([
+        <div class="card">
+          <div class="card-body">
+            <div class="card-title">{post.pubdate}</div>
+            <div class="card-subtitle">{post.feedtitle}</div>
+            <div class="card-text"><a href={this.getPostLink(post.item)} target="_blank">{post.item.title}</a></div>
+          </div>
+        </div>
+      ]
+    );
   }
 
   getNeuesteMeldung() {
     if (this.lastUpdate) {
-      return ([
-        <div>Neueste Meldung</div>,
-        <div>{this.lastUpdate?.toLocaleDateString() + "  " + this.lastUpdate?.toLocaleTimeString()}</div>
-      ]);
+      return (
+        <h1>
+          <div>Neueste Meldung</div>
+          <div>{this.lastUpdate?.toLocaleDateString() + "  " + this.lastUpdate?.toLocaleTimeString()}</div>
+        </h1>
+      );
     }
   }
 
@@ -240,22 +247,18 @@ export class News {
         title={this.getTitleText()}
         alt={this.getAltText()}
         tabindex={this.hasNoFeeds() ? -1 : this.taborder}
-        class={this.getHostClass()}
         disabled={this.hasNoFeeds()}
       >
-        <h2>
-          {
-            this.getNeuesteMeldung()
-          }
-        </h2>
-        <ol>
-          {this.feeds.map((post) =>
-            [
+        {
+          this.getNeuesteMeldung()
+        }
+        {/*<div>*/}
+          {this.feeds.map((post) => [
               this.getUeberschrift(post),
               this.getPostEntry(post)
             ]
           )}
-        </ol>
+        {/*</div>*/}
       </Host>
     );
   }

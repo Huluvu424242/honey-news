@@ -36,6 +36,7 @@ export class Feeds {
     Logger.debugMessage('##RENDER##');
     return (
       <Host>
+        <link rel="stylesheet" href="https://unpkg.com/papercss@1.8.2/dist/paper.min.css"/>
         <div class="form-group">
           <h2>Verwaltung</h2>
           <div class="row">

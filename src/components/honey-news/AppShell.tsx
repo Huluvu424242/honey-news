@@ -201,7 +201,7 @@ export class AppShell {
         // disabled={this.hasNoFeeds()}
         class="paper"
       >
-
+        <link rel="stylesheet" href="https://unpkg.com/papercss@1.8.2/dist/paper.min.css"/>
         <honey-news-header/>
 
         {!this.route || this.route === "/" || this.route === "/index.html" || this.route === "/news" ? <honey-news-feed ref={(el) => {

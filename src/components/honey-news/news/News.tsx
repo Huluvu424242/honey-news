@@ -127,7 +127,8 @@ export class News {
       "https://rss.golem.de/rss.php",
       "https://www.heise.de/rss/heise.rdf",
       "https://codepen.io/spark/feed",
-      "https://www.hongkiat.com/blog/feed/"
+      "https://www.hongkiat.com/blog/feed/",
+      "https://www.tagesspiegel.de/contentexport/feed/home"
     ];
     from(predefinedURLs).subscribe((url) => this.feedLoader.addFeedUrl(url));
   }

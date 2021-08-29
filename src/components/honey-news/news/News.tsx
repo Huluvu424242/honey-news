@@ -249,7 +249,8 @@ export class News {
         tabindex={this.hasNoFeeds() ? -1 : this.taborder}
         disabled={this.hasNoFeeds()}
       >
-        <link rel="stylesheet" href="https://unpkg.com/papercss@1.8.2/dist/paper.min.css"/>
+        {/*<link rel="stylesheet" href="https://unpkg.com/papercss@1.8.2/dist/paper.min.css"/>*/}
+        <honey-news-style/>
         {
           this.getNeuesteMeldung()
         }

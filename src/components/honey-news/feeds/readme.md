@@ -18,9 +18,14 @@
 
  - [honey-news](..)
 
+### Depends on
+
+- [honey-news-style](../dpl)
+
 ### Graph
 ```mermaid
 graph TD;
+  honey-news-feeds --> honey-news-style
   honey-news --> honey-news-feeds
   style honey-news-feeds fill:#f9f,stroke:#333,stroke-width:4px
 ```

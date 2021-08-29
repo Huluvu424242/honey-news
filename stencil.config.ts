@@ -1,7 +1,5 @@
 import {Config} from '@stencil/core';
 import nodePolyfills from 'rollup-plugin-node-polyfills';
-import {docs} from "jest-cli/build/cli/args";
-// import resolvePlugin from 'rollup-plugin-commonjs';
 
 export const config: Config = {
   namespace: 'honey-news',

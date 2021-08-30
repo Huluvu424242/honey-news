@@ -65,6 +65,8 @@ export namespace Components {
          */
         "verbose": boolean;
     }
+    interface HoneyNewsStyle {
+    }
 }
 declare global {
     interface HTMLHoneyNewsElement extends Components.HoneyNews, HTMLStencilElement {
@@ -97,12 +99,19 @@ declare global {
         prototype: HTMLHoneyNewsStatisticElement;
         new (): HTMLHoneyNewsStatisticElement;
     };
+    interface HTMLHoneyNewsStyleElement extends Components.HoneyNewsStyle, HTMLStencilElement {
+    }
+    var HTMLHoneyNewsStyleElement: {
+        prototype: HTMLHoneyNewsStyleElement;
+        new (): HTMLHoneyNewsStyleElement;
+    };
     interface HTMLElementTagNameMap {
         "honey-news": HTMLHoneyNewsElement;
         "honey-news-feed": HTMLHoneyNewsFeedElement;
         "honey-news-feeds": HTMLHoneyNewsFeedsElement;
         "honey-news-header": HTMLHoneyNewsHeaderElement;
         "honey-news-statistic": HTMLHoneyNewsStatisticElement;
+        "honey-news-style": HTMLHoneyNewsStyleElement;
     }
 }
 declare namespace LocalJSX {
@@ -152,12 +161,15 @@ declare namespace LocalJSX {
          */
         "verbose"?: boolean;
     }
+    interface HoneyNewsStyle {
+    }
     interface IntrinsicElements {
         "honey-news": HoneyNews;
         "honey-news-feed": HoneyNewsFeed;
         "honey-news-feeds": HoneyNewsFeeds;
         "honey-news-header": HoneyNewsHeader;
         "honey-news-statistic": HoneyNewsStatistic;
+        "honey-news-style": HoneyNewsStyle;
     }
 }
 export { LocalJSX as JSX };
@@ -169,6 +181,7 @@ declare module "@stencil/core" {
             "honey-news-feeds": LocalJSX.HoneyNewsFeeds & JSXBase.HTMLAttributes<HTMLHoneyNewsFeedsElement>;
             "honey-news-header": LocalJSX.HoneyNewsHeader & JSXBase.HTMLAttributes<HTMLHoneyNewsHeaderElement>;
             "honey-news-statistic": LocalJSX.HoneyNewsStatistic & JSXBase.HTMLAttributes<HTMLHoneyNewsStatisticElement>;
+            "honey-news-style": LocalJSX.HoneyNewsStyle & JSXBase.HTMLAttributes<HTMLHoneyNewsStyleElement>;
         }
     }
 }

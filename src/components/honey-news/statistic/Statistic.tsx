@@ -159,6 +159,8 @@ export class Statistic {
         tabindex={this.hasNoStatistics() ? -1 : this.taborder}
         disabled={this.hasNoStatistics()}
       >
+        {/*<link rel="stylesheet" href="https://unpkg.com/papercss@1.8.2/dist/paper.min.css"/>*/}
+        <honey-news-style/>
         <div class="section">
           <table class="table-alternating">
             <thead>

@@ -66,7 +66,11 @@ To the [live demo](https://huluvu424242.github.io/honey-news/index.html)
 
 ### v1.0.0 unpublished
 
-* 
+*
+
+### v0.0.5 published at 2021-08-30 (Developers only)
+
+* [issue 22](https://github.com/Huluvu424242/honey-news/issues/22) papercss as style lib used
 
 ### v0.0.4 published at 2021-05-02
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="en" xmlns="http://www.w3.org/1999/html">
+<html dir="ltr" lang="de" xmlns="http://www.w3.org/1999/html">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
@@ -11,23 +11,10 @@
   <!-- app entry point  so load the app  -->
   <script type="module" src="./build/honey-news.esm.js"></script>
   <script nomodule src="./build/honey-news.js"></script>
-<!--  <link rel="stylesheet" href="https://unpkg.com/papercss@1.8.2/dist/paper.min.css"/>-->
-  <honey-news-style/>
   <base href="/honey-news">
-  <style>
-    /*Nutzer definiert*/
-    :root{
-      --background-color-dark: #E8CD9A;
-      --main-background: #FADCB1;
-      --primary: #00008B;
-    }
-    body{
-      background-color: var(--main-background);
-      color: var(--primary);
-    }
-  </style>
 </head>
 <body id="seite">
+  <honey-news-style/>
   <honey-news site-basepath="/honey-news" local-basepath="/" />
 </body>
 </html>

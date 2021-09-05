@@ -66,6 +66,9 @@ export namespace Components {
         "verbose": boolean;
     }
     interface HoneyNewsStyle {
+        /**
+          * tagName of honey style sheet to apply e.g. 'honey-papercss-style'
+         */
         "theme": string;
     }
 }
@@ -163,6 +166,9 @@ declare namespace LocalJSX {
         "verbose"?: boolean;
     }
     interface HoneyNewsStyle {
+        /**
+          * tagName of honey style sheet to apply e.g. 'honey-papercss-style'
+         */
         "theme"?: string;
     }
     interface IntrinsicElements {

@@ -6,6 +6,9 @@ import {Component, h, Prop} from '@stencil/core';
 })
 export class HoneyNewsStyle {
 
+  /**
+   * tagName of honey style sheet to apply e.g. 'honey-papercss-style'
+   */
   @Prop() theme:string;
 
   connectedCallback(){

@@ -66,6 +66,7 @@ export namespace Components {
         "verbose": boolean;
     }
     interface HoneyNewsStyle {
+        "theme": string;
     }
 }
 declare global {
@@ -162,6 +163,7 @@ declare namespace LocalJSX {
         "verbose"?: boolean;
     }
     interface HoneyNewsStyle {
+        "theme"?: string;
     }
     interface IntrinsicElements {
         "honey-news": HoneyNews;

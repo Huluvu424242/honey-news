@@ -8,13 +8,15 @@
   <!-- infrastructur to load the app from route -->
   <script type="text/javascript" src="redirect.js"></script>
   <script type="text/javascript">recieveRedirect()</script>
+  <!-- design module -->
+  <script type="module" src="https://unpkg.com/@huluvu424242/honey-papercss-style@0.0.1/dist/honey-papercss-style/honey-papercss-style.esm.js" ></script>
   <!-- app entry point  so load the app  -->
   <script type="module" src="./build/honey-news.esm.js"></script>
   <script nomodule src="./build/honey-news.js"></script>
   <base href="/honey-news">
 </head>
 <body id="seite">
-  <honey-news-style/>
+<honey-papercss-style></honey-papercss-style>
   <honey-news site-basepath="/honey-news" local-basepath="/" />
 </body>
 </html>

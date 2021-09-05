@@ -52,7 +52,7 @@ export class AppShell {
    * Not changeable !!!
    *
    */
-  @Prop() theme:string;
+  @Prop() themeId: string;
 
   //
   // Routing
@@ -128,14 +128,14 @@ export class AppShell {
     this.localBasePath = this.hostElement.getAttribute("local-basepath") || "/";
     this.siteBasePath = this.hostElement.getAttribute("site-basepath") || "/";
     /// base initialisieren
-    const curLocation:string = window.location.origin;
-    const isLocal:boolean = curLocation.startsWith("http://localhost") || curLocation.startsWith("https://localhost");
-    const basePath = isLocal? this.localBasePath:this.siteBasePath;
+    const curLocation: string = window.location.origin;
+    const isLocal: boolean = curLocation.startsWith("http://localhost") || curLocation.startsWith("https://localhost");
+    const basePath = isLocal ? this.localBasePath : this.siteBasePath;
     router.setRoutenPrefix(basePath);
     // route initialisieren
     if (basePath === "/") {
       this.route = window.location.pathname;
-    }else{
+    } else {
       this.route = window.location.pathname.replace(basePath, "");
     }
 
@@ -198,7 +198,8 @@ export class AppShell {
 
   public render() {
     Logger.debugMessage('##RENDER##');
-
+    const themeElement = document.getElementById(this.themeId);
+    const stylenTagName = themeElement ? themeElement.tagName : '';
     return (
       <Host
         title={this.getTitleText()}
@@ -208,13 +209,14 @@ export class AppShell {
         // disabled={this.hasNoFeeds()}
         class="paper"
       >
-        <honey-news-style theme={this.theme}/>
+        <honey-news-style theme={stylenTagName}/>
         <honey-news-header/>
 
-        {!this.route || this.route === "/" || this.route === "/index.html" || this.route === "/news" ? <honey-news-feed ref={(el) => {
-          // @ts-ignore
-          this.newsFeed = el as HTMLHoneyNewsFeedElement
-        }}/> : null}
+        {!this.route || this.route === "/" || this.route === "/index.html" || this.route === "/news" ?
+          <honey-news-feed ref={(el) => {
+            // @ts-ignore
+            this.newsFeed = el as HTMLHoneyNewsFeedElement
+          }}/> : null}
         {this.route === "/feeds" ? <honey-news-feeds ref={(el) => {
           // @ts-ignore
           this.feedAdministration = el as HTMLHoneyNewsFeedsElement

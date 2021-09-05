@@ -46,6 +46,13 @@ export class AppShell {
    */
   taborder: string = "0";
 
+  /**
+   * theme to use for styling e.g. 'honey-papercss-style' (Default)
+   *
+   * Not changeable !!!
+   *
+   */
+  @Prop() theme:string;
 
   //
   // Routing
@@ -201,7 +208,7 @@ export class AppShell {
         // disabled={this.hasNoFeeds()}
         class="paper"
       >
-        <honey-news-style/>
+        <honey-news-style theme={this.theme}/>
         <honey-news-header/>
 
         {!this.route || this.route === "/" || this.route === "/index.html" || this.route === "/news" ? <honey-news-feed ref={(el) => {

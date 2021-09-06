@@ -1,4 +1,5 @@
 import {Component, h, Prop} from '@stencil/core';
+import {Components} from "@huluvu424242/honey-papercss-style";
 
 @Component({
   tag: 'honey-news-style',
@@ -9,15 +10,21 @@ export class HoneyNewsStyle {
   /**
    * tagName of honey style sheet to apply e.g. 'honey-papercss-style'
    */
-  @Prop() theme:string;
+  @Prop() theme: string;
 
-  connectedCallback(){
-    this.theme = this.theme || 'honey-papercss-style';
+  async componentWillLoad() {
+    try {
+      await customElements.whenDefined('honey-style');
+      const styleElements: Components.HoneyStyle = document.querySelector('honey-style') as Components.HoneyStyle;
+      this.theme = await styleElements.getTheme();
+    } catch (error) {
+      this.theme = 'honey-default-style';
+    }
   }
 
   render() {
-      // Grossbuchstabe für Variable notwendig für JSX
-      const TagName = this.theme;
-      return ( <TagName /> )
+    // Grossbuchstabe für Variable notwendig für JSX
+    const TagName = this.theme;
+    return (<TagName/>)
   }
 }

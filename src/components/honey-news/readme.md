@@ -5,14 +5,13 @@
 
 ## Properties
 
-| Property             | Attribute        | Description                                                                        | Type                        | Default     |
-| -------------------- | ---------------- | ---------------------------------------------------------------------------------- | --------------------------- | ----------- |
-| `feedAdministration` | --               | Feeds Administration Komponente                                                    | `HTMLHoneyNewsFeedsElement` | `undefined` |
-| `localBasePath`      | `local-basepath` | base of local site                                                                 | `any`                       | `undefined` |
-| `newsFeed`           | --               | News reader Komponente                                                             | `HTMLHoneyNewsFeedElement`  | `undefined` |
-| `siteBasePath`       | `site-basepath`  | base of remote site                                                                | `any`                       | `undefined` |
-| `themeId`            | `theme-id`       | theme to use for styling e.g. 'honey-papercss-style' (Default)  Not changeable !!! | `string`                    | `undefined` |
-| `verbose`            | `verbose`        | enable console logging                                                             | `boolean`                   | `false`     |
+| Property             | Attribute        | Description                     | Type                        | Default     |
+| -------------------- | ---------------- | ------------------------------- | --------------------------- | ----------- |
+| `feedAdministration` | --               | Feeds Administration Komponente | `HTMLHoneyNewsFeedsElement` | `undefined` |
+| `localBasePath`      | `local-basepath` | base of local site              | `any`                       | `undefined` |
+| `newsFeed`           | --               | News reader Komponente          | `HTMLHoneyNewsFeedElement`  | `undefined` |
+| `siteBasePath`       | `site-basepath`  | base of remote site             | `any`                       | `undefined` |
+| `verbose`            | `verbose`        | enable console logging          | `boolean`                   | `false`     |
 
 
 ## Dependencies

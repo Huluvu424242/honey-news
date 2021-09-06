@@ -33,10 +33,6 @@ export namespace Components {
          */
         "siteBasePath": any;
         /**
-          * theme to use for styling e.g. 'honey-papercss-style' (Default)  Not changeable !!!
-         */
-        "themeId": string;
-        /**
           * enable console logging
          */
         "verbose": boolean;
@@ -146,10 +142,6 @@ declare namespace LocalJSX {
           * base of remote site
          */
         "siteBasePath"?: any;
-        /**
-          * theme to use for styling e.g. 'honey-papercss-style' (Default)  Not changeable !!!
-         */
-        "themeId"?: string;
         /**
           * enable console logging
          */

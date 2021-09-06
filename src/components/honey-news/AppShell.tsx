@@ -46,14 +46,6 @@ export class AppShell {
    */
   taborder: string = "0";
 
-  /**
-   * theme to use for styling e.g. 'honey-papercss-style' (Default)
-   *
-   * Not changeable !!!
-   *
-   */
-  @Prop() themeId: string;
-
   //
   // Routing
   //
@@ -92,7 +84,6 @@ export class AppShell {
   /**
    * News reader Komponente
    */
-    // @ts-ignore
   @Prop({mutable: true}) newsFeed: HTMLHoneyNewsFeedElement;
 
   @Watch("newsFeed")
@@ -109,7 +100,6 @@ export class AppShell {
   /**
    * Feeds Administration Komponente
    */
-    // @ts-ignore
   @Prop({mutable: true}) feedAdministration: HTMLHoneyNewsFeedsElement;
 
   @Watch("feedAdministration")
@@ -186,20 +176,17 @@ export class AppShell {
   }
 
   protected getHostClass(): string {
-    let hostClass = this.initialHostClass;
+    return this.initialHostClass;
     // if (this.hasNoFeeds()) {
     //   return hostClass + " " + this.options.disabledHostClass;
     // } else {
     //   return hostClass + " " + this.options.enabledHostClass;
     // }
-    return hostClass;
   }
 
 
   public render() {
     Logger.debugMessage('##RENDER##');
-    const themeElement = document.getElementById(this.themeId);
-    const stylenTagName = themeElement ? themeElement.tagName : '';
     return (
       <Host
         title={this.getTitleText()}
@@ -209,16 +196,14 @@ export class AppShell {
         // disabled={this.hasNoFeeds()}
         class="paper"
       >
-        <honey-apply-style theme={stylenTagName}/>
+        <honey-apply-style/>
         <honey-news-header/>
 
         {!this.route || this.route === "/" || this.route === "/index.html" || this.route === "/news" ?
           <honey-news-feed ref={(el) => {
-            // @ts-ignore
             this.newsFeed = el as HTMLHoneyNewsFeedElement
           }}/> : null}
         {this.route === "/feeds" ? <honey-news-feeds ref={(el) => {
-          // @ts-ignore
           this.feedAdministration = el as HTMLHoneyNewsFeedsElement
         }
         }/> : null}

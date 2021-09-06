@@ -36,7 +36,7 @@ export class Feeds {
     Logger.debugMessage('##RENDER##');
     return (
       <Host>
-        <honey-news-style/>
+        <honey-apply-style/>
         <div class="form-group">
           <h2>Verwaltung</h2>
           <div class="row">

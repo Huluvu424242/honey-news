@@ -2,10 +2,10 @@ import {Component, h, Prop} from '@stencil/core';
 import {Components} from "@huluvu424242/honey-papercss-style";
 
 @Component({
-  tag: 'honey-news-style',
-  styleUrl: 'honey-news-style.css',
+  tag: 'honey-apply-style',
+  styleUrl: 'honey-apply-style.css',
 })
-export class HoneyNewsStyle {
+export class HoneyApplyStyle {
 
   /**
    * tagName of honey style sheet to apply e.g. 'honey-papercss-style'

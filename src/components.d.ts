@@ -9,6 +9,12 @@ import { NewsLoader } from "./components/honey-news/news/NewsLoader";
 import { NewsOptions } from "./components/honey-news/news/NewsOptions";
 import { StatisticOptions } from "./components/honey-news/statistic/StatisticOptions";
 export namespace Components {
+    interface HoneyApplyStyle {
+        /**
+          * tagName of honey style sheet to apply e.g. 'honey-papercss-style'
+         */
+        "theme": string;
+    }
     interface HoneyNews {
         /**
           * Feeds Administration Komponente
@@ -69,14 +75,14 @@ export namespace Components {
          */
         "verbose": boolean;
     }
-    interface HoneyNewsStyle {
-        /**
-          * tagName of honey style sheet to apply e.g. 'honey-papercss-style'
-         */
-        "theme": string;
-    }
 }
 declare global {
+    interface HTMLHoneyApplyStyleElement extends Components.HoneyApplyStyle, HTMLStencilElement {
+    }
+    var HTMLHoneyApplyStyleElement: {
+        prototype: HTMLHoneyApplyStyleElement;
+        new (): HTMLHoneyApplyStyleElement;
+    };
     interface HTMLHoneyNewsElement extends Components.HoneyNews, HTMLStencilElement {
     }
     var HTMLHoneyNewsElement: {
@@ -107,22 +113,22 @@ declare global {
         prototype: HTMLHoneyNewsStatisticElement;
         new (): HTMLHoneyNewsStatisticElement;
     };
-    interface HTMLHoneyNewsStyleElement extends Components.HoneyNewsStyle, HTMLStencilElement {
-    }
-    var HTMLHoneyNewsStyleElement: {
-        prototype: HTMLHoneyNewsStyleElement;
-        new (): HTMLHoneyNewsStyleElement;
-    };
     interface HTMLElementTagNameMap {
+        "honey-apply-style": HTMLHoneyApplyStyleElement;
         "honey-news": HTMLHoneyNewsElement;
         "honey-news-feed": HTMLHoneyNewsFeedElement;
         "honey-news-feeds": HTMLHoneyNewsFeedsElement;
         "honey-news-header": HTMLHoneyNewsHeaderElement;
         "honey-news-statistic": HTMLHoneyNewsStatisticElement;
-        "honey-news-style": HTMLHoneyNewsStyleElement;
     }
 }
 declare namespace LocalJSX {
+    interface HoneyApplyStyle {
+        /**
+          * tagName of honey style sheet to apply e.g. 'honey-papercss-style'
+         */
+        "theme"?: string;
+    }
     interface HoneyNews {
         /**
           * Feeds Administration Komponente
@@ -173,31 +179,25 @@ declare namespace LocalJSX {
          */
         "verbose"?: boolean;
     }
-    interface HoneyNewsStyle {
-        /**
-          * tagName of honey style sheet to apply e.g. 'honey-papercss-style'
-         */
-        "theme"?: string;
-    }
     interface IntrinsicElements {
+        "honey-apply-style": HoneyApplyStyle;
         "honey-news": HoneyNews;
         "honey-news-feed": HoneyNewsFeed;
         "honey-news-feeds": HoneyNewsFeeds;
         "honey-news-header": HoneyNewsHeader;
         "honey-news-statistic": HoneyNewsStatistic;
-        "honey-news-style": HoneyNewsStyle;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "honey-apply-style": LocalJSX.HoneyApplyStyle & JSXBase.HTMLAttributes<HTMLHoneyApplyStyleElement>;
             "honey-news": LocalJSX.HoneyNews & JSXBase.HTMLAttributes<HTMLHoneyNewsElement>;
             "honey-news-feed": LocalJSX.HoneyNewsFeed & JSXBase.HTMLAttributes<HTMLHoneyNewsFeedElement>;
             "honey-news-feeds": LocalJSX.HoneyNewsFeeds & JSXBase.HTMLAttributes<HTMLHoneyNewsFeedsElement>;
             "honey-news-header": LocalJSX.HoneyNewsHeader & JSXBase.HTMLAttributes<HTMLHoneyNewsHeaderElement>;
             "honey-news-statistic": LocalJSX.HoneyNewsStatistic & JSXBase.HTMLAttributes<HTMLHoneyNewsStatisticElement>;
-            "honey-news-style": LocalJSX.HoneyNewsStyle & JSXBase.HTMLAttributes<HTMLHoneyNewsStyleElement>;
         }
     }
 }

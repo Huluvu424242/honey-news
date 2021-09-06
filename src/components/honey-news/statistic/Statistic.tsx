@@ -159,7 +159,7 @@ export class Statistic {
         tabindex={this.hasNoStatistics() ? -1 : this.taborder}
         disabled={this.hasNoStatistics()}
       >
-        <honey-news-style/>
+        <honey-apply-style/>
         <div class="section">
           <table class="table-alternating">
             <thead>

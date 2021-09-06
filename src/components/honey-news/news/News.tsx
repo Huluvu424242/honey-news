@@ -250,7 +250,7 @@ export class News {
         tabindex={this.hasNoFeeds() ? -1 : this.taborder}
         disabled={this.hasNoFeeds()}
       >
-        <honey-news-style/>
+        <honey-apply-style/>
         {
           this.getNeuesteMeldung()
         }

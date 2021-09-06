@@ -20,12 +20,12 @@
 
 ### Depends on
 
-- [honey-news-style](../dpl)
+- [honey-apply-style](../honey-apply-style)
 
 ### Graph
 ```mermaid
 graph TD;
-  honey-news-feeds --> honey-news-style
+  honey-news-feeds --> honey-apply-style
   honey-news --> honey-news-feeds
   style honey-news-feeds fill:#f9f,stroke:#333,stroke-width:4px
 ```

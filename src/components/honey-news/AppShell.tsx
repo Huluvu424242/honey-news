@@ -209,7 +209,7 @@ export class AppShell {
         // disabled={this.hasNoFeeds()}
         class="paper"
       >
-        <honey-news-style theme={stylenTagName}/>
+        <honey-apply-style theme={stylenTagName}/>
         <honey-news-header/>
 
         {!this.route || this.route === "/" || this.route === "/index.html" || this.route === "/news" ?

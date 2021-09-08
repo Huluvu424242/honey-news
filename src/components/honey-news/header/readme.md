@@ -11,14 +11,9 @@
 
  - [honey-news](..)
 
-### Depends on
-
-- [honey-apply-style](../honey-apply-style)
-
 ### Graph
 ```mermaid
 graph TD;
-  honey-news-header --> honey-apply-style
   honey-news --> honey-news-header
   style honey-news-header fill:#f9f,stroke:#333,stroke-width:4px
 ```

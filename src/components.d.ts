@@ -9,12 +9,6 @@ import { NewsLoader } from "./components/honey-news/news/NewsLoader";
 import { NewsOptions } from "./components/honey-news/news/NewsOptions";
 import { StatisticOptions } from "./components/honey-news/statistic/StatisticOptions";
 export namespace Components {
-    interface HoneyApplyStyle {
-        /**
-          * tagName of honey style sheet to apply e.g. 'honey-papercss-style'
-         */
-        "theme": string;
-    }
     interface HoneyNews {
         /**
           * Feeds Administration Komponente
@@ -73,12 +67,6 @@ export namespace Components {
     }
 }
 declare global {
-    interface HTMLHoneyApplyStyleElement extends Components.HoneyApplyStyle, HTMLStencilElement {
-    }
-    var HTMLHoneyApplyStyleElement: {
-        prototype: HTMLHoneyApplyStyleElement;
-        new (): HTMLHoneyApplyStyleElement;
-    };
     interface HTMLHoneyNewsElement extends Components.HoneyNews, HTMLStencilElement {
     }
     var HTMLHoneyNewsElement: {
@@ -110,7 +98,6 @@ declare global {
         new (): HTMLHoneyNewsStatisticElement;
     };
     interface HTMLElementTagNameMap {
-        "honey-apply-style": HTMLHoneyApplyStyleElement;
         "honey-news": HTMLHoneyNewsElement;
         "honey-news-feed": HTMLHoneyNewsFeedElement;
         "honey-news-feeds": HTMLHoneyNewsFeedsElement;
@@ -119,12 +106,6 @@ declare global {
     }
 }
 declare namespace LocalJSX {
-    interface HoneyApplyStyle {
-        /**
-          * tagName of honey style sheet to apply e.g. 'honey-papercss-style'
-         */
-        "theme"?: string;
-    }
     interface HoneyNews {
         /**
           * Feeds Administration Komponente
@@ -172,7 +153,6 @@ declare namespace LocalJSX {
         "verbose"?: boolean;
     }
     interface IntrinsicElements {
-        "honey-apply-style": HoneyApplyStyle;
         "honey-news": HoneyNews;
         "honey-news-feed": HoneyNewsFeed;
         "honey-news-feeds": HoneyNewsFeeds;
@@ -184,7 +164,6 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "honey-apply-style": LocalJSX.HoneyApplyStyle & JSXBase.HTMLAttributes<HTMLHoneyApplyStyleElement>;
             "honey-news": LocalJSX.HoneyNews & JSXBase.HTMLAttributes<HTMLHoneyNewsElement>;
             "honey-news-feed": LocalJSX.HoneyNewsFeed & JSXBase.HTMLAttributes<HTMLHoneyNewsFeedElement>;
             "honey-news-feeds": LocalJSX.HoneyNewsFeeds & JSXBase.HTMLAttributes<HTMLHoneyNewsFeedsElement>;

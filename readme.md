@@ -18,7 +18,11 @@ npm install --save @huluvu424242/honey-news
 ```html
 <script 
     type="module" 
-    src='https://unpkg.com/@huluvu424242/honey-news@0.0.1/dist/honey-news/honey-news.js'>
+    src='https://unpkg.com/@huluvu424242/honey-news@0.0.6/dist/honey-news/honey-news.esm.js'>
+</script>
+script 
+    nomodule 
+    src='https://unpkg.com/@huluvu424242/honey-news@0.0.6/dist/honey-news/honey-news.js'>
 </script>
 ```
 To the [demo site](https://huluvu424242.github.io/honey-news/index.html)
@@ -38,7 +42,20 @@ To the [demo site](https://huluvu424242.github.io/honey-news/index.html)
 ```
 -->
 ```html
-<body id="seite" style="display: block">
+<head>
+  <title>Honey-News Feed Reader</title>
+  <script type="module"
+          src="https://unpkg.com/@huluvu424242/honey-style-it@0.0.4/dist/honey-style-it/honey-style-it.esm.js"></script>
+  <script nomodule
+          src="https://unpkg.com/@huluvu424242/honey-style-it@0.0.4/dist/honey-style-it/honey-style-it.js"></script>
+  <!-- style module -->
+  <script type="module"
+          src="https://unpkg.com/@huluvu424242/honey-papercss-style@0.0.2/dist/honey-papercss-style/honey-papercss-style.esm.js"></script>
+  <script nomodule
+          src="https://unpkg.com/@huluvu424242/honey-papercss-style@0.0.2/dist/honey-papercss-style/honey-papercss-style.js"></script>
+  <base href="/honey-news">
+</head>
+<body id="seite">
 
 <h1>Nutzung der honey-news Komponente</h1>
 <span class="wichtig">!!!</span> Das ist eine Demo Seite welche alle Feature der App zeigen soll - aus diesem Grund ist auch die Statistik eingeschaltet <span class="wichtig">!!!</span><br>
@@ -46,7 +63,13 @@ Es werden nur Daten zu den abgerufenen Feeds gespeichert (in memory) wie: url, a
 Sollten Sie die Speicherung nicht wünschen - dann geben Sie bitte keinen neuen News ein.<br>
 Vielen Dank für Ihr Verständnis. <br>
 <hr>
-<honey-news />
+
+<honey-define-style>
+  <honey-papercss-style/>
+</honey-define-style>
+
+<honey-news site-basepath="/honey-news" local-basepath="/"/>
+
 
 </body>
 ```
@@ -67,6 +90,10 @@ To the [live demo](https://huluvu424242.github.io/honey-news/index.html)
 ### v1.0.0 unpublished
 
 *
+
+### v0.0.6 published at 2021-09-09
+
+* [issue 24](https://github.com/Huluvu424242/honey-news/issues/24) honey-style-it used
 
 ### v0.0.5 published at 2021-08-30 (Developers only)
 

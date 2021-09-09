@@ -1,6 +1,6 @@
 {
   "name": "@huluvu424242/honey-news",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "News reader web component for custom urls.",
   "main": "dist/index.cjs.js",
   "module": "dist/custom-elements/index.js",
@@ -49,8 +49,7 @@
     "object-hash": "2.1.1",
     "rxjs": "6.6.3",
     "feedme": "2.0.2",
-    "@huluvu424242/liona-feeds": "2.3.0",
-    "@huluvu424242/honey-papercss-style": "0.0.2"
+    "@huluvu424242/liona-feeds": "2.3.0"
   },
   "devDependencies": {
     "@stencil/core": "2.5.2",
@@ -64,5 +63,8 @@
     "typescript": "4.0.5",
     "rollup-plugin-node-polyfills": "0.2.1",
     "license-checker": "25.0.1"
+  },
+  "optionalDependencies": {
+    "@huluvu424242/honey-style-it": "0.0.4"
   }
 }

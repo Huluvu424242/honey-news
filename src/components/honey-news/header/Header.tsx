@@ -44,8 +44,7 @@ export class Header {
   render() {
     return (
       <Host>
-        {/*<link rel="stylesheet" href="https://unpkg.com/papercss@1.8.2/dist/paper.min.css"/>*/}
-        <honey-news-style/>
+        <honey-apply-style />
         <nav class="border split-nav">
           <div class="nav-brand">
             <h3 role="heading" aria-level="1"><a href="/"

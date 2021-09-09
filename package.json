@@ -1,6 +1,6 @@
 {
   "name": "@huluvu424242/honey-news",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "News reader web component for custom urls.",
   "main": "dist/index.cjs.js",
   "module": "dist/custom-elements/index.js",
@@ -63,5 +63,8 @@
     "typescript": "4.0.5",
     "rollup-plugin-node-polyfills": "0.2.1",
     "license-checker": "25.0.1"
+  },
+  "optionalDependencies": {
+    "@huluvu424242/honey-style-it": "0.0.4"
   }
 }

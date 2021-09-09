@@ -46,7 +46,6 @@ export class AppShell {
    */
   taborder: string = "0";
 
-
   //
   // Routing
   //
@@ -85,7 +84,6 @@ export class AppShell {
   /**
    * News reader Komponente
    */
-    // @ts-ignore
   @Prop({mutable: true}) newsFeed: HTMLHoneyNewsFeedElement;
 
   @Watch("newsFeed")
@@ -102,7 +100,6 @@ export class AppShell {
   /**
    * Feeds Administration Komponente
    */
-    // @ts-ignore
   @Prop({mutable: true}) feedAdministration: HTMLHoneyNewsFeedsElement;
 
   @Watch("feedAdministration")
@@ -121,14 +118,14 @@ export class AppShell {
     this.localBasePath = this.hostElement.getAttribute("local-basepath") || "/";
     this.siteBasePath = this.hostElement.getAttribute("site-basepath") || "/";
     /// base initialisieren
-    const curLocation:string = window.location.origin;
-    const isLocal:boolean = curLocation.startsWith("http://localhost") || curLocation.startsWith("https://localhost");
-    const basePath = isLocal? this.localBasePath:this.siteBasePath;
+    const curLocation: string = window.location.origin;
+    const isLocal: boolean = curLocation.startsWith("http://localhost") || curLocation.startsWith("https://localhost");
+    const basePath = isLocal ? this.localBasePath : this.siteBasePath;
     router.setRoutenPrefix(basePath);
     // route initialisieren
     if (basePath === "/") {
       this.route = window.location.pathname;
-    }else{
+    } else {
       this.route = window.location.pathname.replace(basePath, "");
     }
 
@@ -179,19 +176,17 @@ export class AppShell {
   }
 
   protected getHostClass(): string {
-    let hostClass = this.initialHostClass;
+    return this.initialHostClass;
     // if (this.hasNoFeeds()) {
     //   return hostClass + " " + this.options.disabledHostClass;
     // } else {
     //   return hostClass + " " + this.options.enabledHostClass;
     // }
-    return hostClass;
   }
 
 
   public render() {
     Logger.debugMessage('##RENDER##');
-
     return (
       <Host
         title={this.getTitleText()}
@@ -201,16 +196,14 @@ export class AppShell {
         // disabled={this.hasNoFeeds()}
         class="paper"
       >
-        {/*<link rel="stylesheet" href="https://unpkg.com/papercss@1.8.2/dist/paper.min.css"/>*/}
-        <honey-news-style/>
+        <honey-apply-style/>
         <honey-news-header/>
 
-        {!this.route || this.route === "/" || this.route === "/index.html" || this.route === "/news" ? <honey-news-feed ref={(el) => {
-          // @ts-ignore
-          this.newsFeed = el as HTMLHoneyNewsFeedElement
-        }}/> : null}
+        {!this.route || this.route === "/" || this.route === "/index.html" || this.route === "/news" ?
+          <honey-news-feed ref={(el) => {
+            this.newsFeed = el as HTMLHoneyNewsFeedElement
+          }}/> : null}
         {this.route === "/feeds" ? <honey-news-feeds ref={(el) => {
-          // @ts-ignore
           this.feedAdministration = el as HTMLHoneyNewsFeedsElement
         }
         }/> : null}

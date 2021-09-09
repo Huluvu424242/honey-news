@@ -32,14 +32,9 @@ Type: `Promise<void>`
 
  - [honey-news](..)
 
-### Depends on
-
-- [honey-news-style](../dpl)
-
 ### Graph
 ```mermaid
 graph TD;
-  honey-news-feed --> honey-news-style
   honey-news --> honey-news-feed
   style honey-news-feed fill:#f9f,stroke:#333,stroke-width:4px
 ```

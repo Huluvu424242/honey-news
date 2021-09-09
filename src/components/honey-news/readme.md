@@ -18,7 +18,6 @@
 
 ### Depends on
 
-- [honey-news-style](dpl)
 - [honey-news-header](header)
 - [honey-news-feed](news)
 - [honey-news-feeds](feeds)
@@ -27,15 +26,10 @@
 ### Graph
 ```mermaid
 graph TD;
-  honey-news --> honey-news-style
   honey-news --> honey-news-header
   honey-news --> honey-news-feed
   honey-news --> honey-news-feeds
   honey-news --> honey-news-statistic
-  honey-news-header --> honey-news-style
-  honey-news-feed --> honey-news-style
-  honey-news-feeds --> honey-news-style
-  honey-news-statistic --> honey-news-style
   style honey-news fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

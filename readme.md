@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.com/Huluvu424242/honey-news.svg?branch=master)](https://travis-ci.com/Huluvu424242/honey-news)
 ![Github CI](https://github.com/Huluvu424242/honey-news/workflows/Github%20CI/badge.svg)
 [![npm](https://img.shields.io/npm/v/@huluvu424242/honey-news.svg)](https://www.npmjs.com/package/@huluvu424242/honey-news)
+[![npm](https://img.shields.io/npm/dy/@huluvu424242/honey-news.svg)](https://www.npmjs.com/package/@huluvu424242/honey-news)
 [![npm](https://img.shields.io/npm/dm/@huluvu424242/honey-news.svg)](https://www.npmjs.com/package/@huluvu424242/honey-news)
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/@huluvu424242/honey-news)
 [![Donate with paypal](https://img.shields.io/badge/paypal-donate-yellow.svg)](https://paypal.me/huluvu424242)
@@ -20,7 +21,7 @@ npm install --save @huluvu424242/honey-news
     type="module" 
     src='https://unpkg.com/@huluvu424242/honey-news@0.0.6/dist/honey-news/honey-news.esm.js'>
 </script>
-script 
+<script 
     nomodule 
     src='https://unpkg.com/@huluvu424242/honey-news@0.0.6/dist/honey-news/honey-news.js'>
 </script>

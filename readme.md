@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/Huluvu424242/honey-news.svg?branch=master)](https://travis-ci.com/Huluvu424242/honey-news)
+[![Build Status](https://app.travis-ci.com/Huluvu424242/honey-news.svg?branch=master)](https://app.travis-ci.com/Huluvu424242/honey-news)
 ![Github CI](https://github.com/Huluvu424242/honey-news/workflows/Github%20CI/badge.svg)
 [![npm](https://img.shields.io/npm/v/@huluvu424242/honey-news.svg)](https://www.npmjs.com/package/@huluvu424242/honey-news)
 [![npm](https://img.shields.io/npm/dy/@huluvu424242/honey-news.svg)](https://www.npmjs.com/package/@huluvu424242/honey-news)

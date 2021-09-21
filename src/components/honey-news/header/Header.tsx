@@ -53,7 +53,7 @@ export class Header {
           <div class="nav-brand">
             <h3 role="heading" aria-level="1"><a href="/"
                                                  onClick={this.navigateTo}
-                                                 class={this.route === "/" ? "selected" : ""}
+                                                 class={this.classNavLink("/")}
             > RSS/Atom Feed Reader</a></h3>
           </div>
           <div class="collapsible">

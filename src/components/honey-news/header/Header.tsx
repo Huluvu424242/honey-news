@@ -62,26 +62,26 @@ export class Header {
               <div class="bar5"/>
             </label>
             <div class="collapsible-body">
-              <ul role="listbox" class="inline">
-                <li role="listitem"><span role="heading" aria-level="2"><a href="/feeds"
+              <ul role="listbox" class="nav inline">
+                <li role="listitem" class="nav-item"><span role="heading" aria-level="2"><a href="/feeds"
                                                                            onClick={this.navigateTo}
                                                                            class={this.route === "/feeds" ? "selected" : null}
                 >Feeds</a></span>
                 </li>
-                <li role="listitem"><span role="heading" aria-level="2"><a href="/news"
+                <li role="listitem" class="nav-item"><span role="heading" aria-level="2"><a href="/news"
                                                                            onClick={this.navigateTo}
                                                                            class={this.route === "/news" ? "selected" : null}
                 >News</a></span>
                 </li>
-                <li role="listitem"><span role="heading" aria-level="2"><a href="/statistic"
+                <li role="listitem" class="nav-item"><span role="heading" aria-level="2"><a href="/statistic"
                                                                            onClick={this.navigateTo}
                                                                            class={this.route === "/statistic" ? "selected" : null}
                 >Statistik</a></span>
                 </li>
-                <li role="listitem"><span role="heading" aria-level="2"><a
+                <li role="listitem" class="nav-item"><span role="heading" aria-level="2"><a
                   href="https://github.com/Huluvu424242/honey-news"
                   target="_blank">Github</a></span></li>
-                <li role="listitem"><span role="heading" aria-level="2"><a href="/about"
+                <li role="listitem" class="nav-item"><span role="heading" aria-level="2"><a href="/about"
                                                                            onClick={this.navigateTo}
                                                                            class={this.route === "/about" ? "selected" : null}
                 >About</a></span>

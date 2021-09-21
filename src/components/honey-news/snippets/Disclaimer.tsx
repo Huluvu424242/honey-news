@@ -8,9 +8,9 @@ interface DisclaimerProps {
 
 export const Disclaimer: FunctionalComponent<DisclaimerProps> = () => (
   <div class="row flex-spaces">
-    <input class="alert-state" id="disclaimer" type="checkbox"/>
-    <div class="alert alert-danger dismissible">
-      <div class="row">
+    <input   id="disclaimer" role="button" type="checkbox"  class="alert-state btn btn-primary" data-bs-toggle="collapse" data-bs-target="#disclaimer-text" />
+    <div id="disclaimer-text" class="alert alert-danger dismissible collapse show" >
+      <div class="row card card-body">
         <h3>!!! Das ist eine Demo Seite welche alle Feature der App zeigen soll - aus
           diesem Grund ist auch die Statistik eingeschaltet !!!
         </h3>

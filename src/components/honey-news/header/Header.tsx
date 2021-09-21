@@ -40,16 +40,20 @@ export class Header {
     navigateToRoute(event.currentTarget["pathname"]);
   }
 
+  protected classNavLink(route: string): string {
+    const selected: string = this.route === route ? "selected" : null;
+    return "nav-link " + selected
+  }
 
   render() {
     return (
       <Host>
-        <honey-apply-style />
+        <honey-apply-style/>
         <nav class="border split-nav">
           <div class="nav-brand">
             <h3 role="heading" aria-level="1"><a href="/"
                                                  onClick={this.navigateTo}
-                                                 class={this.route === "/" ? "selected" : null}
+                                                 class={this.route === "/" ? "selected" : ""}
             > RSS/Atom Feed Reader</a></h3>
           </div>
           <div class="collapsible">
@@ -64,28 +68,28 @@ export class Header {
             <div class="collapsible-body">
               <ul role="listbox" class="nav inline">
                 <li role="listitem" class="nav-item"><span role="heading" aria-level="2"><a href="/feeds"
-                                                                           onClick={this.navigateTo}
-                                                                           class={this.route === "/feeds" ? "selected" : null}
+                                                                                            onClick={this.navigateTo}
+                                                                                            class={this.classNavLink("/feeds")}
                 >Feeds</a></span>
                 </li>
                 <li role="listitem" class="nav-item"><span role="heading" aria-level="2"><a href="/news"
-                                                                           onClick={this.navigateTo}
-                                                                           class={this.route === "/news" ? "selected" : null}
+                                                                                            onClick={this.navigateTo}
+                                                                                            class={this.classNavLink("/news")}
                 >News</a></span>
                 </li>
                 <li role="listitem" class="nav-item"><span role="heading" aria-level="2"><a href="/statistic"
-                                                                           onClick={this.navigateTo}
-                                                                           class={this.route === "/statistic" ? "selected" : null}
+                                                                                            onClick={this.navigateTo}
+                                                                                            class={this.classNavLink("/statistic")}
                 >Statistik</a></span>
+                </li>
+                <li role="listitem" class="nav-item"><span role="heading" aria-level="2"><a href="/about"
+                                                                                            onClick={this.navigateTo}
+                                                                                            class={this.classNavLink("/about")}
+                >About</a></span>
                 </li>
                 <li role="listitem" class="nav-item"><span role="heading" aria-level="2"><a
                   href="https://github.com/Huluvu424242/honey-news"
-                  target="_blank">Github</a></span></li>
-                <li role="listitem" class="nav-item"><span role="heading" aria-level="2"><a href="/about"
-                                                                           onClick={this.navigateTo}
-                                                                           class={this.route === "/about" ? "selected" : null}
-                >About</a></span>
-                </li>
+                  target="_blank" class="nav-link">Github</a></span></li>
               </ul>
             </div>
           </div>

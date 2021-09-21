@@ -65,6 +65,6 @@
     "license-checker": "25.0.1"
   },
   "optionalDependencies": {
-    "@huluvu424242/honey-style-it": "0.0.4"
+    "@huluvu424242/honey-style-it": "0.0.5"
   }
 }

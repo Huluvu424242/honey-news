@@ -46,9 +46,9 @@ To the [demo site](https://huluvu424242.github.io/honey-news/index.html)
 <head>
   <title>Honey-News Feed Reader</title>
   <script type="module"
-          src="https://unpkg.com/@huluvu424242/honey-style-it@0.0.4/dist/honey-style-it/honey-style-it.esm.js"></script>
+          src="https://unpkg.com/@huluvu424242/honey-style-it@0.0.5/dist/honey-style-it/honey-style-it.esm.js"></script>
   <script nomodule
-          src="https://unpkg.com/@huluvu424242/honey-style-it@0.0.4/dist/honey-style-it/honey-style-it.js"></script>
+          src="https://unpkg.com/@huluvu424242/honey-style-it@0.0.5/dist/honey-style-it/honey-style-it.js"></script>
   <!-- style module -->
   <script type="module"
           src="https://unpkg.com/@huluvu424242/honey-papercss-style@0.0.2/dist/honey-papercss-style/honey-papercss-style.esm.js"></script>

@@ -9,6 +9,12 @@ import { NewsLoader } from "./components/honey-news/news/NewsLoader";
 import { NewsOptions } from "./components/honey-news/news/NewsOptions";
 import { StatisticOptions } from "./components/honey-news/statistic/StatisticOptions";
 export namespace Components {
+    interface HoneyDisclaimer {
+    }
+    interface HoneyDisclaimerBootstrap {
+    }
+    interface HoneyDisclaimerPapercss {
+    }
     interface HoneyNews {
         /**
           * Feeds Administration Komponente
@@ -65,8 +71,36 @@ export namespace Components {
          */
         "verbose": boolean;
     }
+    interface HoneyStyledComponent {
+        /**
+          * themepostfix of theme name e.g. style when honey-papercss-style
+         */
+        "themepostfix": string;
+        /**
+          * themeprefix of theme name e.g. honey when honey-papercss-style
+         */
+        "themeprefix": string;
+    }
 }
 declare global {
+    interface HTMLHoneyDisclaimerElement extends Components.HoneyDisclaimer, HTMLStencilElement {
+    }
+    var HTMLHoneyDisclaimerElement: {
+        prototype: HTMLHoneyDisclaimerElement;
+        new (): HTMLHoneyDisclaimerElement;
+    };
+    interface HTMLHoneyDisclaimerBootstrapElement extends Components.HoneyDisclaimerBootstrap, HTMLStencilElement {
+    }
+    var HTMLHoneyDisclaimerBootstrapElement: {
+        prototype: HTMLHoneyDisclaimerBootstrapElement;
+        new (): HTMLHoneyDisclaimerBootstrapElement;
+    };
+    interface HTMLHoneyDisclaimerPapercssElement extends Components.HoneyDisclaimerPapercss, HTMLStencilElement {
+    }
+    var HTMLHoneyDisclaimerPapercssElement: {
+        prototype: HTMLHoneyDisclaimerPapercssElement;
+        new (): HTMLHoneyDisclaimerPapercssElement;
+    };
     interface HTMLHoneyNewsElement extends Components.HoneyNews, HTMLStencilElement {
     }
     var HTMLHoneyNewsElement: {
@@ -97,15 +131,31 @@ declare global {
         prototype: HTMLHoneyNewsStatisticElement;
         new (): HTMLHoneyNewsStatisticElement;
     };
+    interface HTMLHoneyStyledComponentElement extends Components.HoneyStyledComponent, HTMLStencilElement {
+    }
+    var HTMLHoneyStyledComponentElement: {
+        prototype: HTMLHoneyStyledComponentElement;
+        new (): HTMLHoneyStyledComponentElement;
+    };
     interface HTMLElementTagNameMap {
+        "honey-disclaimer": HTMLHoneyDisclaimerElement;
+        "honey-disclaimer-bootstrap": HTMLHoneyDisclaimerBootstrapElement;
+        "honey-disclaimer-papercss": HTMLHoneyDisclaimerPapercssElement;
         "honey-news": HTMLHoneyNewsElement;
         "honey-news-feed": HTMLHoneyNewsFeedElement;
         "honey-news-feeds": HTMLHoneyNewsFeedsElement;
         "honey-news-header": HTMLHoneyNewsHeaderElement;
         "honey-news-statistic": HTMLHoneyNewsStatisticElement;
+        "honey-styled-component": HTMLHoneyStyledComponentElement;
     }
 }
 declare namespace LocalJSX {
+    interface HoneyDisclaimer {
+    }
+    interface HoneyDisclaimerBootstrap {
+    }
+    interface HoneyDisclaimerPapercss {
+    }
     interface HoneyNews {
         /**
           * Feeds Administration Komponente
@@ -152,23 +202,41 @@ declare namespace LocalJSX {
          */
         "verbose"?: boolean;
     }
+    interface HoneyStyledComponent {
+        /**
+          * themepostfix of theme name e.g. style when honey-papercss-style
+         */
+        "themepostfix"?: string;
+        /**
+          * themeprefix of theme name e.g. honey when honey-papercss-style
+         */
+        "themeprefix"?: string;
+    }
     interface IntrinsicElements {
+        "honey-disclaimer": HoneyDisclaimer;
+        "honey-disclaimer-bootstrap": HoneyDisclaimerBootstrap;
+        "honey-disclaimer-papercss": HoneyDisclaimerPapercss;
         "honey-news": HoneyNews;
         "honey-news-feed": HoneyNewsFeed;
         "honey-news-feeds": HoneyNewsFeeds;
         "honey-news-header": HoneyNewsHeader;
         "honey-news-statistic": HoneyNewsStatistic;
+        "honey-styled-component": HoneyStyledComponent;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "honey-disclaimer": LocalJSX.HoneyDisclaimer & JSXBase.HTMLAttributes<HTMLHoneyDisclaimerElement>;
+            "honey-disclaimer-bootstrap": LocalJSX.HoneyDisclaimerBootstrap & JSXBase.HTMLAttributes<HTMLHoneyDisclaimerBootstrapElement>;
+            "honey-disclaimer-papercss": LocalJSX.HoneyDisclaimerPapercss & JSXBase.HTMLAttributes<HTMLHoneyDisclaimerPapercssElement>;
             "honey-news": LocalJSX.HoneyNews & JSXBase.HTMLAttributes<HTMLHoneyNewsElement>;
             "honey-news-feed": LocalJSX.HoneyNewsFeed & JSXBase.HTMLAttributes<HTMLHoneyNewsFeedElement>;
             "honey-news-feeds": LocalJSX.HoneyNewsFeeds & JSXBase.HTMLAttributes<HTMLHoneyNewsFeedsElement>;
             "honey-news-header": LocalJSX.HoneyNewsHeader & JSXBase.HTMLAttributes<HTMLHoneyNewsHeaderElement>;
             "honey-news-statistic": LocalJSX.HoneyNewsStatistic & JSXBase.HTMLAttributes<HTMLHoneyNewsStatisticElement>;
+            "honey-styled-component": LocalJSX.HoneyStyledComponent & JSXBase.HTMLAttributes<HTMLHoneyStyledComponentElement>;
         }
     }
 }

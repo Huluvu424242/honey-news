@@ -47,9 +47,10 @@
   },
   "dependencies": {
     "object-hash": "2.1.1",
-    "rxjs": "6.6.3",
+    "rxjs": "7.3.0",
     "feedme": "2.0.2",
-    "@huluvu424242/liona-feeds": "2.3.0"
+    "@huluvu424242/liona-feeds": "2.3.0",
+    "@huluvu424242/honey-style-it": "0.0.5"
   },
   "devDependencies": {
     "@stencil/core": "2.5.2",
@@ -64,7 +65,5 @@
     "rollup-plugin-node-polyfills": "0.2.1",
     "license-checker": "25.0.1"
   },
-  "optionalDependencies": {
-    "@huluvu424242/honey-style-it": "0.0.5"
-  }
+  "optionalDependencies": {}
 }

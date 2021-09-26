@@ -4,7 +4,6 @@ import {EMPTY, from, Observable} from "rxjs";
 import {catchError, filter, map, mergeMap, switchMap, tap, toArray} from "rxjs/operators";
 import {Logger} from "./shared/logger";
 import {StatisticData} from "@huluvu424242/liona-feeds/dist/esm/feeds/statistic";
-import {isArray} from "rxjs/internal-compatibility";
 import {PipeOperators} from "./shared/PipeOperators";
 
 
@@ -79,7 +78,7 @@ export async function loadFeedRanking(url: string): Promise<StatisticData[]> {
         (response: Response) => from(response.json()).pipe(catchError(() => EMPTY))
       ),
       filter(
-        (rawData: any) => isArray(rawData)
+        (rawData: any) => Array.isArray(rawData)
       ),
       map(
         (items: any[]) => {

@@ -12,15 +12,14 @@ export class HoneyStyledComponent {
   themeSubscription: Subscription;
 
   /**
-   * prefix of theme name e.g. honey when honey-papercss-style
+   * themeprefix of theme name e.g. honey when honey-papercss-style
    */
   @Prop() themeprefix: string = "honey";
 
-
   /**
-   * postfix of theme name e.g. style when honey-papercss-style
+   * themepostfix of theme name e.g. style when honey-papercss-style
    */
-  @Prop() themepostfix: string = "style";
+  @Prop() themepostfix: string = " ";
 
   /**
    * tagName of honey style sheet to apply e.g. 'honey-papercss-style'
@@ -50,20 +49,11 @@ export class HoneyStyledComponent {
     if (!this.theme) return "honey-default-style";
 
     const nameParts: string[] = this.theme.split("-");
-
-    if (this.themeprefix && this.themepostfix) {
-      return this.themeprefix + "-" + nameParts.slice(1, -1).join("-") + "-" + this.themepostfix
-    }
-
-    if (this.themeprefix && !this.themepostfix) {
-      return this.themeprefix + "-" + nameParts.slice(1).join("-");
-    }
-
-    if (!this.themeprefix && this.themepostfix) {
-      return nameParts.slice(0, -1).join("-") + "-" + this.themepostfix;
-    }
-
-    return this.theme;
+    let themeName = "";
+    themeName += this.themeprefix + (this.themeprefix.trim().length>0? "-":"");
+    themeName += nameParts.slice(1, -1).join("-");
+    themeName += (this.themepostfix.trim().length>0? "-":"")+ this.themepostfix;
+    return themeName.trim();
   }
 
   render() {

@@ -1,6 +1,5 @@
 import {Component, Element, h, Host, State} from '@stencil/core';
 import {navigateToRoute, router} from "../routing/SimpleRouter";
-import {Disclaimer} from "../snippets/Disclaimer";
 import {Subscription} from "rxjs";
 
 @Component({
@@ -40,9 +39,8 @@ export class Header {
     navigateToRoute(event.currentTarget["pathname"]);
   }
 
-  protected classNavLink(route: string): string {
-    const selected: string = this.route === route ? "selected" : null;
-    return "nav-link " + selected
+  protected classNavLink(route: string): string | null {
+    return this.route === route ? "selected" : null;
   }
 
   render() {
@@ -66,35 +64,35 @@ export class Header {
               <div class="bar5"/>
             </label>
             <div class="collapsible-body">
-              <ul role="listbox" class="nav inline">
-                <li role="listitem" class="nav-item"><span role="heading" aria-level="2"><a href="/feeds"
-                                                                                            onClick={this.navigateTo}
-                                                                                            class={this.classNavLink("/feeds")}
+              <ul role="listbox" class="inline">
+                <li role="listitem"><span role="heading" aria-level="2"><a href="/feeds"
+                                                                           onClick={this.navigateTo}
+                                                                           class={this.classNavLink("/feeds")}
                 >Feeds</a></span>
                 </li>
-                <li role="listitem" class="nav-item"><span role="heading" aria-level="2"><a href="/news"
-                                                                                            onClick={this.navigateTo}
-                                                                                            class={this.classNavLink("/news")}
+                <li role="listitem"><span role="heading" aria-level="2"><a href="/news"
+                                                                           onClick={this.navigateTo}
+                                                                           class={this.classNavLink("/news")}
                 >News</a></span>
                 </li>
-                <li role="listitem" class="nav-item"><span role="heading" aria-level="2"><a href="/statistic"
-                                                                                            onClick={this.navigateTo}
-                                                                                            class={this.classNavLink("/statistic")}
+                <li role="listitem"><span role="heading" aria-level="2"><a href="/statistic"
+                                                                           onClick={this.navigateTo}
+                                                                           class={this.classNavLink("/statistic")}
                 >Statistik</a></span>
                 </li>
-                <li role="listitem" class="nav-item"><span role="heading" aria-level="2"><a href="/about"
-                                                                                            onClick={this.navigateTo}
-                                                                                            class={this.classNavLink("/about")}
+                <li role="listitem"><span role="heading" aria-level="2"><a href="/about"
+                                                                           onClick={this.navigateTo}
+                                                                           class={this.classNavLink("/about")}
                 >About</a></span>
                 </li>
-                <li role="listitem" class="nav-item"><span role="heading" aria-level="2"><a
+                <li role="listitem"><span role="heading" aria-level="2"><a
                   href="https://github.com/Huluvu424242/honey-news"
                   target="_blank" class="nav-link">Github</a></span></li>
               </ul>
             </div>
           </div>
         </nav>
-        <Disclaimer/>
+        <honey-disclaimer/>
       </Host>
     );
   }

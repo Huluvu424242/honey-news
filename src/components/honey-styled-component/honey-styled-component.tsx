@@ -1,8 +1,7 @@
 import {Component, h, Prop, State} from '@stencil/core';
 import {HoneyDefineStyle} from "@huluvu424242/honey-style-it/dist/types/components/honey-define-style/honey-define-style";
 import {Subscription} from "rxjs";
-import {consoleDebug, consoleError} from "../../shared/helper";
-import {ThemeListener} from "@huluvu424242/honey-style-it/dist/types/shared/helper";
+import * as util from "@huluvu424242/honey-style-it/dist/types/shared/helper";
 
 @Component({
   tag: "honey-styled-component",
@@ -15,13 +14,13 @@ export class HoneyStyledComponent {
   /**
    * prefix of theme name e.g. honey when honey-papercss-style
    */
-  @Prop({attribute: "prefix"}) componentPrefix: string = "honey";
+  @Prop() themeprefix: string = "honey";
 
 
   /**
    * postfix of theme name e.g. style when honey-papercss-style
    */
-  @Prop({attribute: "postfix"}) componentPostfix: string = "style";
+  @Prop() themepostfix: string = "style";
 
   /**
    * tagName of honey style sheet to apply e.g. 'honey-papercss-style'
@@ -32,10 +31,10 @@ export class HoneyStyledComponent {
     try {
       await customElements.whenDefined('honey-define-style');
       const styleElements: HoneyDefineStyle = document.querySelector('honey-define-style') as unknown as HoneyDefineStyle;
-      const listener: ThemeListener = {
+      const listener: util.ThemeListener = {
         next: (styleName: string) => this.theme = styleName,
-        error: (error) => consoleError(error),
-        complete: () => consoleDebug("subcription completed")
+        error: (error) => util.printError(error),
+        complete: () => util.printDebug("subcription completed")
       };
       this.themeSubscription = await styleElements.subscribeThemeChangeListener(listener);
     } catch (error) {
@@ -48,17 +47,23 @@ export class HoneyStyledComponent {
   }
 
   getTheme(): string {
-    if (!this.theme) return "default";
+    if (!this.theme) return "honey-default-style";
+
     const nameParts: string[] = this.theme.split("-");
-    let themeName = "";
-    if (nameParts[0]) {
-      themeName += nameParts[0] + "-";
+
+    if (this.themeprefix && this.themepostfix) {
+      return this.themeprefix + "-" + nameParts.slice(1, -1).join("-") + "-" + this.themepostfix
     }
-    themeName += this.theme;
-    if (nameParts.length > 2 && nameParts[nameParts.length - 1]) {
-      themeName += "-" + nameParts[nameParts.length - 1];
+
+    if (this.themeprefix && !this.themepostfix) {
+      return this.themeprefix + "-" + nameParts.slice(1).join("-");
     }
-    return themeName;
+
+    if (!this.themeprefix && this.themepostfix) {
+      return nameParts.slice(0, -1).join("-") + "-" + this.themepostfix;
+    }
+
+    return this.theme;
   }
 
   render() {

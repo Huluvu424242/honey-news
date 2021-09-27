@@ -19,24 +19,18 @@ export class HoneyDisclaimerBootstrap {
     return (
       <Host>
         <honey-apply-style/>
-        <div class="row flex-spaces">
-          <input id="disclaimer" role="button" type="checkbox" class="alert-state btn btn-primary"
-                 data-bs-toggle="collapse" data-bs-target="#disclaimer-text"/>
-          <div id="disclaimer-text" class="alert alert-danger dismissible collapse show">
-            <div class="row">
-              <h3>!!! Das ist eine Demo Seite welche alle Feature der App zeigen soll - aus
-                diesem Grund ist auch die Statistik eingeschaltet !!!
-              </h3>
-              <div class="background-warning">
-                <p>
-                  Es werden nur Daten zu den abgerufenen Feeds gespeichert (in memory) wie: URL, Anzahl der
-                  Abfragen und Anzahl valider Anworten.
-                  Sollten Sie die Speicherung nicht wünschen - dann geben Sie bitte keinen neuen Feed ein.
-                  Vielen Dank für Ihr Verständnis.
-                </p>
-              </div>
+        <p>
+          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample"
+                  aria-expanded="false" aria-controls="collapseWidthExample">
+            Toggle width collapse
+          </button>
+        </p>
+        <div>
+          <div class="collapse collapse-horizontal" id="collapseWidthExample">
+            <div class="card card-body">
+              This is some placeholder content for a horizontal collapse. It's hidden by default and shown when
+              triggered.
             </div>
-            <label class="paper-btn" title="Hinweis Ausblenden" htmlFor="disclaimer">X</label>
           </div>
         </div>
       </Host>

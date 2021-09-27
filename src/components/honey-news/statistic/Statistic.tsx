@@ -7,8 +7,6 @@ import {StatisticLoader} from "./StatisticLoader";
 
 @Component({
   tag: "honey-news-statistic",
-  styleUrl: "Statistic.css",
-  assetsDirs: ['assets'],
   shadow: true
 })
 export class Statistic {

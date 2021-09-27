@@ -30,7 +30,7 @@ export class HoneyDisclaimerBulma {
         <honey-apply-style/>
 
         {this.showed === true ?
-          <article class="message is-warning">
+          <article class="message is-danger has-background-danger-light">
             <div class="message-header">
               <p>!!! Das ist eine Demo Seite welche alle Feature der App zeigen soll - aus
                 diesem Grund ist auch die Statistik eingeschaltet !!!</p>

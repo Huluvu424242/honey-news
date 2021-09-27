@@ -4,8 +4,6 @@ import {Subscription} from "rxjs";
 
 @Component({
   tag: "honey-news-header",
-  styleUrl: "Header.css",
-  assetsDirs: ['../assets', 'assets'],
   shadow: true
 })
 export class Header {

@@ -9,8 +9,6 @@ import {About} from "./snippets/About";
 
 @Component({
   tag: "honey-news",
-  styleUrl: "AppShell.css",
-  assetsDirs: ['assets'],
   shadow: true
 })
 export class AppShell {

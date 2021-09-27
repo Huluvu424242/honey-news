@@ -6,8 +6,6 @@ import {getFeedsSingleObserver} from "../../../fetch-es6.worker";
 
 @Component({
   tag: "honey-news-feeds",
-  styleUrl: "Feeds.css",
-  assetsDirs: ['assets'],
   shadow: true
 })
 export class Feeds {

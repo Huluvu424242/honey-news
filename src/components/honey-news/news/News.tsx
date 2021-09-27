@@ -8,8 +8,6 @@ import {PipeOperators} from "../../../shared/PipeOperators";
 
 @Component({
   tag: "honey-news-feed",
-  styleUrl: "News.css",
-  assetsDirs: ['assets'],
   shadow: true
 })
 export class News {

@@ -35,7 +35,8 @@ export const config: Config = {
       copy: [
         { src: "demo.html"},
         { src: "404.html"},
-        { src: "redirect.js"}
+        { src: "redirect.js"},
+        { src: "resources"}
       ],
       serviceWorker: null // disable service workers
     }

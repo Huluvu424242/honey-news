@@ -1,4 +1,4 @@
-import {Component,  h,  State} from '@stencil/core';
+import {Component, h, State} from '@stencil/core';
 
 
 @Component({
@@ -12,16 +12,12 @@ export class HoneyDisclaimer {
    */
   @State() theme: string;
 
-  async connectedCallback() {
-
-  }
-
-  disconnectedCallback() {
-  }
-
   render() {
     return (
-      <honey-styled-component themeprefix="honey-disclaimer" />
-      )
+      <honey-styled-component themeprefix="honey-disclaimer">
+       <slot name="title" slot="slot1"/>
+       <slot name="body" slot="slot2"/>
+      </honey-styled-component>
+    )
   }
 }

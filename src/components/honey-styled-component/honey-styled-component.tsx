@@ -59,6 +59,19 @@ export class HoneyStyledComponent {
   render() {
     // Grossbuchstabe für Variable notwendig für JSX
     const TagName = this.getTheme();
-    return (<TagName/>)
+    return (
+      <TagName>
+        <slot name="slot1" slot="slot1">placeholder slot 1</slot>
+        <slot name="slot2" slot="slot2">placeholder slot 2</slot>
+        <slot name="slot3" slot="slot3">placeholder slot 3</slot>
+        <slot name="slot4" slot="slot4">placeholder slot 4</slot>
+        <slot name="slot5" slot="slot5">placeholder slot 5</slot>
+        <slot name="slot6" slot="slot6">placeholder slot 6</slot>
+        <slot name="slot7" slot="slot7">placeholder slot 7</slot>
+        <slot name="slot8" slot="slot8">placeholder slot 8</slot>
+        <slot name="slot9" slot="slot9">placeholder slot 9</slot>
+        <slot name="slot10" slot="slot10">placeholder slot 10</slot>
+      </TagName>
+      )
   }
 }

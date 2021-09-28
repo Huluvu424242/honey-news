@@ -11,13 +11,6 @@ export class HoneyDisclaimerBulma {
   @State() showed = true;
 
 
-  async connectedCallback() {
-
-  }
-
-  disconnectedCallback() {
-  }
-
   commitReading() {
     this.showed = false;
   }
@@ -32,17 +25,15 @@ export class HoneyDisclaimerBulma {
         {this.showed === true ?
           <article class="message is-danger has-background-danger-light">
             <div class="message-header">
-              <p>!!! Das ist eine Demo Seite welche alle Feature der App zeigen soll - aus
-                diesem Grund ist auch die Statistik eingeschaltet !!!</p>
+              <slot name="slot1">
+                placeholder title
+              </slot>
               <button class="delete" aria-label="delete" onClick={this.commitReading.bind(this)}></button>
             </div>
             <div class="message-body">
-              <p>
-              Es werden nur Daten zu den abgerufenen Feeds gespeichert (in memory) wie: URL, Anzahl der
-              Abfragen und Anzahl valider Anworten.</p><p>
-              Sollten Sie die Speicherung nicht wünschen - dann geben Sie bitte keinen neuen Feed ein.
-            </p><p>
-              Vielen Dank für Ihr Verständnis.</p>
+              <slot name="slot2">
+                placeholder body
+              </slot>
             </div>
           </article>
           : ""}

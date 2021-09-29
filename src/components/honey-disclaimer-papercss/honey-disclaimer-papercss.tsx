@@ -8,13 +8,6 @@ import {Component, h, Host} from '@stencil/core';
 export class HoneyDisclaimerPapercss {
 
 
-  async connectedCallback() {
-
-  }
-
-  disconnectedCallback() {
-  }
-
   render() {
     return (
       <Host>

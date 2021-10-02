@@ -5,7 +5,6 @@ import {Subscription} from "rxjs";
 import {router} from "./routing/SimpleRouter";
 import {NewsLoader} from "./news/NewsLoader";
 import {HoneyNewsFeed} from "./news/honey-news-feed";
-import {About} from "./snippets/About";
 
 @Component({
   tag: "honey-news",
@@ -198,7 +197,7 @@ export class HoneyNews {
         }
         }/> : null}
         {this.route === "/statistic" ? <honey-news-statistic/> : null}
-        {this.route === "/about" ? <About/> : null}
+        {this.route === "/about" ? <honey-news-about/> : null}
 
       </Host>
     );

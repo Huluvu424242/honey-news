@@ -9,7 +9,7 @@ import {StatisticLoader} from "./StatisticLoader";
   tag: "honey-news-statistic",
   shadow: true
 })
-export class Statistic {
+export class HoneyNewsStatistic {
 
   /**
    * Host Element

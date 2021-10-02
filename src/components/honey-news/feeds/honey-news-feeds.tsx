@@ -8,7 +8,7 @@ import {getFeedsSingleObserver} from "../../../fetch-es6.worker";
   tag: "honey-news-feeds",
   shadow: true
 })
-export class Feeds {
+export class HoneyNewsFeeds {
 
   /**
    * Input Element

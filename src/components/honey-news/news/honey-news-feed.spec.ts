@@ -1,9 +1,9 @@
-import {News} from "./News";
+import {HoneyNewsFeed} from "./honey-news-feed";
 
 describe('Unit test: honey-news satisfy', () => {
 
   it('should init the feedLoader variable', () => {
-    const component = new News();
+    const component = new HoneyNewsFeed();
 
     expect(component.feedLoader).not.toBeNull();
   });

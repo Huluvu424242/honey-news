@@ -10,7 +10,7 @@ import {PipeOperators} from "../../../shared/PipeOperators";
   tag: "honey-news-feed",
   shadow: true
 })
-export class News {
+export class HoneyNewsFeed {
 
   /**
    * Host Element

@@ -4,7 +4,7 @@ import {HoneyNewsOptions} from "./honey-news-options";
 import {Subscription} from "rxjs";
 import {router} from "./routing/SimpleRouter";
 import {NewsLoader} from "./news/NewsLoader";
-import {News} from "./news/News";
+import {HoneyNewsFeed} from "./news/honey-news-feed";
 import {About} from "./snippets/About";
 
 @Component({
@@ -101,7 +101,7 @@ export class HoneyNews {
   @Prop({mutable: true}) feedAdministration: HTMLHoneyNewsFeedsElement;
 
   @Watch("feedAdministration")
-  feedWatcher(newValue: News, oldValue: News) {
+  feedWatcher(newValue: HoneyNewsFeed, oldValue: HoneyNewsFeed) {
     oldValue = oldValue;
     if (newValue) {
       if (this.feedAdministration) {

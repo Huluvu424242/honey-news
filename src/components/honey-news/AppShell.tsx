@@ -175,11 +175,6 @@ export class AppShell {
 
   protected getHostClass(): string {
     return this.initialHostClass;
-    // if (this.hasNoFeeds()) {
-    //   return hostClass + " " + this.options.disabledHostClass;
-    // } else {
-    //   return hostClass + " " + this.options.enabledHostClass;
-    // }
   }
 
 
@@ -189,10 +184,6 @@ export class AppShell {
       <Host
         title={this.getTitleText()}
         aria-label={this.getAriaLabel()}
-        // tabindex={this.hasNoFeeds() ? -1 : this.taborder}
-        // class={this.getHostClass()}
-        // disabled={this.hasNoFeeds()}
-        class="paper"
       >
         <honey-apply-style/>
         <honey-news-header/>

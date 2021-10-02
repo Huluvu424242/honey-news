@@ -14,10 +14,7 @@ export class HoneyNavbar {
 
   render() {
     return (
-      <honey-styled-component themeprefix="honey-navbar">
-       <slot name="title" slot="slot1"/>
-       <slot name="body" slot="slot2"/>
-      </honey-styled-component>
+      <honey-styled-component themeprefix="honey-navbar" />
     )
   }
 }

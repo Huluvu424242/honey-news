@@ -4,7 +4,7 @@ import {Component, h, Host} from '@stencil/core';
   tag: "honey-news-header",
   shadow: true
 })
-export class Header {
+export class HoneyNewsHeader {
 
   render() {
     return (

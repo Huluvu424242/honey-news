@@ -186,6 +186,7 @@ export class AppShell {
         aria-label={this.getAriaLabel()}
       >
         <honey-apply-style/>
+
         <honey-news-header/>
 
         {!this.route || this.route === "/" || this.route === "/index.html" || this.route === "/news" ?

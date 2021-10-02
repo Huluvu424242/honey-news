@@ -37,7 +37,7 @@ export class HoneyNavbarPapercss {
   }
 
   protected classNavLink(route: string): string {
-    return "navbar-item " + (this.route === route ? "is-active" : "");
+    return (this.route === route ? "selected" : "");
   }
 
 
@@ -56,9 +56,9 @@ export class HoneyNavbarPapercss {
           <div class="collapsible">
             <input id="collapsible1" type="checkbox" name="collapsible1"/>
             <label htmlFor="collapsible1">
-              <div class="bar1"></div>
-              <div class="bar2"></div>
-              <div class="bar3"></div>
+              <div class="bar1"/>
+              <div class="bar2"/>
+              <div class="bar3"/>
             </label>
             <div class="collapsible-body">
               <ul class="inline">

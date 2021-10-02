@@ -1,4 +1,4 @@
-export interface AppShellOptions {
+export interface HoneyNewsOptions {
   disabledHostClass?:string
   enabledHostClass?:string
   disabledTitleText?: string;

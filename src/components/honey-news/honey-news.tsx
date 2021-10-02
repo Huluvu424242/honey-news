@@ -1,6 +1,6 @@
 import {Component, Element, h, Host, Prop, State, Watch} from "@stencil/core";
 import {Logger} from "../../shared/logger";
-import {AppShellOptions} from "./AppShellOptions";
+import {HoneyNewsOptions} from "./honey-news-options";
 import {Subscription} from "rxjs";
 import {router} from "./routing/SimpleRouter";
 import {NewsLoader} from "./news/NewsLoader";
@@ -11,7 +11,7 @@ import {About} from "./snippets/About";
   tag: "honey-news",
   shadow: true
 })
-export class AppShell {
+export class HoneyNews {
 
   /**
    * Host Element
@@ -60,7 +60,7 @@ export class AppShell {
   @State() route: string = "";
 
 
-  @State() options: AppShellOptions = {
+  @State() options: HoneyNewsOptions = {
     disabledHostClass: "honey-news-disabled",
     enabledHostClass: "honey-news",
     disabledTitleText: "News Reader nicht verfügbar",

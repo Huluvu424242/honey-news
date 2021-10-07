@@ -11,6 +11,10 @@ export class HoneyStyledComponent {
 
   themeSubscription: Subscription;
 
+  tagElement: HTMLElement;
+
+  @Prop({mutable:true}) parameterlist;
+
   /**
    * themeprefix of theme name e.g. honey when honey-papercss-style
    */
@@ -50,9 +54,9 @@ export class HoneyStyledComponent {
 
     const nameParts: string[] = this.theme.split("-");
     let themeName = "";
-    themeName += this.themeprefix + (this.themeprefix.trim().length>0? "-":"");
+    themeName += this.themeprefix + (this.themeprefix.trim().length > 0 ? "-" : "");
     themeName += nameParts.slice(1, -1).join("-");
-    themeName += (this.themepostfix.trim().length>0? "-":"")+ this.themepostfix;
+    themeName += (this.themepostfix.trim().length > 0 ? "-" : "") + this.themepostfix;
     return themeName.trim();
   }
 
@@ -60,7 +64,10 @@ export class HoneyStyledComponent {
     // Grossbuchstabe für Variable notwendig für JSX
     const TagName = this.getTheme();
     return (
-      <TagName>
+      <TagName ref={(el) => {
+        this.tagElement = el
+        this.tagElement["argumentlist"]=this.parameterlist;
+      }}>
         <slot name="slot1" slot="slot1">placeholder slot 1</slot>
         <slot name="slot2" slot="slot2">placeholder slot 2</slot>
         <slot name="slot3" slot="slot3">placeholder slot 3</slot>
@@ -72,6 +79,6 @@ export class HoneyStyledComponent {
         <slot name="slot9" slot="slot9">placeholder slot 9</slot>
         <slot name="slot10" slot="slot10">placeholder slot 10</slot>
       </TagName>
-      )
+    )
   }
 }

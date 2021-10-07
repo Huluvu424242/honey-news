@@ -233,7 +233,6 @@ export class HoneyNewsFeed {
   }
 
   public render() {
-    Logger.debugMessage('##RENDER##');
     return (
       <Host
         title={this.getTitleText()}
@@ -245,13 +244,11 @@ export class HoneyNewsFeed {
         {
           this.getNeuesteMeldung()
         }
-        {/*<div>*/}
         {this.feeds.map((post) => [
             this.getUeberschrift(post),
             this.getPostEntry(post)
           ]
         )}
-        {/*</div>*/}
       </Host>
     );
   }

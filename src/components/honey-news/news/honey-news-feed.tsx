@@ -216,7 +216,7 @@ export class HoneyNewsFeed {
   }
 
   getPostEntry(post: Post) {
-    return ([
+    return (
         <div class="card">
           <div class="card-body">
             <div class="card-title">{post.pubdate}</div>
@@ -224,7 +224,6 @@ export class HoneyNewsFeed {
             <div class="card-text"><a href={this.getPostLink(post.item)} target="_blank">{post.item.title}</a></div>
           </div>
         </div>
-      ]
     );
   }
 

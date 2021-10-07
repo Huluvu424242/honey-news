@@ -1,4 +1,4 @@
-import {Component, Element, h, Host, Prop, State} from '@stencil/core';
+import {Component, Element, h, Prop, State} from '@stencil/core';
 import {Post} from "../../../fetch-es6.worker";
 
 
@@ -31,14 +31,13 @@ export class HoneyArticle {
   render() {
     console.log("##### post: " + this.post);
     return (
-      <Host>
-        <honey-article>
-          <a slot="title" href={this.getPostLink(this.post.item)} target="_blank">{this.post.item.title}</a>
-          <span slot="subtitle">
+      <honey-styled-component themeprefix="honey-article">
+        <a slot="slot1" href={this.getPostLink(this.post.item)} target="_blank">{this.post.item.title}</a>
+        <span slot="slot2">
             {this.post.pubdate} auf {this.post.feedtitle}
           </span>
-        </honey-article>
-      </Host>
+        <span slot="slot3"/>
+      </honey-styled-component>
     )
   }
 }

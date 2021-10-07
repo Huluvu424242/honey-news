@@ -23,12 +23,12 @@ export class HoneyDisclaimerBulma {
         <honey-apply-style/>
 
         {this.showed === true ?
-          <article class="message is-danger has-background-danger-light">
+          <article class="message is-warning has-background-warning-light">
             <div class="message-header">
               <slot name="slot1">
                 placeholder title
               </slot>
-              <button class="delete" aria-label="delete" onClick={this.commitReading.bind(this)}></button>
+              <button class="delete" aria-label="delete" onClick={this.commitReading.bind(this)} />
             </div>
             <div class="message-body">
               <slot name="slot2">

@@ -1,4 +1,4 @@
-import {Component, h, Host, Prop} from '@stencil/core';
+import {Component, h, Host} from '@stencil/core';
 
 
 @Component({
@@ -7,20 +7,6 @@ import {Component, h, Host, Prop} from '@stencil/core';
 })
 export class HoneyArticlePapercss {
 
-  @Prop() post;
-
-
-  getPostLink(item): string {
-    if (typeof item.link === "string") {
-      return item.link;
-    }
-    if (typeof (item.link.href == "string")) {
-      return item.link.href;
-    }
-    return null
-  }
-
-
   render() {
     return (
       <Host>
@@ -28,9 +14,15 @@ export class HoneyArticlePapercss {
 
         <div class="card">
           <div class="card-body">
-            <div class="card-title">{this.post.pubdate}</div>
-            <div class="card-subtitle">{this.post.feedtitle}</div>
-            <div class="card-text"><a href={this.getPostLink(this.post.item)} target="_blank">{this.post.item.title}</a></div>
+            <div class="card-title">
+              <slot name="slot1"/>
+            </div>
+            <div class="card-subtitle">
+              <slot name="slot2"/>
+            </div>
+            <div class="card-text">
+              <slot name="slot3"/>
+            </div>
           </div>
         </div>
       </Host>

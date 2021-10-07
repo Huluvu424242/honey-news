@@ -21,6 +21,9 @@ export class HoneyArticleBulma {
             <div class="title">
               <slot name="slot1"/>
             </div>
+            <div class="content">
+              <slot name="slot3"/>
+            </div>
           </div>
         </div>
       </Host>

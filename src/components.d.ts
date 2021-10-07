@@ -22,7 +22,6 @@ export namespace Components {
     interface HoneyArticleBulma {
     }
     interface HoneyArticlePapercss {
-        "post": any;
     }
     interface HoneyDisclaimer {
     }
@@ -282,7 +281,6 @@ declare namespace LocalJSX {
     interface HoneyArticleBulma {
     }
     interface HoneyArticlePapercss {
-        "post"?: any;
     }
     interface HoneyDisclaimer {
     }

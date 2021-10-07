@@ -18,6 +18,7 @@ export class HoneyArticle {
         <honey-styled-component themeprefix="honey-article">
           <slot name="title" slot="slot1"/>
           <slot name="subtitle" slot="slot2"/>
+          <slot name="text" slot="slot3"/>
         </honey-styled-component>
       </Host>
     )

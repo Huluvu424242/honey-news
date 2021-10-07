@@ -16,10 +16,6 @@ export class HoneyNewsStatistic {
    */
   @Element() hostElement: HTMLElement;
 
-  /**
-   * Input Element
-   */
-  inputNewUrl: HTMLInputElement;
 
   /**
    * Id des Host Elements, falls nicht verfügbar wird diese generiert

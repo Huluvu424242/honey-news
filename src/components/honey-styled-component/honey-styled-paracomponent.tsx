@@ -4,12 +4,16 @@ import {Subscription} from "rxjs";
 import * as util from "@huluvu424242/honey-style-it/dist/types/shared/helper";
 
 @Component({
-  tag: "honey-styled-component",
+  tag: "honey-styled-paracomponent",
   shadow: true
 })
-export class HoneyStyledComponent {
+export class HoneyStyledParacomponent {
 
   themeSubscription: Subscription;
+
+  tagElement: HTMLElement;
+
+  @Prop({mutable:false}) parameterlist;
 
   /**
    * themeprefix of theme name e.g. honey when honey-papercss-style
@@ -60,7 +64,10 @@ export class HoneyStyledComponent {
     // Grossbuchstabe für Variable notwendig für JSX
     const TagName = this.getTheme();
     return (
-      <TagName>
+      <TagName ref={(el) => {
+        this.tagElement = el
+        this.tagElement["argumentlist"]=this.parameterlist;
+      }}>
         <slot name="slot1" slot="slot1">placeholder slot 1</slot>
         <slot name="slot2" slot="slot2">placeholder slot 2</slot>
         <slot name="slot3" slot="slot3">placeholder slot 3</slot>

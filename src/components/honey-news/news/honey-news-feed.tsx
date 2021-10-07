@@ -187,17 +187,6 @@ export class HoneyNewsFeed {
     }
   }
 
-  getPostLink(item): string {
-    if (typeof item.link === "string") {
-      return item.link;
-    }
-    if (typeof (item.link.href == "string")) {
-      return item.link.href;
-    }
-    return null
-  }
-
-
   lastHour: Date = null;
 
   getUeberschrift(post: Post) {

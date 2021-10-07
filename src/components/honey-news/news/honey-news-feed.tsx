@@ -215,13 +215,9 @@ export class HoneyNewsFeed {
   }
 
   getPostEntry(post: Post) {
-    if(!post) return;
-    let postElement: HTMLHoneyNewsArticleElement;
+    if (!post) return;
     return (
-      <honey-news-article ref={(el) => {
-        postElement = el;
-        postElement.post = post;
-      }}/>
+      <honey-news-article post={post}/>
     );
   }
 
@@ -250,11 +246,11 @@ export class HoneyNewsFeed {
           this.getNeuesteMeldung()
         }
         {/*<div>*/}
-          {this.feeds.map((post) => [
-              this.getUeberschrift(post),
-              this.getPostEntry(post)
-            ]
-          )}
+        {this.feeds.map((post) => [
+            this.getUeberschrift(post),
+            this.getPostEntry(post)
+          ]
+        )}
         {/*</div>*/}
       </Host>
     );

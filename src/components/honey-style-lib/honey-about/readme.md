@@ -1,4 +1,6 @@
-# honey-news
+# honey-about
+
+
 
 <!-- Auto Generated Below -->
 
@@ -7,19 +9,18 @@
 
 ### Used by
 
- - [honey-news](.)
+ - [honey-news-about](../../honey-news)
 
 ### Depends on
 
-- [honey-about](../honey-style-lib/honey-about)
+- [honey-styled-component](../../honey-styled-component)
 
 ### Graph
 ```mermaid
 graph TD;
-  honey-news-about --> honey-about
   honey-about --> honey-styled-component
-  honey-news --> honey-news-about
-  style honey-news-about fill:#f9f,stroke:#333,stroke-width:4px
+  honey-news-about --> honey-about
+  style honey-about fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

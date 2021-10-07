@@ -9,11 +9,11 @@
 
 ### Used by
 
- - [honey-news-header](../honey-news/header)
+ - [honey-news-header](../../honey-news/header)
 
 ### Depends on
 
-- [honey-styled-component](../honey-styled-component)
+- [honey-styled-component](../../honey-styled-component)
 
 ### Graph
 ```mermaid

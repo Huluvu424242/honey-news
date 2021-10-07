@@ -1,4 +1,4 @@
-# honey-disclaimer-bootstrap
+# honey-article-bulma
 
 
 
@@ -14,8 +14,8 @@
 ### Graph
 ```mermaid
 graph TD;
-  honey-disclaimer-bootstrap --> honey-apply-style
-  style honey-disclaimer-bootstrap fill:#f9f,stroke:#333,stroke-width:4px
+  honey-article-bulma --> honey-apply-style
+  style honey-article-bulma fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

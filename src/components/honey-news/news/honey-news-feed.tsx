@@ -17,9 +17,6 @@ export class HoneyNewsFeed {
    */
   @Element() hostElement: HTMLElement;
 
-
-  postElement: HTMLHoneyArticleElement;
-
   /**
    * Id des Host Elements, falls nicht verfügbar wird diese generiert
    */
@@ -218,18 +215,13 @@ export class HoneyNewsFeed {
   }
 
   getPostEntry(post: Post) {
+    if(!post) return;
+    let postElement: HTMLHoneyNewsArticleElement;
     return (
-      <honey-article ref={(el) => {
-        this.postElement = el;
-        this.postElement.post = post;
+      <honey-news-article ref={(el) => {
+        postElement = el;
+        postElement.post = post;
       }}/>
-        // <div class="card">
-        //   <div class="card-body">
-        //     <div class="card-title">{post.pubdate}</div>
-        //     <div class="card-subtitle">{post.feedtitle}</div>
-        //     <div class="card-text"><a href={this.getPostLink(post.item)} target="_blank">{post.item.title}</a></div>
-        //   </div>
-        // </div>
     );
   }
 

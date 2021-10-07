@@ -13,7 +13,7 @@ export class HoneyStyledComponent {
 
   tagElement: HTMLElement;
 
-  @Prop({mutable:true}) parameterlist;
+  @Prop({mutable:false}) parameterlist;
 
   /**
    * themeprefix of theme name e.g. honey when honey-papercss-style

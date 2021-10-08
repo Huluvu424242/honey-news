@@ -178,7 +178,6 @@ export class HoneyNews {
 
 
   public render() {
-    Logger.debugMessage('##RENDER##');
     return (
       <Host
         title={this.getTitleText()}

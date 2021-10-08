@@ -213,10 +213,12 @@ export class HoneyNewsFeed {
   getNeuesteMeldung() {
     if (this.lastUpdate) {
       return (
-        <h1>
-          <div>Neueste Meldung</div>
-          <div>{this.lastUpdate?.toLocaleDateString() + "  " + this.lastUpdate?.toLocaleTimeString()}</div>
-        </h1>
+        <honey-notification>
+          <div>
+            <p>Neueste Meldung</p>
+            <p>{this.lastUpdate?.toLocaleDateString() + "  " + this.lastUpdate?.toLocaleTimeString()}</p>
+          </div>
+        </honey-notification>
       );
     }
   }

@@ -197,7 +197,7 @@ export class HoneyNewsFeed {
     }
     if (hour.getUTCHours() != this.lastHour.getUTCHours()) {
       this.lastHour = hour;
-      return <h2>{post.exaktdate.toLocaleDateString() + " " + this.lastHour.getHours()} Uhr</h2>;
+      return <honey-infobar>{post.exaktdate.toLocaleDateString() + " " + this.lastHour.getHours()} Uhr</honey-infobar>;
     } else {
       return;
     }

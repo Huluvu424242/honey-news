@@ -1,0 +1,1 @@
+const o=Object.freeze({__proto__:null});export{o as u}

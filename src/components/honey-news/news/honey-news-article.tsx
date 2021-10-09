@@ -1,4 +1,4 @@
-import {Component, Element, h, Prop, State} from '@stencil/core';
+import {Component, h, Prop} from '@stencil/core';
 import {Post} from "../../../fetch-es6.worker";
 
 
@@ -8,14 +8,7 @@ import {Post} from "../../../fetch-es6.worker";
 })
 export class HoneyArticle {
 
-  @Element() hostElement;
-
   @Prop() post: Post;
-
-  /**
-   * tagName of honey style sheet to apply e.g. 'honey-papercss-style'
-   */
-  @State() theme: string;
 
   getPostLink(item): string {
     if (typeof item.link === "string") {
@@ -29,9 +22,8 @@ export class HoneyArticle {
 
 
   render() {
-    console.log("##### post: " + this.post);
     return (
-      <honey-styled-component themeprefix="honey-article">
+      <honey-styled-component themeprefix="honey-article" slotNames="slot1,slot2,slot3">
         <a slot="slot1" href={this.getPostLink(this.post.item)} target="_blank">{this.post.item.title}</a>
         <span slot="slot2">
             {this.post.pubdate} auf {this.post.feedtitle}

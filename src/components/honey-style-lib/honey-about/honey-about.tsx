@@ -14,7 +14,7 @@ export class HoneyAbout {
 
   render() {
     return (
-      <honey-styled-component themeprefix="honey-about">
+      <honey-styled-component themeprefix="honey-about" slotNames="slot1">
         <slot name="content" slot="slot1"/>
       </honey-styled-component>
     )

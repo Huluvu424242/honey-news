@@ -12,19 +12,6 @@
 | `verbose` | `verbose` | enable console logging | `boolean` | `false` |
 
 
-## Methods
-
-### `updateOptions(options: StatisticOptions) => Promise<void>`
-
-Update statistic options
-
-#### Returns
-
-Type: `Promise<void>`
-
-
-
-
 ## Dependencies
 
 ### Used by

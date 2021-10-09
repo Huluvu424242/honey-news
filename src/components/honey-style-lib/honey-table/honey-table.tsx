@@ -9,7 +9,7 @@ export class HoneyTable {
 
   render() {
     return (
-      <honey-styled-component themeprefix="honey-table">
+      <honey-styled-component themeprefix="honey-table" slotNames="slot1">
         <slot slot="slot1"/>
       </honey-styled-component>
     )

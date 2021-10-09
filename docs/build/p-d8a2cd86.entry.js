@@ -1,0 +1,1 @@
+import{r as e,h as t,H as l}from"./p-74cd68e1.js";const s=class{constructor(t){e(this,t)}render(){return t(l,null,t("honey-apply-style",null),t("table",{class:"table table-hover table-alternating"},t("slot",{name:"slot1"})))}};export{s as honey_table_papercss}

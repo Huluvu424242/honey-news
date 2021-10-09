@@ -29,6 +29,12 @@ export namespace Components {
     }
     interface HoneyDisclaimerPapercss {
     }
+    interface HoneyInfobar {
+    }
+    interface HoneyInfobarBulma {
+    }
+    interface HoneyInfobarPapercss {
+    }
     interface HoneyNavbar {
     }
     interface HoneyNavbarBulma {
@@ -95,6 +101,12 @@ export namespace Components {
           * enable console logging
          */
         "verbose": boolean;
+    }
+    interface HoneyNotification {
+    }
+    interface HoneyNotificationBulma {
+    }
+    interface HoneyNotificationPapercss {
     }
     interface HoneyStyledComponent {
         /**
@@ -173,6 +185,24 @@ declare global {
         prototype: HTMLHoneyDisclaimerPapercssElement;
         new (): HTMLHoneyDisclaimerPapercssElement;
     };
+    interface HTMLHoneyInfobarElement extends Components.HoneyInfobar, HTMLStencilElement {
+    }
+    var HTMLHoneyInfobarElement: {
+        prototype: HTMLHoneyInfobarElement;
+        new (): HTMLHoneyInfobarElement;
+    };
+    interface HTMLHoneyInfobarBulmaElement extends Components.HoneyInfobarBulma, HTMLStencilElement {
+    }
+    var HTMLHoneyInfobarBulmaElement: {
+        prototype: HTMLHoneyInfobarBulmaElement;
+        new (): HTMLHoneyInfobarBulmaElement;
+    };
+    interface HTMLHoneyInfobarPapercssElement extends Components.HoneyInfobarPapercss, HTMLStencilElement {
+    }
+    var HTMLHoneyInfobarPapercssElement: {
+        prototype: HTMLHoneyInfobarPapercssElement;
+        new (): HTMLHoneyInfobarPapercssElement;
+    };
     interface HTMLHoneyNavbarElement extends Components.HoneyNavbar, HTMLStencilElement {
     }
     var HTMLHoneyNavbarElement: {
@@ -233,6 +263,24 @@ declare global {
         prototype: HTMLHoneyNewsStatisticElement;
         new (): HTMLHoneyNewsStatisticElement;
     };
+    interface HTMLHoneyNotificationElement extends Components.HoneyNotification, HTMLStencilElement {
+    }
+    var HTMLHoneyNotificationElement: {
+        prototype: HTMLHoneyNotificationElement;
+        new (): HTMLHoneyNotificationElement;
+    };
+    interface HTMLHoneyNotificationBulmaElement extends Components.HoneyNotificationBulma, HTMLStencilElement {
+    }
+    var HTMLHoneyNotificationBulmaElement: {
+        prototype: HTMLHoneyNotificationBulmaElement;
+        new (): HTMLHoneyNotificationBulmaElement;
+    };
+    interface HTMLHoneyNotificationPapercssElement extends Components.HoneyNotificationPapercss, HTMLStencilElement {
+    }
+    var HTMLHoneyNotificationPapercssElement: {
+        prototype: HTMLHoneyNotificationPapercssElement;
+        new (): HTMLHoneyNotificationPapercssElement;
+    };
     interface HTMLHoneyStyledComponentElement extends Components.HoneyStyledComponent, HTMLStencilElement {
     }
     var HTMLHoneyStyledComponentElement: {
@@ -255,6 +303,9 @@ declare global {
         "honey-disclaimer": HTMLHoneyDisclaimerElement;
         "honey-disclaimer-bulma": HTMLHoneyDisclaimerBulmaElement;
         "honey-disclaimer-papercss": HTMLHoneyDisclaimerPapercssElement;
+        "honey-infobar": HTMLHoneyInfobarElement;
+        "honey-infobar-bulma": HTMLHoneyInfobarBulmaElement;
+        "honey-infobar-papercss": HTMLHoneyInfobarPapercssElement;
         "honey-navbar": HTMLHoneyNavbarElement;
         "honey-navbar-bulma": HTMLHoneyNavbarBulmaElement;
         "honey-navbar-papercss": HTMLHoneyNavbarPapercssElement;
@@ -265,6 +316,9 @@ declare global {
         "honey-news-feeds": HTMLHoneyNewsFeedsElement;
         "honey-news-header": HTMLHoneyNewsHeaderElement;
         "honey-news-statistic": HTMLHoneyNewsStatisticElement;
+        "honey-notification": HTMLHoneyNotificationElement;
+        "honey-notification-bulma": HTMLHoneyNotificationBulmaElement;
+        "honey-notification-papercss": HTMLHoneyNotificationPapercssElement;
         "honey-styled-component": HTMLHoneyStyledComponentElement;
         "honey-styled-paracomponent": HTMLHoneyStyledParacomponentElement;
     }
@@ -287,6 +341,12 @@ declare namespace LocalJSX {
     interface HoneyDisclaimerBulma {
     }
     interface HoneyDisclaimerPapercss {
+    }
+    interface HoneyInfobar {
+    }
+    interface HoneyInfobarBulma {
+    }
+    interface HoneyInfobarPapercss {
     }
     interface HoneyNavbar {
     }
@@ -345,6 +405,12 @@ declare namespace LocalJSX {
          */
         "verbose"?: boolean;
     }
+    interface HoneyNotification {
+    }
+    interface HoneyNotificationBulma {
+    }
+    interface HoneyNotificationPapercss {
+    }
     interface HoneyStyledComponent {
         /**
           * themepostfix of theme name e.g. style when honey-papercss-style
@@ -376,6 +442,9 @@ declare namespace LocalJSX {
         "honey-disclaimer": HoneyDisclaimer;
         "honey-disclaimer-bulma": HoneyDisclaimerBulma;
         "honey-disclaimer-papercss": HoneyDisclaimerPapercss;
+        "honey-infobar": HoneyInfobar;
+        "honey-infobar-bulma": HoneyInfobarBulma;
+        "honey-infobar-papercss": HoneyInfobarPapercss;
         "honey-navbar": HoneyNavbar;
         "honey-navbar-bulma": HoneyNavbarBulma;
         "honey-navbar-papercss": HoneyNavbarPapercss;
@@ -386,6 +455,9 @@ declare namespace LocalJSX {
         "honey-news-feeds": HoneyNewsFeeds;
         "honey-news-header": HoneyNewsHeader;
         "honey-news-statistic": HoneyNewsStatistic;
+        "honey-notification": HoneyNotification;
+        "honey-notification-bulma": HoneyNotificationBulma;
+        "honey-notification-papercss": HoneyNotificationPapercss;
         "honey-styled-component": HoneyStyledComponent;
         "honey-styled-paracomponent": HoneyStyledParacomponent;
     }
@@ -403,6 +475,9 @@ declare module "@stencil/core" {
             "honey-disclaimer": LocalJSX.HoneyDisclaimer & JSXBase.HTMLAttributes<HTMLHoneyDisclaimerElement>;
             "honey-disclaimer-bulma": LocalJSX.HoneyDisclaimerBulma & JSXBase.HTMLAttributes<HTMLHoneyDisclaimerBulmaElement>;
             "honey-disclaimer-papercss": LocalJSX.HoneyDisclaimerPapercss & JSXBase.HTMLAttributes<HTMLHoneyDisclaimerPapercssElement>;
+            "honey-infobar": LocalJSX.HoneyInfobar & JSXBase.HTMLAttributes<HTMLHoneyInfobarElement>;
+            "honey-infobar-bulma": LocalJSX.HoneyInfobarBulma & JSXBase.HTMLAttributes<HTMLHoneyInfobarBulmaElement>;
+            "honey-infobar-papercss": LocalJSX.HoneyInfobarPapercss & JSXBase.HTMLAttributes<HTMLHoneyInfobarPapercssElement>;
             "honey-navbar": LocalJSX.HoneyNavbar & JSXBase.HTMLAttributes<HTMLHoneyNavbarElement>;
             "honey-navbar-bulma": LocalJSX.HoneyNavbarBulma & JSXBase.HTMLAttributes<HTMLHoneyNavbarBulmaElement>;
             "honey-navbar-papercss": LocalJSX.HoneyNavbarPapercss & JSXBase.HTMLAttributes<HTMLHoneyNavbarPapercssElement>;
@@ -413,6 +488,9 @@ declare module "@stencil/core" {
             "honey-news-feeds": LocalJSX.HoneyNewsFeeds & JSXBase.HTMLAttributes<HTMLHoneyNewsFeedsElement>;
             "honey-news-header": LocalJSX.HoneyNewsHeader & JSXBase.HTMLAttributes<HTMLHoneyNewsHeaderElement>;
             "honey-news-statistic": LocalJSX.HoneyNewsStatistic & JSXBase.HTMLAttributes<HTMLHoneyNewsStatisticElement>;
+            "honey-notification": LocalJSX.HoneyNotification & JSXBase.HTMLAttributes<HTMLHoneyNotificationElement>;
+            "honey-notification-bulma": LocalJSX.HoneyNotificationBulma & JSXBase.HTMLAttributes<HTMLHoneyNotificationBulmaElement>;
+            "honey-notification-papercss": LocalJSX.HoneyNotificationPapercss & JSXBase.HTMLAttributes<HTMLHoneyNotificationPapercssElement>;
             "honey-styled-component": LocalJSX.HoneyStyledComponent & JSXBase.HTMLAttributes<HTMLHoneyStyledComponentElement>;
             "honey-styled-paracomponent": LocalJSX.HoneyStyledParacomponent & JSXBase.HTMLAttributes<HTMLHoneyStyledParacomponentElement>;
         }

@@ -8,7 +8,6 @@ import {HTMLStencilElement, JSXBase} from "@stencil/core/internal";
 import {Post} from "./fetch-es6.worker";
 import {NewsLoader} from "./components/honey-news/news/NewsLoader";
 import {NewsOptions} from "./components/honey-news/news/NewsOptions";
-import {StatisticOptions} from "./components/honey-news/statistic/StatisticOptions";
 
 export namespace Components {
     interface HoneyAbout {
@@ -93,11 +92,6 @@ export namespace Components {
     }
     interface HoneyNewsStatistic {
         /**
-          * Update statistic options
-          * @param options : NewsOptions plain object to set the options
-         */
-        "updateOptions": (options: StatisticOptions) => Promise<void>;
-        /**
           * enable console logging
          */
         "verbose": boolean;
@@ -128,6 +122,12 @@ export namespace Components {
           * themeprefix of theme name e.g. honey when honey-papercss-style
          */
         "themeprefix": string;
+    }
+    interface HoneyTable {
+    }
+    interface HoneyTableBulma {
+    }
+    interface HoneyTablePapercss {
     }
 }
 declare global {
@@ -293,6 +293,24 @@ declare global {
         prototype: HTMLHoneyStyledParacomponentElement;
         new (): HTMLHoneyStyledParacomponentElement;
     };
+    interface HTMLHoneyTableElement extends Components.HoneyTable, HTMLStencilElement {
+    }
+    var HTMLHoneyTableElement: {
+        prototype: HTMLHoneyTableElement;
+        new (): HTMLHoneyTableElement;
+    };
+    interface HTMLHoneyTableBulmaElement extends Components.HoneyTableBulma, HTMLStencilElement {
+    }
+    var HTMLHoneyTableBulmaElement: {
+        prototype: HTMLHoneyTableBulmaElement;
+        new (): HTMLHoneyTableBulmaElement;
+    };
+    interface HTMLHoneyTablePapercssElement extends Components.HoneyTablePapercss, HTMLStencilElement {
+    }
+    var HTMLHoneyTablePapercssElement: {
+        prototype: HTMLHoneyTablePapercssElement;
+        new (): HTMLHoneyTablePapercssElement;
+    };
     interface HTMLElementTagNameMap {
         "honey-about": HTMLHoneyAboutElement;
         "honey-about-bulma": HTMLHoneyAboutBulmaElement;
@@ -321,6 +339,9 @@ declare global {
         "honey-notification-papercss": HTMLHoneyNotificationPapercssElement;
         "honey-styled-component": HTMLHoneyStyledComponentElement;
         "honey-styled-paracomponent": HTMLHoneyStyledParacomponentElement;
+        "honey-table": HTMLHoneyTableElement;
+        "honey-table-bulma": HTMLHoneyTableBulmaElement;
+        "honey-table-papercss": HTMLHoneyTablePapercssElement;
     }
 }
 declare namespace LocalJSX {
@@ -432,6 +453,12 @@ declare namespace LocalJSX {
          */
         "themeprefix"?: string;
     }
+    interface HoneyTable {
+    }
+    interface HoneyTableBulma {
+    }
+    interface HoneyTablePapercss {
+    }
     interface IntrinsicElements {
         "honey-about": HoneyAbout;
         "honey-about-bulma": HoneyAboutBulma;
@@ -460,6 +487,9 @@ declare namespace LocalJSX {
         "honey-notification-papercss": HoneyNotificationPapercss;
         "honey-styled-component": HoneyStyledComponent;
         "honey-styled-paracomponent": HoneyStyledParacomponent;
+        "honey-table": HoneyTable;
+        "honey-table-bulma": HoneyTableBulma;
+        "honey-table-papercss": HoneyTablePapercss;
     }
 }
 export { LocalJSX as JSX };
@@ -493,6 +523,9 @@ declare module "@stencil/core" {
             "honey-notification-papercss": LocalJSX.HoneyNotificationPapercss & JSXBase.HTMLAttributes<HTMLHoneyNotificationPapercssElement>;
             "honey-styled-component": LocalJSX.HoneyStyledComponent & JSXBase.HTMLAttributes<HTMLHoneyStyledComponentElement>;
             "honey-styled-paracomponent": LocalJSX.HoneyStyledParacomponent & JSXBase.HTMLAttributes<HTMLHoneyStyledParacomponentElement>;
+            "honey-table": LocalJSX.HoneyTable & JSXBase.HTMLAttributes<HTMLHoneyTableElement>;
+            "honey-table-bulma": LocalJSX.HoneyTableBulma & JSXBase.HTMLAttributes<HTMLHoneyTableBulmaElement>;
+            "honey-table-papercss": LocalJSX.HoneyTablePapercss & JSXBase.HTMLAttributes<HTMLHoneyTablePapercssElement>;
         }
     }
 }

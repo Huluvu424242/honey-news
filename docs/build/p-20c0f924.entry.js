@@ -1,1 +1,0 @@
-import{r as t,h as e}from"./p-1bd3282d.js";const o=class{constructor(e){t(this,e)}render(){return e("honey-styled-component",{themeprefix:"honey-article"},e("slot",{name:"title",slot:"slot1"}),e("slot",{name:"subtitle",slot:"slot2"}),e("slot",{name:"text",slot:"slot3"}))}};export{o as honey_article}

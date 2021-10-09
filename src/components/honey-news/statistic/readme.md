@@ -34,11 +34,14 @@ Type: `Promise<void>`
 ### Depends on
 
 - honey-apply-style
+- [honey-table](../../honey-style-lib/honey-table)
 
 ### Graph
 ```mermaid
 graph TD;
   honey-news-statistic --> honey-apply-style
+  honey-news-statistic --> honey-table
+  honey-table --> honey-styled-component
   honey-news --> honey-news-statistic
   style honey-news-statistic fill:#f9f,stroke:#333,stroke-width:4px
 ```

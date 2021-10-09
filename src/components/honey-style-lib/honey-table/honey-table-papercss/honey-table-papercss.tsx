@@ -12,7 +12,7 @@ export class HoneyTablePapercss {
       <Host>
         <honey-apply-style/>
 
-        <table class="table table-hover table-alterating">
+        <table class="table table-hover table-alternating">
           <slot name="slot1"/>
         </table>
 

@@ -5,7 +5,7 @@ const HoneyTablePapercss = class {
     registerInstance(this, hostRef);
   }
   render() {
-    return (h(Host, null, h("honey-apply-style", null), h("table", { class: "table table-hover table-alterating" }, h("slot", { name: "slot1" }))));
+    return (h(Host, null, h("honey-apply-style", null), h("table", { class: "table table-hover table-alternating" }, h("slot", { name: "slot1" }))));
   }
 };
 

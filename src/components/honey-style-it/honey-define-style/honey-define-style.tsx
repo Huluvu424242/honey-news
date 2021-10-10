@@ -1,5 +1,5 @@
 import {Component, Element, h, Host, Method} from '@stencil/core';
-import {Observer, ReplaySubject, Subject, Subscription} from "rxjs";
+import {Observable, Observer, ReplaySubject, Subject, Subscription} from "rxjs";
 import {printWarning} from "../../shared/helper";
 
 @Component({
@@ -9,13 +9,13 @@ export class HoneyDefineStyle {
 
   @Element() host: HTMLElement;
 
-  protected styleName: Subject<string> = new ReplaySubject<string>(1);
+  protected styleName$: Subject<string> = new ReplaySubject<string>(1);
 
   protected computeTheme() {
     const children: HTMLCollection = this.host.children;
     const tagName: string = children.item(0).tagName;
     if (tagName) {
-      this.styleName.next(tagName.toLowerCase());
+      this.styleName$.next(tagName.toLowerCase());
     }
   }
 
@@ -32,12 +32,12 @@ export class HoneyDefineStyle {
    */
   @Method()
   async subscribeThemeChangeListener(observer: Observer<string>): Promise<Subscription> {
-    return await this.styleName.subscribe(observer);
+    return await this.styleName$.subscribe(observer);
   }
 
   @Method()
-  async getStyleSubject(): Promise<Subject<string>> {
-    return this.styleName;
+  async getStyleName$(): Promise<Observable<string>> {
+    return this.styleName$.asObservable();
   }
 
   /**

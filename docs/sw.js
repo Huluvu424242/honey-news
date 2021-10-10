@@ -112,4 +112,97 @@ self.addEventListener('fetch', function (event) {
 
 // the precache manifest will be injected into the following line
 // precacheAndRoute(self.__WB_MANIFEST);
-self.workbox.precaching.precacheAndRoute([]);
+self.workbox.precaching.precacheAndRoute([
+  {
+    "url": "404.html",
+    "revision": "000e42b6b0b988c46c215d5813cdf333"
+  },
+  {
+    "url": "demo.html",
+    "revision": "d166af2bad1a5668da118a84aa0ac84c"
+  },
+  {
+    "url": "index.html",
+    "revision": "22ca4876bc67fbd8df09ba3957994be3"
+  },
+  {
+    "url": "build/index.esm.js",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "build/p-0f4430d2.js"
+  },
+  {
+    "url": "build/p-12c2f1e1.entry.js"
+  },
+  {
+    "url": "build/p-15231d59.entry.js"
+  },
+  {
+    "url": "build/p-2155c8b7.js"
+  },
+  {
+    "url": "build/p-2494d2c3.entry.js"
+  },
+  {
+    "url": "build/p-2d6ced47.entry.js"
+  },
+  {
+    "url": "build/p-317c878c.js"
+  },
+  {
+    "url": "build/p-482da678.entry.js"
+  },
+  {
+    "url": "build/p-4932cde8.entry.js"
+  },
+  {
+    "url": "build/p-561b5f5d.entry.js"
+  },
+  {
+    "url": "build/p-819740c7.entry.js"
+  },
+  {
+    "url": "build/p-8718f189.entry.js"
+  },
+  {
+    "url": "build/p-91200748.js"
+  },
+  {
+    "url": "build/p-9768bc2c.js"
+  },
+  {
+    "url": "build/p-985fddd9.entry.js"
+  },
+  {
+    "url": "build/p-9ba6e310.entry.js"
+  },
+  {
+    "url": "build/p-9feb7d1c.entry.js"
+  },
+  {
+    "url": "build/p-a9e36fb1.js"
+  },
+  {
+    "url": "build/p-c0285636.entry.js"
+  },
+  {
+    "url": "build/p-cdf53455.entry.js"
+  },
+  {
+    "url": "build/p-e0232121.entry.js"
+  },
+  {
+    "url": "build/p-ece9a545.entry.js"
+  },
+  {
+    "url": "build/p-f4f609b3.js"
+  },
+  {
+    "url": "build/p-f7acb1be.entry.js"
+  },
+  {
+    "url": "redirect.js",
+    "revision": "01685ba609e926ad58374e17a1de278d"
+  }
+]);

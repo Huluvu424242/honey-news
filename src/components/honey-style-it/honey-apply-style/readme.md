@@ -21,8 +21,8 @@
  - [honey-navbar-papercss](../../honey-style-lib/honey-navbar/honey-navbar-papercss)
  - [honey-news](../../honey-news)
  - [honey-news-feed](../../honey-news/news)
- - [honey-news-feeds](../../honey-news/feeds)
  - [honey-news-statistic](../../honey-news/statistic)
+ - [honey-news-verwaltung](../../honey-news/verwaltung)
  - [honey-notification-bulma](../../honey-style-lib/honey-notification/honey-notification-bulma)
  - [honey-notification-papercss](../../honey-style-lib/honey-notification/honey-notification-papercss)
  - [honey-select-style](../honey-select-style)
@@ -44,8 +44,8 @@ graph TD;
   honey-navbar-papercss --> honey-apply-style
   honey-news --> honey-apply-style
   honey-news-feed --> honey-apply-style
-  honey-news-feeds --> honey-apply-style
   honey-news-statistic --> honey-apply-style
+  honey-news-verwaltung --> honey-apply-style
   honey-notification-bulma --> honey-apply-style
   honey-notification-papercss --> honey-apply-style
   honey-select-style --> honey-apply-style

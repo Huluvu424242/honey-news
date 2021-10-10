@@ -28,11 +28,11 @@ export class HoneyNews {
   /**
    * base of remote site
    */
-  @Prop({reflect: true, attribute: "site-basepath"}) siteBasePath;
+  @Prop({reflect: true, attribute: "site-basepath", mutable: true}) siteBasePath;
   /**
    * base of local site
    */
-  @Prop({reflect: true, attribute: "local-basepath"}) localBasePath;
+  @Prop({reflect: true, attribute: "local-basepath", mutable: true}) localBasePath;
   routerSubscription: Subscription = null;
   @State() route: string = "";
 

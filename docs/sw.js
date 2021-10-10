@@ -123,7 +123,7 @@ self.workbox.precaching.precacheAndRoute([
   },
   {
     "url": "index.html",
-    "revision": "22ca4876bc67fbd8df09ba3957994be3"
+    "revision": "4825f0e3e3b38666b6e8cb261549e12b"
   },
   {
     "url": "build/index.esm.js",

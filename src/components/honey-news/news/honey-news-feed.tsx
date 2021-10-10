@@ -46,7 +46,7 @@ export class HoneyNewsFeed {
   /**
    * Hilfsklasse zum Laden der Daten
    */
-  @Prop({mutable: true}) feedLoader: NewsLoader;
+  @Prop() feedLoader: NewsLoader;
 
   @State() feeds: Post[] = [];
   feedsSubscription: Subscription;

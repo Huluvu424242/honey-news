@@ -1,9 +1,8 @@
-import {Component, Element, h, Host, Prop, State, Watch} from "@stencil/core";
+import {Component, Element, h, Host, Prop, State} from "@stencil/core";
 import {Logger} from "../../shared/logger";
 import {Subscription} from "rxjs";
 import {router} from "./routing/SimpleRouter";
 import {NewsLoader} from "./news/NewsLoader";
-import {HoneyNewsFeed} from "./news/honey-news-feed";
 
 @Component({
   tag: "honey-news",
@@ -48,36 +47,36 @@ export class HoneyNews {
   feedLoader: NewsLoader = new NewsLoader([]);
 
 
-  /**
-   * News reader Komponente
-   */
-  @Prop({mutable: true}) newsFeed: HTMLHoneyNewsFeedElement;
-
-  @Watch("newsFeed")
-  newsWatcher(newValue: HTMLHoneyNewsFeedElement, oldValue: HTMLHoneyNewsFeedElement) {
-    oldValue = oldValue;
-    if (newValue) {
-      if (this.newsFeed) {
-        this.newsFeed.feedLoader = this.feedLoader;
-      }
-    }
-  }
-
-
-  /**
-   * Feeds Administration Komponente
-   */
-  @Prop({mutable: true}) feedAdministration: HTMLHoneyNewsFeedsElement;
-
-  @Watch("feedAdministration")
-  feedWatcher(newValue: HoneyNewsFeed, oldValue: HoneyNewsFeed) {
-    oldValue = oldValue;
-    if (newValue) {
-      if (this.feedAdministration) {
-        this.feedAdministration.feedLoader = this.feedLoader;
-      }
-    }
-  }
+  // /**
+  //  * News reader Komponente
+  //  */
+  // @Prop({mutable: true}) newsFeed: HTMLHoneyNewsFeedElement;
+  //
+  // @Watch("newsFeed")
+  // newsWatcher(newValue: HTMLHoneyNewsFeedElement, oldValue: HTMLHoneyNewsFeedElement) {
+  //   oldValue = oldValue;
+  //   if (newValue) {
+  //     if (this.newsFeed) {
+  //       this.newsFeed.feedLoader = this.feedLoader;
+  //     }
+  //   }
+  // }
+  //
+  //
+  // /**
+  //  * Feeds Administration Komponente
+  //  */
+  // @Prop({mutable: true}) feedAdministration: HTMLHoneyNewsFeedsElement;
+  //
+  // @Watch("feedAdministration")
+  // feedWatcher(newValue: HoneyNewsFeed, oldValue: HoneyNewsFeed) {
+  //   oldValue = oldValue;
+  //   if (newValue) {
+  //     if (this.feedAdministration) {
+  //       this.feedAdministration.feedLoader = this.feedLoader;
+  //     }
+  //   }
+  // }
 
 
   public connectedCallback() {
@@ -122,13 +121,8 @@ export class HoneyNews {
         <honey-news-header/>
 
         {!this.route || this.route === "/" || this.route === "/index.html" || this.route === "/news" ?
-          <honey-news-feed ref={(el) => {
-            this.newsFeed = el as HTMLHoneyNewsFeedElement
-          }}/> : null}
-        {this.route === "/feeds" ? <honey-news-feeds ref={(el) => {
-          this.feedAdministration = el as HTMLHoneyNewsFeedsElement
-        }
-        }/> : null}
+          <honey-news-feed feedLoader={this.feedLoader}/> : null}
+        {this.route === "/feeds" ? <honey-news-feeds feedLoader={this.feedLoader}/> : null}
         {this.route === "/statistic" ? <honey-news-statistic/> : null}
         {this.route === "/about" ? <honey-news-about/> : null}
 

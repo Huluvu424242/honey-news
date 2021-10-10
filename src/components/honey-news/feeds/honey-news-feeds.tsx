@@ -18,7 +18,7 @@ export class HoneyNewsFeeds {
   /**
    * Hilfsklasse zum Laden der Daten
    */
-  @Prop({mutable:true}) feedLoader: NewsLoader;
+  @Prop() feedLoader: NewsLoader;
 
   addUrl(event: UIEvent): void {
     event = event;

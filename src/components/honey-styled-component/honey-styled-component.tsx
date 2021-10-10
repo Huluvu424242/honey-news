@@ -29,10 +29,11 @@ export class HoneyStyledComponent {
    */
   @State() theme: string;
 
-  async connectedCallback() {
+  async componentWillLoad() {
     try {
       await customElements.whenDefined('honey-define-style');
       const styleElements: HoneyDefineStyle = document.querySelector('honey-define-style') as unknown as HoneyDefineStyle;
+
       const listener: util.ThemeListener = {
         next: (styleName: string) => {
           this.theme = styleName;
@@ -47,9 +48,6 @@ export class HoneyStyledComponent {
   }
 
 
-  disconnectedCallback() {
-    this.themeSubscription.unsubscribe();
-  }
 
   getTheme(): string {
     if (!this.theme) return "honey-default-style";

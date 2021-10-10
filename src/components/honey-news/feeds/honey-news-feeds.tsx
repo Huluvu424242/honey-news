@@ -2,7 +2,7 @@ import {Component, h, Host, Prop} from "@stencil/core";
 import {Logger} from "../../../shared/logger";
 import {NewsLoader} from "../news/NewsLoader";
 import {from} from "rxjs";
-import {getFeedsSingleObserver} from "../../../fetch-es6.worker";
+import {getFeedsSingleCall} from "../../../fetch-es6.worker";
 
 @Component({
   tag: "honey-news-feeds",
@@ -26,7 +26,7 @@ export class HoneyNewsFeeds {
     const url = this.inputNewUrl.value;
     if (!this.feedLoader.getFeedURLs().includes(url)) {
       this.feedLoader.addFeedUrl(url);
-      from(getFeedsSingleObserver([url], true)).subscribe();
+      from(getFeedsSingleCall([url], true)).subscribe();
     }
   }
 

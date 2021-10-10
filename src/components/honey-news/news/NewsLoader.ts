@@ -1,5 +1,5 @@
 import {EMPTY, from, Observable, timer} from "rxjs";
-import {getFeedsSingleObserver, Post} from "../../../fetch-es6.worker";
+import {getFeedsSingleCall, Post} from "../../../fetch-es6.worker";
 import {catchError, mergeMap} from "rxjs/operators";
 
 export class NewsLoader {
@@ -22,10 +22,10 @@ export class NewsLoader {
   }
 
 
-  public getFeedsPeriodicObserver(): Observable<Post[]> {
+  public getFeedsPeriodicObservable$(): Observable<Post[]> {
     return timer(0, 60000 * 5).pipe(
       mergeMap(
-        () => from(getFeedsSingleObserver(this.feedURLs, true)).pipe(catchError(() => EMPTY))
+        () => from(getFeedsSingleCall(this.feedURLs, true)).pipe(catchError(() => EMPTY))
       )
     )
   }

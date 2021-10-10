@@ -2,7 +2,7 @@ import {Component, Element, h, Host, Method, Prop, State} from "@stencil/core";
 import {Logger} from "../../../shared/logger";
 import {NewsOptions} from "./NewsOptions";
 import {NewsLoader} from "./NewsLoader";
-import {getFeedsSingleObserver, Post} from "../../../fetch-es6.worker";
+import {getFeedsSingleCall, Post} from "../../../fetch-es6.worker";
 import {from, Subscription} from "rxjs";
 import {PipeOperators} from "../../../shared/PipeOperators";
 import {NewsArticle} from "./honey-news-article";
@@ -79,32 +79,22 @@ export class HoneyNewsFeed {
     Logger.toggleLogging(this.verbose);
   }
 
-  public async componentWillLoad() {
-    this.singleLoadFeeds();
-  }
-
   public disconnectedCallback() {
     this.feedsSubscription.unsubscribe();
   }
 
-  public singleLoadFeeds(): void {
-    from(getFeedsSingleObserver(this.feedLoader.getFeedURLs(), false))
-      .subscribe({
-        next: (posts: Post[]) => {
-          this.lastUpdate = this.lastUpdate || posts[0].exaktdate;
-          this.feeds = [...posts]
-        }
-      });
+  public async componentWillLoad() {
+    const posts: Post[] = await getFeedsSingleCall(this.feedLoader.getFeedURLs(), false);
+    this.lastUpdate = posts[0].exaktdate || this.lastUpdate;
+    this.feeds = [...posts]
   }
 
+
   public subscribeFeeds(): Subscription {
-    return this.feedLoader.getFeedsPeriodicObserver()
-      .subscribe({
-        next: (posts: Post[]) => {
-          this.lastUpdate = this.lastUpdate || posts[0].exaktdate;
-          this.feeds = [...posts]
-        }
-      });
+    return this.feedLoader.getFeedsPeriodicObservable$().subscribe((posts: Post[]) => {
+      this.lastUpdate = posts[0].exaktdate || this.lastUpdate;
+      this.feeds = [...posts]
+    });
   }
 
 

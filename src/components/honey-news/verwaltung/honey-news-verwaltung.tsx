@@ -18,15 +18,16 @@ export class HoneyNewsVerwaltung {
   /**
    * Hilfsklasse zum Laden der Daten
    */
-  @Prop() feedLoader: NewsLoader;
+  @Prop() feedLoader!: NewsLoader;
 
-  addUrl(event: UIEvent): void {
-    event = event;
-    if(!this.feedLoader) return;
+  addUrl(): void {
+    if (!this.feedLoader) return;
+
     const url = this.inputNewUrl.value;
     if (!this.feedLoader.getFeedURLs().includes(url)) {
       this.feedLoader.addFeedUrl(url);
-      from(getFeedsSingleCall([url], true)).subscribe();
+      from(getFeedsSingleCall([url], true)).subscribe(() => {
+      });
     }
   }
 
@@ -39,9 +40,11 @@ export class HoneyNewsVerwaltung {
           <h2>Verwaltung</h2>
           <div class="row">
             <label class="col border label" htmlFor="newurl">Feed URL:</label>
-            <input id="newurl" class="col-fill col" type="text" ref={(el) => this.inputNewUrl = el as HTMLInputElement}/>
+            <input id="newurl" class="col-fill col" type="text"
+                   ref={(el) => this.inputNewUrl = el as HTMLInputElement}/>
             <button id="addurl" class="col paper-btn btn-primary"
-                    onClick={(event: UIEvent) => this.addUrl(event)}>Add Feed URL</button>
+                    onClick={() => this.addUrl.bind(this)}>Add Feed URL
+            </button>
           </div>
         </div>
       </Host>

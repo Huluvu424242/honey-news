@@ -23,25 +23,6 @@ export class HoneyNewsFeed {
    */
   ident: string;
 
-  /**
-   * initiale class from host tag
-   */
-  initialHostClass: string;
-
-  /**
-   * true wenn das Tag ohne alt Attribute deklariert wurde
-   */
-  createAriaLabel: boolean = false;
-
-  /**
-   * true wenn das Tag ohne title Attribut deklariert wurde
-   */
-  createTitleText: boolean = false;
-
-  /**
-   * initial computed taborder
-   */
-  taborder: string = "0";
 
   /**
    * Hilfsklasse zum Laden der Daten
@@ -69,10 +50,6 @@ export class HoneyNewsFeed {
   public connectedCallback() {
     // States initialisieren
     this.ident = this.hostElement.id ? this.hostElement.id : Math.random().toString(36).substring(7);
-    this.initialHostClass = this.hostElement.getAttribute("class") || null;
-    this.createTitleText = !this.hostElement.title;
-    this.createAriaLabel = !this.hostElement["aria-label"];
-    this.taborder = this.hostElement.getAttribute("tabindex") ? (this.hostElement.tabIndex + "") : "0";
     this.initialisiereUrls();
     // Properties auswerten
     this.feedsSubscription = this.subscribeFeeds();
@@ -134,48 +111,6 @@ export class HoneyNewsFeed {
       }
     }
     this.options = {...this.options};
-  }
-
-
-  protected hasNoFeeds(): boolean {
-    return (!this.feeds || this.feeds.length < 1);
-  }
-
-  protected createNewTitleText(): string {
-    if (this.hasNoFeeds()) {
-      return this.options.disabledTitleText;
-    } else {
-      return this.options.titleText;
-    }
-  }
-
-  protected getTitleText(): string {
-    if (this.createTitleText) {
-      return this.createNewTitleText();
-    } else {
-      return this.hostElement.title;
-    }
-  }
-
-  protected createNewAltText(): string {
-    return this.options.ariaLabel;
-  }
-
-  protected getAltText(): string {
-    if (this.createAriaLabel) {
-      return this.createNewAltText();
-    } else {
-      return this.hostElement.getAttribute("aria-label");
-    }
-  }
-
-  protected getHostClass(): string {
-    let hostClass = this.initialHostClass;
-    if (this.hasNoFeeds()) {
-      return hostClass + " " + this.options.disabledHostClass;
-    } else {
-      return hostClass + " " + this.options.enabledHostClass;
-    }
   }
 
   lastHour: Date = null;

@@ -23,26 +23,6 @@ export class HoneyNews {
    */
   ident: string;
 
-  /**
-   * initiale class from host tag
-   */
-  initialHostClass: string;
-
-  /**
-   * true wenn das Tag ohne alt Attribute deklariert wurde
-   */
-  createAriaLabel: boolean = false;
-
-  /**
-   * true wenn das Tag ohne title Attribut deklariert wurde
-   */
-  createTitleText: boolean = false;
-
-  /**
-   * initial computed taborder
-   */
-  taborder: string = "0";
-
   //
   // Routing
   //
@@ -127,10 +107,6 @@ export class HoneyNews {
     }
 
     this.ident = this.hostElement.id ? this.hostElement.id : Math.random().toString(36).substring(7);
-    this.initialHostClass = this.hostElement.getAttribute("class") || null;
-    this.createTitleText = !this.hostElement.title;
-    this.createAriaLabel = !this.hostElement["aria-label"];
-    this.taborder = this.hostElement.getAttribute("tabindex") ? (this.hostElement.tabIndex + "") : "0";
     this.routerSubscription = router.getRouteListener().subscribe((route: string) => {
         this.route = route;
       },

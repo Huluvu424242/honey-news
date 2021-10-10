@@ -6,9 +6,8 @@
  */
 import {HTMLStencilElement, JSXBase} from "@stencil/core/internal";
 import {Observable, Observer, Subscription} from "rxjs";
-import {Post} from "./fetch-es6.worker";
+import {NewsArticle} from "./components/honey-news/news/honey-news-article";
 import {NewsLoader} from "./components/honey-news/news/NewsLoader";
-import {NewsOptions} from "./components/honey-news/news/NewsOptions";
 
 export namespace Components {
     interface HoneyAbout {
@@ -56,17 +55,9 @@ export namespace Components {
     }
     interface HoneyNews {
         /**
-          * Feeds Administration Komponente
-         */
-        "feedAdministration": HTMLHoneyNewsFeedsElement;
-        /**
           * base of local site
          */
         "localBasePath": any;
-        /**
-          * News reader Komponente
-         */
-        "newsFeed": HTMLHoneyNewsFeedElement;
         /**
           * base of remote site
          */
@@ -79,7 +70,7 @@ export namespace Components {
     interface HoneyNewsAbout {
     }
     interface HoneyNewsArticle {
-        "post": Post;
+        "article": NewsArticle;
     }
     interface HoneyNewsFeed {
         /**
@@ -87,20 +78,9 @@ export namespace Components {
          */
         "feedLoader": NewsLoader;
         /**
-          * Update honey-news options
-          * @param options : NewsOptions plain object to set the options
-         */
-        "updateOptions": (options: NewsOptions) => Promise<void>;
-        /**
           * enable console logging
          */
         "verbose": boolean;
-    }
-    interface HoneyNewsFeeds {
-        /**
-          * Hilfsklasse zum Laden der Daten
-         */
-        "feedLoader": NewsLoader;
     }
     interface HoneyNewsHeader {
     }
@@ -109,6 +89,12 @@ export namespace Components {
           * enable console logging
          */
         "verbose": boolean;
+    }
+    interface HoneyNewsVerwaltung {
+        /**
+          * Hilfsklasse zum Laden der Daten
+         */
+        "feedLoader": NewsLoader;
     }
     interface HoneyNotification {
     }
@@ -278,12 +264,6 @@ declare global {
         prototype: HTMLHoneyNewsFeedElement;
         new (): HTMLHoneyNewsFeedElement;
     };
-    interface HTMLHoneyNewsFeedsElement extends Components.HoneyNewsFeeds, HTMLStencilElement {
-    }
-    var HTMLHoneyNewsFeedsElement: {
-        prototype: HTMLHoneyNewsFeedsElement;
-        new (): HTMLHoneyNewsFeedsElement;
-    };
     interface HTMLHoneyNewsHeaderElement extends Components.HoneyNewsHeader, HTMLStencilElement {
     }
     var HTMLHoneyNewsHeaderElement: {
@@ -295,6 +275,12 @@ declare global {
     var HTMLHoneyNewsStatisticElement: {
         prototype: HTMLHoneyNewsStatisticElement;
         new (): HTMLHoneyNewsStatisticElement;
+    };
+    interface HTMLHoneyNewsVerwaltungElement extends Components.HoneyNewsVerwaltung, HTMLStencilElement {
+    }
+    var HTMLHoneyNewsVerwaltungElement: {
+        prototype: HTMLHoneyNewsVerwaltungElement;
+        new (): HTMLHoneyNewsVerwaltungElement;
     };
     interface HTMLHoneyNotificationElement extends Components.HoneyNotification, HTMLStencilElement {
     }
@@ -372,9 +358,9 @@ declare global {
         "honey-news-about": HTMLHoneyNewsAboutElement;
         "honey-news-article": HTMLHoneyNewsArticleElement;
         "honey-news-feed": HTMLHoneyNewsFeedElement;
-        "honey-news-feeds": HTMLHoneyNewsFeedsElement;
         "honey-news-header": HTMLHoneyNewsHeaderElement;
         "honey-news-statistic": HTMLHoneyNewsStatisticElement;
+        "honey-news-verwaltung": HTMLHoneyNewsVerwaltungElement;
         "honey-notification": HTMLHoneyNotificationElement;
         "honey-notification-bulma": HTMLHoneyNotificationBulmaElement;
         "honey-notification-papercss": HTMLHoneyNotificationPapercssElement;
@@ -423,17 +409,9 @@ declare namespace LocalJSX {
     }
     interface HoneyNews {
         /**
-          * Feeds Administration Komponente
-         */
-        "feedAdministration"?: HTMLHoneyNewsFeedsElement;
-        /**
           * base of local site
          */
         "localBasePath"?: any;
-        /**
-          * News reader Komponente
-         */
-        "newsFeed"?: HTMLHoneyNewsFeedElement;
         /**
           * base of remote site
          */
@@ -446,7 +424,7 @@ declare namespace LocalJSX {
     interface HoneyNewsAbout {
     }
     interface HoneyNewsArticle {
-        "post"?: Post;
+        "article"?: NewsArticle;
     }
     interface HoneyNewsFeed {
         /**
@@ -458,12 +436,6 @@ declare namespace LocalJSX {
          */
         "verbose"?: boolean;
     }
-    interface HoneyNewsFeeds {
-        /**
-          * Hilfsklasse zum Laden der Daten
-         */
-        "feedLoader"?: NewsLoader;
-    }
     interface HoneyNewsHeader {
     }
     interface HoneyNewsStatistic {
@@ -471,6 +443,12 @@ declare namespace LocalJSX {
           * enable console logging
          */
         "verbose"?: boolean;
+    }
+    interface HoneyNewsVerwaltung {
+        /**
+          * Hilfsklasse zum Laden der Daten
+         */
+        "feedLoader": NewsLoader;
     }
     interface HoneyNotification {
     }
@@ -534,9 +512,9 @@ declare namespace LocalJSX {
         "honey-news-about": HoneyNewsAbout;
         "honey-news-article": HoneyNewsArticle;
         "honey-news-feed": HoneyNewsFeed;
-        "honey-news-feeds": HoneyNewsFeeds;
         "honey-news-header": HoneyNewsHeader;
         "honey-news-statistic": HoneyNewsStatistic;
+        "honey-news-verwaltung": HoneyNewsVerwaltung;
         "honey-notification": HoneyNotification;
         "honey-notification-bulma": HoneyNotificationBulma;
         "honey-notification-papercss": HoneyNotificationPapercss;
@@ -573,9 +551,9 @@ declare module "@stencil/core" {
             "honey-news-about": LocalJSX.HoneyNewsAbout & JSXBase.HTMLAttributes<HTMLHoneyNewsAboutElement>;
             "honey-news-article": LocalJSX.HoneyNewsArticle & JSXBase.HTMLAttributes<HTMLHoneyNewsArticleElement>;
             "honey-news-feed": LocalJSX.HoneyNewsFeed & JSXBase.HTMLAttributes<HTMLHoneyNewsFeedElement>;
-            "honey-news-feeds": LocalJSX.HoneyNewsFeeds & JSXBase.HTMLAttributes<HTMLHoneyNewsFeedsElement>;
             "honey-news-header": LocalJSX.HoneyNewsHeader & JSXBase.HTMLAttributes<HTMLHoneyNewsHeaderElement>;
             "honey-news-statistic": LocalJSX.HoneyNewsStatistic & JSXBase.HTMLAttributes<HTMLHoneyNewsStatisticElement>;
+            "honey-news-verwaltung": LocalJSX.HoneyNewsVerwaltung & JSXBase.HTMLAttributes<HTMLHoneyNewsVerwaltungElement>;
             "honey-notification": LocalJSX.HoneyNotification & JSXBase.HTMLAttributes<HTMLHoneyNotificationElement>;
             "honey-notification-bulma": LocalJSX.HoneyNotificationBulma & JSXBase.HTMLAttributes<HTMLHoneyNotificationBulmaElement>;
             "honey-notification-papercss": LocalJSX.HoneyNotificationPapercss & JSXBase.HTMLAttributes<HTMLHoneyNotificationPapercssElement>;

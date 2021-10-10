@@ -7,6 +7,16 @@
 
 ## Methods
 
+### `getStyleSubject() => Promise<Subject<string>>`
+
+
+
+#### Returns
+
+Type: `Promise<Subject<string>>`
+
+
+
 ### `recomputeTheme() => Promise<void>`
 
 Trigger recompute theme style.

@@ -9,19 +9,19 @@ export class HoneyDefineStyle {
 
   @Element() host: HTMLElement;
 
-  protected theme: Subject<string> = new ReplaySubject<string>(1);
+  protected styleName: Subject<string> = new ReplaySubject<string>(1);
 
   protected computeTheme() {
     const children: HTMLCollection = this.host.children;
     const tagName: string = children.item(0).tagName;
     if (tagName) {
-      this.theme.next(tagName.toLowerCase());
+      this.styleName.next(tagName.toLowerCase());
     }
   }
 
   async componentWillLoad() {
     try {
-      this.computeTheme();
+      await this.computeTheme();
     } catch (error) {
       printWarning(error);
     }
@@ -32,7 +32,12 @@ export class HoneyDefineStyle {
    */
   @Method()
   async subscribeThemeChangeListener(observer: Observer<string>): Promise<Subscription> {
-    return await this.theme.subscribe(observer);
+    return await this.styleName.subscribe(observer);
+  }
+
+  @Method()
+  async getStyleSubject(): Promise<Subject<string>> {
+    return this.styleName;
   }
 
   /**

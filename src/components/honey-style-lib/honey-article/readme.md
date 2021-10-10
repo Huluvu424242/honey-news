@@ -9,7 +9,7 @@
 
 ### Depends on
 
-- [honey-styled-component](../../honey-styled-component)
+- [honey-styled-component](../../honey-style-it/honey-styled-component)
 
 ### Graph
 ```mermaid

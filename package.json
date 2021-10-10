@@ -49,8 +49,7 @@
     "object-hash": "2.1.1",
     "rxjs": "7.3.0",
     "feedme": "2.0.2",
-    "@huluvu424242/liona-feeds": "2.3.0",
-    "@huluvu424242/honey-style-it": "0.0.5"
+    "@huluvu424242/liona-feeds": "2.3.0"
   },
   "devDependencies": {
     "@stencil/core": "2.8.1",

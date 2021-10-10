@@ -37,7 +37,7 @@ Type: `Promise<void>`
 - [honey-infobar](../../honey-style-lib/honey-infobar)
 - [honey-news-article](.)
 - [honey-notification](../../honey-style-lib/honey-notification)
-- honey-apply-style
+- [honey-apply-style](../../honey-style-it/honey-apply-style)
 
 ### Graph
 ```mermaid

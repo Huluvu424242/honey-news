@@ -11,8 +11,8 @@ export class HoneyNewsHeader {
       <Host>
         <honey-navbar/>
 
-        <honey-select-style theme="honey-bulma-style">Bulma Style</honey-select-style>
-        <honey-select-style theme="honey-papercss-style">PaperCSS Style</honey-select-style>
+        <honey-select-style themeName="honey-bulma-style">Bulma Style</honey-select-style>
+        <honey-select-style themeName="honey-papercss-style">PaperCSS Style</honey-select-style>
 
         <honey-disclaimer>
           <p slot="title">!!! Das ist eine Demo Seite welche alle Feature der App zeigen soll - aus

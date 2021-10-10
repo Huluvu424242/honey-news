@@ -1,7 +1,7 @@
 import {Component, h, Prop, State} from '@stencil/core';
-import {HoneyDefineStyle} from "@huluvu424242/honey-style-it/dist/types/components/honey-define-style/honey-define-style";
 import {Subscription} from "rxjs";
-import * as util from "@huluvu424242/honey-style-it/dist/types/shared/helper";
+import {printDebug, printError, ThemeListener} from "../../shared/helper";
+import {HoneyDefineStyle} from "../honey-define-style/honey-define-style";
 
 @Component({
   tag: "honey-styled-component",
@@ -34,19 +34,18 @@ export class HoneyStyledComponent {
       await customElements.whenDefined('honey-define-style');
       const styleElements: HoneyDefineStyle = document.querySelector('honey-define-style') as unknown as HoneyDefineStyle;
 
-      const listener: util.ThemeListener = {
+      const listener: ThemeListener = {
         next: (styleName: string) => {
           this.theme = styleName;
         },
-        error: (error) => util.printError(error),
-        complete: () => util.printDebug("subcription completed")
+        error: (error) => printError(error),
+        complete: () => printDebug("subcription completed")
       };
       this.themeSubscription = await styleElements.subscribeThemeChangeListener(listener);
     } catch (error) {
       this.theme = 'honey-default-style';
     }
   }
-
 
 
   getTheme(): string {

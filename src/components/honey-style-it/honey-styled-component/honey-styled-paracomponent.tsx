@@ -1,7 +1,7 @@
 import {Component, h, Prop, State} from '@stencil/core';
-import {HoneyDefineStyle} from "@huluvu424242/honey-style-it/dist/types/components/honey-define-style/honey-define-style";
 import {Subscription} from "rxjs";
-import * as util from "@huluvu424242/honey-style-it/dist/types/shared/helper";
+import {printDebug, printError, ThemeListener} from "../../shared/helper";
+import {HoneyDefineStyle} from "../honey-define-style/honey-define-style";
 
 @Component({
   tag: "honey-styled-paracomponent",
@@ -13,7 +13,7 @@ export class HoneyStyledParacomponent {
 
   tagElement: HTMLElement;
 
-  @Prop({mutable:false}) parameterlist;
+  @Prop({mutable: false}) parameterlist;
 
   /**
    * themeprefix of theme name e.g. honey when honey-papercss-style
@@ -34,10 +34,10 @@ export class HoneyStyledParacomponent {
     try {
       await customElements.whenDefined('honey-define-style');
       const styleElements: HoneyDefineStyle = document.querySelector('honey-define-style') as unknown as HoneyDefineStyle;
-      const listener: util.ThemeListener = {
+      const listener: ThemeListener = {
         next: (styleName: string) => this.theme = styleName,
-        error: (error) => util.printError(error),
-        complete: () => util.printDebug("subcription completed")
+        error: (error) => printError(error),
+        complete: () => printDebug("subcription completed")
       };
       this.themeSubscription = await styleElements.subscribeThemeChangeListener(listener);
     } catch (error) {
@@ -66,7 +66,7 @@ export class HoneyStyledParacomponent {
     return (
       <TagName ref={(el) => {
         this.tagElement = el
-        this.tagElement["argumentlist"]=this.parameterlist;
+        this.tagElement["argumentlist"] = this.parameterlist;
       }}>
         <slot name="slot1" slot="slot1">placeholder slot 1</slot>
         <slot name="slot2" slot="slot2">placeholder slot 2</slot>

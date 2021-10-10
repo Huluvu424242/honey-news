@@ -14,7 +14,7 @@
 ### Depends on
 
 - [honey-navbar](../../honey-style-lib/honey-navbar)
-- honey-select-style
+- [honey-select-style](../../honey-style-it/honey-select-style)
 - [honey-disclaimer](../../honey-style-lib/honey-disclaimer)
 
 ### Graph

@@ -9,7 +9,7 @@
 
 ### Depends on
 
-- honey-apply-style
+- [honey-apply-style](../../../honey-style-it/honey-apply-style)
 
 ### Graph
 ```mermaid

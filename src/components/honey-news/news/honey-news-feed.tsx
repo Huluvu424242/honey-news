@@ -1,6 +1,5 @@
-import {Component, Element, h, Host, Method, Prop, State} from "@stencil/core";
+import {Component, Element, h, Host, Prop, State} from "@stencil/core";
 import {Logger} from "../../../shared/logger";
-import {NewsOptions} from "./NewsOptions";
 import {NewsLoader} from "./NewsLoader";
 import {getFeedsSingleCall, Post} from "../../../fetch-es6.worker";
 import {from, Subscription} from "rxjs";
@@ -23,6 +22,10 @@ export class HoneyNewsFeed {
    */
   ident: string;
 
+  feedsSubscription: Subscription;
+
+  lastUpdate: Date = null;
+
 
   /**
    * Hilfsklasse zum Laden der Daten
@@ -30,17 +33,7 @@ export class HoneyNewsFeed {
   @Prop() feedLoader: NewsLoader;
 
   @State() feeds: Post[] = [];
-  feedsSubscription: Subscription;
 
-  lastUpdate: Date = null;
-
-  @State() options: NewsOptions = {
-    disabledHostClass: "honey-news-feed-disabled",
-    enabledHostClass: "honey-news-feed-enabled",
-    disabledTitleText: "Noch keine News verfügbar",
-    titleText: "Aktuelle News aus den Feeds",
-    ariaLabel: "Neuigkeiten der abonierten Feeds",
-  };
 
   /**
    * enable console logging
@@ -96,21 +89,6 @@ export class HoneyNewsFeed {
       "https://www.tagesspiegel.de/contentexport/feed/home"
     ];
     from(predefinedURLs).subscribe((url) => this.feedLoader.addFeedUrl(url));
-  }
-
-
-  /**
-   * Update honey-news options
-   * @param options : NewsOptions plain object to set the options
-   */
-  @Method()
-  public async updateOptions(options: NewsOptions) {
-    for (let prop in options) {
-      if (options.hasOwnProperty(prop)) {
-        this.options[prop] = options[prop];
-      }
-    }
-    this.options = {...this.options};
   }
 
   lastHour: Date = null;

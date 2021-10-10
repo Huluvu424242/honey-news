@@ -7,13 +7,13 @@
 
 ## Methods
 
-### `getStyleSubject() => Promise<Subject<string>>`
+### `getStyleName$() => Promise<Observable<string>>`
 
 
 
 #### Returns
 
-Type: `Promise<Subject<string>>`
+Type: `Promise<Observable<string>>`
 
 
 

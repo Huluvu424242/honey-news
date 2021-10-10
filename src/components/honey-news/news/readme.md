@@ -47,7 +47,8 @@ graph TD;
   honey-news-feed --> honey-notification
   honey-news-feed --> honey-apply-style
   honey-infobar --> honey-styled-component
-  honey-news-article --> honey-styled-component
+  honey-news-article --> honey-article
+  honey-article --> honey-styled-component
   honey-notification --> honey-styled-component
   honey-news --> honey-news-feed
   style honey-news-feed fill:#f9f,stroke:#333,stroke-width:4px

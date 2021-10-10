@@ -1,1 +1,0 @@
-const o=o=>{console&&console.warn(o)},s=o=>{console&&console.error(o)},c=o=>{console&&console.debug(o)};export{s as a,c as b,o as p}

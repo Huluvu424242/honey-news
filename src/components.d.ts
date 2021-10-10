@@ -5,7 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import {HTMLStencilElement, JSXBase} from "@stencil/core/internal";
-import {Observer, Subject, Subscription} from "rxjs";
+import {Observable, Observer, Subscription} from "rxjs";
 import {Post} from "./fetch-es6.worker";
 import {NewsLoader} from "./components/honey-news/news/NewsLoader";
 import {NewsOptions} from "./components/honey-news/news/NewsOptions";
@@ -26,7 +26,7 @@ export namespace Components {
     interface HoneyArticlePapercss {
     }
     interface HoneyDefineStyle {
-        "getStyleSubject": () => Promise<Subject<string>>;
+        "getStyleName$": () => Promise<Observable<string>>;
         /**
           * Trigger recompute theme style.
          */

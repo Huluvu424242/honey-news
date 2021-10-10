@@ -5,6 +5,7 @@ import {NewsLoader} from "./NewsLoader";
 import {getFeedsSingleObserver, Post} from "../../../fetch-es6.worker";
 import {from, Subscription} from "rxjs";
 import {PipeOperators} from "../../../shared/PipeOperators";
+import {NewsArticle} from "./honey-news-article";
 
 @Component({
   tag: "honey-news-feed",
@@ -203,10 +204,26 @@ export class HoneyNewsFeed {
     }
   }
 
+  getPostLink(item): string {
+    if (typeof item.link === "string") {
+      return item.link;
+    }
+    if (typeof (item.link.href == "string")) {
+      return item.link.href;
+    }
+    return null
+  }
+
   getPostEntry(post: Post) {
     if (!post) return;
+    const article: NewsArticle = {
+      title: post.item.title + "",
+      subtitle: post.pubdate + " über " + post.feedtitle,
+      text: "",
+      link: this.getPostLink(post.item)
+    }
     return (
-      <honey-news-article post={post}/>
+      <honey-news-article article={article}/>
     );
   }
 
@@ -225,12 +242,7 @@ export class HoneyNewsFeed {
 
   public render() {
     return (
-      <Host
-        title={this.getTitleText()}
-        alt={this.getAltText()}
-        tabindex={this.hasNoFeeds() ? -1 : this.taborder}
-        disabled={this.hasNoFeeds()}
-      >
+      <Host>
         <honey-apply-style/>
         {
           this.getNeuesteMeldung()

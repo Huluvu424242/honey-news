@@ -5,10 +5,10 @@ import {from} from "rxjs";
 import {getFeedsSingleCall} from "../../../fetch-es6.worker";
 
 @Component({
-  tag: "honey-news-feeds",
+  tag: "honey-news-verwaltung",
   shadow: true
 })
-export class HoneyNewsFeeds {
+export class HoneyNewsVerwaltung {
 
   /**
    * Input Element

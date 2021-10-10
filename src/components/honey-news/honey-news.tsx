@@ -148,41 +148,9 @@ export class HoneyNews {
     this.routerSubscription.unsubscribe();
   }
 
-  protected createNewTitleText(): string {
-    // if (this.) {
-    //   return this.options.disabledTitleText;
-    // } else {
-    return this.options.titleText;
-    // }
-  }
-
-  protected getTitleText(): string {
-    if (this.createTitleText) {
-      return this.createNewTitleText();
-    } else {
-      return this.hostElement.title;
-    }
-  }
-
-  protected getAriaLabel(): string {
-    if (this.createAriaLabel) {
-      return this.options.ariaLabel;
-    } else {
-      return this.hostElement.getAttribute("aria-label");
-    }
-  }
-
-  protected getHostClass(): string {
-    return this.initialHostClass;
-  }
-
-
   public render() {
     return (
-      <Host
-        title={this.getTitleText()}
-        aria-label={this.getAriaLabel()}
-      >
+      <Host>
         <honey-apply-style/>
 
         <honey-news-header/>

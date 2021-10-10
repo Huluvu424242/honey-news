@@ -1,5 +1,29 @@
 // change to the version you get from `npm ls workbox-build`
-importScripts('workbox-v6.0.2/workbox-sw.js');
+importScripts('workbox-v6.3.0/workbox-sw.js');
+
+import {Logger} from "./shared/logger";
+
+self.skipWaiting();
+
+self.addEventListener('message', (event) => {
+  console.log("sw empfing message" + event.data);
+  // if (event.data && event.data.type === 'INCREASE_COUNT') {
+  //   // Select who we want to respond to
+  //   self.clients.matchAll({
+  //     includeUncontrolled: true,
+  //     type: 'window',
+  //   }).then((clients) => {
+  //     if (clients && clients.length) {
+  //       // Send a response - the clients
+  //       // array is ordered by last focused
+  //       clients[0].postMessage({
+  //         type: 'REPLY_COUNT',
+  //         count: ++count,
+  //       });
+  //     }
+  //   });
+  // }
+});
 
 
 const dontCache = function (url) {
@@ -10,7 +34,7 @@ const dontCache = function (url) {
 
 // custom service worker code
 self.addEventListener('fetch', function (event) {
-  console.log('Handling fetch event for', event.request.url);
+  Logger.infoMessage('## handling fetch event for: ', event.request.url);
 
   if (dontCache(event.request.url)) {
     event.respondWith(fetch(event.request));
@@ -23,7 +47,7 @@ self.addEventListener('fetch', function (event) {
       .then(function (response) {
         // Cache hit - return response
         if (response) {
-          console.debug("### aus cache: " + event.request.url);
+          Logger.debugMessage("## aus cache: " + event.request.url);
           return response;
         }
 

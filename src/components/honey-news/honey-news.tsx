@@ -1,6 +1,5 @@
 import {Component, Element, h, Host, Prop, State, Watch} from "@stencil/core";
 import {Logger} from "../../shared/logger";
-import {HoneyNewsOptions} from "./honey-news-options";
 import {Subscription} from "rxjs";
 import {router} from "./routing/SimpleRouter";
 import {NewsLoader} from "./news/NewsLoader";
@@ -37,15 +36,6 @@ export class HoneyNews {
   @Prop({reflect: true, attribute: "local-basepath"}) localBasePath;
   routerSubscription: Subscription = null;
   @State() route: string = "";
-
-
-  @State() options: HoneyNewsOptions = {
-    disabledHostClass: "honey-news-disabled",
-    enabledHostClass: "honey-news",
-    disabledTitleText: "News Reader nicht verfügbar",
-    titleText: "News Reader",
-    ariaLabel: "Neuigkeiten der abonierten Feeds",
-  };
 
   /**
    * enable console logging

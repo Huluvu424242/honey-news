@@ -1,6 +1,9 @@
 // change to the version you get from `npm ls workbox-build`
 importScripts('workbox-v4.3.1/workbox-sw.js');
 
+const CACHE_NAME = "honey-news-cach-v1";
+
+
 function infoMessage(text) {
   if (console) {
     console.log(text);

@@ -39,7 +39,6 @@ export const config: Config = {
         {src: "resources"}
       ],
       serviceWorker: {swSrc: "src/sw.js"}
-      // serviceWorker: null // disable service workers
     }
   ],
   rollupPlugins: {

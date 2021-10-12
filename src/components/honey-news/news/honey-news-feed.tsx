@@ -54,7 +54,7 @@ export class HoneyNewsFeed {
   }
 
   public async componentWillLoad() {
-    const feeds: string[]=this.feedLoader.getFeedURLs();
+    const feeds: string[] = this.feedLoader.getFeedURLs();
     const posts: Post[] = await getFeedsSingleCall([feeds[0]], false);
     this.lastUpdate = posts[0]?.exaktdate || this.lastUpdate;
     this.feeds = [...posts]

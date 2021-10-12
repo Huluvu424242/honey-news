@@ -122,7 +122,7 @@ export class HoneyNews {
 
         {!this.route || this.route === "/" || this.route === "/index.html" || this.route === "/news" ?
           <honey-news-feed feedLoader={this.feedLoader}/> : null}
-        {this.route === "/feeds" ? <honey-news-feeds feedLoader={this.feedLoader}/> : null}
+        {this.route === "/feeds" ? <honey-news-verwaltung feedLoader={this.feedLoader}/> : null}
         {this.route === "/statistic" ? <honey-news-statistic/> : null}
         {this.route === "/about" ? <honey-news-about/> : null}
 

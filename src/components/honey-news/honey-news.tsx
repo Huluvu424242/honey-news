@@ -3,6 +3,7 @@ import {Logger} from "../../shared/logger";
 import {Subscription} from "rxjs";
 import {router} from "./routing/SimpleRouter";
 import {NewsLoader} from "./news/NewsLoader";
+import {StatisticLoader} from "./statistic/StatisticLoader";
 
 @Component({
   tag: "honey-news",
@@ -46,38 +47,7 @@ export class HoneyNews {
    */
   feedLoader: NewsLoader = new NewsLoader([]);
 
-
-  // /**
-  //  * News reader Komponente
-  //  */
-  // @Prop({mutable: true}) newsFeed: HTMLHoneyNewsFeedElement;
-  //
-  // @Watch("newsFeed")
-  // newsWatcher(newValue: HTMLHoneyNewsFeedElement, oldValue: HTMLHoneyNewsFeedElement) {
-  //   oldValue = oldValue;
-  //   if (newValue) {
-  //     if (this.newsFeed) {
-  //       this.newsFeed.feedLoader = this.feedLoader;
-  //     }
-  //   }
-  // }
-  //
-  //
-  // /**
-  //  * Feeds Administration Komponente
-  //  */
-  // @Prop({mutable: true}) feedAdministration: HTMLHoneyNewsFeedsElement;
-  //
-  // @Watch("feedAdministration")
-  // feedWatcher(newValue: HoneyNewsFeed, oldValue: HoneyNewsFeed) {
-  //   oldValue = oldValue;
-  //   if (newValue) {
-  //     if (this.feedAdministration) {
-  //       this.feedAdministration.feedLoader = this.feedLoader;
-  //     }
-  //   }
-  // }
-
+  statisticLoader: StatisticLoader = new StatisticLoader();
 
   public connectedCallback() {
     // attribute initialisieren wenn defaults notwendig
@@ -123,7 +93,7 @@ export class HoneyNews {
         {!this.route || this.route === "/" || this.route === "/index.html" || this.route === "/news" ?
           <honey-news-feed feedLoader={this.feedLoader}/> : null}
         {this.route === "/feeds" ? <honey-news-verwaltung feedLoader={this.feedLoader}/> : null}
-        {this.route === "/statistic" ? <honey-news-statistic/> : null}
+        {this.route === "/statistic" ? <honey-news-statistic statisticLoader={this.statisticLoader}/> : null}
         {this.route === "/about" ? <honey-news-about/> : null}
 
       </Host>

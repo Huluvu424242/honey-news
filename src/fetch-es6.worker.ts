@@ -27,7 +27,7 @@ export interface FeedData {
 
 
 export async function loadFeedData(url: string, withStatistic: boolean): Promise<FeedData> {
-  return loadFeedDataInternal(url, withStatistic).toPromise();
+  return await lastValueFrom(loadFeedDataInternal(url, withStatistic));
 }
 
 function loadFeedDataInternal(url: string, withStatistic: boolean): Observable<FeedData> {
@@ -69,7 +69,7 @@ function loadFeedDataInternal(url: string, withStatistic: boolean): Observable<F
 }
 
 export async function loadFeedRanking(url: string): Promise<StatisticData[]> {
-  return from(fetch(url))
+  return await lastValueFrom(from(fetch(url))
     .pipe(
       catchError(() => EMPTY),
       switchMap(
@@ -95,11 +95,11 @@ export async function loadFeedRanking(url: string): Promise<StatisticData[]> {
           );
           return statistics;
         }),
-    ).toPromise();
+    ));
 }
 
 export async function getFeedsSingleCall(feedURLs: string[], withStatistic: boolean): Promise<Post[]> {
-  return lastValueFrom(from(feedURLs).pipe(
+  return await lastValueFrom(from(feedURLs).pipe(
     mergeMap(
       (url: string) => {
         Logger.debugMessage("### frage url " + url);

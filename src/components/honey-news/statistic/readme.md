@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property  | Attribute | Description            | Type      | Default |
-| --------- | --------- | ---------------------- | --------- | ------- |
-| `verbose` | `verbose` | enable console logging | `boolean` | `false` |
+| Property          | Attribute | Description                               | Type              | Default     |
+| ----------------- | --------- | ----------------------------------------- | ----------------- | ----------- |
+| `statisticLoader` | --        | Hilfsklasse zum Laden der Statistic Daten | `StatisticLoader` | `undefined` |
 
 
 ## Dependencies

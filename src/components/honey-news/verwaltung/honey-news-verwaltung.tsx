@@ -1,7 +1,5 @@
 import {Component, h, Host, Prop} from "@stencil/core";
-import {Logger} from "../../../shared/logger";
 import {NewsLoader} from "../news/NewsLoader";
-import {from} from "rxjs";
 import {getFeedsSingleCall} from "../../../fetch-es6.worker";
 
 @Component({
@@ -20,19 +18,17 @@ export class HoneyNewsVerwaltung {
    */
   @Prop() feedLoader!: NewsLoader;
 
-  addUrl(): void {
+  async addUrl(): Promise<void> {
     if (!this.feedLoader) return;
 
     const url = this.inputNewUrl.value;
     if (!this.feedLoader.getFeedURLs().includes(url)) {
       this.feedLoader.addFeedUrl(url);
-      from(getFeedsSingleCall([url], true)).subscribe(() => {
-      });
+      await getFeedsSingleCall([url], true);
     }
   }
 
   public render() {
-    Logger.debugMessage('##RENDER##');
     return (
       <Host>
         <honey-apply-style/>
@@ -43,7 +39,7 @@ export class HoneyNewsVerwaltung {
             <input id="newurl" class="col-fill col" type="text"
                    ref={(el) => this.inputNewUrl = el as HTMLInputElement}/>
             <button id="addurl" class="col paper-btn btn-primary"
-                    onClick={() => this.addUrl.bind(this)}>Add Feed URL
+                    onClick={this.addUrl.bind(this)}>Add Feed URL
             </button>
           </div>
         </div>

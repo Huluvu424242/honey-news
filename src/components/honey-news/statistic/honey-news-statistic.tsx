@@ -1,4 +1,4 @@
-import {Component, Element, h, Host, Prop, State} from "@stencil/core";
+import {Component, h, Host, Prop, State} from "@stencil/core";
 import {Subscription} from "rxjs";
 import {StatisticData} from "@huluvu424242/liona-feeds/dist/esm/feeds/statistic";
 import {StatisticLoader} from "./StatisticLoader";
@@ -9,37 +9,17 @@ import {StatisticLoader} from "./StatisticLoader";
   shadow: true
 })
 export class HoneyNewsStatistic {
-
   /**
-   * Host Element
+   * Hilfsklasse zum Laden der Statistic Daten
    */
-  @Element() hostElement: HTMLElement;
-
-
-  /**
-   * Id des Host Elements, falls nicht verfügbar wird diese generiert
-   */
-  ident: string;
-
-
-  statisticLoader: StatisticLoader = new StatisticLoader();
-
+  @Prop() statisticLoader: StatisticLoader;
 
   @State() statistic: StatisticData[];
   statisticSubscription: Subscription;
 
-
-  /**
-   * enable console logging
-   */
-  @Prop() verbose: boolean = false;
-
   public connectedCallback() {
-    // States initialisieren
-    this.ident = this.hostElement.id ? this.hostElement.id : Math.random().toString(36).substring(7);
     this.statisticSubscription = this.subscribeStatistics();
   }
-
 
   public disconnectedCallback() {
     this.statisticSubscription.unsubscribe();

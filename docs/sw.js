@@ -1,121 +1,30 @@
-// change to the version you get from `npm ls workbox-build`
-importScripts('workbox-v4.3.1/workbox-sw.js');
+/**
+ * Welcome to your Workbox-powered service worker!
+ *
+ * You'll need to register this file in your web app and you should
+ * disable HTTP caching for this file too.
+ * See https://goo.gl/nhQhGp
+ *
+ * The rest of the code is auto-generated. Please don't update this file
+ * directly; instead, make changes to your Workbox build configuration
+ * and re-run your build process.
+ * See https://goo.gl/2aRDsh
+ */
 
-const CACHE_NAME = "honey-news-cach-v1";
-
-
-function infoMessage(text) {
-  if (console) {
-    console.log(text);
-  }
-}
-
-self.skipWaiting();
+importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 self.addEventListener('message', (event) => {
-  console.log("sw empfing message" + event.data);
-  // if (event.data && event.data.type === 'INCREASE_COUNT') {
-  //   // Select who we want to respond to
-  //   self.clients.matchAll({
-  //     includeUncontrolled: true,
-  //     type: 'window',
-  //   }).then((clients) => {
-  //     if (clients && clients.length) {
-  //       // Send a response - the clients
-  //       // array is ordered by last focused
-  //       clients[0].postMessage({
-  //         type: 'REPLY_COUNT',
-  //         count: ++count,
-  //       });
-  //     }
-  //   });
-  // }
-});
-
-
-const dontCache = function (url) {
-  let dontCache = false;
-  dontCache = dontCache || url.startsWith("https://huluvu424242.herokuapp.com/feed?url=")
-  return dontCache;
-};
-
-// custom service worker code
-self.addEventListener('fetch', function (event) {
-  infoMessage('## handling fetch event for: ', event.request.url);
-
-  if (dontCache(event.request.url)) {
-    event.respondWith(fetch(event.request));
-    return;
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
   }
-
-  // Für alle anderen URLs caching anwenden
-  event.respondWith(
-    caches.match(event.request)
-      .then(function (response) {
-        // Cache hit - return response
-        if (response) {
-          infoMessage("## aus cache: " + event.request.url);
-          return response;
-        }
-
-        return fetch(event.request).then(
-          function (response) {
-            // Check if we received a valid response
-            if (!response || response.status !== 200 || response.type !== 'basic') {
-              return response;
-            }
-
-            // IMPORTANT: Clone the response. A response is a stream
-            // and because we want the browser to consume the response
-            // as well as the cache consuming the response, we need
-            // to clone it so we have two streams.
-            var responseToCache = response.clone();
-
-            caches.open(CACHE_NAME)
-              .then(function (cache) {
-                cache.put(event.request, responseToCache);
-              });
-
-            return response;
-          }
-        );
-      })
-  );
-
-  //
-  // CORS playing
-  //
-
-  // responsePromise = fetch(event.request)
-  //   .then(function (response) {
-  //     console.log('Response from network is:', response);
-  //     console.log(new Map(response.headers));
-  //
-  //     const newHeaders = new Headers(response.headers);
-  //     newHeaders.append('Access-Control-Allow-Origin', '*');
-  //
-  //     const anotherResponse = new Response(response.body, {
-  //       status: response.status,
-  //       statusText: response.statusText,
-  //       headers: newHeaders
-  //     });
-  //
-  //     console.log(new Map(anotherResponse.headers));
-  //     return anotherResponse;
-  //   })
-  //   .catch(function (error) {
-  //     console.error('Fetching failed:', error);
-  //     throw error;
-  //   });
-  //
-  // event.respondWith(responsePromise);
-
 });
 
-
-// the precache manifest will be injected into the following line
-// precacheAndRoute(self.__WB_MANIFEST);
-self.workbox.precaching.precacheAndRoute([
+/**
+ * The workboxSW.precacheAndRoute() method efficiently caches and responds to
+ * requests for URLs in the manifest.
+ * See https://goo.gl/S9QRab
+ */
+self.__precacheManifest = [
   {
     "url": "404.html",
     "revision": "000e42b6b0b988c46c215d5813cdf333"
@@ -126,14 +35,11 @@ self.workbox.precaching.precacheAndRoute([
   },
   {
     "url": "index.html",
-    "revision": "f8256fb7f119b2e029109564fd02df9f"
+    "revision": "c8bd510c1a3bc65b7268d9f4bc824ffb"
   },
   {
     "url": "build/index.esm.js",
     "revision": "d41d8cd98f00b204e9800998ecf8427e"
-  },
-  {
-    "url": "build/p-0f4430d2.js"
   },
   {
     "url": "build/p-12c2f1e1.entry.js"
@@ -142,25 +48,16 @@ self.workbox.precaching.precacheAndRoute([
     "url": "build/p-15231d59.entry.js"
   },
   {
-    "url": "build/p-178e5638.js"
-  },
-  {
-    "url": "build/p-1917f887.css"
+    "url": "build/p-1ee7b2a4.js"
   },
   {
     "url": "build/p-2494d2c3.entry.js"
-  },
-  {
-    "url": "build/p-2a19d819.js"
   },
   {
     "url": "build/p-2d6ced47.entry.js"
   },
   {
     "url": "build/p-317c878c.js"
-  },
-  {
-    "url": "build/p-32885d60.entry.js"
   },
   {
     "url": "build/p-3365c64b.entry.js"
@@ -173,6 +70,9 @@ self.workbox.precaching.precacheAndRoute([
   },
   {
     "url": "build/p-493f5b3c.entry.js"
+  },
+  {
+    "url": "build/p-5eb232da.entry.js"
   },
   {
     "url": "build/p-637b5882.js"
@@ -193,6 +93,9 @@ self.workbox.precaching.precacheAndRoute([
     "url": "build/p-9feb7d1c.entry.js"
   },
   {
+    "url": "build/p-a3146b48.js"
+  },
+  {
     "url": "build/p-c0285636.entry.js"
   },
   {
@@ -202,7 +105,11 @@ self.workbox.precaching.precacheAndRoute([
     "url": "build/p-e0232121.entry.js"
   },
   {
+    "url": "build/p-ef90fbe2.js"
+  },
+  {
     "url": "redirect.js",
     "revision": "01685ba609e926ad58374e17a1de278d"
   }
-]);
+].concat(self.__precacheManifest || []);
+workbox.precaching.precacheAndRoute(self.__precacheManifest, {});

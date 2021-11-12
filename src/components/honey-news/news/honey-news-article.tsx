@@ -1,34 +1,29 @@
 import {Component, h, Prop} from '@stencil/core';
-import {Post} from "../../../fetch-es6.worker";
+
+export interface NewsArticle {
+  title: string;
+  subtitle: string;
+  text: string;
+  link: string;
+}
 
 
 @Component({
   tag: "honey-news-article",
   shadow: true
 })
-export class HoneyArticle {
+export class HoneyNewsArticle {
 
-  @Prop() post: Post;
-
-  getPostLink(item): string {
-    if (typeof item.link === "string") {
-      return item.link;
-    }
-    if (typeof (item.link.href == "string")) {
-      return item.link.href;
-    }
-    return null
-  }
-
+  @Prop() article: NewsArticle;
 
   render() {
     return (
       <honey-article>
-        <a slot="title" href={this.getPostLink(this.post.item)} target="_blank">{this.post.item.title}</a>
+        <a slot="title" href={this.article.link} target="_blank">{this.article.title}</a>
         <span slot="subtitle">
-            {this.post.pubdate} auf {this.post.feedtitle}
+            {this.article.subtitle}
           </span>
-        <span slot="text"/>
+        <span slot="text">{this.article.text}</span>
       </honey-article>
     )
   }

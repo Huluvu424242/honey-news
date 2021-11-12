@@ -13,19 +13,6 @@
 | `verbose`    | `verbose` | enable console logging          | `boolean`    | `false`     |
 
 
-## Methods
-
-### `updateOptions(options: NewsOptions) => Promise<void>`
-
-Update honey-news options
-
-#### Returns
-
-Type: `Promise<void>`
-
-
-
-
 ## Dependencies
 
 ### Used by

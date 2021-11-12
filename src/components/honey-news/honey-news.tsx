@@ -1,10 +1,8 @@
-import {Component, Element, h, Host, Prop, State, Watch} from "@stencil/core";
+import {Component, Element, h, Host, Prop, State} from "@stencil/core";
 import {Logger} from "../../shared/logger";
-import {HoneyNewsOptions} from "./honey-news-options";
 import {Subscription} from "rxjs";
 import {router} from "./routing/SimpleRouter";
 import {NewsLoader} from "./news/NewsLoader";
-import {HoneyNewsFeed} from "./news/honey-news-feed";
 
 @Component({
   tag: "honey-news",
@@ -23,26 +21,6 @@ export class HoneyNews {
    */
   ident: string;
 
-  /**
-   * initiale class from host tag
-   */
-  initialHostClass: string;
-
-  /**
-   * true wenn das Tag ohne alt Attribute deklariert wurde
-   */
-  createAriaLabel: boolean = false;
-
-  /**
-   * true wenn das Tag ohne title Attribut deklariert wurde
-   */
-  createTitleText: boolean = false;
-
-  /**
-   * initial computed taborder
-   */
-  taborder: string = "0";
-
   //
   // Routing
   //
@@ -50,22 +28,13 @@ export class HoneyNews {
   /**
    * base of remote site
    */
-  @Prop({reflect: true, attribute: "site-basepath"}) siteBasePath;
+  @Prop({reflect: true, attribute: "site-basepath", mutable: true}) siteBasePath;
   /**
    * base of local site
    */
-  @Prop({reflect: true, attribute: "local-basepath"}) localBasePath;
+  @Prop({reflect: true, attribute: "local-basepath", mutable: true}) localBasePath;
   routerSubscription: Subscription = null;
   @State() route: string = "";
-
-
-  @State() options: HoneyNewsOptions = {
-    disabledHostClass: "honey-news-disabled",
-    enabledHostClass: "honey-news",
-    disabledTitleText: "News Reader nicht verfügbar",
-    titleText: "News Reader",
-    ariaLabel: "Neuigkeiten der abonierten Feeds",
-  };
 
   /**
    * enable console logging
@@ -78,36 +47,36 @@ export class HoneyNews {
   feedLoader: NewsLoader = new NewsLoader([]);
 
 
-  /**
-   * News reader Komponente
-   */
-  @Prop({mutable: true}) newsFeed: HTMLHoneyNewsFeedElement;
-
-  @Watch("newsFeed")
-  newsWatcher(newValue: HTMLHoneyNewsFeedElement, oldValue: HTMLHoneyNewsFeedElement) {
-    oldValue = oldValue;
-    if (newValue) {
-      if (this.newsFeed) {
-        this.newsFeed.feedLoader = this.feedLoader;
-      }
-    }
-  }
-
-
-  /**
-   * Feeds Administration Komponente
-   */
-  @Prop({mutable: true}) feedAdministration: HTMLHoneyNewsFeedsElement;
-
-  @Watch("feedAdministration")
-  feedWatcher(newValue: HoneyNewsFeed, oldValue: HoneyNewsFeed) {
-    oldValue = oldValue;
-    if (newValue) {
-      if (this.feedAdministration) {
-        this.feedAdministration.feedLoader = this.feedLoader;
-      }
-    }
-  }
+  // /**
+  //  * News reader Komponente
+  //  */
+  // @Prop({mutable: true}) newsFeed: HTMLHoneyNewsFeedElement;
+  //
+  // @Watch("newsFeed")
+  // newsWatcher(newValue: HTMLHoneyNewsFeedElement, oldValue: HTMLHoneyNewsFeedElement) {
+  //   oldValue = oldValue;
+  //   if (newValue) {
+  //     if (this.newsFeed) {
+  //       this.newsFeed.feedLoader = this.feedLoader;
+  //     }
+  //   }
+  // }
+  //
+  //
+  // /**
+  //  * Feeds Administration Komponente
+  //  */
+  // @Prop({mutable: true}) feedAdministration: HTMLHoneyNewsFeedsElement;
+  //
+  // @Watch("feedAdministration")
+  // feedWatcher(newValue: HoneyNewsFeed, oldValue: HoneyNewsFeed) {
+  //   oldValue = oldValue;
+  //   if (newValue) {
+  //     if (this.feedAdministration) {
+  //       this.feedAdministration.feedLoader = this.feedLoader;
+  //     }
+  //   }
+  // }
 
 
   public connectedCallback() {
@@ -127,10 +96,6 @@ export class HoneyNews {
     }
 
     this.ident = this.hostElement.id ? this.hostElement.id : Math.random().toString(36).substring(7);
-    this.initialHostClass = this.hostElement.getAttribute("class") || null;
-    this.createTitleText = !this.hostElement.title;
-    this.createAriaLabel = !this.hostElement["aria-label"];
-    this.taborder = this.hostElement.getAttribute("tabindex") ? (this.hostElement.tabIndex + "") : "0";
     this.routerSubscription = router.getRouteListener().subscribe((route: string) => {
         this.route = route;
       },
@@ -148,53 +113,16 @@ export class HoneyNews {
     this.routerSubscription.unsubscribe();
   }
 
-  protected createNewTitleText(): string {
-    // if (this.) {
-    //   return this.options.disabledTitleText;
-    // } else {
-    return this.options.titleText;
-    // }
-  }
-
-  protected getTitleText(): string {
-    if (this.createTitleText) {
-      return this.createNewTitleText();
-    } else {
-      return this.hostElement.title;
-    }
-  }
-
-  protected getAriaLabel(): string {
-    if (this.createAriaLabel) {
-      return this.options.ariaLabel;
-    } else {
-      return this.hostElement.getAttribute("aria-label");
-    }
-  }
-
-  protected getHostClass(): string {
-    return this.initialHostClass;
-  }
-
-
   public render() {
     return (
-      <Host
-        title={this.getTitleText()}
-        aria-label={this.getAriaLabel()}
-      >
+      <Host>
         <honey-apply-style/>
 
         <honey-news-header/>
 
         {!this.route || this.route === "/" || this.route === "/index.html" || this.route === "/news" ?
-          <honey-news-feed ref={(el) => {
-            this.newsFeed = el as HTMLHoneyNewsFeedElement
-          }}/> : null}
-        {this.route === "/feeds" ? <honey-news-feeds ref={(el) => {
-          this.feedAdministration = el as HTMLHoneyNewsFeedsElement
-        }
-        }/> : null}
+          <honey-news-feed feedLoader={this.feedLoader}/> : null}
+        {this.route === "/feeds" ? <honey-news-verwaltung feedLoader={this.feedLoader}/> : null}
         {this.route === "/statistic" ? <honey-news-statistic/> : null}
         {this.route === "/about" ? <honey-news-about/> : null}
 

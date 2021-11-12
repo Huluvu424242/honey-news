@@ -33,12 +33,12 @@ export const config: Config = {
       type: 'www',
       dir: 'docs',
       copy: [
-        { src: "demo.html"},
-        { src: "404.html"},
-        { src: "redirect.js"},
-        { src: "resources"}
+        {src: "demo.html"},
+        {src: "404.html"},
+        {src: "redirect.js"},
+        {src: "resources"}
       ],
-      serviceWorker: null // disable service workers
+      serviceWorker: {swSrc: "src/sw.js"}
     }
   ],
   rollupPlugins: {

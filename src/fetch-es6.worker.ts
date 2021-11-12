@@ -1,6 +1,6 @@
 import {Feed} from "feedme/dist/feedme";
 import {FeedItem} from "feedme/dist/parser";
-import {EMPTY, from, Observable} from "rxjs";
+import {EMPTY, from, lastValueFrom, Observable} from "rxjs";
 import {catchError, filter, map, mergeMap, switchMap, tap, toArray} from "rxjs/operators";
 import {Logger} from "./shared/logger";
 import {StatisticData} from "@huluvu424242/liona-feeds/dist/esm/feeds/statistic";
@@ -26,7 +26,6 @@ export interface FeedData {
 }
 
 
-// async für stencil worker
 export async function loadFeedData(url: string, withStatistic: boolean): Promise<FeedData> {
   return loadFeedDataInternal(url, withStatistic).toPromise();
 }
@@ -69,7 +68,6 @@ function loadFeedDataInternal(url: string, withStatistic: boolean): Observable<F
   );
 }
 
-// async für stencil worker
 export async function loadFeedRanking(url: string): Promise<StatisticData[]> {
   return from(fetch(url))
     .pipe(
@@ -100,8 +98,8 @@ export async function loadFeedRanking(url: string): Promise<StatisticData[]> {
     ).toPromise();
 }
 
-export async function getFeedsSingleObserver(feedURLs: string[], withStatistic: boolean): Promise<Post[]> {
-  return from(feedURLs).pipe(
+export async function getFeedsSingleCall(feedURLs: string[], withStatistic: boolean): Promise<Post[]> {
+  return lastValueFrom(from(feedURLs).pipe(
     mergeMap(
       (url: string) => {
         Logger.debugMessage("### frage url " + url);
@@ -128,6 +126,6 @@ export async function getFeedsSingleObserver(feedURLs: string[], withStatistic: 
     map(
       (posts: Post[]) => PipeOperators.sortArray(posts)
     )
-  ).toPromise();
+  ));
 }
 

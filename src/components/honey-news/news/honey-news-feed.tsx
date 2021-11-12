@@ -5,6 +5,7 @@ import {getFeedsSingleCall, Post} from "../../../fetch-es6.worker";
 import {from, Subscription} from "rxjs";
 import {PipeOperators} from "../../../shared/PipeOperators";
 import {NewsArticle} from "./honey-news-article";
+import {tap} from "rxjs/operators";
 
 @Component({
   tag: "honey-news-feed",
@@ -89,7 +90,11 @@ export class HoneyNewsFeed {
       "https://www.hongkiat.com/blog/feed/",
       "https://www.tagesspiegel.de/contentexport/feed/home"
     ];
-    from(predefinedURLs).subscribe((url) => this.feedLoader.addFeedUrl(url));
+    from(predefinedURLs).pipe(
+      tap(
+        url => this.feedLoader.addFeedUrl(url)
+      )
+    ).subscribe();
   }
 
   lastHour: Date = null;

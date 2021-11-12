@@ -38,6 +38,9 @@ export const config: Config = {
         {src: "redirect.js"},
         {src: "resources"}
       ],
+      // serviceWorker: {
+      //   swSrc: 'src/sw.js'
+      // }
     }
   ],
   rollupPlugins: {

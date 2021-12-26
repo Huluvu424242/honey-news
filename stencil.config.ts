@@ -1,5 +1,5 @@
 import {Config} from '@stencil/core';
-import nodePolyfills from 'rollup-plugin-node-polyfills';
+// import nodePolyfills from 'rollup-plugin-node-polyfills';
 
 export const config: Config = {
   namespace: 'honey-news',
@@ -50,7 +50,7 @@ export const config: Config = {
     ],
     after: [
       // Plugins injected after commonjs()
-      nodePolyfills()
+      // nodePolyfills()
     ]
   }
 };

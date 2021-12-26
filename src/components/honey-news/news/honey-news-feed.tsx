@@ -64,7 +64,7 @@ export class HoneyNewsFeed {
 
   public subscribeFeeds(): Subscription {
     return this.feedLoader.getFeedsPeriodicObservable$().subscribe((posts: Post[]) => {
-      this.lastUpdate = posts[0].exaktdate || this.lastUpdate;
+      this.lastUpdate = posts[0]?.exaktdate || this.lastUpdate;
       this.feeds = [...posts]
     });
   }

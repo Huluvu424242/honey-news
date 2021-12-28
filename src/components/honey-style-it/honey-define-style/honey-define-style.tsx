@@ -44,8 +44,15 @@ export class HoneyDefineStyle {
    * Trigger recompute theme style.
    */
   @Method()
-  async recomputeTheme() {
+  async recomputeTheme(): Promise<void> {
     this.computeTheme();
+  }
+
+  @Method()
+  async setNewTheme(themeName:string):Promise<void>{
+    const replacement = document.createElement(themeName);
+    this.host.replaceChild(replacement, this.host.children[0]);
+    await this.recomputeTheme();
   }
 
   render() {

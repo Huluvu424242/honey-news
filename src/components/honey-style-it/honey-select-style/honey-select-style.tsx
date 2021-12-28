@@ -1,5 +1,7 @@
 import {Component, Element, h, Host, Prop} from '@stencil/core';
 import {printWarning} from "../../shared/helper";
+import {Components} from "../../../components";
+import HoneyDefineStyle = Components.HoneyDefineStyle;
 
 @Component({
   tag: 'honey-select-style',
@@ -16,10 +18,8 @@ export class HoneySelectStyle {
 
   private changeTheme = () => {
     if (this.themeName && this.themeName.length > 0) {
-      const elem = document.getElementsByTagName("honey-define-style")[0];
-      const replacement = document.createElement(this.themeName);
-      elem.replaceChild(replacement, elem.children[0]);
-      elem.recomputeTheme();
+      const elem: HoneyDefineStyle = document.getElementsByTagName("honey-define-style")[0] as HoneyDefineStyle;
+      elem.setNewTheme(this.themeName);
     } else {
       printWarning("No theme attribute defined for button");
     }
@@ -29,7 +29,7 @@ export class HoneySelectStyle {
     return (
       <Host>
         <honey-apply-style />
-        <button onClick={this.changeTheme}><slot/></button>
+        <a class="navbar-item" onClick={this.changeTheme}><slot/></a>
       </Host>
     );
   }

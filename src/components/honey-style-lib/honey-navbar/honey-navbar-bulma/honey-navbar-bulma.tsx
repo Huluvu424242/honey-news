@@ -110,6 +110,18 @@ export class HoneyNavbarBulma {
                 class={this.getItemSelectedClass("/about")}
               >About
               </div>
+
+              <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                  Theme
+                </a>
+                <div class="navbar-dropdown  is-boxed">
+                  <honey-select-style themeName="honey-bulma-style is-active">Bulma Style</honey-select-style>
+                  <honey-select-style themeName="honey-papercss-style">PaperCSS Style</honey-select-style>
+                </div>
+              </div>
+
+
             </div>
           </div>
         </nav>

@@ -19,7 +19,10 @@ export class HoneyNavbarBulma {
     // States initialisieren
     this.routerSubscription = router.getRouteListener().subscribe(
       {
-        next: (route: string) => this.route = route,
+        next: (route: string) => {
+          console.log("###Route: " + route);
+          this.route = route
+        },
         error: err => console.error(err),
         complete: () => console.info("Router Subject' complete")
       });

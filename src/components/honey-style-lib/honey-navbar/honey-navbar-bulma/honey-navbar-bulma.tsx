@@ -83,29 +83,29 @@ export class HoneyNavbarBulma {
           <div id="navSubmenu" class={"navbar-menu " + this.getBurgerMenuClass()}>
             <div id="navbarStart" class="navbar-start">
 
-              <button
+              <div
                 onClick={() => this.navigateToPath("/feeds")}
                 class={this.getNavLinkClass("/feeds")}
               >Feeds
-              </button>
+              </div>
 
-              <button
+              <div
                 onClick={() => this.navigateToPath("/news")}
                 class={this.getNavLinkClass("/news")}
               >News
-              </button>
+              </div>
 
-              <button
+              <div
                 onClick={() => this.navigateToPath("/statistic")}
                 class={this.getNavLinkClass("/statistic")}
               >Statistik
-              </button>
+              </div>
 
-              <button
+              <div
                 onClick={() => this.navigateToPath("/about")}
                 class={this.getNavLinkClass("/about")}
               >About
-              </button>
+              </div>
             </div>
           </div>
         </nav>

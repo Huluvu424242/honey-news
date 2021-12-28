@@ -105,7 +105,7 @@ export class HoneyNewsFeed {
     if (PipeOperators.compareDates(this.lastUpdate, post.exaktdate) < 0) {
       this.lastUpdate = post.exaktdate;
     }
-    if (hour.getUTCHours() != this.lastHour.getUTCHours()) {
+    if (hour && hour.getUTCHours() != this.lastHour.getUTCHours()) {
       this.lastHour = hour;
       return <honey-infobar>{post.exaktdate.toLocaleDateString() + " " + this.lastHour.getHours()} Uhr</honey-infobar>;
     } else {

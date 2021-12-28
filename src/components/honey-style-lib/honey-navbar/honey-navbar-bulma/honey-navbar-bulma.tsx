@@ -38,8 +38,12 @@ export class HoneyNavbarBulma {
     navigateToRoute(event.currentTarget["pathname"]);
   }
 
+  protected navigateToPath(path: string): void {
+    navigateToRoute(path);
+  }
+
   protected getNavLinkClass(route: string): string {
-    return "navbar-item " + (this.route === route ? "is-primary" : "is-info");
+    return "navbar-item button is-rounded " + (this.route === route ? "is-info" : "is-success");
   }
 
   protected getBurgerMenuClass(): string {
@@ -57,15 +61,16 @@ export class HoneyNavbarBulma {
         <nav class="navbar" role="navigation" aria-label="main navigation">
           <div class="navbar-brand">
 
-            <a href="/" role="button"
-               onClick={this.navigateTo}
-               class={this.getNavLinkClass("/")}
-            > RSS/Atom Feed Reader</a>
+            <button
+              onClick={() => this.navigateToPath("/")}
+              class={this.getNavLinkClass("/")}
+            > RSS/Atom Feed Reader
+            </button>
 
 
             <a role="button"
-              href="https://github.com/Huluvu424242/honey-news"
-              target="_blank" class="navbar-item button">Github</a>
+               href="https://github.com/Huluvu424242/honey-news"
+               target="_blank" class="navbar-item navbar-link">Github</a>
 
             <a class={"navbar-burger " + this.getBurgerMenuClass()} aria-label="menu" aria-expanded="false"
                data-target="navSubmenu" onClick={() => this.isBurgerActive = !this.isBurgerActive}>
@@ -78,25 +83,29 @@ export class HoneyNavbarBulma {
           <div id="navSubmenu" class={"navbar-menu " + this.getBurgerMenuClass()}>
             <div id="navbarStart" class="navbar-start">
 
-              <a href="/feeds" role="button"
-                 onClick={this.navigateTo}
-                 class={this.getNavLinkClass("/feeds")}
-              >Feeds</a>
+              <button
+                onClick={() => this.navigateToPath("/feeds")}
+                class={this.getNavLinkClass("/feeds")}
+              >Feeds
+              </button>
 
-              <a href="/news" role="button"
-                 onClick={this.navigateTo}
-                 class={this.getNavLinkClass("/news")}
-              >News</a>
+              <button
+                onClick={() => this.navigateToPath("/news")}
+                class={this.getNavLinkClass("/news")}
+              >News
+              </button>
 
-              <a href="/statistic" role="button"
-                 onClick={this.navigateTo}
-                 class={this.getNavLinkClass("/statistic")}
-              >Statistik</a>
+              <button
+                onClick={() => this.navigateToPath("/statistic")}
+                class={this.getNavLinkClass("/statistic")}
+              >Statistik
+              </button>
 
-              <a href="/about" role="button"
-                 onClick={this.navigateTo}
-                 class={this.getNavLinkClass("/about")}
-              >About</a>
+              <button
+                onClick={() => this.navigateToPath("/about")}
+                class={this.getNavLinkClass("/about")}
+              >About
+              </button>
             </div>
           </div>
         </nav>

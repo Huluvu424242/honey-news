@@ -38,12 +38,15 @@ export class HoneyNavbarBulma {
     navigateToRoute(event.currentTarget["pathname"]);
   }
 
-  protected navigateToPath(path: string): void {
-    navigateToRoute(path);
+  protected navigateToPath(route: string): void {
+    navigateToRoute(route);
   }
 
-  protected getNavLinkClass(route: string): string {
-    return "navbar-item button is-rounded " + (this.route === route ? "is-info" : "is-success");
+  protected getItemSelectedClass(route: string): string {
+    return this.getNavItemClass() + (this.route === route ? "is-info" : "is-success");
+  }
+  protected getNavItemClass(): string {
+    return "navbar-item button is-rounded ";
   }
 
   protected getBurgerMenuClass(): string {
@@ -63,7 +66,7 @@ export class HoneyNavbarBulma {
 
             <button
               onClick={() => this.navigateToPath("/")}
-              class={this.getNavLinkClass("/")}
+              class={this.getItemSelectedClass("/")}
             > RSS/Atom Feed Reader
             </button>
 
@@ -85,25 +88,25 @@ export class HoneyNavbarBulma {
 
               <div
                 onClick={() => this.navigateToPath("/feeds")}
-                class={this.getNavLinkClass("/feeds")}
+                class={this.getItemSelectedClass("/feeds")}
               >Feeds
               </div>
 
               <div
                 onClick={() => this.navigateToPath("/news")}
-                class={this.getNavLinkClass("/news")}
+                class={this.getItemSelectedClass("/news")}
               >News
               </div>
 
               <div
                 onClick={() => this.navigateToPath("/statistic")}
-                class={this.getNavLinkClass("/statistic")}
+                class={this.getItemSelectedClass("/statistic")}
               >Statistik
               </div>
 
               <div
                 onClick={() => this.navigateToPath("/about")}
-                class={this.getNavLinkClass("/about")}
+                class={this.getItemSelectedClass("/about")}
               >About
               </div>
             </div>

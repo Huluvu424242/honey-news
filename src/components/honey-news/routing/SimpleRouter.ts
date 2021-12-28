@@ -13,6 +13,8 @@ class SimpleRouter {
   constructor() {
     this.routenprefix = "";
     this.routes = new Map();
+    const tmpRoute = window.location.pathname;
+    this.route.next(tmpRoute.replace(this.routenprefix, ""));
     window.onpopstate = () => {
       // push route name
       const route: string = window.location.pathname;

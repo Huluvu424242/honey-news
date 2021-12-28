@@ -16,7 +16,7 @@
 
 ### Used by
 
- - [honey-news-header](../../honey-news/header)
+ - [honey-navbar-bulma](../../honey-style-lib/honey-navbar/honey-navbar-bulma)
 
 ### Depends on
 
@@ -26,7 +26,7 @@
 ```mermaid
 graph TD;
   honey-select-style --> honey-apply-style
-  honey-news-header --> honey-select-style
+  honey-navbar-bulma --> honey-select-style
   style honey-select-style fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

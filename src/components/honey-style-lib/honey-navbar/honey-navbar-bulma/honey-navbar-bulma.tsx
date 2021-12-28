@@ -116,7 +116,7 @@ export class HoneyNavbarBulma {
                   Theme
                 </a>
                 <div class="navbar-dropdown  is-boxed">
-                  <honey-select-style themeName="honey-bulma-style is-active">Bulma Style</honey-select-style>
+                  <honey-select-style themeName="honey-bulma-style">Bulma Style</honey-select-style>
                   <honey-select-style themeName="honey-papercss-style">PaperCSS Style</honey-select-style>
                 </div>
               </div>

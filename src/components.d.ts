@@ -30,6 +30,7 @@ export namespace Components {
           * Trigger recompute theme style.
          */
         "recomputeTheme": () => Promise<void>;
+        "setNewTheme": (themeName: string) => Promise<void>;
         /**
           * Get the current theme as string in lowercase of tag name.
          */

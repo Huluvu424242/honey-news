@@ -27,6 +27,16 @@ Type: `Promise<void>`
 
 
 
+### `setNewTheme(themeName: string) => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
 ### `subscribeThemeChangeListener(observer: Observer<string>) => Promise<Subscription>`
 
 Get the current theme as string in lowercase of tag name.

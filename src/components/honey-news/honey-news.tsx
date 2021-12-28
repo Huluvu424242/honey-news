@@ -66,15 +66,14 @@ export class HoneyNews {
     }
 
     this.ident = this.hostElement.id ? this.hostElement.id : Math.random().toString(36).substring(7);
-    this.routerSubscription = router.getRouteListener().subscribe((route: string) => {
-        this.route = route;
-      },
-      (error) => {
-        console.error(error);
-      },
-      () => {
-        console.info("Router Subject' complete");
-      });
+    this.routerSubscription = router.getRouteListener().subscribe(
+      {
+        next: (route: string) => this.route = route,
+        error: (err) => console.error(err),
+        complete: () => console.info("Router Subject' complete")
+      }
+    );
+
     // Properties auswerten
     Logger.toggleLogging(this.verbose);
   }

@@ -17,14 +17,11 @@ export class HoneyNavbarBulma {
 
   public connectedCallback() {
     // States initialisieren
-    this.routerSubscription = router.getRouteListener().subscribe((route: string) => {
-        this.route = route;
-      },
-      (error) => {
-        console.error(error);
-      },
-      () => {
-        console.info("Router Subject' complete");
+    this.routerSubscription = router.getRouteListener().subscribe(
+      {
+        next: (route: string) => this.route = route,
+        error: err => console.error(err),
+        complete: () => console.info("Router Subject' complete")
       });
   }
 
@@ -45,6 +42,7 @@ export class HoneyNavbarBulma {
   protected getItemSelectedClass(route: string): string {
     return this.getNavItemClass() + (this.route === route ? "is-info" : "is-success");
   }
+
   protected getNavItemClass(): string {
     return "navbar-item button is-rounded ";
   }

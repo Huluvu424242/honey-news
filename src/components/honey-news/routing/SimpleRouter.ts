@@ -4,7 +4,7 @@ class SimpleRouter {
 
   protected routes: Map<string, string>;
 
-  protected route: Subject<string> = new ReplaySubject<string>();
+  protected route: ReplaySubject<string> = new ReplaySubject<string>();
 
   protected routenprefix: string;
 

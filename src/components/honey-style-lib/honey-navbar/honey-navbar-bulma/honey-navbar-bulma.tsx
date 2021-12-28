@@ -12,6 +12,8 @@ export class HoneyNavbarBulma {
   routerSubscription: Subscription = null;
   @State() route: string = "";
 
+  @State() isBurgerActive: boolean = false;
+
 
   public connectedCallback() {
     // States initialisieren
@@ -36,8 +38,12 @@ export class HoneyNavbarBulma {
     navigateToRoute(event.currentTarget["pathname"]);
   }
 
-  protected classNavLink(route: string): string  {
-    return "navbar-item " + (this.route === route ? "is-active" : "");
+  protected getNavLinkClass(route: string): string {
+    return "navbar-item " + (this.route === route ? "is-primary" : "is-info");
+  }
+
+  protected getBurgerMenuClass(): string {
+    return (this.isBurgerActive ? "is-active" : "");
   }
 
 
@@ -48,44 +54,50 @@ export class HoneyNavbarBulma {
       <Host>
         <honey-apply-style/>
 
-        <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+        <nav class="navbar" role="navigation" aria-label="main navigation">
           <div class="navbar-brand">
 
-            <a href="/"
+            <a href="/" role="button"
                onClick={this.navigateTo}
-               class={this.classNavLink("/")}
+               class={this.getNavLinkClass("/")}
             > RSS/Atom Feed Reader</a>
 
-            <a href="/feeds"
-               onClick={this.navigateTo}
-               class={this.classNavLink("/feeds")}
-            >Feeds</a>
 
-
-            <a href="/news"
-               onClick={this.navigateTo}
-               class={this.classNavLink("/news")}
-            >News</a>
-
-            <a href="/statistic"
-               onClick={this.navigateTo}
-               class={this.classNavLink("/statistic")}
-            >Statistik</a>
-
-            <a href="/about"
-               onClick={this.navigateTo}
-               class={this.classNavLink("/about")}
-            >About</a>
-
-            <a
+            <a role="button"
               href="https://github.com/Huluvu424242/honey-news"
-              target="_blank" class="is-primary button">Github</a>
+              target="_blank" class="navbar-item button">Github</a>
 
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <a class={"navbar-burger " + this.getBurgerMenuClass()} aria-label="menu" aria-expanded="false"
+               data-target="navSubmenu" onClick={() => this.isBurgerActive = !this.isBurgerActive}>
               <span aria-hidden="true"/>
               <span aria-hidden="true"/>
               <span aria-hidden="true"/>
             </a>
+          </div>
+
+          <div id="navSubmenu" class={"navbar-menu " + this.getBurgerMenuClass()}>
+            <div id="navbarStart" class="navbar-start">
+
+              <a href="/feeds" role="button"
+                 onClick={this.navigateTo}
+                 class={this.getNavLinkClass("/feeds")}
+              >Feeds</a>
+
+              <a href="/news" role="button"
+                 onClick={this.navigateTo}
+                 class={this.getNavLinkClass("/news")}
+              >News</a>
+
+              <a href="/statistic" role="button"
+                 onClick={this.navigateTo}
+                 class={this.getNavLinkClass("/statistic")}
+              >Statistik</a>
+
+              <a href="/about" role="button"
+                 onClick={this.navigateTo}
+                 class={this.getNavLinkClass("/about")}
+              >About</a>
+            </div>
           </div>
         </nav>
       </Host>

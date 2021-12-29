@@ -159,3 +159,17 @@ Maybe you must via about:config set the layout.css.shadow-parts.enabled to true.
 Generell 
 
 * [Can I use with browsers?](https://caniuse.com/#feat=mdn-css_selectors_part)
+
+# Credits
+
+Thanks to: 
+
+* [Github](https://github.com) for hosting of this project and support the source code management and build pipelines
+* [JetBrains](https://account.jetbrains.com/) to provide all JetBrains IDEs for project main developers with
+  an free license to use it in none commercial open source projects.
+* [Travis CI](https://www.travis-ci.com/) for providing container builds
+* [Npmjs](https://npmjs.com) for delivery of this project world wide
+
+[![JetBrains](./sponsors/jb_beam.svg)](https://jb.gg/OpenSourceSupport)
+ 
+  

@@ -1,0 +1,9 @@
+If you find that JetBrains software has been useful for your project, please consider mentioning JetBrains support on your project’s homepage. Feel free to use the JetBrains logo and a link to our website such as https://jb.gg/OpenSourceSupport.
+
+If you have any questions, please get in touch with us at opensource@jetbrains.com. We’ll be glad to help.
+
+Kind regards,
+
+JetBrains Community Support Team
+https://www.jetbrains.com
+The Drive to Develop

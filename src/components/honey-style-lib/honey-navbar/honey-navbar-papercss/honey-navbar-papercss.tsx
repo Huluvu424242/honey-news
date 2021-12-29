@@ -51,7 +51,9 @@ export class HoneyNavbarPapercss {
 
         <nav class="border fixed split-nav">
           <div class="nav-brand">
-            <h3><a href="/" onClick={this.navigateTo} class={this.classNavLink("/")}>RSS/Atom Feed Reader</a></h3>
+              <h3>
+                <a href="/" onClick={this.navigateTo} class={this.classNavLink("/")}>RSS/Atom Feed Reader</a>
+              </h3>
           </div>
           <div class="collapsible">
             <input id="collapsible1" type="checkbox" name="collapsible1"/>
@@ -62,6 +64,14 @@ export class HoneyNavbarPapercss {
             </label>
             <div class="collapsible-body">
               <ul class="inline">
+                <li>
+                  <select id="paperSelects1">
+                    <option value="1">Bulma Style</option>
+                    <option value="2">PaperCSS Style</option>
+                  </select>
+                  {/*<honey-select-style themeName="honey-bulma-style">Bulma Style</honey-select-style>*/}
+                  {/*<honey-select-style themeName="honey-papercss-style">PaperCSS Style</honey-select-style>*/}
+                </li>
                 <li><a href="/feeds" onClick={this.navigateTo} class={this.classNavLink("/feeds")}>Feeds</a></li>
                 <li><a href="/news" onClick={this.navigateTo} class={this.classNavLink("/news")}>News</a></li>
                 <li><a href="/statistic" onClick={this.navigateTo} class={this.classNavLink("/statistic")}>Statistic</a>

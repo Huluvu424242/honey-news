@@ -65,12 +65,7 @@ export class HoneyNavbarPapercss {
             <div class="collapsible-body">
               <ul class="inline">
                 <li>
-                  <select id="paperSelects1">
-                    <option value="1">Bulma Style</option>
-                    <option value="2">PaperCSS Style</option>
-                  </select>
-                  {/*<honey-select-style themeName="honey-bulma-style">Bulma Style</honey-select-style>*/}
-                  {/*<honey-select-style themeName="honey-papercss-style">PaperCSS Style</honey-select-style>*/}
+                    <honey-select-style-papercss themeName="honey-bulma-style" optionText="Bulma Style" />
                 </li>
                 <li><a href="/feeds" onClick={this.navigateTo} class={this.classNavLink("/feeds")}>Feeds</a></li>
                 <li><a href="/news" onClick={this.navigateTo} class={this.classNavLink("/news")}>News</a></li>

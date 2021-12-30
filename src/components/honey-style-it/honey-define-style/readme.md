@@ -9,7 +9,7 @@
 
 ### `getStyleName$() => Promise<Observable<string>>`
 
-
+Referenz auf das Replay Subject als Observable
 
 #### Returns
 
@@ -29,7 +29,7 @@ Type: `Promise<void>`
 
 ### `setNewTheme(themeName: string) => Promise<void>`
 
-
+Setzt den neuen Theme und wechselt entsprechend das Child Element aus.
 
 #### Returns
 

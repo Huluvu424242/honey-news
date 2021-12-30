@@ -9,7 +9,7 @@
 
 | Property     | Attribute     | Description                                           | Type  | Default     |
 | ------------ | ------------- | ----------------------------------------------------- | ----- | ----------- |
-| `optionText` | `option-text` |                                                       | `any` | `undefined` |
+| `optionText` | `option-text` | Text der anzuzeigenden Auswahloption                  | `any` | `undefined` |
 | `themeName`  | `theme`       | Name des zu setzenden Theme z.B. honey-papercss-style | `any` | `undefined` |
 
 

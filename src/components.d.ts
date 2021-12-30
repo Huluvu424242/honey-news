@@ -25,11 +25,18 @@ export namespace Components {
     interface HoneyArticlePapercss {
     }
     interface HoneyDefineStyle {
+        /**
+          * Referenz auf das Replay Subject als Observable
+         */
         "getStyleName$": () => Promise<Observable<string>>;
         /**
           * Trigger recompute theme style.
          */
         "recomputeTheme": () => Promise<void>;
+        /**
+          * Setzt den neuen Theme und wechselt entsprechend das Child Element aus.
+          * @param themeName Name des Themes
+         */
         "setNewTheme": (themeName: string) => Promise<void>;
         /**
           * Get the current theme as string in lowercase of tag name.
@@ -71,6 +78,9 @@ export namespace Components {
     interface HoneyNewsAbout {
     }
     interface HoneyNewsArticle {
+        /**
+          * JSON Beschreibung des darzustellenden Artikels
+         */
         "article": NewsArticle;
     }
     interface HoneyNewsFeed {
@@ -110,6 +120,9 @@ export namespace Components {
         "themeName": any;
     }
     interface HoneySelectStylePapercss {
+        /**
+          * Text der anzuzeigenden Auswahloption
+         */
         "optionText": any;
         /**
           * Name des zu setzenden Theme z.B. honey-papercss-style
@@ -117,6 +130,9 @@ export namespace Components {
         "themeName": any;
     }
     interface HoneyStyledComponent {
+        /**
+          * Komma separierte Liste von Namen der zu erzeugenden Slots
+         */
         "slotNames": string;
         /**
           * themepostfix of theme name e.g. style when honey-papercss-style
@@ -128,6 +144,9 @@ export namespace Components {
         "themeprefix": string;
     }
     interface HoneyStyledParacomponent {
+        /**
+          * Parameter für das zu erzeugende Tag
+         */
         "parameterlist": any;
         /**
           * themepostfix of theme name e.g. style when honey-papercss-style
@@ -439,6 +458,9 @@ declare namespace LocalJSX {
     interface HoneyNewsAbout {
     }
     interface HoneyNewsArticle {
+        /**
+          * JSON Beschreibung des darzustellenden Artikels
+         */
         "article"?: NewsArticle;
     }
     interface HoneyNewsFeed {
@@ -478,6 +500,9 @@ declare namespace LocalJSX {
         "themeName"?: any;
     }
     interface HoneySelectStylePapercss {
+        /**
+          * Text der anzuzeigenden Auswahloption
+         */
         "optionText"?: any;
         /**
           * Name des zu setzenden Theme z.B. honey-papercss-style
@@ -485,6 +510,9 @@ declare namespace LocalJSX {
         "themeName"?: any;
     }
     interface HoneyStyledComponent {
+        /**
+          * Komma separierte Liste von Namen der zu erzeugenden Slots
+         */
         "slotNames"?: string;
         /**
           * themepostfix of theme name e.g. style when honey-papercss-style
@@ -496,6 +524,9 @@ declare namespace LocalJSX {
         "themeprefix"?: string;
     }
     interface HoneyStyledParacomponent {
+        /**
+          * Parameter für das zu erzeugende Tag
+         */
         "parameterlist"?: any;
         /**
           * themepostfix of theme name e.g. style when honey-papercss-style

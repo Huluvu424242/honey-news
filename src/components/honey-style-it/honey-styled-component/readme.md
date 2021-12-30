@@ -9,7 +9,7 @@
 
 | Property        | Attribute       | Description                                                     | Type     | Default     |
 | --------------- | --------------- | --------------------------------------------------------------- | -------- | ----------- |
-| `parameterlist` | `parameterlist` |                                                                 | `any`    | `undefined` |
+| `parameterlist` | `parameterlist` | Parameter für das zu erzeugende Tag                             | `any`    | `undefined` |
 | `themepostfix`  | `themepostfix`  | themepostfix of theme name e.g. style when honey-papercss-style | `string` | `" "`       |
 | `themeprefix`   | `themeprefix`   | themeprefix of theme name e.g. honey when honey-papercss-style  | `string` | `"honey"`   |
 

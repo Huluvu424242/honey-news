@@ -29,7 +29,7 @@ export class HoneySelectStyle {
     return (
       <Host>
         <honey-apply-style />
-        <a class="navbar-item" onClick={this.changeTheme}><slot/></a>
+        <a class="navbar-item button is-rounded is-success" onClick={this.changeTheme}><slot/></a>
       </Host>
     );
   }

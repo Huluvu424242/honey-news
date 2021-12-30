@@ -71,11 +71,6 @@ export class HoneyNavbarBulma {
             > RSS/Atom Feed Reader
             </button>
 
-
-            <a role="button"
-               href="https://github.com/Huluvu424242/honey-news"
-               target="_blank" class="navbar-item navbar-link">Github</a>
-
             <a class={"navbar-burger " + this.getBurgerMenuClass()} aria-label="menu" aria-expanded="false"
                data-target="navSubmenu" onClick={() => this.isBurgerActive = !this.isBurgerActive}>
               <span aria-hidden="true"/>
@@ -86,6 +81,15 @@ export class HoneyNavbarBulma {
 
           <div id="navSubmenu" class={"navbar-menu " + this.getBurgerMenuClass()}>
             <div id="navbarStart" class="navbar-start">
+
+              <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                  Theme / Style
+                </a>
+                <div class="navbar-dropdown is-boxed">
+                  <honey-select-style themeName="honey-papercss-style">PaperCSS Style</honey-select-style>
+                </div>
+              </div>
 
               <div
                 onClick={() => this.navigateToPath("/feeds")}
@@ -111,15 +115,11 @@ export class HoneyNavbarBulma {
               >About
               </div>
 
-              <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">
-                  Theme / Style
-                </a>
-                <div class="navbar-dropdown  is-boxed">
-                  <honey-select-style themeName="honey-papercss-style">PaperCSS Style</honey-select-style>
-                </div>
-              </div>
 
+
+              <a role="button"
+                 href="https://github.com/Huluvu424242/honey-news"
+                 target="_blank" class="navbar-item">Github</a>
 
             </div>
           </div>

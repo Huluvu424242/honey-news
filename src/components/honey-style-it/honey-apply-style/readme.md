@@ -26,6 +26,7 @@
  - [honey-notification-bulma](../../honey-style-lib/honey-notification/honey-notification-bulma)
  - [honey-notification-papercss](../../honey-style-lib/honey-notification/honey-notification-papercss)
  - [honey-select-style](../honey-select-style)
+ - [honey-select-style-papercss](../honey-select-style)
  - [honey-table-bulma](../../honey-style-lib/honey-table/honey-table-bulma)
  - [honey-table-papercss](../../honey-style-lib/honey-table/honey-table-papercss)
 
@@ -49,6 +50,7 @@ graph TD;
   honey-notification-bulma --> honey-apply-style
   honey-notification-papercss --> honey-apply-style
   honey-select-style --> honey-apply-style
+  honey-select-style-papercss --> honey-apply-style
   honey-table-bulma --> honey-apply-style
   honey-table-papercss --> honey-apply-style
   style honey-apply-style fill:#f9f,stroke:#333,stroke-width:4px

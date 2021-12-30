@@ -109,6 +109,13 @@ export namespace Components {
          */
         "themeName": any;
     }
+    interface HoneySelectStylePapercss {
+        "optionText": any;
+        /**
+          * Name des zu setzenden Theme z.B. honey-papercss-style
+         */
+        "themeName": any;
+    }
     interface HoneyStyledComponent {
         "slotNames": string;
         /**
@@ -307,6 +314,12 @@ declare global {
         prototype: HTMLHoneySelectStyleElement;
         new (): HTMLHoneySelectStyleElement;
     };
+    interface HTMLHoneySelectStylePapercssElement extends Components.HoneySelectStylePapercss, HTMLStencilElement {
+    }
+    var HTMLHoneySelectStylePapercssElement: {
+        prototype: HTMLHoneySelectStylePapercssElement;
+        new (): HTMLHoneySelectStylePapercssElement;
+    };
     interface HTMLHoneyStyledComponentElement extends Components.HoneyStyledComponent, HTMLStencilElement {
     }
     var HTMLHoneyStyledComponentElement: {
@@ -366,6 +379,7 @@ declare global {
         "honey-notification-bulma": HTMLHoneyNotificationBulmaElement;
         "honey-notification-papercss": HTMLHoneyNotificationPapercssElement;
         "honey-select-style": HTMLHoneySelectStyleElement;
+        "honey-select-style-papercss": HTMLHoneySelectStylePapercssElement;
         "honey-styled-component": HTMLHoneyStyledComponentElement;
         "honey-styled-paracomponent": HTMLHoneyStyledParacomponentElement;
         "honey-table": HTMLHoneyTableElement;
@@ -463,6 +477,13 @@ declare namespace LocalJSX {
          */
         "themeName"?: any;
     }
+    interface HoneySelectStylePapercss {
+        "optionText"?: any;
+        /**
+          * Name des zu setzenden Theme z.B. honey-papercss-style
+         */
+        "themeName"?: any;
+    }
     interface HoneyStyledComponent {
         "slotNames"?: string;
         /**
@@ -520,6 +541,7 @@ declare namespace LocalJSX {
         "honey-notification-bulma": HoneyNotificationBulma;
         "honey-notification-papercss": HoneyNotificationPapercss;
         "honey-select-style": HoneySelectStyle;
+        "honey-select-style-papercss": HoneySelectStylePapercss;
         "honey-styled-component": HoneyStyledComponent;
         "honey-styled-paracomponent": HoneyStyledParacomponent;
         "honey-table": HoneyTable;
@@ -559,6 +581,7 @@ declare module "@stencil/core" {
             "honey-notification-bulma": LocalJSX.HoneyNotificationBulma & JSXBase.HTMLAttributes<HTMLHoneyNotificationBulmaElement>;
             "honey-notification-papercss": LocalJSX.HoneyNotificationPapercss & JSXBase.HTMLAttributes<HTMLHoneyNotificationPapercssElement>;
             "honey-select-style": LocalJSX.HoneySelectStyle & JSXBase.HTMLAttributes<HTMLHoneySelectStyleElement>;
+            "honey-select-style-papercss": LocalJSX.HoneySelectStylePapercss & JSXBase.HTMLAttributes<HTMLHoneySelectStylePapercssElement>;
             "honey-styled-component": LocalJSX.HoneyStyledComponent & JSXBase.HTMLAttributes<HTMLHoneyStyledComponentElement>;
             "honey-styled-paracomponent": LocalJSX.HoneyStyledParacomponent & JSXBase.HTMLAttributes<HTMLHoneyStyledParacomponentElement>;
             "honey-table": LocalJSX.HoneyTable & JSXBase.HTMLAttributes<HTMLHoneyTableElement>;

@@ -14,6 +14,9 @@ export interface NewsArticle {
 })
 export class HoneyNewsArticle {
 
+  /**
+   * JSON Beschreibung des darzustellenden Artikels
+   */
   @Prop() article: NewsArticle;
 
   render() {

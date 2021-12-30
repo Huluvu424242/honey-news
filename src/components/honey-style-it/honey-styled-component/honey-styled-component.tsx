@@ -19,6 +19,9 @@ export class HoneyStyledComponent {
    */
   @Prop() themepostfix: string = " ";
 
+  /**
+   * Komma separierte Liste von Namen der zu erzeugenden Slots
+   */
   @Prop() slotNames: string;
 
 

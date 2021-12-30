@@ -18,6 +18,9 @@ export class HoneySelectStyle {
    */
   @Prop({attribute: "theme"}) themeName;
 
+  /**
+   * Text der anzuzeigenden Auswahloption
+   */
   @Prop() optionText;
 
   private changeTheme = () => {

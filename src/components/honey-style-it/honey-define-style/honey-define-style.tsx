@@ -35,6 +35,9 @@ export class HoneyDefineStyle {
     return await this.styleName$.subscribe(observer);
   }
 
+  /**
+   * Referenz auf das Replay Subject als Observable
+   */
   @Method()
   async getStyleName$(): Promise<Observable<string>> {
     return this.styleName$.asObservable();
@@ -48,6 +51,10 @@ export class HoneyDefineStyle {
     this.computeTheme();
   }
 
+  /**
+   * Setzt den neuen Theme und wechselt entsprechend das Child Element aus.
+   * @param themeName Name des Themes
+   */
   @Method()
   async setNewTheme(themeName:string):Promise<void>{
     const replacement = document.createElement(themeName);

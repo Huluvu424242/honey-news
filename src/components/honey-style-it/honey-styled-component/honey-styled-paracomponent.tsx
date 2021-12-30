@@ -13,6 +13,9 @@ export class HoneyStyledParacomponent {
 
   tagElement: HTMLElement;
 
+  /**
+   * Parameter für das zu erzeugende Tag
+   */
   @Prop({mutable: false}) parameterlist;
 
   /**

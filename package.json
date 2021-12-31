@@ -34,6 +34,7 @@
   "scripts": {
     "build": "stencil build --docs",
     "start": "stencil build --dev --watch --serve",
+    "test:local": "PWDEBUG=console playwright test",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
@@ -46,24 +47,24 @@
     "node": "16.13.1"
   },
   "dependencies": {
-    "object-hash": "2.2.0",
-    "rxjs": "7.4.0",
+    "@huluvu424242/liona-feeds": "2.3.3",
     "feedme": "2.0.2",
-    "@huluvu424242/liona-feeds": "2.3.3"
+    "object-hash": "2.2.0",
+    "rxjs": "7.4.0"
   },
   "devDependencies": {
-    "workbox-build": "4.3.1",
+    "@playwright/test": "1.17.1",
     "@stencil/core": "2.12.0",
     "@stencil/store": "1.5.0",
     "@types/jest": "27.0.3",
     "@types/puppeteer": "5.4.4",
     "jest": "27.4.5",
     "jest-cli": "27.4.5",
+    "license-checker": "25.0.1",
+    "playwright": "1.17.1",
     "puppeteer": "13.0.1",
     "ts-node": "10.4.0",
     "typescript": "4.5.4",
-    "license-checker": "25.0.1"
-  },
-  "optionalDependencies": {
+    "workbox-build": "4.3.1"
   }
 }

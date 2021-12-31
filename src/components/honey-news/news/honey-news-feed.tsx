@@ -76,6 +76,7 @@ export class HoneyNewsFeed {
       "https://www.tagesschau.de/xml/atom/",
       "https://www.zdf.de/rss/zdf/nachrichten",
       "http://newsrss.bbc.co.uk/rss/newsonline_uk_edition/england/london/rss.xml",
+      "https://tass.ru/en/rss/v2.xml",
       "https://kenfm.de/feed/",
       "https://dev.to/feed/",
       "https://media.ccc.de/news.atom",

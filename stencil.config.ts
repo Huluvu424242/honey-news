@@ -1,5 +1,4 @@
 import {Config} from '@stencil/core';
-import nodePolyfills from 'rollup-plugin-node-polyfills';
 
 export const config: Config = {
   namespace: 'honey-news',
@@ -18,7 +17,7 @@ export const config: Config = {
       esmLoaderPath: '../loader',
     },
     {
-      type: 'dist-custom-elements-bundle',
+      type: 'dist-custom-elements',
     },
     {
       type: 'docs-readme',
@@ -33,23 +32,13 @@ export const config: Config = {
       type: 'www',
       dir: 'docs',
       copy: [
-        { src: "demo.html"},
-        { src: "404.html"},
-        { src: "redirect.js"}
+        {src: "demo.html"},
+        {src: "404.html"},
+        {src: "redirect.js"},
+        {src: "resources"}
       ],
-      serviceWorker: null // disable service workers
     }
-  ],
-  rollupPlugins: {
-    before: [
-      // Plugins injected before rollupNodeResolve()
-      // resolvePlugin()
-    ],
-    after: [
-      // Plugins injected after commonjs()
-      nodePolyfills()
-    ]
-  }
+  ]
 };
 
 

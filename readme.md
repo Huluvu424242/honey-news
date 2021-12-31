@@ -44,11 +44,11 @@ To the [demo site](https://huluvu424242.github.io/honey-news/index.html)
 -->
 ```html
 <head>
-  <title>Honey-News Feed Reader</title>
+  <title>Honey-HoneyNewsFeed Feed Reader</title>
   <script type="module"
-          src="https://unpkg.com/@huluvu424242/honey-style-it@0.0.4/dist/honey-style-it/honey-style-it.esm.js"></script>
+          src="https://unpkg.com/@huluvu424242/honey-style-it@0.0.5/dist/honey-style-it/honey-style-it.esm.js"></script>
   <script nomodule
-          src="https://unpkg.com/@huluvu424242/honey-style-it@0.0.4/dist/honey-style-it/honey-style-it.js"></script>
+          src="https://unpkg.com/@huluvu424242/honey-style-it@0.0.5/dist/honey-style-it/honey-style-it.js"></script>
   <!-- style module -->
   <script type="module"
           src="https://unpkg.com/@huluvu424242/honey-papercss-style@0.0.2/dist/honey-papercss-style/honey-papercss-style.esm.js"></script>
@@ -60,8 +60,8 @@ To the [demo site](https://huluvu424242.github.io/honey-news/index.html)
 
 <h1>Nutzung der honey-news Komponente</h1>
 <span class="wichtig">!!!</span> Das ist eine Demo Seite welche alle Feature der App zeigen soll - aus diesem Grund ist auch die Statistik eingeschaltet <span class="wichtig">!!!</span><br>
-Es werden nur Daten zu den abgerufenen Feeds gespeichert (in memory) wie: url, anzahl der abfragen, anzahl valider responses<br>
-Sollten Sie die Speicherung nicht wünschen - dann geben Sie bitte keinen neuen News ein.<br>
+Es werden nur Daten zu den abgerufenen HoneyNewsVerwaltung gespeichert (in memory) wie: url, anzahl der abfragen, anzahl valider responses<br>
+Sollten Sie die Speicherung nicht wünschen - dann geben Sie bitte keinen neuen HoneyNewsFeed ein.<br>
 Vielen Dank für Ihr Verständnis. <br>
 <hr>
 

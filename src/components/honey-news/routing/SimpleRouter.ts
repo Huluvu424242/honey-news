@@ -4,7 +4,7 @@ class SimpleRouter {
 
   protected routes: Map<string, string>;
 
-  protected route: Subject<string> = new ReplaySubject<string>();
+  protected route: ReplaySubject<string> = new ReplaySubject<string>();
 
   protected routenprefix: string;
 
@@ -13,6 +13,8 @@ class SimpleRouter {
   constructor() {
     this.routenprefix = "";
     this.routes = new Map();
+    const tmpRoute = window.location.pathname;
+    this.route.next(tmpRoute.replace(this.routenprefix, ""));
     window.onpopstate = () => {
       // push route name
       const route: string = window.location.pathname;

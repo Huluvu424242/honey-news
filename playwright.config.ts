@@ -1,9 +1,9 @@
 // playwright.config.ts
-import { PlaywrightTestConfig, devices, expect } from "@playwright/test";
+import { PlaywrightTestConfig, devices } from "@playwright/test";
 
 const config: PlaywrightTestConfig = {
   forbidOnly: true,
-  retries: 3,
+  retries: 0,
   reporter: "line",
 
   use: {

@@ -35,6 +35,7 @@
     "build": "stencil build --docs",
     "start": "stencil build --dev --watch --serve",
     "test:local": "PWDEBUG=console playwright test",
+    "test:win": "set PWDEBUG=console && playwright test",
     "test": "playwright test",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",

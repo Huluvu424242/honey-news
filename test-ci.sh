@@ -12,7 +12,6 @@ npx playwright test
 # server stoppen
 kill %1
 
-echo test beendet
 # in github ci nicht notwendig, da ci selbst aufräumt
 #kill 0
 

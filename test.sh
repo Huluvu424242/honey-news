@@ -12,5 +12,5 @@ npx playwright test
 
 # server stoppen
 kill %1
-exit 0
+#exit 0
 

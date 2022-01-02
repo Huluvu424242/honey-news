@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# for work in wsl2
+DISPLAY=:0.0
+
 # server starten
 npm start &
 

@@ -13,6 +13,7 @@ npx playwright test
 # server stoppen
 kill %1
 
+echo test beendet
 # nur in win bash weil node process als fork weiterlebt
 #kill 0
 

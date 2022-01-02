@@ -35,8 +35,9 @@
     "build": "stencil build --docs",
     "start": "stencil build --dev --watch --serve",
     "test:local": "PWDEBUG=console playwright test",
-    "test:win": "set PWDEBUG=console && playwright test",
+    "test:win": "concurrently \"npm start\" \"set PWDEBUG=console && playwright test\"",
     "test": "playwright test",
+    "test:e2e": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
     "prepare-deliver": "npm run build",
@@ -54,14 +55,19 @@
     "rxjs": "7.4.0"
   },
   "devDependencies": {
-    "@playwright/test": "1.17.1",
+    "concurrently":"6.5.1",
     "@stencil/core": "2.12.0",
     "@stencil/store": "1.5.0",
     "@types/jest": "27.0.3",
-    "license-checker": "25.0.1",
+    "puppeteer": "13.0.1",
+    "@playwright/test": "1.17.1",
+    "jest": "27.4.5",
+    "jest-playwright-preset": "1.7.0",
     "playwright": "1.17.1",
+    "expect-playwright": "0.8.0",
     "ts-node": "10.4.0",
     "typescript": "4.5.4",
-    "workbox-build": "4.3.1"
+    "workbox-build": "4.3.1",
+    "license-checker": "25.0.1"
   }
 }

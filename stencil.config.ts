@@ -11,6 +11,11 @@ export const config: Config = {
   //    */
   //   browserArgs: ['--no-sandbox', '--disable-setuid-sandbox'],
   // },
+  devServer: {
+    reloadStrategy: 'pageReload',
+    port: 3333,
+    openBrowser: false
+  },
   outputTargets: [
     {
       type: 'dist',

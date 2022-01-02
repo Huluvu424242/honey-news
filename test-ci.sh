@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
+# export TEST_URL="http://localhost:3333"
+
 # server starten
-#npm ./node_modules/@stencil/core/bin/stencil build --server --ci &
 npm start &
 
 # 10 s warten
@@ -14,6 +15,6 @@ npx playwright test
 kill %1
 
 echo test beendet
-# in ci nicht notwendig, da ci selbst aufräumt
+# in github ci nicht notwendig, da ci selbst aufräumt
 #kill 0
 

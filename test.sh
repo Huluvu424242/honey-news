@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# export TEST_URL="http://localhost:3333"
+
 # server starten
 npm start &
 

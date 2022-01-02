@@ -7,6 +7,8 @@ const config: PlaywrightTestConfig = {
   reporter: "line",
 
   use: {
+    // BASE URL = stencil dev server port
+    baseURL: 'http://localhost:3333',
     // Browser options
     headless: true,
 

@@ -13,21 +13,3 @@ test.describe("Lucky Path Test", () => {
     await expect(locator).toContainText("!!! Das ist eine Demo Seite welche alle Feature der App zeigen soll - aus diesem Grund ist auch die Statistik eingeschaltet !!!Es werden nur Daten zu den abgerufenen Feeds gespeichert (in memory) wie: URL, Anzahl der Abfragen und Anzahl valider Anworten.Sollten Sie die Speicherung nicht wünschen - dann geben Sie bitte keinen neuen Feed ein.Vielen Dank für Ihr Verständnis.");
   });
 });
-
-
-
-// import {HoneyNewsFeed} from "./honey-news-feed";
-//
-// describe('Unit test: honey-news satisfy', () => {
-//
-//   it('should init the feedLoader variable', () => {
-//     const component = new HoneyNewsFeed();
-//
-//     expect(component.feedLoader).not.toBeNull();
-//   });
-//
-//
-// });
-//
-//
-//

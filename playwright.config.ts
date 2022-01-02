@@ -4,7 +4,7 @@ import { PlaywrightTestConfig, devices } from "@playwright/test";
 const config: PlaywrightTestConfig = {
   forbidOnly: true,
   retries: 3,
-  reporter: process.env.CI ? 'dot' : 'list',
+  reporter: process.env.CI ? 'github' : 'list',
 
   use: {
     // BASE URL = stencil dev server port

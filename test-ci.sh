@@ -14,6 +14,6 @@ npx playwright test
 kill %1
 
 echo test beendet
-# nur in win bash weil node process als fork weiterlebt
+# in ci nicht notwendig, da ci selbst aufräumt
 #kill 0
 

@@ -12,6 +12,6 @@ npx playwright test
 # server stoppen
 kill %1
 
-# nur in win bash weil node process als fork weiterlebt
+# nur weil node process durch npm als fork weiterlebt
 kill 0
 

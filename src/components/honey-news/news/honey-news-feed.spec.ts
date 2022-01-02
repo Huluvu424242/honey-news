@@ -5,7 +5,7 @@ test.describe("Prüfe Startseite", () => {
     await page.goto(baseURL);
   });
 
-  test('Aussehen ist gleich geblieben', async ({baseURL,page}) => {
+  test('Aussehen ist gleich geblieben @local', async ({baseURL,page}) => {
     await page.goto(baseURL);
     expect(await page.screenshot()).toMatchSnapshot('./test/resources/startseite-bulma.png');
   });

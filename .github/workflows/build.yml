@@ -22,8 +22,7 @@ jobs:
         npm run build --if-present
     - name: testing
       id: testing
-      run: ./test-ci.sh --if-present
-#      run: npm test --if-present
-#      continue-on-error: true
+      run: ./test-ci.sh
+      continue-on-error: false
       env:
         CI: true

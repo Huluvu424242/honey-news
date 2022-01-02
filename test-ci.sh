@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # server starten
+#npm ./node_modules/@stencil/core/bin/stencil build --server --ci &
 npm start &
 
 # 10 s warten
@@ -13,5 +14,5 @@ npx playwright test
 kill %1
 
 # nur in win bash weil node process als fork weiterlebt
-kill 0
+#kill 0
 

@@ -22,7 +22,7 @@ jobs:
         npm run build --if-present
         npm start &
         sleep 10
-        npx playwright test
+        npx playwright test --grep-invert @local
         kill %1
       env:
         CI: true

@@ -24,6 +24,6 @@ jobs:
       id: testing
       run: ./test.sh --if-present
 #      run: npm test --if-present
-      continue-on-error: true
+#      continue-on-error: true
       env:
         CI: true

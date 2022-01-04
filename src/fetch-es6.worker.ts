@@ -5,6 +5,7 @@ import {catchError, filter, map, mergeMap, switchMap, tap, toArray} from "rxjs/o
 import {Logger} from "./shared/logger";
 import {StatisticData} from "@huluvu424242/liona-feeds/dist/esm/feeds/statistic";
 import {PipeOperators} from "./shared/PipeOperators";
+import axios, {AxiosResponse} from "axios";
 
 
 export interface Post {
@@ -26,8 +27,21 @@ export interface FeedData {
 }
 
 
-export async function loadFeedData(url: string, withStatistic: boolean): Promise<FeedData> {
-  return await lastValueFrom(loadFeedDataInternal(url, withStatistic));
+export async function fetchDataAxios(queryUrl: string): Promise<AxiosResponse<any>> {
+  return axios.get<AxiosResponse>(queryUrl, {
+    headers: {
+      "Accept": "application/json"
+    }
+  });
+}
+
+
+export async function fetchData(queryUrl: string): Promise<Response> {
+  return fetch(queryUrl, {
+    method: 'GET', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+  });
 }
 
 function loadFeedDataInternal(url: string, withStatistic: boolean): Observable<FeedData> {
@@ -42,11 +56,7 @@ function loadFeedDataInternal(url: string, withStatistic: boolean): Observable<F
   const data: FeedData = {
     status: null, url: null, statusText: null, feedtitle: null, items: null
   };
-  const fetch$ = from(fetch(queryUrl, {
-    method: 'GET', // *GET, POST, PUT, DELETE, etc.
-    mode: 'cors', // no-cors, *cors, same-origin
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-  }));
+  const fetch$ = from(fetchData(url));
   return fetch$.pipe(
     tap(
       (response: Response) => {
@@ -66,6 +76,11 @@ function loadFeedDataInternal(url: string, withStatistic: boolean): Observable<F
       }
     )
   );
+}
+
+
+export async function loadFeedData(url: string, withStatistic: boolean): Promise<FeedData> {
+  return await lastValueFrom(loadFeedDataInternal(url, withStatistic));
 }
 
 export async function loadFeedRanking(url: string): Promise<StatisticData[]> {

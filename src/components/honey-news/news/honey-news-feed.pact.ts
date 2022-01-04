@@ -1,8 +1,7 @@
 import {Interaction, Pact} from "@pact-foundation/pact"
 import {eachLike} from "@pact-foundation/pact/src/dsl/matchers";
-// import {fetchData} from "../../../fetch-es6.worker";
 import path from "path";
-import {fetchData, fetchDataAxios} from "../../../fetch-es6.worker";
+import {fetchDataAxios} from "../../../fetch-es6.worker";
 
 
 // const { PactV3, MatchersV3 } = require('@pact-foundation/pact');

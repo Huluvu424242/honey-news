@@ -37,7 +37,7 @@
     "test:local": "PWDEBUG=console playwright test",
     "test:win": "concurrently \"npm start\" \"set PWDEBUG=console && playwright test\"",
     "test": "playwright test",
-    "test:pact": "npx jest src/components/honey-news/news/honey-news-feed.pact.spec.ts",
+    "test:pact": "npx jest .*.pact.ts",
     "test:e2e": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",

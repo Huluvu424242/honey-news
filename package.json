@@ -34,11 +34,9 @@
   "scripts": {
     "build": "stencil build --docs",
     "start": "stencil build --dev --watch --serve",
-    "test:local": "PWDEBUG=console playwright test",
-    "test:win": "concurrently \"npm start\" \"set PWDEBUG=console && playwright test\"",
-    "test": "echo todo",
+    "test": "npm run test:cdc && npm run test:e2e",
     "test:cdc": "npx jest .*.pact.ts",
-    "test:e2e": "npm install;npm run build --if-present;npm start &;sleep 10;npx playwright test --grep-invert @local;kill %1",
+    "test:e2e": "./test.sh",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
     "prepare-deliver": "npm run build",

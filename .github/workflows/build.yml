@@ -31,6 +31,6 @@ jobs:
         CI: true
     - name: cdc tests (pact)
       run: |
-        npm run test:cdc
+        npx jest .*.pact.ts
       env:
         CI: true

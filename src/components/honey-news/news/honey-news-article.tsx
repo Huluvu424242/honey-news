@@ -22,7 +22,7 @@ export class HoneyNewsArticle {
   render() {
     return (
       <honey-article>
-        <a slot="title" href={this.article.link} target="_blank">{this.article.title}</a>
+        <a slot="title" href={this.article.link} target="_blank" rel="noopener noreferrer">{this.article.title}</a>
         <span slot="subtitle">
             {this.article.subtitle}
           </span>

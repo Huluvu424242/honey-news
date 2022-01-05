@@ -119,7 +119,7 @@ export class HoneyNavbarBulma {
 
               <a role="button"
                  href="https://github.com/Huluvu424242/honey-news"
-                 target="_blank" class="navbar-item">Github</a>
+                 target="_blank" rel="noopener noreferrer" class="navbar-item">Github</a>
 
             </div>
           </div>

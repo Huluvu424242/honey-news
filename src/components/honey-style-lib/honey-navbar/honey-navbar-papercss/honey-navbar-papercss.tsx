@@ -73,7 +73,7 @@ export class HoneyNavbarPapercss {
                 </li>
                 <li><a href="/about" onClick={this.navigateTo} class={this.classNavLink("/about")}>About</a></li>
                 <li><a href="https://github.com/Huluvu424242/honey-news"
-                       target="_blank" class="is-primary button">Github</a></li>
+                       target="_blank" rel="noopener noreferrer" class="is-primary button">Github</a></li>
               </ul>
             </div>
           </div>

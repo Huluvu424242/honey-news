@@ -50,7 +50,7 @@ export class HoneyNewsStatistic {
             {this.statistic?.map((item: StatisticData) =>
               <tr>
                 <td>{item.score}</td>
-                <td><a href={item.url} target="_blank">{item.url}</a></td>
+                <td><a href={item.url} target="_blank" rel="noopener noreferrer">{item.url}</a></td>
                 <td>{item.countRequested}</td>
                 <td>{item.countContacted}</td>
                 <td>{item.countResponseOK}</td>

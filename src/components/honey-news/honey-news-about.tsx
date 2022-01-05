@@ -57,12 +57,12 @@ export class HoneyNewsAbout {
             Projekten
             bemühen.
             <ul>
-              <li><a href="https://heroku.com" target="_blank">Heroku.com</a></li>
-              <li><a href="https://github.com" target="_blank">Github.com</a></li>
-              <li><a href="https://travis-ci.com" target="_blank">Travis-ci.com</a></li>
-              <li><a href="https://bintray.com" target="_blank">Bintray.com</a></li>
-              <li><a href="https://sourceforge.net" target="_blank">Sourceforge.net</a></li>
-              <li><a href="https://www.openhub.net" target="_blank">Ohloh (openhub.net)</a></li>
+              <li><a href="https://heroku.com" target="_blank" rel="noopener noreferrer">Heroku.com</a></li>
+              <li><a href="https://github.com" target="_blank" rel="noopener noreferrer">Github.com</a></li>
+              <li><a href="https://travis-ci.com" target="_blank" rel="noopener noreferrer">Travis-ci.com</a></li>
+              <li><a href="https://bintray.com" target="_blank" rel="noopener noreferrer">Bintray.com</a></li>
+              <li><a href="https://sourceforge.net" target="_blank" rel="noopener noreferrer">Sourceforge.net</a></li>
+              <li><a href="https://www.openhub.net" target="_blank" rel="noopener noreferrer">Ohloh (openhub.net)</a></li>
               <li> und viele weitere</li>
             </ul>
           </p>

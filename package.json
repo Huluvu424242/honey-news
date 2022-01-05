@@ -48,24 +48,21 @@
     "node": "16.13.1"
   },
   "dependencies": {
+    "dompurify": "2.3.4",
     "@huluvu424242/liona-feeds": "2.3.3",
     "feedme": "2.0.2",
     "object-hash": "2.2.0",
-    "rxjs": "7.4.0"
+    "rxjs": "7.4.0",
+    "axios": "0.24.0"
   },
   "devDependencies": {
-    "node-fetch": "3.1.0",
-    "concurrently":"6.5.1",
     "@stencil/core": "2.12.0",
     "@stencil/store": "1.5.0",
     "@types/jest": "27.0.3",
     "@playwright/test": "1.17.1",
     "jest": "27.4.5",
     "jest-cli": "27.4.5",
-    "babel-jest": "27.4.5",
-    "axios": "0.24.0",
     "@babel/preset-env": "7.16.7",
-    "@babel/preset-modules": "0.1.5",
     "@babel/preset-typescript": "7.16.7",
     "jest-playwright-preset": "1.7.0",
     "playwright": "1.17.1",

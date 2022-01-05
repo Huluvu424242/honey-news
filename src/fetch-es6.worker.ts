@@ -5,7 +5,7 @@ import {catchError, filter, map, mergeMap, switchMap, tap, toArray} from "rxjs/o
 import {Logger} from "./shared/logger";
 import {StatisticData} from "@huluvu424242/liona-feeds/dist/esm/feeds/statistic";
 import {PipeOperators} from "./shared/PipeOperators";
-
+import axios, {AxiosResponse} from "axios";
 
 export interface Post {
   hashcode: string;
@@ -25,9 +25,72 @@ export interface FeedData {
   items: FeedItem[];
 }
 
+export interface BackendResponse {
+  fetchResponse: Response;
+  axiosResponse: AxiosResponse;
+  getStatus():number;
+  getStatusText():string;
+  getData():Promise<any>;
+}
 
-export async function loadFeedData(url: string, withStatistic: boolean): Promise<FeedData> {
-  return await lastValueFrom(loadFeedDataInternal(url, withStatistic));
+export class BackendResponseImpl implements BackendResponse{
+  fetchResponse: Response;
+  axiosResponse: AxiosResponse;
+
+  constructor(fetchResponse: Response, axiosResponse: AxiosResponse) {
+    this.fetchResponse = fetchResponse;
+    this.axiosResponse = axiosResponse;
+  }
+
+  getStatus(): number {
+    if (this.fetchResponse) {
+      return this.fetchResponse.status;
+    } else {
+      return this.axiosResponse.status;
+    }
+  }
+
+  getStatusText(): string {
+    if (this.fetchResponse) {
+      return this.fetchResponse.statusText;
+    } else {
+      return this.axiosResponse.statusText;
+    }
+  }
+
+  async getData(): Promise<any> {
+    if (this.fetchResponse) {
+      return await this.fetchResponse.json();
+    } else {
+      return this.axiosResponse.data;
+    }
+  }
+}
+
+function fetchDataAxiosAPI(queryUrl: string): Promise<AxiosResponse<any>> {
+  return axios.get<AxiosResponse>(queryUrl, {
+    headers: {
+      "Accept": "application/json"
+    }
+  });
+}
+
+
+function fetchDataFetchAPI(queryUrl: string): Promise<Response> {
+  return fetch(queryUrl, {
+    method: 'GET', // *GET, POST, PUT, DELETE, etc.
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+  });
+}
+
+export async function fetchData(queryUrl: string): Promise<BackendResponse> {
+  // Workaround for  pact-js framework with fetch API: fetch is not defined
+  const isWorkaroundActive = true;
+  if (isWorkaroundActive) {
+    return new BackendResponseImpl(null, await fetchDataAxiosAPI(queryUrl));
+  } else {
+    return new BackendResponseImpl(await fetchDataFetchAPI(queryUrl), null);
+  }
 }
 
 function loadFeedDataInternal(url: string, withStatistic: boolean): Observable<FeedData> {
@@ -42,21 +105,17 @@ function loadFeedDataInternal(url: string, withStatistic: boolean): Observable<F
   const data: FeedData = {
     status: null, url: null, statusText: null, feedtitle: null, items: null
   };
-  const fetch$ = from(fetch(queryUrl, {
-    method: 'GET', // *GET, POST, PUT, DELETE, etc.
-    mode: 'cors', // no-cors, *cors, same-origin
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-  }));
+  const fetch$ = from(fetchData(queryUrl));
   return fetch$.pipe(
     tap(
-      (response: Response) => {
-        data.status = response.status;
-        data.statusText = response.statusText;
+      (response: BackendResponse) => {
+        data.status = response.getStatus();
+        data.statusText = response.getStatusText();
         data.url = queryUrl;
       }
     ),
     switchMap(
-      (response: Response) => from(response.json()).pipe(catchError(() => EMPTY))
+      (response: BackendResponse) => from(response.getData()).pipe(catchError(() => EMPTY))
     ),
     map(
       (feed: Feed) => {
@@ -68,12 +127,17 @@ function loadFeedDataInternal(url: string, withStatistic: boolean): Observable<F
   );
 }
 
+
+export async function loadFeedData(url: string, withStatistic: boolean): Promise<FeedData> {
+  return await lastValueFrom(loadFeedDataInternal(url, withStatistic));
+}
+
 export async function loadFeedRanking(url: string): Promise<StatisticData[]> {
-  return await lastValueFrom(from(fetch(url))
+  return await lastValueFrom(from(fetchData(url))
     .pipe(
       catchError(() => EMPTY),
       switchMap(
-        (response: Response) => from(response.json()).pipe(catchError(() => EMPTY))
+        (response: BackendResponse) => from(response.getData()).pipe(catchError(() => EMPTY))
       ),
       filter(
         (rawData: any) => Array.isArray(rawData)
@@ -99,7 +163,7 @@ export async function loadFeedRanking(url: string): Promise<StatisticData[]> {
 }
 
 export async function getFeedsSingleCall(feedURLs: string[], withStatistic: boolean): Promise<Post[]> {
-  return await lastValueFrom(from(feedURLs).pipe(
+  return lastValueFrom(from(feedURLs).pipe(
     mergeMap(
       (url: string) => {
         Logger.debugMessage("### frage url " + url);

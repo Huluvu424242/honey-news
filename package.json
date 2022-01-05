@@ -54,6 +54,7 @@
     "rxjs": "7.4.0"
   },
   "devDependencies": {
+    "node-fetch": "3.1.0",
     "concurrently":"6.5.1",
     "@stencil/core": "2.12.0",
     "@stencil/store": "1.5.0",

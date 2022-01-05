@@ -1,10 +1,11 @@
 import {Interaction, Pact} from "@pact-foundation/pact"
 import {eachLike} from "@pact-foundation/pact/src/dsl/matchers";
 import path from "path";
-import {fetchDataAxios} from "../../../fetch-es6.worker";
+import {fetchData} from "../../../fetch-es6.worker";
 
-
-// const { PactV3, MatchersV3 } = require('@pact-foundation/pact');
+/**
+ * @jest-environment jsdom
+ */
 describe('CDC with Feed API', () => {
 
 
@@ -93,8 +94,8 @@ describe('CDC with Feed API', () => {
     });
 
     it("returns the correct response", done => {
-      fetchDataAxios(url + ":" + port + "/feed?url=https://www.deutschlandfunk.de/die-nachrichten.353.de.rss&statistic=true").then((response) => {
-        expect(response.data[0]).toStrictEqual(responseExample);
+      fetchData(url + ":" + port + "/feed?url=https://www.deutschlandfunk.de/die-nachrichten.353.de.rss&statistic=true").then((response) => {
+        expect(response.getData()).toStrictEqual(responseExample);
         done();
       }, done)
     });

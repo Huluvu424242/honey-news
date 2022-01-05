@@ -93,11 +93,10 @@ describe('CDC with Feed API', () => {
       return provider.addInteraction(interaction);
     });
 
-    it("returns the correct response", done => {
-      fetchData(url + ":" + port + "/feed?url=https://www.deutschlandfunk.de/die-nachrichten.353.de.rss&statistic=true").then((response) => {
-        expect(response.getData()).toStrictEqual(responseExample);
-        done();
-      }, done)
+    it("returns the correct response", async () => {
+      const response = await fetchData(url + ":" + port + "/feed?url=https://www.deutschlandfunk.de/die-nachrichten.353.de.rss&statistic=true");
+      const data = await response.getData();
+      expect(data[0]).toStrictEqual(responseExample);
     });
   });
 

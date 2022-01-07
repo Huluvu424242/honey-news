@@ -32,7 +32,7 @@ export class HoneyDisclaimerPapercss {
               <div class="background-warning">
                 <slot name="slot2"/>
               </div>
-              <label class="paper-btn btn-close" htmlFor="alert-1">X</label>
+              <label class="paper-btn btn-close" htmlFor="alert-1" onClick={this.commitReading.bind(this)}>X</label>
             </div>
           </div>
           : ""}

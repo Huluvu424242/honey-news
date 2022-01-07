@@ -70,7 +70,7 @@ export class BackendResponseImpl implements BackendResponse{
 function fetchDataAxiosAPI(queryUrl: string): Promise<AxiosResponse<any>> {
   return axios.get<AxiosResponse>(queryUrl, {
     headers: {
-      "Accept": "application/json"
+      "Accept": "application/json, application/rss+xml, application/xml, application/xhtml+xml, text/xtml"
     }
   });
 }

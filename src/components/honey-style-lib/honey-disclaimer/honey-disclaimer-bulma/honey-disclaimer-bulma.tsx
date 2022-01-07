@@ -1,4 +1,5 @@
 import {Component, h, Host, State} from '@stencil/core';
+import {honeyDisclaimerState} from "../honey-disclaimer-state";
 
 
 @Component({
@@ -8,11 +9,14 @@ import {Component, h, Host, State} from '@stencil/core';
 export class HoneyDisclaimerBulma {
 
 
-  @State() showed = true;
+  // @State needed for rerendering by state change
+  @State() showed = { state: honeyDisclaimerState};
 
 
   commitReading() {
-    this.showed = false;
+    this.showed.state.setToUserHasRead();
+    // change the ref to trigger rerendering
+    this.showed = { state: honeyDisclaimerState};
   }
 
   render() {
@@ -22,7 +26,7 @@ export class HoneyDisclaimerBulma {
       <Host>
         <honey-apply-style/>
 
-        {this.showed === true ?
+        {!this.showed.state.wasDisclaimerRead() ?
           <article class="message is-warning has-background-warning-light">
             <div class="message-header">
               <slot name="slot1">

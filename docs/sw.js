@@ -35,7 +35,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "cd92a39d710ec0f9609b7160ced7f918"
+    "revision": "c7f5d3e97925fda59af5110df41b3a3f"
   },
   {
     "url": "build/index.esm.js",

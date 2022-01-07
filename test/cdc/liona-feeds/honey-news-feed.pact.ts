@@ -1,7 +1,7 @@
 import {Interaction, Pact} from "@pact-foundation/pact"
 import {eachLike} from "@pact-foundation/pact/src/dsl/matchers";
 import path from "path";
-import {fetchData} from "../../../fetch-es6.worker";
+import {fetchData} from "../../../src/fetch-es6.worker";
 
 /**
  * @jest-environment jsdom

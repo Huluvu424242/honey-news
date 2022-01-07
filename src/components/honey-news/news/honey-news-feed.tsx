@@ -71,13 +71,13 @@ export class HoneyNewsFeed {
 
 
   protected initialisiereUrls() {
+    // http://kenfm.de/feed/ -> https://apolut.net/feed/
     const predefinedURLs: string[] = [
       "https://www.presseportal.de/rss/presseportal.rss2",
       "https://www.tagesschau.de/xml/atom/",
       "https://www.zdf.de/rss/zdf/nachrichten",
       "http://newsrss.bbc.co.uk/rss/newsonline_uk_edition/england/london/rss.xml",
       "https://tass.ru/en/rss/v2.xml",
-      "http://kenfm.de/feed/",
       "https://dev.to/feed/",
       "https://media.ccc.de/news.atom",
       "https://media.ccc.de/updates.rdf",
@@ -92,7 +92,8 @@ export class HoneyNewsFeed {
       "https://www.heise.de/rss/heise.rdf",
       "https://codepen.io/spark/feed",
       "https://www.hongkiat.com/blog/feed/",
-      "https://www.tagesspiegel.de/contentexport/feed/home"
+      "https://www.tagesspiegel.de/contentexport/feed/home",
+      "https://apolut.net/feed/"
     ];
     from(predefinedURLs).pipe(
       tap(

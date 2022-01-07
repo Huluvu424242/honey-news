@@ -127,11 +127,6 @@ function loadFeedDataInternal(url: string, withStatistic: boolean): Observable<F
   );
 }
 
-
-export async function loadFeedData(url: string, withStatistic: boolean): Promise<FeedData> {
-  return await lastValueFrom(loadFeedDataInternal(url, withStatistic));
-}
-
 export async function loadFeedRanking(url: string): Promise<StatisticData[]> {
   return await lastValueFrom(from(fetchData(url))
     .pipe(
@@ -167,7 +162,7 @@ export async function getFeedsSingleCall(feedURLs: string[], withStatistic: bool
     mergeMap(
       (url: string) => {
         Logger.debugMessage("### frage url " + url);
-        return from(loadFeedDataInternal(url, withStatistic)).pipe(catchError(() => EMPTY));
+        return loadFeedDataInternal(url, withStatistic).pipe(catchError(() => EMPTY));
       }
     ),
     mergeMap(

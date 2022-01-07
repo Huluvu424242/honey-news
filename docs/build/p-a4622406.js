@@ -1,0 +1,1 @@
+const s=new class{constructor(){this.wasRead=!1}wasDisclaimerRead(){return this.wasRead}setToUserHasRead(){this.wasRead=!0}};export{s as h}

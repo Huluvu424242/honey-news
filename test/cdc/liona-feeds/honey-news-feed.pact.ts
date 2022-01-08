@@ -97,7 +97,7 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
           headers: {
             "Content-Type": "application/json; charset=utf-8",
           },
-          body: like(RESPONSE_RSS2_0),
+          body: RESPONSE_RSS2_0,
         });
 
       // Test ausführen

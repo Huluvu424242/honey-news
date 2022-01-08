@@ -17,28 +17,24 @@ const {
 /**
  * @jest-environment jsdom
  */
-describe('CDC with Feed API', () => {
+describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
 
+  const options: PactV3Options = {
+    port: 1234,
+    dir: path.resolve(process.cwd(), "contracts"),
+    //   log: path.resolve(process.cwd(), "logs", "mockserver-integration.log"),
+    consumer: "@huluvu424242>honey-news/",
+    provider: "@huluvu424242>liona-feeds",
+  };
 
-  const HOST: string = "localhost";
-  const PORT: number = 1234;
-  const URL: string = "http://" + HOST + ":" + PORT;
+  let provider: PactV3;
+
   const ACCEPT_HEADER: string = MatchersV3.like(
     "application/json",
     "application/rss+xml",
     "application/xml",
     "application/xhtml+xml",
     "text/xtml")
-
-
-  const options: PactV3Options = {
-    port: PORT,
-    dir: path.resolve(process.cwd(), "pacts"),
-    //   log: path.resolve(process.cwd(), "logs", "mockserver-integration.log"),
-    consumer: "@huluvu424242/honey-news",
-    provider: "@huluvu424242/lione-feeds",
-  };
-  const provider = new PactV3(options);
 
   const RESPONSE_RSS2_0 = {
     "type": "rss 2.0",
@@ -77,14 +73,17 @@ describe('CDC with Feed API', () => {
   };
 
 
-  describe("get https://huluvu424242.herokuapp.com/feed?url=https://www.deutschlandfunk.de/die-nachrichten.353.de.rss&statistic=true from backend", () => {
+  describe("@huluvu424242/liona-feeds", () => {
 
     beforeAll(async () => {
+      provider = new PactV3(options);
+      const HOST: string = "localhost";
+      const PORT:number  = options.port;
+      const URL:string = "http://" + HOST + ":" + PORT;
       await changeLionaFeedsAPIUrlTo(URL);
-
     });
 
-    it("returns the correct response", () => {
+    it("Abruf eines RSS 2.0 Feeds", () => {
 
       // Vorbedingung herstellen (Contract definieren)
       // PACT Matchers verwenden

@@ -72,7 +72,7 @@ export class BackendResponseImpl implements BackendResponse {
     if (this.fetchResponse) {
       return await this.fetchResponse.json();
     } else {
-      return this.axiosResponse.data[0];
+      return await this.axiosResponse.data;
     }
   }
 }
@@ -93,19 +93,23 @@ function fetchDataFetchAPI(queryUrl: string): Promise<Response> {
   });
 }
 
-export async function fetchData(queryUrl: string): Promise<BackendResponse> {
+async function fetchData(queryUrl: string): Promise<BackendResponse> {
   // Workaround for  pact-js framework with fetch API: fetch is not defined
   const isWorkaroundActive = true;
+  let fetchResponse: Response;
+  let axiosResponse: AxiosResponse;
   if (isWorkaroundActive) {
-    return new BackendResponseImpl(null, await fetchDataAxiosAPI(queryUrl));
+    axiosResponse = await fetchDataAxiosAPI(queryUrl);
   } else {
-    return new BackendResponseImpl(await fetchDataFetchAPI(queryUrl), null);
+    fetchResponse = await fetchDataFetchAPI(queryUrl);
   }
+  return new BackendResponseImpl(fetchResponse, axiosResponse);
+
 }
 
 function loadFeedDataInternal(url: string, withStatistic: boolean): Observable<FeedData> {
   let queryUrl: string;
-  console.log("### API URL"+LIONA_FEEDS_API.url);
+  console.log("### API URL" + LIONA_FEEDS_API.url);
   if (withStatistic) {
     queryUrl = LIONA_FEEDS_API.url + "?url=" + url + "&statistic=true";
   } else {

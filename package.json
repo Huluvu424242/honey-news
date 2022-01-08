@@ -45,32 +45,34 @@
     "check-credits": "npx license-checker --failOn 'AGPL' --production >credits.txt"
   },
   "engines": {
-    "node": "16.13.1"
+    "node": "16.0.0"
   },
   "dependencies": {
-    "dompurify": "2.3.4",
     "@huluvu424242/liona-feeds": "2.3.3",
+    "axios": "0.24.0",
+    "dompurify": "2.3.4",
     "feedme": "2.0.2",
     "object-hash": "2.2.0",
-    "rxjs": "7.5.1",
-    "axios": "0.24.0"
+    "rxjs": "7.5.1"
   },
   "devDependencies": {
+    "@babel/preset-env": "7.16.7",
+    "@babel/preset-typescript": "7.16.7",
+    "@pact-foundation/pact": "10.0.0-beta.54",
+    "@playwright/test": "1.17.1",
     "@stencil/core": "2.12.1",
     "@stencil/store": "1.5.0",
     "@types/jest": "27.4.0",
-    "@playwright/test": "1.17.1",
+    "expect-playwright": "0.8.0",
     "jest": "27.4.7",
     "jest-cli": "27.4.7",
-    "@babel/preset-env": "7.16.7",
-    "@babel/preset-typescript": "7.16.7",
     "jest-playwright-preset": "1.7.0",
+    "license-checker": "25.0.1",
     "playwright": "1.17.1",
-    "expect-playwright": "0.8.0",
-    "@pact-foundation/pact": "9.17.1",
     "ts-node": "10.4.0",
     "typescript": "4.5.4",
     "workbox-build": "4.3.1",
-    "license-checker": "25.0.1"
+    "node-gyp": "^8.4.1",
+    "node-gyp-build": "^4.3.0"
   }
 }

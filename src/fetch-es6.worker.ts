@@ -7,6 +7,13 @@ import {StatisticData} from "@huluvu424242/liona-feeds/dist/esm/feeds/statistic"
 import {PipeOperators} from "./shared/PipeOperators";
 import axios, {AxiosResponse} from "axios";
 
+const LIONA_FEEDS_API = {url: "https://huluvu424242.herokuapp.com/feed"};
+
+export async function changeLionaFeedsAPIUrlTo(url: string): Promise<void> {
+  LIONA_FEEDS_API.url = url;
+}
+
+
 export interface Post {
   hashcode: string;
   queryurl: string;
@@ -28,12 +35,15 @@ export interface FeedData {
 export interface BackendResponse {
   fetchResponse: Response;
   axiosResponse: AxiosResponse;
-  getStatus():number;
-  getStatusText():string;
-  getData():Promise<any>;
+
+  getStatus(): number;
+
+  getStatusText(): string;
+
+  getData(): Promise<any>;
 }
 
-export class BackendResponseImpl implements BackendResponse{
+export class BackendResponseImpl implements BackendResponse {
   fetchResponse: Response;
   axiosResponse: AxiosResponse;
 
@@ -62,12 +72,12 @@ export class BackendResponseImpl implements BackendResponse{
     if (this.fetchResponse) {
       return await this.fetchResponse.json();
     } else {
-      return this.axiosResponse.data;
+      return this.axiosResponse.data[0];
     }
   }
 }
 
-function fetchDataAxiosAPI(queryUrl: string): Promise<AxiosResponse<any>> {
+function fetchDataAxiosAPI(queryUrl: string): Promise<AxiosResponse> {
   return axios.get<AxiosResponse>(queryUrl, {
     headers: {
       "Accept": "application/json, application/rss+xml, application/xml, application/xhtml+xml, text/xtml"
@@ -94,12 +104,12 @@ export async function fetchData(queryUrl: string): Promise<BackendResponse> {
 }
 
 function loadFeedDataInternal(url: string, withStatistic: boolean): Observable<FeedData> {
-  const backendUrl: string = "https://huluvu424242.herokuapp.com/feed";
   let queryUrl: string;
+  console.log("### API URL"+LIONA_FEEDS_API.url);
   if (withStatistic) {
-    queryUrl = backendUrl + "?url=" + url + "&statistic=true";
+    queryUrl = LIONA_FEEDS_API.url + "?url=" + url + "&statistic=true";
   } else {
-    queryUrl = backendUrl + "?url=" + url;
+    queryUrl = LIONA_FEEDS_API.url + "?url=" + url;
   }
   Logger.debugMessage("###query url " + queryUrl);
   const data: FeedData = {

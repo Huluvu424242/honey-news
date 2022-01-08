@@ -7,6 +7,13 @@ import {StatisticData} from "@huluvu424242/liona-feeds/dist/esm/feeds/statistic"
 import {PipeOperators} from "./shared/PipeOperators";
 import axios, {AxiosResponse} from "axios";
 
+const LIONA_FEEDS_API = {url: "https://huluvu424242.herokuapp.com/feed"};
+
+export async function changeLionaFeedsAPIUrlTo(url: string): Promise<void> {
+  LIONA_FEEDS_API.url = url;
+}
+
+
 export interface Post {
   hashcode: string;
   queryurl: string;
@@ -28,12 +35,15 @@ export interface FeedData {
 export interface BackendResponse {
   fetchResponse: Response;
   axiosResponse: AxiosResponse;
-  getStatus():number;
-  getStatusText():string;
-  getData():Promise<any>;
+
+  getStatus(): number;
+
+  getStatusText(): string;
+
+  getData(): Promise<any>;
 }
 
-export class BackendResponseImpl implements BackendResponse{
+export class BackendResponseImpl implements BackendResponse {
   fetchResponse: Response;
   axiosResponse: AxiosResponse;
 
@@ -62,15 +72,15 @@ export class BackendResponseImpl implements BackendResponse{
     if (this.fetchResponse) {
       return await this.fetchResponse.json();
     } else {
-      return this.axiosResponse.data;
+      return await this.axiosResponse.data;
     }
   }
 }
 
-function fetchDataAxiosAPI(queryUrl: string): Promise<AxiosResponse<any>> {
+function fetchDataAxiosAPI(queryUrl: string): Promise<AxiosResponse> {
   return axios.get<AxiosResponse>(queryUrl, {
     headers: {
-      "Accept": "application/json"
+      "Accept": "application/json, application/rss+xml, application/xml, application/xhtml+xml, text/xtml"
     }
   });
 }
@@ -83,23 +93,27 @@ function fetchDataFetchAPI(queryUrl: string): Promise<Response> {
   });
 }
 
-export async function fetchData(queryUrl: string): Promise<BackendResponse> {
+async function fetchData(queryUrl: string): Promise<BackendResponse> {
   // Workaround for  pact-js framework with fetch API: fetch is not defined
   const isWorkaroundActive = true;
+  let fetchResponse: Response;
+  let axiosResponse: AxiosResponse;
   if (isWorkaroundActive) {
-    return new BackendResponseImpl(null, await fetchDataAxiosAPI(queryUrl));
+    axiosResponse = await fetchDataAxiosAPI(queryUrl);
   } else {
-    return new BackendResponseImpl(await fetchDataFetchAPI(queryUrl), null);
+    fetchResponse = await fetchDataFetchAPI(queryUrl);
   }
+  return new BackendResponseImpl(fetchResponse, axiosResponse);
+
 }
 
 function loadFeedDataInternal(url: string, withStatistic: boolean): Observable<FeedData> {
-  const backendUrl: string = "https://huluvu424242.herokuapp.com/feed";
   let queryUrl: string;
+  console.log("### API URL" + LIONA_FEEDS_API.url);
   if (withStatistic) {
-    queryUrl = backendUrl + "?url=" + url + "&statistic=true";
+    queryUrl = LIONA_FEEDS_API.url + "?url=" + url + "&statistic=true";
   } else {
-    queryUrl = backendUrl + "?url=" + url;
+    queryUrl = LIONA_FEEDS_API.url + "?url=" + url;
   }
   Logger.debugMessage("###query url " + queryUrl);
   const data: FeedData = {
@@ -125,11 +139,6 @@ function loadFeedDataInternal(url: string, withStatistic: boolean): Observable<F
       }
     )
   );
-}
-
-
-export async function loadFeedData(url: string, withStatistic: boolean): Promise<FeedData> {
-  return await lastValueFrom(loadFeedDataInternal(url, withStatistic));
 }
 
 export async function loadFeedRanking(url: string): Promise<StatisticData[]> {
@@ -167,7 +176,7 @@ export async function getFeedsSingleCall(feedURLs: string[], withStatistic: bool
     mergeMap(
       (url: string) => {
         Logger.debugMessage("### frage url " + url);
-        return from(loadFeedDataInternal(url, withStatistic)).pipe(catchError(() => EMPTY));
+        return loadFeedDataInternal(url, withStatistic).pipe(catchError(() => EMPTY));
       }
     ),
     mergeMap(

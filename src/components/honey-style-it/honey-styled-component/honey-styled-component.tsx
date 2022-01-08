@@ -1,4 +1,4 @@
-import {Component, h, Prop, State} from '@stencil/core';
+import {Component, h, JSX, Prop, State} from '@stencil/core';
 import {HoneyDefineStyle} from "../honey-define-style/honey-define-style";
 import {EMPTY, Subscription} from "rxjs";
 import {printDebug, printError, ThemeListener} from "../../shared/helper";
@@ -76,11 +76,11 @@ export class HoneyStyledComponent {
     return themeName.trim();
   }
 
-  getSlotlist(): HTMLSlotElement[] {
+  getSlotlist(): JSX.Element[] {
     if (!this.slotNames || this.slotNames.trim().length < 1) {
-      return (<slot/>);
+      return ([<slot/>]);
     } else {
-      let tags: HTMLSlotElement[] = [];
+      let tags: JSX.Element[] = [];
       this.slotNames.split(",").map((slotName) =>
         tags.push(<slot name={slotName} slot={slotName}>placeholder {slotName}</slot>)
       );
@@ -90,7 +90,7 @@ export class HoneyStyledComponent {
 
   render() {
     const TagName: string = this.getTheme();
-    const slotElements: HTMLSlotElement[] = this.getSlotlist();
+    const slotElements: JSX.Element[] = this.getSlotlist();
     // Grossbuchstabe für Variable notwendig für JSX
     return (
       <TagName>

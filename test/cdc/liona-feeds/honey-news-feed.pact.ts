@@ -115,9 +115,9 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
             "hashcode": expect.any(String), //"acf94c55f3a08700fcf31074290c5b46fde03b1f",
             "queryurl": mockServer.url + "?url=https://www.deutschlandfunk.de/die-nachrichten.353.de.rss&statistic=true",
             "feedtitle": "\"Deutschlandfunk - Fortlaufende Nachrichten vom 04. Januar 2022\"",
-            "exaktdate": expect.any(Date), //"2022-01-04T22:59:00.000Z",
+            "exaktdate": expect.any(Date), //2022-01-04T22:59:00.000Z,
             "sortdate": "2022#01#04#22#0#Nachts im Norden meist trocken, sonst Regen und Schnee",
-            "pubdate": "4.1.2022, 23:59",
+            "pubdate": expect.any(String), //"4.1.2022, 23:59",
             "item": {
               "description": "<img src=\"https://assets.deutschlandfunk.de/25d736b4-a415-463b-a4fe-35a5ac44acdc/1920x1920.jpg?t=1639821123437\" alt=\"Sternenhimmel über einer verschneiten Landschaft\" title=\"Sternenhimmel über einer verschneiten Landschaft\" width=\"1920\" height=\"1920\" border=\"0\" align=\"left\" hspace=\"4\" vspace=\"4\"/>Der Wetterbericht, die Lage: Am Rand eines Tiefdruckkomplexes über Nordeuropa wird zunächst milde und feuchte Atlantikluft herangeführt. Von Norden greift eine Kaltfront mit polarer Meeresluft über.<br clear=\"all\"/><br/><p><br/></p>",
               "guid": {

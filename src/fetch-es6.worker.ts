@@ -43,7 +43,8 @@ export interface BackendResponse {
   getData(): Promise<any>;
 }
 
-export class BackendResponseImpl implements BackendResponse {
+
+class BackendResponseImpl implements BackendResponse {
   fetchResponse: Response;
   axiosResponse: AxiosResponse;
 
@@ -80,7 +81,7 @@ export class BackendResponseImpl implements BackendResponse {
 function fetchDataAxiosAPI(queryUrl: string): Promise<AxiosResponse> {
   return axios.get<AxiosResponse>(queryUrl, {
     headers: {
-      "Accept": "application/json, application/rss+xml, application/xml, application/xhtml+xml, text/xtml"
+      "Accept": "application/json, application/rss+xml, application/rss+xml; charset=UTF-8, application/xml, application/xhtml+xml, text/xtml"
     }
   });
 }

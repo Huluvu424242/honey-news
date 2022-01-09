@@ -43,7 +43,8 @@ export interface BackendResponse {
   getData(): Promise<any>;
 }
 
-export class BackendResponseImpl implements BackendResponse {
+
+class BackendResponseImpl implements BackendResponse {
   fetchResponse: Response;
   axiosResponse: AxiosResponse;
 

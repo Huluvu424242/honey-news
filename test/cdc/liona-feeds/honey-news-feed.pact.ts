@@ -81,8 +81,8 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
       // Vorbedingung herstellen (Contract definieren)
       // PACT Matchers verwenden
       provider
-        .given("Frage Deutschlandfunk News ab")
-        .uponReceiving("mit einem Request für alle News und eingeschalteter Statistic")
+        .given("Frage News Feeds ab")
+        .uponReceiving("Alle News mit eingeschalteter Statistic")
         .withRequest({
           method: "GET",
           path: "/",

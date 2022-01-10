@@ -19,11 +19,11 @@ npm install --save @huluvu424242/honey-news
 ```html
 <script 
     type="module" 
-    src='https://unpkg.com/@huluvu424242/honey-news@0.0.6/dist/honey-news/honey-news.esm.js'>
+    src='https://unpkg.com/@huluvu424242/honey-news@0.0.7/dist/honey-news/honey-news.esm.js'>
 </script>
 <script 
     nomodule 
-    src='https://unpkg.com/@huluvu424242/honey-news@0.0.6/dist/honey-news/honey-news.js'>
+    src='https://unpkg.com/@huluvu424242/honey-news@0.0.7/dist/honey-news/honey-news.js'>
 </script>
 ```
 To the [demo site](https://huluvu424242.github.io/honey-news/index.html)

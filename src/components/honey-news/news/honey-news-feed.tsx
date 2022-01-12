@@ -79,6 +79,7 @@ export class HoneyNewsFeed {
       "http://newsrss.bbc.co.uk/rss/newsonline_uk_edition/england/london/rss.xml",
       "https://tass.ru/en/rss/v2.xml",
       "https://dev.to/feed/",
+      "https://blog.malwarebytes.com/feed/",
       "https://media.ccc.de/news.atom",
       "https://media.ccc.de/updates.rdf",
       "https://media.ccc.de/c/wikidatacon2019/podcast/webm-hq.xml",

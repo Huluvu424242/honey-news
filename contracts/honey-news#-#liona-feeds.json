@@ -1,6 +1,6 @@
 {
   "consumer": {
-    "name": "@huluvu424242>honey-news/"
+    "name": "honey-news#"
   },
   "interactions": [
     {
@@ -147,6 +147,6 @@
     }
   },
   "provider": {
-    "name": "@huluvu424242>liona-feeds"
+    "name": "#liona-feeds"
   }
 }

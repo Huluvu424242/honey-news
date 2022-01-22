@@ -24,8 +24,8 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
     // port: 1234, wird dynamisch vom server ermittelt
     dir: path.resolve(process.cwd(), "contracts"),
     //   log: path.resolve(process.cwd(), "logs", "mockserver-integration.log"),
-    consumer: "honey-news",
-    provider: "liona-feeds",
+    consumer: "honey-news#",
+    provider: "#liona-feeds",
   };
 
   const provider: PactV3 = new PactV3(OPTIONS);

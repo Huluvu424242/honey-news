@@ -1,6 +1,5 @@
 import path from "path";
-import {changeLionaFeedsAPIUrlTo, getFeedsSingleCall, loadFeedRanking} from "../../../src/fetch-es6.worker";
-import {Post} from "../../../dist/types/fetch-es6.worker";
+import {changeLionaFeedsAPIUrlTo, loadFeedRanking} from "../../../src/fetch-es6.worker";
 import {MatchersV3, PactV3, PactV3Options} from "@pact-foundation/pact/v3";
 import {V3MockServer} from "@pact-foundation/pact/src/v3/pact";
 import {StatisticData} from "@huluvu424242/liona-feeds/dist/esm/feeds/statistic";

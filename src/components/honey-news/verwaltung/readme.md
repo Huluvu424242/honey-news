@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property                  | Attribute | Description                     | Type         | Default     |
-| ------------------------- | --------- | ------------------------------- | ------------ | ----------- |
-| `feedLoader` _(required)_ | --        | Hilfsklasse zum Laden der Daten | `NewsLoader` | `undefined` |
+| Property                  | Attribute | Description                     | Type          | Default     |
+| ------------------------- | --------- | ------------------------------- | ------------- | ----------- |
+| `feedLoader` _(required)_ | --        | Hilfsklasse zum Laden der Daten | `NewsService` | `undefined` |
 
 
 ## Dependencies

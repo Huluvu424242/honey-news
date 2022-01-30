@@ -5,7 +5,8 @@ import {catchError, filter, map, mergeMap, switchMap, tap, toArray} from "rxjs/o
 import {Logger} from "./shared/logger";
 import {StatisticData} from "@huluvu424242/liona-feeds/dist/esm/feeds/statistic";
 import {PipeOperators} from "./shared/PipeOperators";
-import axios, {AxiosResponse} from "axios";
+import {networkService} from "./components/shared/network";
+import {AxiosResponse} from "axios";
 
 const LIONA_FEEDS_API = {url: "https://huluvu424242.herokuapp.com/feed"};
 
@@ -44,70 +45,6 @@ export interface BackendResponse {
 }
 
 
-class BackendResponseImpl implements BackendResponse {
-  fetchResponse: Response;
-  axiosResponse: AxiosResponse;
-
-  constructor(fetchResponse: Response, axiosResponse: AxiosResponse) {
-    this.fetchResponse = fetchResponse;
-    this.axiosResponse = axiosResponse;
-  }
-
-  getStatus(): number {
-    if (this.fetchResponse) {
-      return this.fetchResponse.status;
-    } else {
-      return this.axiosResponse.status;
-    }
-  }
-
-  getStatusText(): string {
-    if (this.fetchResponse) {
-      return this.fetchResponse.statusText;
-    } else {
-      return this.axiosResponse.statusText;
-    }
-  }
-
-  async getData(): Promise<any> {
-    if (this.fetchResponse) {
-      return await this.fetchResponse.json();
-    } else {
-      return await this.axiosResponse.data;
-    }
-  }
-}
-
-function fetchDataAxiosAPI(queryUrl: string): Promise<AxiosResponse> {
-  return axios.get<AxiosResponse>(queryUrl, {
-    headers: {
-      "Accept": "application/json, application/rss+xml, application/rss+xml; charset=UTF-8, application/xml, application/xhtml+xml, text/xtml"
-    }
-  });
-}
-
-
-function fetchDataFetchAPI(queryUrl: string): Promise<Response> {
-  return fetch(queryUrl, {
-    method: 'GET', // *GET, POST, PUT, DELETE, etc.
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-  });
-}
-
-async function fetchData(queryUrl: string): Promise<BackendResponse> {
-  // Workaround for  pact-js framework with fetch API: fetch is not defined
-  const isWorkaroundActive = true;
-  let fetchResponse: Response;
-  let axiosResponse: AxiosResponse;
-  if (isWorkaroundActive) {
-    axiosResponse = await fetchDataAxiosAPI(queryUrl);
-  } else {
-    fetchResponse = await fetchDataFetchAPI(queryUrl);
-  }
-  return new BackendResponseImpl(fetchResponse, axiosResponse);
-
-}
-
 function loadFeedDataInternal(url: string, withStatistic: boolean): Observable<FeedData> {
   let queryUrl: string;
   console.log("### API URL" + LIONA_FEEDS_API.url);
@@ -120,7 +57,7 @@ function loadFeedDataInternal(url: string, withStatistic: boolean): Observable<F
   const data: FeedData = {
     status: null, url: null, statusText: null, feedtitle: null, items: null
   };
-  const fetch$ = from(fetchData(queryUrl));
+  const fetch$ = from(networkService.fetchData(queryUrl));
   return fetch$.pipe(
     tap(
       (response: BackendResponse) => {
@@ -143,7 +80,7 @@ function loadFeedDataInternal(url: string, withStatistic: boolean): Observable<F
 }
 
 export async function loadFeedRanking(url: string): Promise<StatisticData[]> {
-  return await lastValueFrom(from(fetchData(url))
+  return await lastValueFrom(from(networkService.fetchData(url))
     .pipe(
       catchError(() => EMPTY),
       switchMap(

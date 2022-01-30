@@ -65,11 +65,11 @@ export class HoneyNavbarBulma {
         <nav class="navbar" role="navigation" aria-label="main navigation">
           <div class="navbar-brand">
 
-            <button
+            <div
               onClick={() => this.navigateToPath("/")}
               class={this.getItemSelectedClass("/")}
             > RSS/Atom Feed Reader
-            </button>
+            </div>
 
             <a class={"navbar-burger " + this.getBurgerMenuClass()} aria-label="menu" aria-expanded="false"
                data-target="navSubmenu" onClick={() => this.isBurgerActive = !this.isBurgerActive}>

@@ -45,6 +45,38 @@ export interface BackendResponse {
 }
 
 
+
+
+export async function loadFeedRanking(url: string): Promise<StatisticData[]> {
+  return await lastValueFrom(from(networkService.fetchData(url))
+    .pipe(
+      catchError(() => EMPTY),
+      switchMap(
+        (response: BackendResponse) => from(response.getData()).pipe(catchError(() => EMPTY))
+      ),
+      filter(
+        (rawData: any) => Array.isArray(rawData)
+      ),
+      map(
+        (items: any[]) => {
+          const statistics: StatisticData[] = [];
+          items.forEach(
+            (item) => {
+              const statistic: StatisticData = {
+                score: item?.score,
+                url: item?.url,
+                countRequested: item?.countRequested,
+                countContacted: item?.countContacted,
+                countResponseOK: item?.countResponseOK
+              };
+              statistics.push(statistic);
+            }
+          );
+          return statistics;
+        }),
+    ));
+}
+
 function loadFeedDataInternal(url: string, withStatistic: boolean): Observable<FeedData> {
   let queryUrl: string;
   console.log("### API URL" + LIONA_FEEDS_API.url);
@@ -77,36 +109,6 @@ function loadFeedDataInternal(url: string, withStatistic: boolean): Observable<F
       }
     )
   );
-}
-
-export async function loadFeedRanking(url: string): Promise<StatisticData[]> {
-  return await lastValueFrom(from(networkService.fetchData(url))
-    .pipe(
-      catchError(() => EMPTY),
-      switchMap(
-        (response: BackendResponse) => from(response.getData()).pipe(catchError(() => EMPTY))
-      ),
-      filter(
-        (rawData: any) => Array.isArray(rawData)
-      ),
-      map(
-        (items: any[]) => {
-          const statistics: StatisticData[] = [];
-          items.forEach(
-            (item) => {
-              const statistic: StatisticData = {
-                score: item?.score,
-                url: item?.url,
-                countRequested: item?.countRequested,
-                countContacted: item?.countContacted,
-                countResponseOK: item?.countResponseOK
-              };
-              statistics.push(statistic);
-            }
-          );
-          return statistics;
-        }),
-    ));
 }
 
 export async function getFeedsSingleCall(feedURLs: string[], withStatistic: boolean): Promise<Post[]> {

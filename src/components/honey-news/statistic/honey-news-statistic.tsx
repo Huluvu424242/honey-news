@@ -1,7 +1,7 @@
-import {Component, h, Host, Prop, State} from "@stencil/core";
+import {Component, h, Host, State} from "@stencil/core";
 import {Subscription} from "rxjs";
 import {StatisticData} from "@huluvu424242/liona-feeds/dist/esm/feeds/statistic";
-import {StatisticLoader} from "./StatisticLoader";
+import {statisticService} from "./statistic-service";
 
 @Component({
   tag: "honey-news-statistic",
@@ -9,10 +9,6 @@ import {StatisticLoader} from "./StatisticLoader";
   shadow: true
 })
 export class HoneyNewsStatistic {
-  /**
-   * Hilfsklasse zum Laden der Statistic Daten
-   */
-  @Prop() statisticLoader: StatisticLoader;
 
   @State() statistic: StatisticData[];
   statisticSubscription: Subscription;
@@ -26,7 +22,7 @@ export class HoneyNewsStatistic {
   }
 
   protected subscribeStatistics(): Subscription {
-    return this.statisticLoader.subscribeStatistiken()
+    return statisticService.subscribeStatistiken()
       .subscribe((statisticDatas: StatisticData[]) => this.statistic = [...statisticDatas]);
   }
 

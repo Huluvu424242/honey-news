@@ -4,7 +4,7 @@ import {loadFeedRanking} from "../../../fetch-es6.worker";
 import {StatisticData} from "@huluvu424242/liona-feeds/dist/esm/feeds/statistic";
 import {Endpunkt} from "../../shared/endpunkt";
 
-export class StatisticLoader {
+export class StatisticService {
 
   protected statisticEndpunkt: Endpunkt = new Endpunkt("https://huluvu424242.herokuapp.com", null, "/feeds", "");
 
@@ -28,7 +28,12 @@ export class StatisticLoader {
     return await loadFeedRanking(endpunkt.toUrl());
   }
 
+  public getRoute():string{
+    return this.statisticEndpunkt.path;
+  }
 
 }
+
+export const statisticService = new StatisticService();
 
 

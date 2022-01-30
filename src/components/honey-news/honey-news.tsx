@@ -3,7 +3,7 @@ import {Logger} from "../../shared/logger";
 import {Subscription} from "rxjs";
 import {router} from "./routing/SimpleRouter";
 import {NewsLoader} from "./news/NewsLoader";
-import {StatisticLoader} from "./statistic/StatisticLoader";
+import {StatisticService, statisticService} from "./statistic/statistic-service";
 
 @Component({
   tag: "honey-news",
@@ -47,7 +47,7 @@ export class HoneyNews {
    */
   feedLoader: NewsLoader = new NewsLoader([]);
 
-  statisticLoader: StatisticLoader = new StatisticLoader();
+  statisticLoader: StatisticService = statisticService;
 
   public connectedCallback() {
     // attribute initialisieren wenn defaults notwendig
@@ -91,8 +91,8 @@ export class HoneyNews {
 
         {!this.route || this.route === "/" || this.route === "/index.html" || this.route === "/news" ?
           <honey-news-feed feedLoader={this.feedLoader}/> : null}
-        {this.route === "/feeds" ? <honey-news-verwaltung feedLoader={this.feedLoader}/> : null}
-        {this.route === "/statistic" ? <honey-news-statistic statisticLoader={this.statisticLoader}/> : null}
+        {this.route === statisticService.getRoute() ? <honey-news-verwaltung feedLoader={this.feedLoader}/> : null}
+        {this.route === "/statistic" ? <honey-news-statistic/> : null}
         {this.route === "/about" ? <honey-news-about/> : null}
 
       </Host>

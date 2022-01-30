@@ -1,6 +1,5 @@
 import {Component, h, Host, Prop} from "@stencil/core";
-import {NewsLoader} from "../news/NewsLoader";
-import {getFeedsSingleCall} from "../../../fetch-es6.worker";
+import {NewsService} from "../news/news-service";
 import DOMPurify from 'dompurify';
 
 @Component({
@@ -17,7 +16,7 @@ export class HoneyNewsVerwaltung {
   /**
    * Hilfsklasse zum Laden der Daten
    */
-  @Prop() feedLoader!: NewsLoader;
+  @Prop() feedLoader!: NewsService;
 
   async addUrl(): Promise<void> {
     if (!this.feedLoader) return;
@@ -25,10 +24,10 @@ export class HoneyNewsVerwaltung {
     const urlRaw: string = this.inputNewUrl.value;
     // sanitize user input
     const urlClean: string = DOMPurify.sanitize(urlRaw);
-    const url:string = urlClean.trim();
-    if (url && url.length>0 && !this.feedLoader.getFeedURLs().includes(url)) {
+    const url: string = urlClean.trim();
+    if (url && url.length > 0 && !this.feedLoader.getFeedURLs().includes(url)) {
       this.feedLoader.addFeedUrl(url);
-      await getFeedsSingleCall([url], true);
+      await this.feedLoader.ladePostsFrom(url);
     }
   }
 

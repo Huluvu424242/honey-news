@@ -7,6 +7,7 @@ import {StatisticData} from "@huluvu424242/liona-feeds/dist/esm/feeds/statistic"
 import {PipeOperators} from "./shared/PipeOperators";
 import {networkService} from "./components/shared/network";
 import {AxiosResponse} from "axios";
+import {Endpunkt} from "./components/shared/endpunkt";
 
 const LIONA_FEEDS_API = {url: "https://huluvu424242.herokuapp.com/feed"};
 
@@ -45,8 +46,6 @@ export interface BackendResponse {
 }
 
 
-
-
 export async function loadFeedRanking(url: string): Promise<StatisticData[]> {
   return await lastValueFrom(from(networkService.fetchData(url))
     .pipe(
@@ -77,14 +76,9 @@ export async function loadFeedRanking(url: string): Promise<StatisticData[]> {
     ));
 }
 
-function loadFeedDataInternal(url: string, withStatistic: boolean): Observable<FeedData> {
-  let queryUrl: string;
+function loadFeedDataInternal(endpunkt: Endpunkt): Observable<FeedData> {
+  let queryUrl: string = endpunkt.toUrl();
   console.log("### API URL" + LIONA_FEEDS_API.url);
-  if (withStatistic) {
-    queryUrl = LIONA_FEEDS_API.url + "?url=" + url + "&statistic=true";
-  } else {
-    queryUrl = LIONA_FEEDS_API.url + "?url=" + url;
-  }
   Logger.debugMessage("###query url " + queryUrl);
   const data: FeedData = {
     status: null, url: null, statusText: null, feedtitle: null, items: null
@@ -111,12 +105,12 @@ function loadFeedDataInternal(url: string, withStatistic: boolean): Observable<F
   );
 }
 
-export async function getFeedsSingleCall(feedURLs: string[], withStatistic: boolean): Promise<Post[]> {
+export async function getFeedsSingleCall(endpunkt: Endpunkt, feedURLs: string[]): Promise<Post[]> {
   return lastValueFrom(from(feedURLs).pipe(
     mergeMap(
       (url: string) => {
         Logger.debugMessage("### frage url " + url);
-        return loadFeedDataInternal(url, withStatistic).pipe(catchError(() => EMPTY));
+        return loadFeedDataInternal(endpunkt.replaceQueryIfGiven("?url=" + url)).pipe(catchError(() => EMPTY));
       }
     ),
     mergeMap(

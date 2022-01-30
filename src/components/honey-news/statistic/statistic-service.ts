@@ -19,16 +19,12 @@ export class StatisticService {
 
   // Fachlich relevant für CDC
   public async ladeStatistiken(host?: string, port?: number): Promise<StatisticData[]> {
-    const endpunkt: Endpunkt = (host || port) ?
-      this.statisticEndpunkt.replaceEndpunktBaseIfGiven(host, port)
-      :
-      this.statisticEndpunkt
-    ;
-    console.log("Statistik Endpunkt:"+endpunkt.toUrl());
+    const endpunkt: Endpunkt = this.statisticEndpunkt.replaceEndpunktBaseIfGiven(host, port);
+    console.log("Statistik Endpunkt:" + endpunkt.toUrl());
     return await loadFeedRanking(endpunkt.toUrl());
   }
 
-  public getRoute():string{
+  public getRoute(): string {
     return this.statisticEndpunkt.path;
   }
 

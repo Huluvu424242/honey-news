@@ -1,11 +1,10 @@
 import {Component, Element, h, Host, Prop, State} from "@stencil/core";
 import {Logger} from "../../../shared/logger";
-import {NewsLoader} from "./NewsLoader";
-import {getFeedsSingleCall, Post} from "../../../fetch-es6.worker";
-import {from, Subscription} from "rxjs";
+import {NewsService} from "./news-service";
+import {Post} from "../../../fetch-es6.worker";
+import {Subscription} from "rxjs";
 import {PipeOperators} from "../../../shared/PipeOperators";
 import {NewsArticle} from "./honey-news-article";
-import {tap} from "rxjs/operators";
 
 @Component({
   tag: "honey-news-feed",
@@ -31,7 +30,7 @@ export class HoneyNewsFeed {
   /**
    * Hilfsklasse zum Laden der Daten
    */
-  @Prop() feedLoader: NewsLoader;
+  @Prop() feedLoader: NewsService;
 
   @State() feeds: Post[] = [];
 
@@ -44,7 +43,6 @@ export class HoneyNewsFeed {
   public connectedCallback() {
     // States initialisieren
     this.ident = this.hostElement.id ? this.hostElement.id : Math.random().toString(36).substring(7);
-    this.initialisiereUrls();
     // Properties auswerten
     this.feedsSubscription = this.subscribeFeeds();
     Logger.toggleLogging(this.verbose);
@@ -56,7 +54,7 @@ export class HoneyNewsFeed {
 
   public async componentWillLoad() {
     const feeds: string[] = this.feedLoader.getFeedURLs();
-    const posts: Post[] = await getFeedsSingleCall([feeds[0]], false);
+    const posts: Post[] = await this.feedLoader.ladePostsFrom(feeds[0]);
     this.lastUpdate = posts[0]?.exaktdate || this.lastUpdate;
     this.feeds = [...posts]
   }
@@ -69,39 +67,6 @@ export class HoneyNewsFeed {
     });
   }
 
-
-  protected initialisiereUrls() {
-    // http://kenfm.de/feed/ -> https://apolut.net/feed/
-    const predefinedURLs: string[] = [
-      "https://www.presseportal.de/rss/presseportal.rss2",
-      "https://www.tagesschau.de/xml/atom/",
-      "https://www.zdf.de/rss/zdf/nachrichten",
-      "http://newsrss.bbc.co.uk/rss/newsonline_uk_edition/england/london/rss.xml",
-      "https://tass.ru/en/rss/v2.xml",
-      "https://dev.to/feed/",
-      "https://blog.malwarebytes.com/feed/",
-      "https://media.ccc.de/news.atom",
-      "https://media.ccc.de/updates.rdf",
-      "https://media.ccc.de/c/wikidatacon2019/podcast/webm-hq.xml",
-      "https://media.ccc.de/podcast-hq.xml",
-      "https://www.deutschlandfunk.de/die-nachrichten.353.de.rss",
-      "https://rss.dw.com/xml/rss-de-all",
-      "http://newsfeed.zeit.de",
-      "http://www.stern.de/feed/standard/all",
-      "https://www.spiegel.de/international/index.rss",
-      "https://rss.golem.de/rss.php",
-      "https://www.heise.de/rss/heise.rdf",
-      "https://codepen.io/spark/feed",
-      "https://www.hongkiat.com/blog/feed/",
-      "https://www.tagesspiegel.de/contentexport/feed/home",
-      "https://apolut.net/feed/"
-    ];
-    from(predefinedURLs).pipe(
-      tap(
-        url => this.feedLoader.addFeedUrl(url)
-      )
-    ).subscribe();
-  }
 
   lastHour: Date = null;
 

@@ -2,7 +2,7 @@ import {Component, Element, h, Host, Prop, State} from "@stencil/core";
 import {Logger} from "../../shared/logger";
 import {Subscription} from "rxjs";
 import {router} from "./routing/SimpleRouter";
-import {NewsLoader} from "./news/NewsLoader";
+import {NewsService, newsService} from "./news/news-service";
 import {StatisticService, statisticService} from "./statistic/statistic-service";
 
 @Component({
@@ -45,7 +45,7 @@ export class HoneyNews {
   /**
    * Shared State of AppShell
    */
-  feedLoader: NewsLoader = new NewsLoader([]);
+  feedLoader: NewsService = newsService;
 
   statisticLoader: StatisticService = statisticService;
 

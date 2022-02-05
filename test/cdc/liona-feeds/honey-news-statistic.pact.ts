@@ -1,5 +1,5 @@
 import path from "path";
-import {changeLionaFeedsAPIUrlTo, loadFeedRanking} from "../../../src/fetch-es6.worker";
+import {fetchService} from "../../../src/components/shared/fetcher";
 import {MatchersV3, PactV3, PactV3Options} from "@pact-foundation/pact/v3";
 import {V3MockServer} from "@pact-foundation/pact/src/v3/pact";
 import {StatisticData} from "@huluvu424242/liona-feeds/dist/esm/feeds/statistic";
@@ -92,9 +92,9 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
         console.log("######### U R L:" + mockServer.url);
         console.log("######### I D:" + mockServer.id);
 
-        await changeLionaFeedsAPIUrlTo(mockServer.url);
+        // await changeLionaFeedsAPIUrlTo(mockServer.url);
 
-        const statisticData: StatisticData[] = await loadFeedRanking(mockServer.url+"/feeds");
+        const statisticData: StatisticData[] = await fetchService.loadFeedRanking(mockServer.url + "/feeds");
         const statisticExample = [
           {
             "url": "https://www.presseportal.de/rss/presseportal.rss2",

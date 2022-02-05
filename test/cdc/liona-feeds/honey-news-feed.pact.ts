@@ -1,8 +1,9 @@
 import path from "path";
-import {changeLionaFeedsAPIUrlTo, getFeedsSingleCall} from "../../../src/fetch-es6.worker";
+import {fetchService} from "../../../src/components/shared/fetcher";
 import {Post} from "../../../dist/types/fetch-es6.worker";
 import {MatchersV3, PactV3, PactV3Options} from "@pact-foundation/pact/v3";
 import {V3MockServer} from "@pact-foundation/pact/src/v3/pact";
+import {Endpunkt} from "../../../dist/types/components/shared/endpunkt";
 
 const {
   eachLike,
@@ -107,9 +108,9 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
         console.log("######### U R L:" + mockServer.url);
         console.log("######### I D:" + mockServer.id);
 
-        await changeLionaFeedsAPIUrlTo(mockServer.url+"/feed");
+        // await fetchService.changeLionaFeedsAPIUrlTo(mockServer.url+"/feed");
 
-        const posts: Post[] = await getFeedsSingleCall(["https://www.deutschlandfunk.de/die-nachrichten.353.de.rss"], true);
+        const posts: Post[] = await fetchService.getFeedsSingleCall(new Endpunkt(mockServer.url, mockServer.port, "/feed", "?statistic=true"), ["https://www.deutschlandfunk.de/die-nachrichten.353.de.rss"]);
         const feedExample = [
           {
             "hashcode": expect.any(String), //"acf94c55f3a08700fcf31074290c5b46fde03b1f",

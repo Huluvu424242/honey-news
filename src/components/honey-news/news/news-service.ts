@@ -68,6 +68,7 @@ function initialisiereUrls(): Subscription {
     "https://www.zdf.de/rss/zdf/nachrichten",
     "http://newsrss.bbc.co.uk/rss/newsonline_uk_edition/england/london/rss.xml",
     "https://tass.ru/en/rss/v2.xml",
+    "https://de.rt.com/feeds/news/",
     "https://dev.to/feed/",
     "https://blog.malwarebytes.com/feed/",
     "https://media.ccc.de/news.atom",

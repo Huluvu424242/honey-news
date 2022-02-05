@@ -1,15 +1,9 @@
 export interface EndpunktBase {
   readonly host: string;
   readonly port: number;
-
 }
 
-export interface EndpunktResource {
-  readonly path: string;
-  readonly query: string;
-}
-
-export class Endpunkt implements EndpunktBase, EndpunktResource {
+export class Endpunkt implements EndpunktBase {
   readonly host: string;
   readonly port: number;
   readonly path: string;
@@ -26,8 +20,8 @@ export class Endpunkt implements EndpunktBase, EndpunktResource {
     return this;
   }
 
-  public getEndpunktResource(): EndpunktResource {
-    return this;
+  public getQuery(): string {
+    return this.query;
   }
 
   public replaceEndpunktBaseIfGiven(host?: string, port?: number): Endpunkt {

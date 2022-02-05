@@ -109,11 +109,11 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
 
         // await fetchService.changeLionaFeedsAPIUrlTo(mockServer.url+"/feed");
 
-        const posts: Post[] = await fetchService.getFeedsSingleCall(new Endpunkt(mockServer.url, mockServer.port, "/feed", "?statistic=true"), ["https://www.deutschlandfunk.de/die-nachrichten.353.de.rss"]);
+        const posts: Post[] = await fetchService.getFeedsSingleCall(new Endpunkt(mockServer.url,null, "/feed", "?statistic=true"), ["https://www.deutschlandfunk.de/die-nachrichten.353.de.rss"]);
         const feedExample = [
           {
             "hashcode": expect.any(String), //"acf94c55f3a08700fcf31074290c5b46fde03b1f",
-            "queryurl": mockServer.url + "/feed?url=https://www.deutschlandfunk.de/die-nachrichten.353.de.rss&statistic=true",
+            "queryurl": mockServer.url + "/feed?statistic=true&url=https://www.deutschlandfunk.de/die-nachrichten.353.de.rss",
             "feedtitle": "\"Deutschlandfunk - Fortlaufende Nachrichten vom 04. Januar 2022\"",
             "exaktdate": expect.any(Date), //2022-01-04T22:59:00.000Z,
             "sortdate": "2022#01#04#22#0#Nachts im Norden meist trocken, sonst Regen und Schnee",

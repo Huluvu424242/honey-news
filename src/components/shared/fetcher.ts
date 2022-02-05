@@ -108,6 +108,7 @@ export class Fetcher {
   }
 
   public async getFeedsSingleCall(endpunkt: Endpunkt, feedURLs: string[]): Promise<Post[]> {
+    const QUERY_BASE: string = endpunkt.getQuery() ? endpunkt.getQuery() + "&" : "?";
     if (!endpunkt) {
       logService.logMessage("## KEIN Endpunkt");
     }
@@ -116,7 +117,8 @@ export class Fetcher {
       mergeMap(
         (url: string) => {
           logService.logMessage("### frage url " + url);
-          return this.loadFeedDataInternal(endpunkt.replaceQueryIfGiven("?url=" + url)).pipe(catchError(() => EMPTY));
+          const newQuery = QUERY_BASE + "url=" + url;
+          return this.loadFeedDataInternal(endpunkt.replaceQueryIfGiven(newQuery)).pipe(catchError(() => EMPTY));
         }
       ),
       mergeMap(

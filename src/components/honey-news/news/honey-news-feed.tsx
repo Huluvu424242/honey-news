@@ -1,10 +1,10 @@
 import {Component, Element, h, Host, Prop, State} from "@stencil/core";
-import {Logger} from "../../../shared/logger";
-import {NewsService} from "./news-service";
+import {logService} from "../../../shared/logger";
 import {Post} from "../../../fetch-es6.worker";
 import {Subscription} from "rxjs";
 import {PipeOperators} from "../../../shared/PipeOperators";
 import {NewsArticle} from "./honey-news-article";
+import {newsService} from "./news-service";
 
 @Component({
   tag: "honey-news-feed",
@@ -26,12 +26,6 @@ export class HoneyNewsFeed {
 
   lastUpdate: Date = null;
 
-
-  /**
-   * Hilfsklasse zum Laden der Daten
-   */
-  @Prop() feedLoader: NewsService;
-
   @State() feeds: Post[] = [];
 
 
@@ -45,7 +39,7 @@ export class HoneyNewsFeed {
     this.ident = this.hostElement.id ? this.hostElement.id : Math.random().toString(36).substring(7);
     // Properties auswerten
     this.feedsSubscription = this.subscribeFeeds();
-    Logger.toggleLogging(this.verbose);
+    logService.toggleLogging(this.verbose);
   }
 
   public disconnectedCallback() {
@@ -53,15 +47,15 @@ export class HoneyNewsFeed {
   }
 
   public async componentWillLoad() {
-    const feeds: string[] = this.feedLoader.getFeedURLs();
-    const posts: Post[] = await this.feedLoader.ladePostsFrom(feeds[0]);
+    const feeds: string[] = newsService.getFeedURLs();
+    const posts: Post[] = await newsService.ladePostsFrom(feeds[0]);
     this.lastUpdate = posts[0]?.exaktdate || this.lastUpdate;
     this.feeds = [...posts]
   }
 
 
   public subscribeFeeds(): Subscription {
-    return this.feedLoader.getFeedsPeriodicObservable$().subscribe((posts: Post[]) => {
+    return newsService.getFeedsPeriodicObservable$().subscribe((posts: Post[]) => {
       this.lastUpdate = posts[0]?.exaktdate || this.lastUpdate;
       this.feeds = [...posts]
     });

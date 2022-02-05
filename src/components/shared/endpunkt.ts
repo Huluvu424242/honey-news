@@ -30,11 +30,11 @@ export class Endpunkt implements EndpunktBase, EndpunktResource {
     return this;
   }
 
-  public replaceEndpunktBaseIfGiven(host: string, port: number): Endpunkt {
+  public replaceEndpunktBaseIfGiven(host?: string, port?: number): Endpunkt {
     return new Endpunkt(host ? host : this.host, port ? port : this.port, this.path, this.query);
   }
 
-  public replaceQueryIfGiven(query: string): Endpunkt {
+  public replaceQueryIfGiven(query?: string): Endpunkt {
     return new Endpunkt(this.host, this.port, this.path, query ? query : this.query);
   }
 

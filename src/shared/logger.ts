@@ -1,49 +1,51 @@
 export class Logger {
 
-  protected static isLoggingActive: boolean = true;
+  protected isLoggingActive: boolean = true;
 
-  public static disableLogging(): void {
+  public disableLogging(): void {
     this.isLoggingActive = false;
   }
 
-  public static enableLogging(): void {
+  public enableLogging(): void {
     this.isLoggingActive = true;
   }
 
-  public static toggleLogging(enableLogging: boolean) {
+  public toggleLogging(enableLogging: boolean) {
     if (enableLogging) {
-      Logger.enableLogging();
+      this.enableLogging();
     } else {
-      Logger.disableLogging();
+      this.disableLogging();
     }
   }
 
-  constructor(enableLogging: boolean) {
-    Logger.isLoggingActive = enableLogging;
+  constructor(enableLogging: boolean = true) {
+    this.isLoggingActive = enableLogging;
   }
 
-  public static logMessage(message) {
+  public logMessage(message) {
     if (console && this.isLoggingActive) {
       console.log(message);
     }
   }
 
-  public static debugMessage(message) {
+  public debugMessage(message) {
     if (console && this.isLoggingActive) {
       console.debug(message);
     }
   }
 
-  public static errorMessage(message) {
+  public errorMessage(message) {
     if (console && this.isLoggingActive) {
       console.error(message);
     }
   }
 
-  public static infoMessage(message) {
+  public infoMessage(message) {
     if (console && this.isLoggingActive) {
       console.info(message);
     }
   }
 
 }
+
+export const logService: Logger = new Logger();

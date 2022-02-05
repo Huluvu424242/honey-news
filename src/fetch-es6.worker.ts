@@ -2,7 +2,7 @@ import {Feed} from "feedme/dist/feedme";
 import {FeedItem} from "feedme/dist/parser";
 import {EMPTY, from, lastValueFrom, Observable} from "rxjs";
 import {catchError, filter, map, mergeMap, switchMap, tap, toArray} from "rxjs/operators";
-import {Logger} from "./shared/logger";
+import {logService} from "./shared/logger";
 import {StatisticData} from "@huluvu424242/liona-feeds/dist/esm/feeds/statistic";
 import {PipeOperators} from "./shared/PipeOperators";
 import {networkService} from "./components/shared/network";
@@ -79,7 +79,7 @@ export async function loadFeedRanking(url: string): Promise<StatisticData[]> {
 function loadFeedDataInternal(endpunkt: Endpunkt): Observable<FeedData> {
   let queryUrl: string = endpunkt.toUrl();
   console.log("### API URL" + LIONA_FEEDS_API.url);
-  Logger.debugMessage("###query url " + queryUrl);
+  logService.debugMessage("###query url " + queryUrl);
   const data: FeedData = {
     status: null, url: null, statusText: null, feedtitle: null, items: null
   };
@@ -106,21 +106,22 @@ function loadFeedDataInternal(endpunkt: Endpunkt): Observable<FeedData> {
 }
 
 export async function getFeedsSingleCall(endpunkt: Endpunkt, feedURLs: string[]): Promise<Post[]> {
-  return lastValueFrom(from(feedURLs).pipe(
+  logService.logMessage("#### ENDPOINT: " + endpunkt);
+  const news$: Observable<Post[]> = from(feedURLs).pipe(
     mergeMap(
       (url: string) => {
-        Logger.debugMessage("### frage url " + url);
+        logService.logMessage("### frage url " + url);
         return loadFeedDataInternal(endpunkt.replaceQueryIfGiven("?url=" + url)).pipe(catchError(() => EMPTY));
       }
     ),
     mergeMap(
       (feedData: FeedData) => {
-        Logger.debugMessage("### aktualisiere url " + feedData.url);
+        logService.debugMessage("### aktualisiere url " + feedData.url);
         return PipeOperators.mapItemsToPost(feedData).pipe(catchError(() => EMPTY));
       }
     ),
     tap(
-      (post: Post) => Logger.debugMessage("### filter: " + post.item.title)
+      (post: Post) => logService.debugMessage("### filter: " + post.item.title)
     ),
     filter(
       (post: Post) => PipeOperators.compareDates(post.exaktdate, new Date()) < 1
@@ -133,6 +134,7 @@ export async function getFeedsSingleCall(endpunkt: Endpunkt, feedURLs: string[])
     map(
       (posts: Post[]) => PipeOperators.sortArray(posts)
     )
-  ));
+  );
+  return lastValueFrom(news$);
 }
 

@@ -3,8 +3,8 @@ import {EMPTY, from, Observable} from "rxjs";
 import {map, toArray} from "rxjs/operators";
 import {FeedItem} from "feedme/dist/parser";
 import * as objectHash from "object-hash";
+import {logService} from "./logger";
 import DateTimeFormat = Intl.DateTimeFormat;
-import {Logger} from "./logger";
 
 export class PipeOperators {
 
@@ -12,7 +12,7 @@ export class PipeOperators {
     return zahl <= 9 ? "0" + zahl : "" + zahl;
   }
 
-  public static removeDuplicates(posts: Post[]) :Observable<Post[]>{
+  public static removeDuplicates(posts: Post[]): Observable<Post[]> {
     const postMap: Map<string, Post> = new Map();
     posts.forEach(
       (post: Post) => {
@@ -95,7 +95,7 @@ export class PipeOperators {
         date = new Date(Date.parse(datum));
       }
     } catch (fehler) {
-      Logger.errorMessage(fehler);
+      logService.errorMessage(fehler);
     }
     return date ? date : null;
   }

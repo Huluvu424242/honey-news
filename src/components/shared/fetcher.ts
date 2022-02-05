@@ -9,13 +9,6 @@ import {networkService} from "./network";
 import {AxiosResponse} from "axios";
 import {Endpunkt} from "./endpunkt";
 
-const LIONA_FEEDS_API = {url: "https://huluvu424242.herokuapp.com/feed"};
-
-export async function changeLionaFeedsAPIUrlTo(url: string): Promise<void> {
-  LIONA_FEEDS_API.url = url;
-}
-
-
 export interface Post {
   hashcode: string;
   queryurl: string;
@@ -79,9 +72,8 @@ export class Fetcher {
   }
 
   loadFeedDataInternal(endpunkt: Endpunkt): Observable<FeedData> {
-    let queryUrl: string = endpunkt.toUrl();
-    console.log("### API URL" + LIONA_FEEDS_API.url);
-    logService.debugMessage("###query url " + queryUrl);
+    const queryUrl: string = endpunkt.toUrl();
+    logService.debugMessage("### query url " + queryUrl);
     const data: FeedData = {
       status: null, url: null, statusText: null, feedtitle: null, items: null
     };

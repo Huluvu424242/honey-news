@@ -6,7 +6,7 @@ import {logService} from "../../../shared/logger";
 
 export class NewsService {
 
-  protected newsEndpunkt: Endpunkt = new Endpunkt("https://huluvu424242.herokuapp.com", null, "/feed", "&statistic=true");
+  protected newsEndpunkt: Endpunkt = new Endpunkt("https://huluvu424242.herokuapp.com", null, "/feed", "?statistic=true");
 
 
   constructor() {

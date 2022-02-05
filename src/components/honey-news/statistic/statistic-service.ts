@@ -1,6 +1,6 @@
 import {EMPTY, from, Observable, timer} from "rxjs";
 import {catchError, switchMap} from "rxjs/operators";
-import {loadFeedRanking} from "../../../fetch-es6.worker";
+import {fetchService} from "../../shared/fetcher";
 import {StatisticData} from "@huluvu424242/liona-feeds/dist/esm/feeds/statistic";
 import {Endpunkt} from "../../shared/endpunkt";
 
@@ -21,7 +21,7 @@ export class StatisticService {
   public async ladeStatistiken(host?: string, port?: number): Promise<StatisticData[]> {
     const endpunkt: Endpunkt = this.statisticEndpunkt.replaceEndpunktBaseIfGiven(host, port);
     console.log("Statistik Endpunkt:" + endpunkt.toUrl());
-    return await loadFeedRanking(endpunkt.toUrl());
+    return await fetchService.loadFeedRanking(endpunkt.toUrl());
   }
 
   public getRoute(): string {

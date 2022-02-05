@@ -1,5 +1,5 @@
 import {EMPTY, from, Observable, timer} from "rxjs";
-import {getFeedsSingleCall, Post} from "../../../fetch-es6.worker";
+import {fetchService, Post} from "../../shared/fetcher";
 import {catchError, mergeMap} from "rxjs/operators";
 import {Endpunkt} from "../../shared/endpunkt";
 import {logService} from "../../../shared/logger";
@@ -39,13 +39,13 @@ export class NewsService {
   public async ladePosts(host?: string, port?: number): Promise<Post[]> {
     const endpunkt: Endpunkt = this.newsEndpunkt.replaceEndpunktBaseIfGiven(host, port);
     logService.logMessage("Lade Posts Endpunkt:" + endpunkt.toUrl());
-    return await getFeedsSingleCall(endpunkt, this.feedURLs);
+    return await fetchService.getFeedsSingleCall(endpunkt, this.feedURLs);
   }
 
   public async ladePostsFrom(url: string, host?: string, port?: number): Promise<Post[]> {
     const endpunkt: Endpunkt = this.newsEndpunkt.replaceEndpunktBaseIfGiven(host, port);
     logService.logMessage("Lade Posts From Endpunkt:" + endpunkt.toUrl());
-    return await getFeedsSingleCall(endpunkt, [url]);
+    return await fetchService.getFeedsSingleCall(endpunkt, [url]);
   }
 
   public getRoute(): string {

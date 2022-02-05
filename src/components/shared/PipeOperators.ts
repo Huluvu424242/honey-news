@@ -1,9 +1,9 @@
-import {FeedData, Post} from "../fetch-es6.worker";
+import {FeedData, Post} from "../shared/fetcher";
 import {EMPTY, from, Observable} from "rxjs";
 import {map, toArray} from "rxjs/operators";
 import {FeedItem} from "feedme/dist/parser";
 import * as objectHash from "object-hash";
-import {logService} from "./logger";
+import {logService} from "../../shared/logger";
 import DateTimeFormat = Intl.DateTimeFormat;
 
 export class PipeOperators {

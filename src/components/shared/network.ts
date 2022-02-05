@@ -1,6 +1,5 @@
 import axios, {AxiosResponse} from "axios";
-import {BackendResponse} from "../../fetch-es6.worker";
-
+import {BackendResponse} from "./fetcher";
 
 
 export class BackendResponseImpl implements BackendResponse {
@@ -38,8 +37,7 @@ export class BackendResponseImpl implements BackendResponse {
 }
 
 
-
-export class Network{
+export class Network {
 
 
   protected fetchDataAxiosAPI(queryUrl: string): Promise<AxiosResponse> {
@@ -58,7 +56,7 @@ export class Network{
     });
   }
 
-   public async fetchData(queryUrl: string): Promise<BackendResponse> {
+  public async fetchData(queryUrl: string): Promise<BackendResponse> {
     // Workaround for  pact-js framework with fetch API: fetch is not defined
     const isWorkaroundActive = true;
     let fetchResponse: Response;
@@ -74,4 +72,4 @@ export class Network{
 
 }
 
-export const networkService: Network= new Network();
+export const networkService: Network = new Network();

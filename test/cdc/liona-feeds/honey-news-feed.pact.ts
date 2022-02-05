@@ -1,9 +1,8 @@
 import path from "path";
-import {fetchService} from "../../../src/components/shared/fetcher";
-import {Post} from "../../../dist/types/fetch-es6.worker";
+import {fetchService, Post} from "../../../src/components/shared/fetcher";
+import {Endpunkt} from "../../../src/components/shared/endpunkt";
 import {MatchersV3, PactV3, PactV3Options} from "@pact-foundation/pact/v3";
 import {V3MockServer} from "@pact-foundation/pact/src/v3/pact";
-import {Endpunkt} from "../../../dist/types/components/shared/endpunkt";
 
 const {
   eachLike,

@@ -42,7 +42,8 @@
     "prepare-deliver": "npm run build",
     "deliver": "npm publish --access=public",
     "pruefeVersionen": "npm outdated",
-    "check-credits": "npx license-checker --failOn 'AGPL' --production >credits.txt"
+    "check-credits": "npx license-checker --failOn 'AGPL' --production >credits.txt",
+    "serverstart": "https://stackoverflow.com/questions/23258421/how-to-stop-app-that-node-js-express-npm-start"
   },
   "engines": {
     "node": "16.13.2"

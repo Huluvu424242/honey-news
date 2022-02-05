@@ -4,6 +4,7 @@ import {Endpunkt} from "../../../src/components/shared/endpunkt";
 import {MatchersV3, PactV3, PactV3Options} from "@pact-foundation/pact/v3";
 import {V3MockServer} from "@pact-foundation/pact/src/v3/pact";
 
+// @ts-ignore
 const {
   eachLike,
   atLeastLike,
@@ -11,6 +12,8 @@ const {
   timestamp,
   boolean,
   string,
+  url,
+  datetime,
   regex,
   like,
 } = MatchersV3;
@@ -37,9 +40,9 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
     "application/xhtml+xml",
     "text/xtml")
 
-  const RESPONSE_RSS2_0 = {
+  const RESPONSE_RSS2_0 = like({
     "type": "rss 2.0",
-    "title": "Deutschlandfunk - Fortlaufende Nachrichten vom 04. Januar 2022",
+    "title": string("Deutschlandfunk - Fortlaufende Nachrichten vom 04. Januar 2022"),
     "link": "https://www.deutschlandfunk.de/nachrichten-index-22904.html",
     "atom:link": {
       "rel": "self",
@@ -51,10 +54,10 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
     "copyright": "Deutschlandradio - deutschlandradio.de",
     "ttl": "60",
     "language": "de-DE",
-    "pubdate": "Tue, 04 Jan 2022 19:56:16 +0100",
+    "pubdate": string("Tue, 04 Jan 2022 19:56:16 +0100"),
     "lastbuilddate": "Tue, 04 Jan 2022 19:56:16 +0100",
     "image": {
-      "url": "https://assets.deutschlandfunk.de/FALLBACK-IMAGE/1920x1920.png?t=1600291117115",
+      "url": string("https://assets.deutschlandfunk.de/FALLBACK-IMAGE/1920x1920.png?t=1600291117115"),
       "title": "Deutschlandfunk - Fortlaufende Nachrichten vom 04. Januar 2022",
       "link": "https://www.deutschlandfunk.de/nachrichten-index-22904.html"
     },
@@ -64,14 +67,14 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
         "link": "https://www.deutschlandfunk.de/nachts-im-norden-meist-trocken-sonst-regen-und-schnee-100.html",
         "description": "<img src=\"https://assets.deutschlandfunk.de/25d736b4-a415-463b-a4fe-35a5ac44acdc/1920x1920.jpg?t=1639821123437\" alt=\"Sternenhimmel über einer verschneiten Landschaft\" title=\"Sternenhimmel über einer verschneiten Landschaft\" width=\"1920\" height=\"1920\" border=\"0\" align=\"left\" hspace=\"4\" vspace=\"4\"/>Der Wetterbericht, die Lage: Am Rand eines Tiefdruckkomplexes über Nordeuropa wird zunächst milde und feuchte Atlantikluft herangeführt. Von Norden greift eine Kaltfront mit polarer Meeresluft über.<br clear=\"all\"/><br/><p><br/></p>",
         "guid": {
-          "ispermalink": "false",
+          "ispermalink": string("false"),
           "text": "nachts-im-norden-meist-trocken-sonst-regen-und-schnee-100"
         },
         "pubdate": "Tue, 04 Jan 2022 23:59:00 +0100",
         "text": "\n"
       }
     ]
-  };
+  });
 
 
   describe("@huluvu424242/liona-feeds", () => {

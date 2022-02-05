@@ -1,0 +1,1 @@
+import{r as l,h as s,H as r}from"./p-a8f3106f.js";let t=class{constructor(s){l(this,s)}render(){return s(r,null,s("honey-apply-style",null),s("article",null,s("slot",{name:"slot1"})))}};export{t as honey_about_papercss}

@@ -1,9 +1,9 @@
 import {endpunkteService} from "./endpunkte-service";
 
-export interface EndpunktBase {
-  readonly host: string;
-  readonly port: number;
-}
+// export interface EndpunktBase {
+//   readonly host: string;
+//   readonly port: number;
+// }
 
 export enum Method {
   GET = "GET",
@@ -12,7 +12,8 @@ export enum Method {
   HEAD = "HEAD"
 }
 
-export class Endpunkt implements EndpunktBase {
+// export class Endpunkt implements EndpunktBase {
+export class Endpunkt  {
   readonly id: string;
   readonly method: Method;
   readonly host: string;
@@ -50,9 +51,9 @@ export class Endpunkt implements EndpunktBase {
     return this.method.toString();
   }
 
-  public getEndpunktBase(): EndpunktBase {
-    return this;
-  }
+  // public getEndpunktBase(): EndpunktBase {
+  //   return this;
+  // }
 
   public getPath(): string {
     return this.path;

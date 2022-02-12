@@ -38,11 +38,6 @@ export class Endpunkt implements EndpunktBase {
     return new Endpunkt(this.id, this.method, this.host, this.port, this.path, this.query);
   }
 
-  public changeBase(urlBase: string): Endpunkt {
-    return new Endpunkt(this.id, this.method, urlBase, null, this.path, this.query);
-  }
-
-
   public getId() {
     return this.id;
   }
@@ -76,6 +71,11 @@ export class Endpunkt implements EndpunktBase {
 
   public getQuery(): {} {
     return this.query;
+  }
+
+  public replaceBase(urlBase: string, port: number): Endpunkt {
+    const host: string = urlBase.replace(":" + port, "");
+    return new Endpunkt(this.id, this.method, host, port, this.path, this.query);
   }
 
   public replaceEndpunktBaseIfGiven(host?: string, port?: number): Endpunkt {

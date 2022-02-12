@@ -112,7 +112,7 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
         console.log("######### U R L:" + mockServer.url);
         console.log("######### I D:" + mockServer.id);
 
-        const ENDPOINT: Endpunkt = ENDPOINT_NEWS.changeBase(mockServer.url);
+        const ENDPOINT: Endpunkt = ENDPOINT_NEWS.replaceBase(mockServer.url, mockServer.port);
 
         // const posts: Post[] = await fetchService.getFeedsSingleCall(new Endpunkt(Method.GET, mockServer.url,null, FEED_PATH, {statistic:true}), ["https://www.deutschlandfunk.de/die-nachrichten.353.de.rss"]);
         const posts: Post[] = await fetchService.getFeedsSingleCall(ENDPOINT, ["https://www.deutschlandfunk.de/die-nachrichten.353.de.rss"]);

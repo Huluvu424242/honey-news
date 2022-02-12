@@ -1,13 +1,15 @@
 import {EMPTY, from, Observable, timer} from "rxjs";
 import {fetchService, Post} from "../../shared/fetcher";
 import {catchError, mergeMap} from "rxjs/operators";
-import {Endpunkt} from "../../shared/endpunkt";
+import {Endpunkt, Method} from "../../shared/endpunkt";
 import {logService} from "../../../shared/logger";
 
 export class NewsService {
 
-  protected newsEndpunkt: Endpunkt = new Endpunkt("https://huluvu424242.herokuapp.com", null, "/feed", "?statistic=true");
+  protected FEED_PATH: string = "/feed";
+  protected FEED_QUERY: {} = {statistic: true}
 
+  protected newsEndpunkt: Endpunkt = new Endpunkt(Method.GET, "https://huluvu424242.herokuapp.com", null, this.FEED_PATH, this.FEED_QUERY);
 
   constructor() {
   }

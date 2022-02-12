@@ -1,5 +1,15 @@
 import axios, {AxiosResponse} from "axios";
-import {BackendResponse} from "./fetcher";
+
+export interface BackendResponse {
+  fetchResponse: Response;
+  axiosResponse: AxiosResponse;
+
+  getStatus(): number;
+
+  getStatusText(): string;
+
+  getData(): Promise<any>;
+}
 
 
 export class BackendResponseImpl implements BackendResponse {

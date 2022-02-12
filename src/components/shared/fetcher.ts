@@ -5,8 +5,7 @@ import {catchError, filter, map, mergeMap, switchMap, tap, toArray} from "rxjs/o
 import {logService} from "../../shared/logger";
 import {StatisticData} from "@huluvu424242/liona-feeds/dist/esm/feeds/statistic";
 import {PipeOperators} from "./PipeOperators";
-import {networkService} from "./network";
-import {AxiosResponse} from "axios";
+import {BackendResponse, networkService} from "./network";
 import {Endpunkt} from "./endpunkt";
 
 export interface Post {
@@ -26,18 +25,6 @@ export interface FeedData {
   feedtitle: string;
   items: FeedItem[];
 }
-
-export interface BackendResponse {
-  fetchResponse: Response;
-  axiosResponse: AxiosResponse;
-
-  getStatus(): number;
-
-  getStatusText(): string;
-
-  getData(): Promise<any>;
-}
-
 
 export class Fetcher {
 

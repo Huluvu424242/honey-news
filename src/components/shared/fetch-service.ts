@@ -2,7 +2,7 @@ import {Feed} from "feedme/dist/feedme";
 import {FeedItem} from "feedme/dist/parser";
 import {EMPTY, from, lastValueFrom, Observable} from "rxjs";
 import {catchError, filter, map, mergeMap, switchMap, tap, toArray} from "rxjs/operators";
-import {logService} from "../../shared/logger";
+import {logService} from "../../shared/logger-service";
 import {StatisticData} from "@huluvu424242/liona-feeds/dist/esm/feeds/statistic";
 import {PipeOperators} from "./pipe-operators";
 import {BackendResponse, networkService} from "./network-service";

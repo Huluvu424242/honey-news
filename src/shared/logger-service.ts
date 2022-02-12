@@ -1,4 +1,4 @@
-export class Logger {
+export class LoggerService {
 
   protected isLoggingActive: boolean = true;
 
@@ -48,4 +48,4 @@ export class Logger {
 
 }
 
-export const logService: Logger = new Logger();
+export const logService: LoggerService = new LoggerService();

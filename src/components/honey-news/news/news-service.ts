@@ -2,7 +2,7 @@ import {EMPTY, from, Observable, timer} from "rxjs";
 import {fetchService, Post} from "../../shared/fetch-service";
 import {catchError, mergeMap} from "rxjs/operators";
 import {Endpunkt, Method} from "../../shared/endpunkt";
-import {logService} from "../../../shared/logger";
+import {logService} from "../../../shared/logger-service";
 import {FEED_PATH} from "../../../global/constants";
 
 export const ENDPOINT_NEWS: Endpunkt = new Endpunkt("news", Method.GET, "https://huluvu424242.herokuapp.com", null, FEED_PATH, {statistic: true}).register();

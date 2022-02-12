@@ -3,7 +3,7 @@ import {EMPTY, from, Observable} from "rxjs";
 import {map, toArray} from "rxjs/operators";
 import {FeedItem} from "feedme/dist/parser";
 import * as objectHash from "object-hash";
-import {logService} from "../../shared/logger";
+import {logService} from "../../shared/logger-service";
 import DateTimeFormat = Intl.DateTimeFormat;
 
 export class PipeOperators {

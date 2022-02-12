@@ -1,5 +1,5 @@
 import {Component, Element, h, Host, Prop, State} from "@stencil/core";
-import {logService} from "../../../shared/logger";
+import {logService} from "../../../shared/logger-service";
 import {Post} from "../../shared/fetch-service";
 import {Subscription} from "rxjs";
 import {PipeOperators} from "../../shared/pipe-operators";

@@ -28,7 +28,7 @@ export class StatisticService {
   public async ladeStatistiken(host?: string, port?: number): Promise<StatisticData[]> {
     const endpunkt: Endpunkt = this.statisticEndpunkt.replaceEndpunktBaseIfGiven(host, port);
     console.log("Statistik Endpunkt:" + endpunkt.toUrl());
-    return await fetchService.loadFeedRanking(endpunkt.toUrl());
+    return await fetchService.loadFeedRanking(endpunkt);
   }
 
   public getRoute(): string {

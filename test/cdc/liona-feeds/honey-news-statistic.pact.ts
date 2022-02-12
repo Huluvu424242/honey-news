@@ -32,7 +32,6 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
 
   const provider: PactV3 = new PactV3(OPTIONS);
 
-  const STATISTIC_PATH: string = "/feeds";
   const ACCEPT_HEADER: string = MatchersV3.like(
     "application/json",
     "application/rss+xml",
@@ -97,7 +96,7 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
 
         const ENDPOINT: Endpunkt = ENDPOINT_STATISTIC.replaceBase(mockServer.url, mockServer.port);
 
-        const statisticData: StatisticData[] = await fetchService.loadFeedRanking(ENDPOINT.toUrl());
+        const statisticData: StatisticData[] = await fetchService.loadFeedRanking(ENDPOINT);
         const statisticExample = [
           {
             "url": "https://www.presseportal.de/rss/presseportal.rss2",

@@ -41,8 +41,8 @@ export interface BackendResponse {
 
 export class Fetcher {
 
-  public async loadFeedRanking(url: string): Promise<StatisticData[]> {
-    return await lastValueFrom(from(networkService.fetchData(url))
+  public async loadFeedRanking(endpunkt: Endpunkt): Promise<StatisticData[]> {
+    return await lastValueFrom(from(networkService.fetchData(endpunkt.toUrl()))
       .pipe(
         catchError(() => EMPTY),
         switchMap(

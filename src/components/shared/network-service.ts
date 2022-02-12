@@ -9,7 +9,7 @@ export interface BackendResponse {
 
   getStatusText(): string;
 
-  getData(): Promise<any>;
+  getData<T>(): Promise<T>;
 }
 
 
@@ -38,11 +38,11 @@ export class BackendResponseImpl implements BackendResponse {
     }
   }
 
-  async getData(): Promise<any> {
+  async getData<T>(): Promise<T> {
     if (this.fetchResponse) {
-      return await this.fetchResponse.json();
+      return (await this.fetchResponse.json()) as T;
     } else {
-      return await this.axiosResponse.data;
+      return (await this.axiosResponse.data) as T;
     }
   }
 }

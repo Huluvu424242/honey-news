@@ -1,6 +1,6 @@
 import path from "path";
 import {fetchService, Post} from "../../../src/components/shared/fetcher";
-import {Endpunkt} from "../../../src/components/shared/endpunkt";
+import {Endpunkt, Method} from "../../../src/components/shared/endpunkt";
 import {MatchersV3, PactV3, PactV3Options} from "@pact-foundation/pact/v3";
 import {V3MockServer} from "@pact-foundation/pact/src/v3/pact";
 
@@ -112,7 +112,7 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
         console.log("######### U R L:" + mockServer.url);
         console.log("######### I D:" + mockServer.id);
 
-        const posts: Post[] = await fetchService.getFeedsSingleCall(new Endpunkt(mockServer.url,null, FEED_PATH, "?statistic=true"), ["https://www.deutschlandfunk.de/die-nachrichten.353.de.rss"]);
+        const posts: Post[] = await fetchService.getFeedsSingleCall(new Endpunkt(Method.GET, mockServer.url,null, FEED_PATH, {statistic:true}), ["https://www.deutschlandfunk.de/die-nachrichten.353.de.rss"]);
         const feedExample = [
           {
             "hashcode": expect.any(String), //"acf94c55f3a08700fcf31074290c5b46fde03b1f",

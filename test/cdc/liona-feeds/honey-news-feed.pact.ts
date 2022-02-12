@@ -1,8 +1,10 @@
 import path from "path";
 import {fetchService, Post} from "../../../src/components/shared/fetcher";
-import {Endpunkt, Method} from "../../../src/components/shared/endpunkt";
 import {MatchersV3, PactV3, PactV3Options} from "@pact-foundation/pact/v3";
 import {V3MockServer} from "@pact-foundation/pact/src/v3/pact";
+import {ENDPOINT_NEWS} from "../../../src/components/honey-news/news/news-service";
+import {Endpunkt} from "../../../src/components/shared/endpunkt";
+
 
 // @ts-ignore
 const {
@@ -32,8 +34,6 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
   };
 
   const provider: PactV3 = new PactV3(OPTIONS);
-
-  const FEED_PATH:string = "/feed";
 
   const ACCEPT_HEADER: string = MatchersV3.like(
     "application/json",
@@ -90,7 +90,7 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
         .uponReceiving("Alle News mit eingeschalteter Statistic")
         .withRequest({
           method: "GET",
-          path: FEED_PATH,
+          path: ENDPOINT_NEWS.getPath(),
 
           query: {url: "https://www.deutschlandfunk.de/die-nachrichten.353.de.rss", statistic: "true"},
           headers: {
@@ -112,11 +112,14 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
         console.log("######### U R L:" + mockServer.url);
         console.log("######### I D:" + mockServer.id);
 
-        const posts: Post[] = await fetchService.getFeedsSingleCall(new Endpunkt(Method.GET, mockServer.url,null, FEED_PATH, {statistic:true}), ["https://www.deutschlandfunk.de/die-nachrichten.353.de.rss"]);
+        const ENDPOINT: Endpunkt = ENDPOINT_NEWS.changeBase(mockServer.url);
+
+        // const posts: Post[] = await fetchService.getFeedsSingleCall(new Endpunkt(Method.GET, mockServer.url,null, FEED_PATH, {statistic:true}), ["https://www.deutschlandfunk.de/die-nachrichten.353.de.rss"]);
+        const posts: Post[] = await fetchService.getFeedsSingleCall(ENDPOINT, ["https://www.deutschlandfunk.de/die-nachrichten.353.de.rss"]);
         const feedExample = [
           {
             "hashcode": expect.any(String), //"acf94c55f3a08700fcf31074290c5b46fde03b1f",
-            "queryurl": mockServer.url + FEED_PATH+"?statistic=true&url=https://www.deutschlandfunk.de/die-nachrichten.353.de.rss",
+            "queryurl": ENDPOINT.addQueryPart("url", "https://www.deutschlandfunk.de/die-nachrichten.353.de.rss").toUrl(),
             "feedtitle": "\"Deutschlandfunk - Fortlaufende Nachrichten vom 04. Januar 2022\"",
             "exaktdate": expect.any(Date), //2022-01-04T22:59:00.000Z,
             "sortdate": "2022#01#04#22#0#Nachts im Norden meist trocken, sonst Regen und Schnee",

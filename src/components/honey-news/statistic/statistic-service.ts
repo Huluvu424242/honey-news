@@ -3,12 +3,17 @@ import {catchError, switchMap} from "rxjs/operators";
 import {fetchService} from "../../shared/fetcher";
 import {StatisticData} from "@huluvu424242/liona-feeds/dist/esm/feeds/statistic";
 import {Endpunkt, Method} from "../../shared/endpunkt";
+import {FEEDS_PATH} from "../../../global/constants";
+
+export const ENDPOINT_STATISTIC: Endpunkt = new Endpunkt("statistic", Method.GET, "https://huluvu424242.herokuapp.com", null, FEEDS_PATH, {}).register();
 
 export class StatisticService {
 
-  protected STATISTIC_PATH: string = "/feeds";
+  protected readonly statisticEndpunkt: Endpunkt;
 
-  protected statisticEndpunkt: Endpunkt = new Endpunkt(Method.GET, "https://huluvu424242.herokuapp.com", null, this.STATISTIC_PATH, {});
+  constructor() {
+    this.statisticEndpunkt = ENDPOINT_STATISTIC;
+  }
 
   public subscribeStatistiken(): Observable<StatisticData[]> {
     return timer(0, 60000 * 10)

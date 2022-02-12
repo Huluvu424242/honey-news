@@ -3,6 +3,7 @@ import {fetchService} from "../../../src/components/shared/fetcher";
 import {MatchersV3, PactV3, PactV3Options} from "@pact-foundation/pact/v3";
 import {V3MockServer} from "@pact-foundation/pact/src/v3/pact";
 import {StatisticData} from "@huluvu424242/liona-feeds/dist/esm/feeds/statistic";
+import {ENDPOINT_STATISTIC} from "../../../src/components/honey-news/statistic/statistic-service";
 
 const {
   eachLike,
@@ -30,7 +31,7 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
 
   const provider: PactV3 = new PactV3(OPTIONS);
 
-  const STATISTIC_PATH:string = "/feeds";
+  const STATISTIC_PATH: string = "/feeds";
   const ACCEPT_HEADER: string = MatchersV3.like(
     "application/json",
     "application/rss+xml",
@@ -73,7 +74,7 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
         .uponReceiving("Zu allen Feeds:")
         .withRequest({
           method: "GET",
-          path: STATISTIC_PATH,
+          path: ENDPOINT_STATISTIC.getPath(),
           headers: {
             Accept: ACCEPT_HEADER
           }

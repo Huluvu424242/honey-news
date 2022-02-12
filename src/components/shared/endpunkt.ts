@@ -1,3 +1,5 @@
+import {endpunkteService} from "./endpunkte-service";
+
 export interface EndpunktBase {
   readonly host: string;
   readonly port: number;
@@ -11,18 +13,38 @@ export enum Method {
 }
 
 export class Endpunkt implements EndpunktBase {
+  readonly id: string;
+  readonly method: Method;
   readonly host: string;
   readonly port: number;
   readonly path: string;
   readonly query: {};
-  readonly method: Method;
 
-  constructor(method: Method, host: string, port: number, path: string, query: {}) {
+  constructor(id: string, method: Method, host: string, port: number, path: string, query: {}) {
+    this.id = id;
     this.method = method;
     this.host = host;
     this.port = port;
     this.path = path;
     this.query = query;
+  }
+
+  public register(): Endpunkt {
+    endpunkteService.registerEndpunkt(this);
+    return this;
+  }
+
+  public getCopy(): Endpunkt {
+    return new Endpunkt(this.id, this.method, this.host, this.port, this.path, this.query);
+  }
+
+  public changeBase(urlBase: string): Endpunkt {
+    return new Endpunkt(this.id, this.method, urlBase, null, this.path, this.query);
+  }
+
+
+  public getId() {
+    return this.id;
   }
 
   public getMethod(): Method {
@@ -37,6 +59,10 @@ export class Endpunkt implements EndpunktBase {
     return this;
   }
 
+  public getPath(): string {
+    return this.path;
+  }
+
   public getQueryAsString(): string {
     let queryResult: string = "";
     let keyName: string;
@@ -45,7 +71,7 @@ export class Endpunkt implements EndpunktBase {
       queryResult += (prefix ? "&" : "") + keyName + "=" + this.query[keyName];
       prefix = true;
     }
-    return queryResult? "?"+queryResult:"";
+    return queryResult ? "?" + queryResult : "";
   }
 
   public getQuery(): {} {
@@ -53,16 +79,16 @@ export class Endpunkt implements EndpunktBase {
   }
 
   public replaceEndpunktBaseIfGiven(host?: string, port?: number): Endpunkt {
-    return new Endpunkt(this.method, host ? host : this.host, port ? port : this.port, this.path, this.query);
+    return new Endpunkt(this.id, this.method, host ? host : this.host, port ? port : this.port, this.path, this.query);
   }
 
   public replaceQueryIfGiven(query?: {}): Endpunkt {
-    return new Endpunkt(this.method, this.host, this.port, this.path, query ? query : this.query);
+    return new Endpunkt(this.id, this.method, this.host, this.port, this.path, query ? query : this.query);
   }
 
-  public addQueryPart(keyName:string, keyValue:string): Endpunkt {
-    const newQuery:{} = {...this.query};
-    newQuery[keyName]=keyValue;
+  public addQueryPart(keyName: string, keyValue: string): Endpunkt {
+    const newQuery: {} = {...this.query};
+    newQuery[keyName] = keyValue;
     return this.replaceQueryIfGiven(newQuery);
   }
 

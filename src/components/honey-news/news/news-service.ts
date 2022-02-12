@@ -3,15 +3,17 @@ import {fetchService, Post} from "../../shared/fetcher";
 import {catchError, mergeMap} from "rxjs/operators";
 import {Endpunkt, Method} from "../../shared/endpunkt";
 import {logService} from "../../../shared/logger";
+import {FEED_PATH} from "../../../global/constants";
+
+export const ENDPOINT_NEWS: Endpunkt = new Endpunkt("news", Method.GET, "https://huluvu424242.herokuapp.com", null, FEED_PATH, {statistic: true}).register();
+
 
 export class NewsService {
 
-  protected FEED_PATH: string = "/feed";
-  protected FEED_QUERY: {} = {statistic: true}
-
-  protected newsEndpunkt: Endpunkt = new Endpunkt(Method.GET, "https://huluvu424242.herokuapp.com", null, this.FEED_PATH, this.FEED_QUERY);
+  protected readonly newsEndpunkt: Endpunkt;
 
   constructor() {
+    this.newsEndpunkt = ENDPOINT_NEWS;
   }
 
 

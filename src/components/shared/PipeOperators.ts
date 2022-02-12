@@ -1,4 +1,4 @@
-import {FeedData, Post} from "../shared/fetcher";
+import {FeedData, Post} from "../shared/fetch-service";
 import {EMPTY, from, Observable} from "rxjs";
 import {map, toArray} from "rxjs/operators";
 import {FeedItem} from "feedme/dist/parser";

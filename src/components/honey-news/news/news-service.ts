@@ -1,5 +1,5 @@
 import {EMPTY, from, Observable, timer} from "rxjs";
-import {fetchService, Post} from "../../shared/fetcher";
+import {fetchService, Post} from "../../shared/fetch-service";
 import {catchError, mergeMap} from "rxjs/operators";
 import {Endpunkt, Method} from "../../shared/endpunkt";
 import {logService} from "../../../shared/logger";

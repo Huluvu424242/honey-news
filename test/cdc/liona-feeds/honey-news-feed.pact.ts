@@ -1,5 +1,5 @@
 import path from "path";
-import {fetchService, Post} from "../../../src/components/shared/fetcher";
+import {fetchService, Post} from "../../../src/components/shared/fetch-service";
 import {MatchersV3, PactV3, PactV3Options} from "@pact-foundation/pact/v3";
 import {V3MockServer} from "@pact-foundation/pact/src/v3/pact";
 import {ENDPOINT_NEWS} from "../../../src/components/honey-news/news/news-service";

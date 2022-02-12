@@ -5,7 +5,7 @@ import {catchError, filter, map, mergeMap, switchMap, tap, toArray} from "rxjs/o
 import {logService} from "../../shared/logger";
 import {StatisticData} from "@huluvu424242/liona-feeds/dist/esm/feeds/statistic";
 import {PipeOperators} from "./PipeOperators";
-import {BackendResponse, networkService} from "./network";
+import {BackendResponse, networkService} from "./network-service";
 import {Endpunkt} from "./endpunkt";
 
 export interface Post {
@@ -26,7 +26,7 @@ export interface FeedData {
   items: FeedItem[];
 }
 
-export class Fetcher {
+export class FetchService {
 
   public async loadFeedRanking(endpunkt: Endpunkt): Promise<StatisticData[]> {
     return await lastValueFrom(from(networkService.fetchData(endpunkt.toUrl()))
@@ -123,4 +123,4 @@ export class Fetcher {
   }
 }
 
-export const fetchService = new Fetcher();
+export const fetchService = new FetchService();

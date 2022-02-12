@@ -47,7 +47,7 @@ export class BackendResponseImpl implements BackendResponse {
 }
 
 
-export class Network {
+export class NetworkService {
 
 
   protected fetchDataAxiosAPI(queryUrl: string): Promise<AxiosResponse> {
@@ -82,4 +82,4 @@ export class Network {
 
 }
 
-export const networkService: Network = new Network();
+export const networkService: NetworkService = new NetworkService();

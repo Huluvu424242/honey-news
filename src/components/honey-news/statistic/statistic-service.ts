@@ -1,6 +1,6 @@
 import {EMPTY, from, Observable, timer} from "rxjs";
 import {catchError, switchMap} from "rxjs/operators";
-import {fetchService} from "../../shared/fetcher";
+import {fetchService} from "../../shared/fetch-service";
 import {StatisticData} from "@huluvu424242/liona-feeds/dist/esm/feeds/statistic";
 import {Endpunkt, Method} from "../../shared/endpunkt";
 import {FEEDS_PATH} from "../../../global/constants";

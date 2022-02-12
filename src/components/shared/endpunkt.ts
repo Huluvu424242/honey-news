@@ -45,7 +45,7 @@ export class Endpunkt implements EndpunktBase {
       queryResult += (prefix ? "&" : "") + keyName + "=" + this.query[keyName];
       prefix = true;
     }
-    return "?" + queryResult;
+    return queryResult? "?"+queryResult:"";
   }
 
   public getQuery(): {} {

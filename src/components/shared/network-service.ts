@@ -1,4 +1,5 @@
 import axios, {AxiosResponse} from "axios";
+import {Endpunkt} from "./endpunkt";
 
 export interface BackendResponse {
   fetchResponse: Response;
@@ -66,15 +67,15 @@ export class NetworkService {
     });
   }
 
-  public async fetchData(queryUrl: string): Promise<BackendResponse> {
+  public async fetchData(endpunkt: Endpunkt): Promise<BackendResponse> {
     // Workaround for  pact-js framework with fetch API: fetch is not defined
     const isWorkaroundActive = true;
     let fetchResponse: Response;
     let axiosResponse: AxiosResponse;
     if (isWorkaroundActive) {
-      axiosResponse = await this.fetchDataAxiosAPI(queryUrl);
+      axiosResponse = await this.fetchDataAxiosAPI(endpunkt.toUrl());
     } else {
-      fetchResponse = await this.fetchDataFetchAPI(queryUrl);
+      fetchResponse = await this.fetchDataFetchAPI(endpunkt.toUrl());
     }
     return new BackendResponseImpl(fetchResponse, axiosResponse);
 

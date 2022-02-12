@@ -29,7 +29,7 @@ export interface FeedData {
 export class FetchService {
 
   public async loadFeedRanking(endpunkt: Endpunkt): Promise<StatisticData[]> {
-    return await lastValueFrom(from(networkService.fetchData(endpunkt.toUrl()))
+    return await lastValueFrom(from(networkService.fetchData(endpunkt))
       .pipe(
         catchError(() => EMPTY),
         switchMap(
@@ -59,18 +59,16 @@ export class FetchService {
   }
 
   loadFeedDataInternal(endpunkt: Endpunkt): Observable<FeedData> {
-    const queryUrl: string = endpunkt.toUrl();
-    logService.debugMessage("### query url " + queryUrl);
     const data: FeedData = {
       status: null, url: null, statusText: null, feedtitle: null, items: null
     };
-    const fetch$ = from(networkService.fetchData(queryUrl));
+    const fetch$ = from(networkService.fetchData(endpunkt));
     return fetch$.pipe(
       tap(
         (response: BackendResponse) => {
           data.status = response.getStatus();
           data.statusText = response.getStatusText();
-          data.url = queryUrl;
+          data.url = endpunkt.toUrl();
         }
       ),
       switchMap(

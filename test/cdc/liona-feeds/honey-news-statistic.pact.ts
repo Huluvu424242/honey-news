@@ -4,6 +4,7 @@ import {MatchersV3, PactV3, PactV3Options} from "@pact-foundation/pact/v3";
 import {V3MockServer} from "@pact-foundation/pact/src/v3/pact";
 import {StatisticData} from "@huluvu424242/liona-feeds/dist/esm/feeds/statistic";
 import {ENDPOINT_STATISTIC} from "../../../src/components/honey-news/statistic/statistic-service";
+import {Endpunkt} from "../../../src/components/shared/endpunkt";
 
 const {
   eachLike,
@@ -94,9 +95,9 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
         console.log("######### U R L:" + mockServer.url);
         console.log("######### I D:" + mockServer.id);
 
-        // await changeLionaFeedsAPIUrlTo(mockServer.url);
+        const ENDPOINT: Endpunkt = ENDPOINT_STATISTIC.replaceBase(mockServer.url, mockServer.port);
 
-        const statisticData: StatisticData[] = await fetchService.loadFeedRanking(mockServer.url + STATISTIC_PATH);
+        const statisticData: StatisticData[] = await fetchService.loadFeedRanking(ENDPOINT.toUrl());
         const statisticExample = [
           {
             "url": "https://www.presseportal.de/rss/presseportal.rss2",

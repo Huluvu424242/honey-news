@@ -33,6 +33,8 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
 
   const provider: PactV3 = new PactV3(OPTIONS);
 
+  const FEED_PATH:string = "/feed";
+
   const ACCEPT_HEADER: string = MatchersV3.like(
     "application/json",
     "application/rss+xml",
@@ -88,7 +90,7 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
         .uponReceiving("Alle News mit eingeschalteter Statistic")
         .withRequest({
           method: "GET",
-          path: "/feed",
+          path: FEED_PATH,
 
           query: {url: "https://www.deutschlandfunk.de/die-nachrichten.353.de.rss", statistic: "true"},
           headers: {
@@ -110,13 +112,11 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
         console.log("######### U R L:" + mockServer.url);
         console.log("######### I D:" + mockServer.id);
 
-        // await fetchService.changeLionaFeedsAPIUrlTo(mockServer.url+"/feed");
-
-        const posts: Post[] = await fetchService.getFeedsSingleCall(new Endpunkt(mockServer.url,null, "/feed", "?statistic=true"), ["https://www.deutschlandfunk.de/die-nachrichten.353.de.rss"]);
+        const posts: Post[] = await fetchService.getFeedsSingleCall(new Endpunkt(mockServer.url,null, FEED_PATH, "?statistic=true"), ["https://www.deutschlandfunk.de/die-nachrichten.353.de.rss"]);
         const feedExample = [
           {
             "hashcode": expect.any(String), //"acf94c55f3a08700fcf31074290c5b46fde03b1f",
-            "queryurl": mockServer.url + "/feed?statistic=true&url=https://www.deutschlandfunk.de/die-nachrichten.353.de.rss",
+            "queryurl": mockServer.url + FEED_PATH+"?statistic=true&url=https://www.deutschlandfunk.de/die-nachrichten.353.de.rss",
             "feedtitle": "\"Deutschlandfunk - Fortlaufende Nachrichten vom 04. Januar 2022\"",
             "exaktdate": expect.any(Date), //2022-01-04T22:59:00.000Z,
             "sortdate": "2022#01#04#22#0#Nachts im Norden meist trocken, sonst Regen und Schnee",

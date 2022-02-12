@@ -30,6 +30,7 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
 
   const provider: PactV3 = new PactV3(OPTIONS);
 
+  const STATISTIC_PATH:string = "/feeds";
   const ACCEPT_HEADER: string = MatchersV3.like(
     "application/json",
     "application/rss+xml",
@@ -63,7 +64,7 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
 
   describe("@huluvu424242/liona-feeds", () => {
 
-    it("Abruf eines RSS 2.0 Feeds", () => {
+    it("Abruf der Statistik zu den Feeds", () => {
 
       // Vorbedingung herstellen (Contract definieren)
       // PACT Matchers verwenden
@@ -72,7 +73,7 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
         .uponReceiving("Zu allen Feeds:")
         .withRequest({
           method: "GET",
-          path: "/feeds",
+          path: STATISTIC_PATH,
           headers: {
             Accept: ACCEPT_HEADER
           }
@@ -94,7 +95,7 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
 
         // await changeLionaFeedsAPIUrlTo(mockServer.url);
 
-        const statisticData: StatisticData[] = await fetchService.loadFeedRanking(mockServer.url + "/feeds");
+        const statisticData: StatisticData[] = await fetchService.loadFeedRanking(mockServer.url + STATISTIC_PATH);
         const statisticExample = [
           {
             "url": "https://www.presseportal.de/rss/presseportal.rss2",

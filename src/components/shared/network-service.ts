@@ -60,9 +60,9 @@ export class NetworkService {
   }
 
 
-  protected fetchDataFetchAPI(queryUrl: string): Promise<Response> {
-    return fetch(queryUrl, {
-      method: 'GET', // *GET, POST, PUT, DELETE, etc.
+  protected fetchDataFetchAPI(endpunkt: Endpunkt): Promise<Response> {
+    return fetch(endpunkt.toUrl(), {
+      method: endpunkt.getMethodAsString(), // *GET, POST, PUT, DELETE, etc.
       cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
     });
   }
@@ -75,7 +75,7 @@ export class NetworkService {
     if (isWorkaroundActive) {
       axiosResponse = await this.fetchDataAxiosAPI(endpunkt.toUrl());
     } else {
-      fetchResponse = await this.fetchDataFetchAPI(endpunkt.toUrl());
+      fetchResponse = await this.fetchDataFetchAPI(endpunkt);
     }
     return new BackendResponseImpl(fetchResponse, axiosResponse);
 

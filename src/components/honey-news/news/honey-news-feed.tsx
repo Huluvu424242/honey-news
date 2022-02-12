@@ -2,7 +2,7 @@ import {Component, Element, h, Host, Prop, State} from "@stencil/core";
 import {logService} from "../../../shared/logger";
 import {Post} from "../../shared/fetch-service";
 import {Subscription} from "rxjs";
-import {PipeOperators} from "../../shared/PipeOperators";
+import {PipeOperators} from "../../shared/pipe-operators";
 import {NewsArticle} from "./honey-news-article";
 import {newsService} from "./news-service";
 

@@ -6,7 +6,7 @@ import DOMPurify from 'dompurify';
   tag: "honey-news-verwaltung",
   shadow: true
 })
-export class HoneyNewsVerwaltung {
+export class HoneyFeedVerwaltung {
 
   /**
    * Input Element

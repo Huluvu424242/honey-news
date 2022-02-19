@@ -5,7 +5,7 @@ enum LogLevel {
   LOG = "log"
 }
 
-export class LoggerService {
+export class LogService {
 
   protected isLoggingActive: boolean = true;
 
@@ -53,4 +53,4 @@ export class LoggerService {
 
 }
 
-export const logService: LoggerService = new LoggerService();
+export const logService: LogService = new LogService();

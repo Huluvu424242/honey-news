@@ -70,6 +70,14 @@ export class Endpunkt  {
     return new Endpunkt(this.id, this.method, host, port, this.path, this.query);
   }
 
+  /**
+   * Erzeugt einen neuen Endpunkt mit abweichenden Parametern
+   *
+   * @param host Protokoll, hostname und ggf auch Port
+   * @param port Port
+   *
+   * @return neue Instanz von Endpunkt mit ersetzten Parametern
+   */
   public replaceEndpunktBaseIfGiven(host?: string, port?: number): Endpunkt {
     return new Endpunkt(this.id, this.method, host ? host : this.host, port ? port : this.port, this.path, this.query);
   }

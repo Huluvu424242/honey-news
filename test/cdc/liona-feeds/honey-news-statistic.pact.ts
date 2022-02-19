@@ -1,10 +1,9 @@
 import path from "path";
-import {fetchService} from "../../../src/components/shared/fetch-service";
 import {MatchersV3, PactV3, PactV3Options} from "@pact-foundation/pact/v3";
 import {V3MockServer} from "@pact-foundation/pact/src/v3/pact";
 import {StatisticData} from "@huluvu424242/liona-feeds/dist/esm/feeds/statistic";
-import {ENDPOINT_STATISTIC} from "../../../src/components/honey-news/statistic/statistic-service";
-import {Endpunkt} from "../../../src/components/shared/endpunkt";
+import {ENDPOINT_STATISTIC, StatisticFetcher} from "../../../src/components/honey-news/statistic/statistic-fetcher";
+import {StatisticService} from "../../../src/components/honey-news/statistic/statistic-service";
 
 const {
   eachLike,
@@ -94,9 +93,9 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
         console.log("######### U R L:" + mockServer.url);
         console.log("######### I D:" + mockServer.id);
 
-        const ENDPOINT: Endpunkt = ENDPOINT_STATISTIC.replaceBase(mockServer.url, mockServer.port);
-
-        const statisticData: StatisticData[] = await fetchService.loadFeedRanking(ENDPOINT);
+        const statisticFetcher = StatisticFetcher.newStatisticFetcherFor(mockServer.url, mockServer.port);
+        const statisticService: StatisticService = new StatisticService(statisticFetcher);
+        const statisticData: StatisticData[] = await statisticService.ladeStatistiken();
         const statisticExample = [
           {
             "url": "https://www.presseportal.de/rss/presseportal.rss2",

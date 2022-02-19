@@ -3,7 +3,6 @@ import {FeedItem} from "feedme/dist/parser";
 import {EMPTY, from, lastValueFrom, Observable} from "rxjs";
 import {catchError, filter, map, mergeMap, switchMap, tap, toArray} from "rxjs/operators";
 import {logService} from "../../shared/logger-service";
-import {StatisticData} from "@huluvu424242/liona-feeds/dist/esm/feeds/statistic";
 import {PipeOperators} from "./pipe-operators";
 import {BackendResponse, networkService} from "./network-service";
 import {Endpunkt} from "./endpunkt";
@@ -28,35 +27,35 @@ export interface FeedData {
 
 export class FetchService {
 
-  public async loadFeedRanking(endpunkt: Endpunkt): Promise<StatisticData[]> {
-    return await lastValueFrom(from(networkService.fetchData(endpunkt))
-      .pipe(
-        catchError(() => EMPTY),
-        switchMap(
-          (response: BackendResponse) => from(response.getData()).pipe(catchError(() => EMPTY))
-        ),
-        filter(
-          (rawData: any) => Array.isArray(rawData)
-        ),
-        map(
-          (items: any[]) => {
-            const statistics: StatisticData[] = [];
-            items.forEach(
-              (item) => {
-                const statistic: StatisticData = {
-                  score: item?.score,
-                  url: item?.url,
-                  countRequested: item?.countRequested,
-                  countContacted: item?.countContacted,
-                  countResponseOK: item?.countResponseOK
-                };
-                statistics.push(statistic);
-              }
-            );
-            return statistics;
-          }),
-      ));
-  }
+  // public async loadFeedRanking(endpunkt: Endpunkt): Promise<StatisticData[]> {
+  //   return await lastValueFrom(from(networkService.fetchData(endpunkt))
+  //     .pipe(
+  //       catchError(() => EMPTY),
+  //       switchMap(
+  //         (response: BackendResponse) => from(response.getData()).pipe(catchError(() => EMPTY))
+  //       ),
+  //       filter(
+  //         (rawData: any) => Array.isArray(rawData)
+  //       ),
+  //       map(
+  //         (items: any[]) => {
+  //           const statistics: StatisticData[] = [];
+  //           items.forEach(
+  //             (item) => {
+  //               const statistic: StatisticData = {
+  //                 score: item?.score,
+  //                 url: item?.url,
+  //                 countRequested: item?.countRequested,
+  //                 countContacted: item?.countContacted,
+  //                 countResponseOK: item?.countResponseOK
+  //               };
+  //               statistics.push(statistic);
+  //             }
+  //           );
+  //           return statistics;
+  //         }),
+  //     ));
+  // }
 
   loadFeedDataInternal(endpunkt: Endpunkt): Observable<FeedData> {
     const data: FeedData = {

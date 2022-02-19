@@ -1,18 +1,19 @@
 import {EMPTY, from, Observable, timer} from "rxjs";
 import {catchError, switchMap} from "rxjs/operators";
-import {fetchService} from "../../shared/fetch-service";
 import {StatisticData} from "@huluvu424242/liona-feeds/dist/esm/feeds/statistic";
-import {Endpunkt, Method} from "../../shared/endpunkt";
-import {FEEDS_PATH} from "../../../global/constants";
+import {StatisticFetcher} from "./statistic-fetcher";
 
-export const ENDPOINT_STATISTIC: Endpunkt = new Endpunkt("statistic", Method.GET, "https://huluvu424242.herokuapp.com", null, FEEDS_PATH, {}).register();
 
 export class StatisticService {
 
-  protected readonly statisticEndpunkt: Endpunkt;
+  protected readonly statisticFetcher: StatisticFetcher;
 
-  constructor() {
-    this.statisticEndpunkt = ENDPOINT_STATISTIC;
+  constructor(statisticFetcher?: StatisticFetcher) {
+    if (statisticFetcher) {
+      this.statisticFetcher = statisticFetcher;
+    } else {
+      this.statisticFetcher = StatisticFetcher.newStatisticFetcher();
+    }
   }
 
   public subscribeStatistiken(): Observable<StatisticData[]> {
@@ -24,15 +25,18 @@ export class StatisticService {
       );
   }
 
-  // Fachlich relevant für CDC
-  public async ladeStatistiken(host?: string, port?: number): Promise<StatisticData[]> {
-    const endpunkt: Endpunkt = this.statisticEndpunkt.replaceEndpunktBaseIfGiven(host, port);
-    console.log("Statistik Endpunkt:" + endpunkt.toUrl());
-    return await fetchService.loadFeedRanking(endpunkt);
+  /**
+   * Lade aktuelle Statistiken
+   */
+  public async ladeStatistiken(): Promise<StatisticData[]> {
+    return await this.statisticFetcher.loadFeedRanking();
   }
 
+  /**
+   * Gibt die Route zur Abfrage der Statistiken zurück
+   */
   public getRoute(): string {
-    return this.statisticEndpunkt.path;
+    return this.statisticFetcher.statisticEndpunkt.path;
   }
 
 }

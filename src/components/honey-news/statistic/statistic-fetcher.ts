@@ -4,7 +4,7 @@ import {StatisticData} from "@huluvu424242/liona-feeds/dist/esm/feeds/statistic"
 import {EMPTY, from, lastValueFrom} from "rxjs";
 import {BackendResponse, networkService} from "../../shared/network-service";
 import {catchError, filter, map, switchMap} from "rxjs/operators";
-import {logService} from "../../../shared/logger-service";
+import {logService} from "../../../shared/log-service";
 
 export const ENDPOINT_STATISTIC: Endpunkt = new Endpunkt("statistic", Method.GET, "https://huluvu424242.herokuapp.com", null, FEEDS_PATH, {}).register();
 

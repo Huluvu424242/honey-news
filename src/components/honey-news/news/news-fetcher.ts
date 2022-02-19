@@ -1,6 +1,6 @@
 import {Endpunkt, Method} from "../../shared/endpunkt";
 import {FEED_PATH} from "../../../global/constants";
-import {logService} from "../../../shared/logger-service";
+import {logService} from "../../../shared/log-service";
 import {EMPTY, from, lastValueFrom, Observable} from "rxjs";
 import {BackendResponse, networkService} from "../../shared/network-service";
 import {catchError, filter, map, mergeMap, switchMap, tap, toArray} from "rxjs/operators";

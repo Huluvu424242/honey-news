@@ -49,7 +49,7 @@
     "node": "16.13.2"
   },
   "dependencies": {
-    "@stencil/core": "2.13.0",
+    "@stencil/core": "2.14.0",
     "@huluvu424242/liona-feeds": "2.3.3",
     "axios": "0.25.0",
     "dompurify": "2.3.5",

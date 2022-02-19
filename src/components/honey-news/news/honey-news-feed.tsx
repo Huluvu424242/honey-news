@@ -39,7 +39,7 @@ export class HoneyNewsFeed {
     this.ident = this.hostElement.id ? this.hostElement.id : Math.random().toString(36).substring(7);
     // Properties auswerten
     this.feedsSubscription = this.subscribeFeeds();
-    logService.toggleLogging(this.verbose);
+    logService.setLogging(this.verbose);
   }
 
   public disconnectedCallback() {

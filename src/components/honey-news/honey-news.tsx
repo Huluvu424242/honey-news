@@ -71,7 +71,7 @@ export class HoneyNews {
     );
 
     // Properties auswerten
-    logService.toggleLogging(this.verbose);
+    logService.setLogging(this.verbose);
     logService.logMessage("Logging: "+this.verbose);
   }
 

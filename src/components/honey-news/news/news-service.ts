@@ -1,26 +1,25 @@
 import {EMPTY, from, Observable, timer} from "rxjs";
-import {fetchService, Post} from "../../shared/fetch-service";
 import {catchError, mergeMap} from "rxjs/operators";
-import {Endpunkt, Method} from "../../shared/endpunkt";
-import {logService} from "../../../shared/logger-service";
-import {FEED_PATH} from "../../../global/constants";
-
-export const ENDPOINT_NEWS: Endpunkt = new Endpunkt("news", Method.GET, "https://huluvu424242.herokuapp.com", null, FEED_PATH, {statistic: true}).register();
+import {NewsFetcher, Post} from "./news-fetcher";
 
 
 export class NewsService {
 
-  protected readonly newsEndpunkt: Endpunkt;
-
-  constructor() {
-    this.newsEndpunkt = ENDPOINT_NEWS;
-  }
-
+  protected readonly newsFetcher: NewsFetcher;
 
   /**
-   * texte to speech out
+   * urls to request the news feeds
    */
   protected feedURLs: string[] = [];
+
+  public constructor(newsFetcher?: NewsFetcher) {
+    if (newsFetcher) {
+      this.newsFetcher = newsFetcher;
+    } else {
+      this.newsFetcher = NewsFetcher.newNewsFetcher();
+    }
+  }
+
 
   public getFeedURLs(): string[] {
     return [...this.feedURLs];
@@ -40,20 +39,16 @@ export class NewsService {
   }
 
   // Fachlich relevant für CDC
-  public async ladePosts(host?: string, port?: number): Promise<Post[]> {
-    const endpunkt: Endpunkt = this.newsEndpunkt.replaceEndpunktBaseIfGiven(host, port);
-    logService.logMessage("Lade Posts Endpunkt:" + endpunkt.toUrl());
-    return await fetchService.getFeedsSingleCall(endpunkt, this.feedURLs);
+  public async ladePosts(): Promise<Post[]> {
+    return await this.newsFetcher.getFeedsSingleCall(this.feedURLs);
   }
 
-  public async ladePostsFrom(url: string, host?: string, port?: number): Promise<Post[]> {
-    const endpunkt: Endpunkt = this.newsEndpunkt.replaceEndpunktBaseIfGiven(host, port);
-    logService.logMessage("Lade Posts From Endpunkt:" + endpunkt.toUrl());
-    return await fetchService.getFeedsSingleCall(endpunkt, [url]);
+  public async ladePostsFrom(url: string): Promise<Post[]> {
+    return await this.newsFetcher.getFeedsSingleCall([url]);
   }
 
   public getRoute(): string {
-    return this.newsEndpunkt.path;
+    return this.newsFetcher.newsEndpunkt.path;
   }
 
 

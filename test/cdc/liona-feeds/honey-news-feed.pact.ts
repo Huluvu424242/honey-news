@@ -1,9 +1,10 @@
 import path from "path";
-import {fetchService, Post} from "../../../src/components/shared/fetch-service";
 import {MatchersV3, PactV3, PactV3Options} from "@pact-foundation/pact/v3";
 import {V3MockServer} from "@pact-foundation/pact/src/v3/pact";
-import {ENDPOINT_NEWS} from "../../../src/components/honey-news/news/news-service";
+import {ENDPOINT_NEWS, NewsFetcher} from "../../../src/components/honey-news/news/news-fetcher";
 import {Endpunkt} from "../../../src/components/shared/endpunkt";
+import {NewsService} from "../../../src/components/honey-news/news/news-service";
+import {Post} from "../../../dist/types/components/shared/fetch-service";
 
 
 // @ts-ignore
@@ -113,9 +114,11 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
         console.log("######### I D:" + mockServer.id);
 
         const ENDPOINT: Endpunkt = ENDPOINT_NEWS.replaceBase(mockServer.url, mockServer.port);
+        const newsFetcher: NewsFetcher = NewsFetcher.newNewsFetcherFor(mockServer.url, mockServer.port);
+        const newsService: NewsService = new NewsService(newsFetcher);
 
         // const posts: Post[] = await fetchService.getFeedsSingleCall(new Endpunkt(Method.GET, mockServer.url,null, FEED_PATH, {statistic:true}), ["https://www.deutschlandfunk.de/die-nachrichten.353.de.rss"]);
-        const posts: Post[] = await fetchService.getFeedsSingleCall(ENDPOINT, ["https://www.deutschlandfunk.de/die-nachrichten.353.de.rss"]);
+        const posts: Post[] = await newsService.ladePostsFrom("https://www.deutschlandfunk.de/die-nachrichten.353.de.rss");
         const feedExample = [
           {
             "hashcode": expect.any(String), //"acf94c55f3a08700fcf31074290c5b46fde03b1f",

@@ -1,10 +1,10 @@
-import {FeedData, Post} from "../shared/fetch-service";
 import {EMPTY, from, Observable} from "rxjs";
 import {map, toArray} from "rxjs/operators";
 import {FeedItem} from "feedme/dist/parser";
 import * as objectHash from "object-hash";
-import {logService} from "../../shared/logger-service";
+import {logService} from "../../../shared/logger-service";
 import DateTimeFormat = Intl.DateTimeFormat;
+import {FeedData, Post} from "./news-fetcher";
 
 export class PipeOperators {
 

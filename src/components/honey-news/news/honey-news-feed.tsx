@@ -1,10 +1,10 @@
 import {Component, Element, h, Host, Prop, State} from "@stencil/core";
 import {logService} from "../../../shared/logger-service";
-import {Post} from "../../shared/fetch-service";
 import {Subscription} from "rxjs";
-import {PipeOperators} from "../../shared/pipe-operators";
+import {PipeOperators} from "./pipe-operators";
 import {NewsArticle} from "./honey-news-article";
 import {newsService} from "./news-service";
+import {Post} from "./news-fetcher";
 
 @Component({
   tag: "honey-news-feed",

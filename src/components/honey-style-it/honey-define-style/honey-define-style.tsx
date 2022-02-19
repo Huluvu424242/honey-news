@@ -1,6 +1,14 @@
 import {Component, Element, h, Host, Method} from '@stencil/core';
 import {Observable, Observer, ReplaySubject, Subject, Subscription} from "rxjs";
-import {printWarning} from "../../shared/helper";
+import {logService} from "../../../shared/log-service";
+
+export interface ThemeListener {
+  next: (theme: string) => void;
+  error: (error: string) => void;
+  complete: () => void;
+}
+
+
 
 @Component({
   tag: 'honey-define-style',
@@ -23,7 +31,7 @@ export class HoneyDefineStyle {
     try {
       await this.computeTheme();
     } catch (error) {
-      printWarning(error);
+      logService.warnMessage(error);
     }
   }
 

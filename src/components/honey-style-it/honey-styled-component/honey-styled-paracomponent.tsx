@@ -1,7 +1,7 @@
 import {Component, h, Prop, State} from '@stencil/core';
 import {Subscription} from "rxjs";
-import {printDebug, printError, ThemeListener} from "../../shared/helper";
-import {HoneyDefineStyle} from "../honey-define-style/honey-define-style";
+import {HoneyDefineStyle, ThemeListener} from "../honey-define-style/honey-define-style";
+import {logService} from "../../../shared/log-service";
 
 @Component({
   tag: "honey-styled-paracomponent",
@@ -39,8 +39,8 @@ export class HoneyStyledParacomponent {
       const styleElements: HoneyDefineStyle = document.querySelector('honey-define-style') as unknown as HoneyDefineStyle;
       const listener: ThemeListener = {
         next: (styleName: string) => this.theme = styleName,
-        error: (error) => printError(error),
-        complete: () => printDebug("subcription completed")
+        error: (error) => logService.errorMessage(error),
+        complete: () => logService.debugMessage("subcription completed")
       };
       this.themeSubscription = await styleElements.subscribeThemeChangeListener(listener);
     } catch (error) {

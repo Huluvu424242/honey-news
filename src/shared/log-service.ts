@@ -1,5 +1,6 @@
 enum LogLevel {
   ERROR = "error",
+  WARNING = "warn",
   DEBUG = "debug",
   INFO = "info",
   LOG = "log"
@@ -39,17 +40,24 @@ export class LogService {
     this.log(LogLevel.LOG, message, params);
   }
 
-  public debugMessage(message: string, ...params) {
-    this.log(LogLevel.DEBUG, message, params);
-  }
-
   public errorMessage(message: string, ...params) {
     this.log(LogLevel.ERROR, message, params);
+  }
+
+  public warnMessage(message: string, ...params) {
+    this.log(LogLevel.WARNING, message, params);
+  }
+
+  public debugMessage(message: string, ...params) {
+    this.log(LogLevel.DEBUG, message, params);
   }
 
   public infoMessage(message: string, ...params) {
     this.log(LogLevel.INFO, message, params);
   }
+
+
+
 
 }
 

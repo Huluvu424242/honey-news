@@ -4,20 +4,19 @@ import {V3MockServer} from "@pact-foundation/pact/src/v3/pact";
 import {ENDPOINT_NEWS, NewsFetcher} from "../../../src/components/honey-news/news/news-fetcher";
 import {Endpunkt} from "../../../src/components/shared/endpunkt";
 import {NewsService} from "../../../src/components/honey-news/news/news-service";
-import {Post} from "../../../dist/types/components/shared/fetch-service";
+import {Post} from "../../../dist/types/components/honey-news/news/news-fetcher";
 
 
-// @ts-ignore
 const {
-  eachLike,
-  atLeastLike,
-  integer,
-  timestamp,
-  boolean,
+  // eachLike,
+  // atLeastLike,
+  // integer,
+  // timestamp,
+  // boolean,
   string,
-  url,
-  datetime,
-  regex,
+  // url,
+  // datetime,
+  // regex,
   like,
 } = MatchersV3;
 
@@ -36,12 +35,12 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
 
   const provider: PactV3 = new PactV3(OPTIONS);
 
-  const ACCEPT_HEADER: string = MatchersV3.like(
-    "application/json",
-    "application/rss+xml",
-    "application/xml",
-    "application/xhtml+xml",
-    "text/xtml")
+  // const ACCEPT_HEADER: string[] =[
+  //   "application/json",
+  //   "application/rss+xml",
+  //   "application/xml",
+  //   "application/xhtml+xml",
+  //   "text/xtml"];
 
   const RESPONSE_RSS2_0 = like({
     "type": "rss 2.0",
@@ -95,7 +94,7 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
 
           query: {url: "https://www.deutschlandfunk.de/die-nachrichten.353.de.rss", statistic: "true"},
           headers: {
-            Accept: ACCEPT_HEADER
+            Accept: "application/json"
           }
         })
         .willRespondWith({

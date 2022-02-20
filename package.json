@@ -37,7 +37,7 @@
     "test": "npm run test:spec && npm run test:cdc && npm run test:e2e",
     "test:spec": "stencil test --spec",
     "test:cdc": "npx jest .*.pact.ts",
-    "playwright": "sleep 10 && npx playwright test",
+    "playwright": "sleep 15 && npx playwright test",
     "test:e2e":"npm-run-all -p -r start playwright",
     "test:e2e-alt":"concurrently --kill-others \"npm run start\" \"sleep 10 && npx playwright test\"",
     "test.watch": "stencil test --spec --e2e --watchAll",

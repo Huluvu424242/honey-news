@@ -1,17 +1,18 @@
 import path from "path";
-import {changeLionaFeedsAPIUrlTo, loadFeedRanking} from "../../../src/fetch-es6.worker";
 import {MatchersV3, PactV3, PactV3Options} from "@pact-foundation/pact/v3";
 import {V3MockServer} from "@pact-foundation/pact/src/v3/pact";
 import {StatisticData} from "@huluvu424242/liona-feeds/dist/esm/feeds/statistic";
+import {ENDPOINT_STATISTIC, StatisticFetcher} from "../../../src/components/honey-news/statistic/statistic-fetcher";
+import {StatisticService} from "../../../src/components/honey-news/statistic/statistic-service";
 
 const {
-  eachLike,
-  atLeastLike,
-  integer,
-  timestamp,
-  boolean,
-  string,
-  regex,
+  // eachLike,
+  // atLeastLike,
+  // integer,
+  // timestamp,
+  // boolean,
+  // string,
+  // regex,
   like,
 } = MatchersV3;
 
@@ -30,16 +31,16 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
 
   const provider: PactV3 = new PactV3(OPTIONS);
 
-  const ACCEPT_HEADER: string = MatchersV3.like(
-    "application/json",
-    "application/rss+xml",
-    "application/xml",
-    "application/xhtml+xml",
-    "text/xtml")
+  // const ACCEPT_HEADER: string = MatchersV3.like(
+  //   "application/json",
+  //   "application/rss+xml",
+  //   "application/xml",
+  //   "application/xhtml+xml",
+  //   "text/xtml")
 
   const RESPONSE_3 = [
     {
-      "url": "https://www.presseportal.de/rss/presseportal.rss2",
+      "url": like("https://www.presseportal.de/rss/presseportal.rss2"),
       "countRequested": 4,
       "countContacted": 0,
       "countResponseOK": 1
@@ -63,7 +64,7 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
 
   describe("@huluvu424242/liona-feeds", () => {
 
-    it("Abruf eines RSS 2.0 Feeds", () => {
+    it("Abruf der Statistik zu den Feeds", () => {
 
       // Vorbedingung herstellen (Contract definieren)
       // PACT Matchers verwenden
@@ -72,9 +73,9 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
         .uponReceiving("Zu allen Feeds:")
         .withRequest({
           method: "GET",
-          path: "/feeds",
+          path: ENDPOINT_STATISTIC.getPath(),
           headers: {
-            Accept: ACCEPT_HEADER
+            Accept: "application/json"
           }
         })
         .willRespondWith({
@@ -92,9 +93,9 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
         console.log("######### U R L:" + mockServer.url);
         console.log("######### I D:" + mockServer.id);
 
-        await changeLionaFeedsAPIUrlTo(mockServer.url);
-
-        const statisticData: StatisticData[] = await loadFeedRanking(mockServer.url+"/feeds");
+        const statisticFetcher = StatisticFetcher.newStatisticFetcherFor(mockServer.url, mockServer.port);
+        const statisticService: StatisticService = new StatisticService(statisticFetcher);
+        const statisticData: StatisticData[] = await statisticService.ladeStatistiken();
         const statisticExample = [
           {
             "url": "https://www.presseportal.de/rss/presseportal.rss2",

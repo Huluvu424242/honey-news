@@ -7,8 +7,6 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { Observable, Observer, Subscription } from "rxjs";
 import { NewsArticle } from "./components/honey-news/news/honey-news-article";
-import { NewsLoader } from "./components/honey-news/news/NewsLoader";
-import { StatisticLoader } from "./components/honey-news/statistic/StatisticLoader";
 export namespace Components {
     interface HoneyAbout {
     }
@@ -85,10 +83,6 @@ export namespace Components {
     }
     interface HoneyNewsFeed {
         /**
-          * Hilfsklasse zum Laden der Daten
-         */
-        "feedLoader": NewsLoader;
-        /**
           * enable console logging
          */
         "verbose": boolean;
@@ -96,16 +90,8 @@ export namespace Components {
     interface HoneyNewsHeader {
     }
     interface HoneyNewsStatistic {
-        /**
-          * Hilfsklasse zum Laden der Statistic Daten
-         */
-        "statisticLoader": StatisticLoader;
     }
     interface HoneyNewsVerwaltung {
-        /**
-          * Hilfsklasse zum Laden der Daten
-         */
-        "feedLoader": NewsLoader;
     }
     interface HoneyNotification {
     }
@@ -465,10 +451,6 @@ declare namespace LocalJSX {
     }
     interface HoneyNewsFeed {
         /**
-          * Hilfsklasse zum Laden der Daten
-         */
-        "feedLoader"?: NewsLoader;
-        /**
           * enable console logging
          */
         "verbose"?: boolean;
@@ -476,16 +458,8 @@ declare namespace LocalJSX {
     interface HoneyNewsHeader {
     }
     interface HoneyNewsStatistic {
-        /**
-          * Hilfsklasse zum Laden der Statistic Daten
-         */
-        "statisticLoader"?: StatisticLoader;
     }
     interface HoneyNewsVerwaltung {
-        /**
-          * Hilfsklasse zum Laden der Daten
-         */
-        "feedLoader": NewsLoader;
     }
     interface HoneyNotification {
     }

@@ -1,7 +1,7 @@
 import {Component, h, State} from '@stencil/core';
-import {HoneyDefineStyle} from "../honey-define-style/honey-define-style";
+import {HoneyDefineStyle, ThemeListener} from "../honey-define-style/honey-define-style";
 import {EMPTY, Subscription} from "rxjs";
-import {printDebug, printError, ThemeListener} from "../../shared/helper";
+import {logService} from "../../../shared/log-service";
 
 @Component({
   tag: 'honey-apply-style',
@@ -37,8 +37,8 @@ export class HoneyApplyStyle {
   createStyleNameChangeListener() {
     const listener: ThemeListener = {
       next: (styleName: string) => this.styleName = styleName,
-      error: (error) => printError(error),
-      complete: () => printDebug("subcription <honey-apply-style> completed")
+      error: (error) => logService.errorMessage(error),
+      complete: () => logService.debugMessage("subcription <honey-apply-style> completed")
     };
     return listener;
   }

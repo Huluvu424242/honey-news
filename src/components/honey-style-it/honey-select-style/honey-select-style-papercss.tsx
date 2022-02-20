@@ -1,7 +1,7 @@
 import {Component, Element, h, Host, Prop} from '@stencil/core';
-import {printWarning} from "../../shared/helper";
 import {Components} from "../../../components";
 import HoneyDefineStyle = Components.HoneyDefineStyle;
+import {logService} from "../../../shared/log-service";
 
 @Component({
   tag: 'honey-select-style-papercss',
@@ -29,7 +29,7 @@ export class HoneySelectStyle {
       const elem: HoneyDefineStyle = document.getElementsByTagName("honey-define-style")[0] as HoneyDefineStyle;
       elem.setNewTheme(this.themeName);
     } else {
-      printWarning("No theme attribute defined for button");
+      logService.warnMessage("No theme attribute defined for button");
     }
   };
 

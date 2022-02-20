@@ -9,7 +9,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.13.1]
+        node-version: [16.13.2]
 
     steps:
     - uses: actions/checkout@v2
@@ -21,17 +21,19 @@ jobs:
       run: |
         npm install
         npm run build --if-present
-    - name: e2e tests (playwright)
+    - name: run unit tests (*.spec with jest)
       run: |
-        npm start &
-        sleep 10
-        npx playwright test --grep-invert @local
-        kill %1
+        npm run test:spec
       env:
         CI: true
-    - name: cdc tests (pact-js)
+    - name: run cdc tests (*.pact.ts with pactjs)
       run: |
-        npm i @pact-foundation/pact@beta
-        npx jest .*.pact.ts
+        npm run test:cdc
       env:
         CI: true
+    - name: run e2e tests (*.e2e.spec with playwright)
+      run: |
+        npm run test:e2e
+      env:
+        CI: true
+

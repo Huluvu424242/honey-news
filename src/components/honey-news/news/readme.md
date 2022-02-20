@@ -7,10 +7,9 @@
 
 ## Properties
 
-| Property     | Attribute | Description                     | Type         | Default     |
-| ------------ | --------- | ------------------------------- | ------------ | ----------- |
-| `feedLoader` | --        | Hilfsklasse zum Laden der Daten | `NewsLoader` | `undefined` |
-| `verbose`    | `verbose` | enable console logging          | `boolean`    | `false`     |
+| Property  | Attribute | Description            | Type      | Default |
+| --------- | --------- | ---------------------- | --------- | ------- |
+| `verbose` | `verbose` | enable console logging | `boolean` | `false` |
 
 
 ## Dependencies

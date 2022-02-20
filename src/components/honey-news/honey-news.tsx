@@ -1,9 +1,10 @@
 import {Component, Element, h, Host, Prop, State} from "@stencil/core";
-import {Logger} from "../../shared/logger";
-import {Subscription} from "rxjs";
+import {logService} from "../../shared/log-service";
+import {from, Subscription} from "rxjs";
 import {router} from "./routing/SimpleRouter";
-import {NewsLoader} from "./news/NewsLoader";
-import {StatisticLoader} from "./statistic/StatisticLoader";
+import {newsService} from "./news/news-service";
+import {statisticService} from "./statistic/statistic-service";
+import {tap} from "rxjs/operators";
 
 @Component({
   tag: "honey-news",
@@ -21,6 +22,8 @@ export class HoneyNews {
    * Id des Host Elements, falls nicht verfügbar wird diese generiert
    */
   ident: string;
+
+  feedURLListSubscription: Subscription;
 
   //
   // Routing
@@ -41,13 +44,6 @@ export class HoneyNews {
    * enable console logging
    */
   @Prop() verbose: boolean = false;
-
-  /**
-   * Shared State of AppShell
-   */
-  feedLoader: NewsLoader = new NewsLoader([]);
-
-  statisticLoader: StatisticLoader = new StatisticLoader();
 
   public connectedCallback() {
     // attribute initialisieren wenn defaults notwendig
@@ -75,11 +71,57 @@ export class HoneyNews {
     );
 
     // Properties auswerten
-    Logger.toggleLogging(this.verbose);
+    logService.setLogging(this.verbose);
+    logService.logMessage("Logging: "+this.verbose);
+  }
+
+  public componentWillLoad() {
+    const feedURLListSubscription: Subscription = this.subscribeFeedURLList();
+    if (feedURLListSubscription) {
+      if (this.feedURLListSubscription) {
+        this.feedURLListSubscription.unsubscribe();
+      }
+      this.feedURLListSubscription = feedURLListSubscription;
+    }
   }
 
   public disconnectedCallback() {
     this.routerSubscription.unsubscribe();
+  }
+
+
+  subscribeFeedURLList(): Subscription {
+    // http://kenfm.de/feed/ -> https://apolut.net/feed/
+    const predefinedURLs: string[] = [
+      "https://www.presseportal.de/rss/presseportal.rss2",
+      "https://www.tagesschau.de/xml/atom/",
+      "https://www.zdf.de/rss/zdf/nachrichten",
+      "http://newsrss.bbc.co.uk/rss/newsonline_uk_edition/england/london/rss.xml",
+      "https://tass.ru/en/rss/v2.xml",
+      "https://de.rt.com/feeds/news/",
+      "https://dev.to/feed/",
+      "https://blog.malwarebytes.com/feed/",
+      "https://media.ccc.de/news.atom",
+      "https://media.ccc.de/updates.rdf",
+      "https://media.ccc.de/c/wikidatacon2019/podcast/webm-hq.xml",
+      "https://media.ccc.de/podcast-hq.xml",
+      "https://www.deutschlandfunk.de/die-nachrichten.353.de.rss",
+      "https://rss.dw.com/xml/rss-de-all",
+      "http://newsfeed.zeit.de",
+      "http://www.stern.de/feed/standard/all",
+      "https://www.spiegel.de/international/index.rss",
+      "https://rss.golem.de/rss.php",
+      "https://www.heise.de/rss/heise.rdf",
+      "https://codepen.io/spark/feed",
+      "https://www.hongkiat.com/blog/feed/",
+      "https://www.tagesspiegel.de/contentexport/feed/home",
+      "https://apolut.net/feed/"
+    ];
+    return from(predefinedURLs).pipe(
+      tap(
+        url => newsService.addFeedUrl(url)
+      )
+    ).subscribe();
   }
 
   public render() {
@@ -90,9 +132,9 @@ export class HoneyNews {
         <honey-news-header/>
 
         {!this.route || this.route === "/" || this.route === "/index.html" || this.route === "/news" ?
-          <honey-news-feed feedLoader={this.feedLoader}/> : null}
-        {this.route === "/feeds" ? <honey-news-verwaltung feedLoader={this.feedLoader}/> : null}
-        {this.route === "/statistic" ? <honey-news-statistic statisticLoader={this.statisticLoader}/> : null}
+          <honey-news-feed/> : null}
+        {this.route === statisticService.getRoute() ? <honey-news-verwaltung/> : null}
+        {this.route === "/statistic" ? <honey-news-statistic/> : null}
         {this.route === "/about" ? <honey-news-about/> : null}
 
       </Host>

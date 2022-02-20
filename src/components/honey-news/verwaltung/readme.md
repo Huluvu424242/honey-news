@@ -5,13 +5,6 @@
 <!-- Auto Generated Below -->
 
 
-## Properties
-
-| Property                  | Attribute | Description                     | Type         | Default     |
-| ------------------------- | --------- | ------------------------------- | ------------ | ----------- |
-| `feedLoader` _(required)_ | --        | Hilfsklasse zum Laden der Daten | `NewsLoader` | `undefined` |
-
-
 ## Dependencies
 
 ### Used by

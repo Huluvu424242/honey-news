@@ -5,13 +5,6 @@
 <!-- Auto Generated Below -->
 
 
-## Properties
-
-| Property          | Attribute | Description                               | Type              | Default     |
-| ----------------- | --------- | ----------------------------------------- | ----------------- | ----------- |
-| `statisticLoader` | --        | Hilfsklasse zum Laden der Statistic Daten | `StatisticLoader` | `undefined` |
-
-
 ## Dependencies
 
 ### Used by

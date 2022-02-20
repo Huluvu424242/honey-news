@@ -34,21 +34,25 @@
   "scripts": {
     "build": "stencil build --docs",
     "start": "stencil build --dev --watch --serve",
-    "test": "npm run test:cdc && npm run test:e2e",
+    "test": "npm run test:spec && npm run test:cdc && npm run test:e2e",
+    "test:spec": "stencil test --spec",
     "test:cdc": "npx jest .*.pact.ts",
-    "test:e2e": "./test.sh",
+    "playwright": "sleep 20 && npx playwright test",
+    "test:e2e":"npm-run-all -p -r start playwright",
+    "test:e2e-alt":"concurrently --kill-others \"npm run start\" \"sleep 10 && npx playwright test\"",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
     "prepare-deliver": "npm run build",
     "deliver": "npm publish --access=public",
     "pruefeVersionen": "npm outdated",
-    "check-credits": "npx license-checker --failOn 'AGPL' --production >credits.txt"
+    "check-credits": "npx license-checker --failOn 'AGPL' --production >credits.txt",
+    "serverstart": "https://stackoverflow.com/questions/23258421/how-to-stop-app-that-node-js-express-npm-start"
   },
   "engines": {
     "node": "16.13.2"
   },
   "dependencies": {
-    "@stencil/core": "2.13.0",
+    "@stencil/core": "2.14.0",
     "@huluvu424242/liona-feeds": "2.3.3",
     "axios": "0.25.0",
     "dompurify": "2.3.5",
@@ -57,21 +61,22 @@
     "rxjs": "7.5.2"
   },
   "devDependencies": {
+    "npm-run-all": "4.1.5",
     "@babel/preset-env": "7.16.11",
     "@babel/preset-typescript": "7.16.7",
-    "@pact-foundation/pact": "9.17.2",
+    "@pact-foundation/pact": "10.0.0-beta.54",
     "@playwright/test": "1.18.1",
     "@types/jest": "27.4.0",
     "expect-playwright": "0.8.0",
-    "jest": "27.4.7",
-    "jest-cli": "27.4.7",
+    "jest": "26.6.3",
+    "jest-cli": "26.6.3",
     "jest-playwright-preset": "1.7.0",
     "license-checker": "25.0.1",
     "node-gyp": "^8.4.1",
     "node-gyp-build": "^4.3.0",
     "playwright": "1.18.1",
     "ts-node": "10.4.0",
-    "ts-jest": "27.1.3",
+    "ts-jest": "26.5.6",
     "typescript": "4.5.5",
     "workbox-build": "4.3.1"
   }

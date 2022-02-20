@@ -1,17 +1,22 @@
 import path from "path";
-import {changeLionaFeedsAPIUrlTo, getFeedsSingleCall} from "../../../src/fetch-es6.worker";
-import {Post} from "../../../dist/types/fetch-es6.worker";
 import {MatchersV3, PactV3, PactV3Options} from "@pact-foundation/pact/v3";
 import {V3MockServer} from "@pact-foundation/pact/src/v3/pact";
+import {ENDPOINT_NEWS, NewsFetcher} from "../../../src/components/honey-news/news/news-fetcher";
+import {Endpunkt} from "../../../src/components/shared/endpunkt";
+import {NewsService} from "../../../src/components/honey-news/news/news-service";
+import {Post} from "../../../dist/types/components/honey-news/news/news-fetcher";
+
 
 const {
-  eachLike,
-  atLeastLike,
-  integer,
-  timestamp,
-  boolean,
+  // eachLike,
+  // atLeastLike,
+  // integer,
+  // timestamp,
+  // boolean,
   string,
-  regex,
+  // url,
+  // datetime,
+  // regex,
   like,
 } = MatchersV3;
 
@@ -30,16 +35,16 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
 
   const provider: PactV3 = new PactV3(OPTIONS);
 
-  const ACCEPT_HEADER: string = MatchersV3.like(
-    "application/json",
-    "application/rss+xml",
-    "application/xml",
-    "application/xhtml+xml",
-    "text/xtml")
+  // const ACCEPT_HEADER: string[] =[
+  //   "application/json",
+  //   "application/rss+xml",
+  //   "application/xml",
+  //   "application/xhtml+xml",
+  //   "text/xtml"];
 
-  const RESPONSE_RSS2_0 = {
+  const RESPONSE_RSS2_0 = like({
     "type": "rss 2.0",
-    "title": "Deutschlandfunk - Fortlaufende Nachrichten vom 04. Januar 2022",
+    "title": string("Deutschlandfunk - Fortlaufende Nachrichten vom 04. Januar 2022"),
     "link": "https://www.deutschlandfunk.de/nachrichten-index-22904.html",
     "atom:link": {
       "rel": "self",
@@ -51,10 +56,10 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
     "copyright": "Deutschlandradio - deutschlandradio.de",
     "ttl": "60",
     "language": "de-DE",
-    "pubdate": "Tue, 04 Jan 2022 19:56:16 +0100",
+    "pubdate": string("Tue, 04 Jan 2022 19:56:16 +0100"),
     "lastbuilddate": "Tue, 04 Jan 2022 19:56:16 +0100",
     "image": {
-      "url": "https://assets.deutschlandfunk.de/FALLBACK-IMAGE/1920x1920.png?t=1600291117115",
+      "url": string("https://assets.deutschlandfunk.de/FALLBACK-IMAGE/1920x1920.png?t=1600291117115"),
       "title": "Deutschlandfunk - Fortlaufende Nachrichten vom 04. Januar 2022",
       "link": "https://www.deutschlandfunk.de/nachrichten-index-22904.html"
     },
@@ -64,14 +69,14 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
         "link": "https://www.deutschlandfunk.de/nachts-im-norden-meist-trocken-sonst-regen-und-schnee-100.html",
         "description": "<img src=\"https://assets.deutschlandfunk.de/25d736b4-a415-463b-a4fe-35a5ac44acdc/1920x1920.jpg?t=1639821123437\" alt=\"Sternenhimmel über einer verschneiten Landschaft\" title=\"Sternenhimmel über einer verschneiten Landschaft\" width=\"1920\" height=\"1920\" border=\"0\" align=\"left\" hspace=\"4\" vspace=\"4\"/>Der Wetterbericht, die Lage: Am Rand eines Tiefdruckkomplexes über Nordeuropa wird zunächst milde und feuchte Atlantikluft herangeführt. Von Norden greift eine Kaltfront mit polarer Meeresluft über.<br clear=\"all\"/><br/><p><br/></p>",
         "guid": {
-          "ispermalink": "false",
+          "ispermalink": string("false"),
           "text": "nachts-im-norden-meist-trocken-sonst-regen-und-schnee-100"
         },
         "pubdate": "Tue, 04 Jan 2022 23:59:00 +0100",
         "text": "\n"
       }
     ]
-  };
+  });
 
 
   describe("@huluvu424242/liona-feeds", () => {
@@ -85,11 +90,11 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
         .uponReceiving("Alle News mit eingeschalteter Statistic")
         .withRequest({
           method: "GET",
-          path: "/feed",
+          path: ENDPOINT_NEWS.getPath(),
 
           query: {url: "https://www.deutschlandfunk.de/die-nachrichten.353.de.rss", statistic: "true"},
           headers: {
-            Accept: ACCEPT_HEADER
+            Accept: "application/json"
           }
         })
         .willRespondWith({
@@ -107,13 +112,16 @@ describe('@huluvu424242/honey-feeds prüfe contracts gegen', () => {
         console.log("######### U R L:" + mockServer.url);
         console.log("######### I D:" + mockServer.id);
 
-        await changeLionaFeedsAPIUrlTo(mockServer.url+"/feed");
+        const ENDPOINT: Endpunkt = ENDPOINT_NEWS.replaceBase(mockServer.url, mockServer.port);
+        const newsFetcher: NewsFetcher = NewsFetcher.newNewsFetcherFor(mockServer.url, mockServer.port);
+        const newsService: NewsService = new NewsService(newsFetcher);
 
-        const posts: Post[] = await getFeedsSingleCall(["https://www.deutschlandfunk.de/die-nachrichten.353.de.rss"], true);
+        // const posts: Post[] = await fetchService.getFeedsSingleCall(new Endpunkt(Method.GET, mockServer.url,null, FEED_PATH, {statistic:true}), ["https://www.deutschlandfunk.de/die-nachrichten.353.de.rss"]);
+        const posts: Post[] = await newsService.ladePostsFrom("https://www.deutschlandfunk.de/die-nachrichten.353.de.rss");
         const feedExample = [
           {
             "hashcode": expect.any(String), //"acf94c55f3a08700fcf31074290c5b46fde03b1f",
-            "queryurl": mockServer.url + "/feed?url=https://www.deutschlandfunk.de/die-nachrichten.353.de.rss&statistic=true",
+            "queryurl": ENDPOINT.addQueryPart("url", "https://www.deutschlandfunk.de/die-nachrichten.353.de.rss").toUrl(),
             "feedtitle": "\"Deutschlandfunk - Fortlaufende Nachrichten vom 04. Januar 2022\"",
             "exaktdate": expect.any(Date), //2022-01-04T22:59:00.000Z,
             "sortdate": "2022#01#04#22#0#Nachts im Norden meist trocken, sonst Regen und Schnee",

@@ -1,0 +1,1 @@
+import{r as s,h as a,H as r}from"./p-6add324a.js";let e=class{constructor(a){s(this,a)}render(){return a(r,null,a("honey-apply-style",null),a("div",{class:"row flex-spaces"},a("div",{class:"alert alert-secondary"},a("slot",{name:"slot1"}))))}};export{e as honey_infobar_papercss}

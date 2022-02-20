@@ -3,7 +3,7 @@ import {Config} from '@stencil/core';
 export const config: Config = {
   namespace: 'honey-news',
   globalStyle: 'src/global/variables.default.css',
-  // globalScript: 'src/global/app.ts',
+  globalScript: 'src/global/app.ts',
   devServer: {
     reloadStrategy: 'pageReload',
     port: 3333,

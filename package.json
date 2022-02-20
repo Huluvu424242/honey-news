@@ -36,7 +36,7 @@
     "start": "stencil build --dev --watch --serve",
     "test": "npm run test:cdc && npm run test:e2e",
     "test:cdc": "npx jest .*.pact.ts",
-    "test:e2e": "./test.sh",
+    "test:e2e":"concurrently --kill-others \"npm run start\" \"sleep 10 && npx playwright test\"",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
     "prepare-deliver": "npm run build",
@@ -58,6 +58,7 @@
     "rxjs": "7.5.2"
   },
   "devDependencies": {
+    "concurrently": "7.0.0",
     "@babel/preset-env": "7.16.11",
     "@babel/preset-typescript": "7.16.7",
     "@pact-foundation/pact": "10.0.0-beta.54",

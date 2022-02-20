@@ -34,7 +34,8 @@
   "scripts": {
     "build": "stencil build --docs",
     "start": "stencil build --dev --watch --serve",
-    "test": "npm run test:cdc && npm run test:e2e",
+    "test": "npm run test:spec && npm run test:cdc && npm run test:e2e",
+    "test:spec": "stencil test --spec",
     "test:cdc": "npx jest .*.pact.ts",
     "test:e2e":"concurrently --kill-others \"npm run start\" \"sleep 10 && npx playwright test\"",
     "test.watch": "stencil test --spec --e2e --watchAll",

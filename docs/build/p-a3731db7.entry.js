@@ -1,0 +1,1 @@
+import{r as l,h as s,H as e}from"./p-6add324a.js";let a=class{constructor(s){l(this,s)}render(){return s(e,null,s("honey-apply-style",null),s("div",{class:"table-container"},s("table",{class:"table is-bordered is-striped is-hoverable is-fullwidth"},s("slot",{name:"slot1"}))))}};export{a as honey_table_bulma}

@@ -1,0 +1,1 @@
+import{r as t,h as s,H as i}from"./p-6add324a.js";let o=class{constructor(s){t(this,s),this.showed=!0}commitReading(){this.showed=!1}render(){return s(i,null,s("honey-apply-style",null),!0===this.showed?s("div",{class:"notification is-primary"},s("button",{class:"delete",onClick:this.commitReading.bind(this)}),s("slot",{name:"slot1"})):"")}};export{o as honey_notification_bulma}

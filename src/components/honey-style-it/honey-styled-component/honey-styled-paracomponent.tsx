@@ -1,7 +1,8 @@
 import {Component, h, Prop, State} from '@stencil/core';
 import {Subscription} from "rxjs";
-import {HoneyDefineStyle, ThemeListener} from "../honey-define-style/honey-define-style";
 import {logService} from "../../../shared/log-service";
+import {HoneyDefineStyle} from "@huluvu424242/honey-style-it/dist/components/honey-define-style";
+import {ThemeListener} from "@huluvu424242/honey-style-it/dist/types/components/honey-define-style/honey-define-style";
 
 @Component({
   tag: "honey-styled-paracomponent",

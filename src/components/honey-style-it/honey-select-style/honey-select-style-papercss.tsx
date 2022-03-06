@@ -1,7 +1,6 @@
 import {Component, Element, h, Host, Prop} from '@stencil/core';
-import {Components} from "../../../components";
-import HoneyDefineStyle = Components.HoneyDefineStyle;
 import {logService} from "../../../shared/log-service";
+import {HoneyDefineStyle} from "@huluvu424242/honey-style-it/dist/components/honey-define-style";
 
 @Component({
   tag: 'honey-select-style-papercss',

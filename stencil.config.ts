@@ -19,6 +19,7 @@ export const config: Config = {
     },
     {
       type: 'docs-readme',
+      dir: 'docs/api',
       strict: true,
       footer: '*Built with [StencilJS](https://stenciljs.com/)* by Huluvu424242'
     },

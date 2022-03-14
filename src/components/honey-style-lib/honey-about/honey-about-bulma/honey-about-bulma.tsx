@@ -5,7 +5,7 @@ import {Component, h, Host} from '@stencil/core';
   tag: "honey-about-bulma",
   shadow: true
 })
-export class HoneyDisclaimerPapercss {
+export class HoneyAboutBulma {
 
 
   render() {

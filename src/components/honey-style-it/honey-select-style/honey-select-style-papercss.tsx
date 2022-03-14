@@ -6,7 +6,7 @@ import {HoneyDefineStyle} from "@huluvu424242/honey-style-it/dist/components/hon
   tag: 'honey-select-style-papercss',
   shadow: true
 })
-export class HoneySelectStyle {
+export class HoneySelectStylePapercss {
 
   @Element() host: HTMLElement;
 

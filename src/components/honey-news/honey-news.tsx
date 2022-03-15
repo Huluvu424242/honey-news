@@ -128,6 +128,7 @@ export class HoneyNews {
     return (
       <Host>
         <honey-apply-style/>
+        <honey-config/>
 
         <honey-news-header/>
 

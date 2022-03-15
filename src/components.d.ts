@@ -19,6 +19,8 @@ export namespace Components {
     }
     interface HoneyArticlePapercss {
     }
+    interface HoneyConfig {
+    }
     interface HoneyDisclaimer {
     }
     interface HoneyDisclaimerBulma {
@@ -87,20 +89,6 @@ export namespace Components {
          */
         "themeName": any;
     }
-    interface HoneyStyledParacomponent {
-        /**
-          * Parameter für das zu erzeugende Tag
-         */
-        "parameterlist": any;
-        /**
-          * themepostfix of theme name e.g. style when honey-papercss-style
-         */
-        "themepostfix": string;
-        /**
-          * themeprefix of theme name e.g. honey when honey-papercss-style
-         */
-        "themeprefix": string;
-    }
     interface HoneyTable {
     }
     interface HoneyTableBulma {
@@ -144,6 +132,12 @@ declare global {
     var HTMLHoneyArticlePapercssElement: {
         prototype: HTMLHoneyArticlePapercssElement;
         new (): HTMLHoneyArticlePapercssElement;
+    };
+    interface HTMLHoneyConfigElement extends Components.HoneyConfig, HTMLStencilElement {
+    }
+    var HTMLHoneyConfigElement: {
+        prototype: HTMLHoneyConfigElement;
+        new (): HTMLHoneyConfigElement;
     };
     interface HTMLHoneyDisclaimerElement extends Components.HoneyDisclaimer, HTMLStencilElement {
     }
@@ -265,12 +259,6 @@ declare global {
         prototype: HTMLHoneySelectStylePapercssElement;
         new (): HTMLHoneySelectStylePapercssElement;
     };
-    interface HTMLHoneyStyledParacomponentElement extends Components.HoneyStyledParacomponent, HTMLStencilElement {
-    }
-    var HTMLHoneyStyledParacomponentElement: {
-        prototype: HTMLHoneyStyledParacomponentElement;
-        new (): HTMLHoneyStyledParacomponentElement;
-    };
     interface HTMLHoneyTableElement extends Components.HoneyTable, HTMLStencilElement {
     }
     var HTMLHoneyTableElement: {
@@ -296,6 +284,7 @@ declare global {
         "honey-article": HTMLHoneyArticleElement;
         "honey-article-bulma": HTMLHoneyArticleBulmaElement;
         "honey-article-papercss": HTMLHoneyArticlePapercssElement;
+        "honey-config": HTMLHoneyConfigElement;
         "honey-disclaimer": HTMLHoneyDisclaimerElement;
         "honey-disclaimer-bulma": HTMLHoneyDisclaimerBulmaElement;
         "honey-disclaimer-papercss": HTMLHoneyDisclaimerPapercssElement;
@@ -316,7 +305,6 @@ declare global {
         "honey-notification-bulma": HTMLHoneyNotificationBulmaElement;
         "honey-notification-papercss": HTMLHoneyNotificationPapercssElement;
         "honey-select-style-papercss": HTMLHoneySelectStylePapercssElement;
-        "honey-styled-paracomponent": HTMLHoneyStyledParacomponentElement;
         "honey-table": HTMLHoneyTableElement;
         "honey-table-bulma": HTMLHoneyTableBulmaElement;
         "honey-table-papercss": HTMLHoneyTablePapercssElement;
@@ -334,6 +322,8 @@ declare namespace LocalJSX {
     interface HoneyArticleBulma {
     }
     interface HoneyArticlePapercss {
+    }
+    interface HoneyConfig {
     }
     interface HoneyDisclaimer {
     }
@@ -403,20 +393,6 @@ declare namespace LocalJSX {
          */
         "themeName"?: any;
     }
-    interface HoneyStyledParacomponent {
-        /**
-          * Parameter für das zu erzeugende Tag
-         */
-        "parameterlist"?: any;
-        /**
-          * themepostfix of theme name e.g. style when honey-papercss-style
-         */
-        "themepostfix"?: string;
-        /**
-          * themeprefix of theme name e.g. honey when honey-papercss-style
-         */
-        "themeprefix"?: string;
-    }
     interface HoneyTable {
     }
     interface HoneyTableBulma {
@@ -430,6 +406,7 @@ declare namespace LocalJSX {
         "honey-article": HoneyArticle;
         "honey-article-bulma": HoneyArticleBulma;
         "honey-article-papercss": HoneyArticlePapercss;
+        "honey-config": HoneyConfig;
         "honey-disclaimer": HoneyDisclaimer;
         "honey-disclaimer-bulma": HoneyDisclaimerBulma;
         "honey-disclaimer-papercss": HoneyDisclaimerPapercss;
@@ -450,7 +427,6 @@ declare namespace LocalJSX {
         "honey-notification-bulma": HoneyNotificationBulma;
         "honey-notification-papercss": HoneyNotificationPapercss;
         "honey-select-style-papercss": HoneySelectStylePapercss;
-        "honey-styled-paracomponent": HoneyStyledParacomponent;
         "honey-table": HoneyTable;
         "honey-table-bulma": HoneyTableBulma;
         "honey-table-papercss": HoneyTablePapercss;
@@ -466,6 +442,7 @@ declare module "@stencil/core" {
             "honey-article": LocalJSX.HoneyArticle & JSXBase.HTMLAttributes<HTMLHoneyArticleElement>;
             "honey-article-bulma": LocalJSX.HoneyArticleBulma & JSXBase.HTMLAttributes<HTMLHoneyArticleBulmaElement>;
             "honey-article-papercss": LocalJSX.HoneyArticlePapercss & JSXBase.HTMLAttributes<HTMLHoneyArticlePapercssElement>;
+            "honey-config": LocalJSX.HoneyConfig & JSXBase.HTMLAttributes<HTMLHoneyConfigElement>;
             "honey-disclaimer": LocalJSX.HoneyDisclaimer & JSXBase.HTMLAttributes<HTMLHoneyDisclaimerElement>;
             "honey-disclaimer-bulma": LocalJSX.HoneyDisclaimerBulma & JSXBase.HTMLAttributes<HTMLHoneyDisclaimerBulmaElement>;
             "honey-disclaimer-papercss": LocalJSX.HoneyDisclaimerPapercss & JSXBase.HTMLAttributes<HTMLHoneyDisclaimerPapercssElement>;
@@ -486,7 +463,6 @@ declare module "@stencil/core" {
             "honey-notification-bulma": LocalJSX.HoneyNotificationBulma & JSXBase.HTMLAttributes<HTMLHoneyNotificationBulmaElement>;
             "honey-notification-papercss": LocalJSX.HoneyNotificationPapercss & JSXBase.HTMLAttributes<HTMLHoneyNotificationPapercssElement>;
             "honey-select-style-papercss": LocalJSX.HoneySelectStylePapercss & JSXBase.HTMLAttributes<HTMLHoneySelectStylePapercssElement>;
-            "honey-styled-paracomponent": LocalJSX.HoneyStyledParacomponent & JSXBase.HTMLAttributes<HTMLHoneyStyledParacomponentElement>;
             "honey-table": LocalJSX.HoneyTable & JSXBase.HTMLAttributes<HTMLHoneyTableElement>;
             "honey-table-bulma": LocalJSX.HoneyTableBulma & JSXBase.HTMLAttributes<HTMLHoneyTableBulmaElement>;
             "honey-table-papercss": LocalJSX.HoneyTablePapercss & JSXBase.HTMLAttributes<HTMLHoneyTablePapercssElement>;

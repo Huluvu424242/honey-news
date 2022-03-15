@@ -1,5 +1,5 @@
 import {Endpunkt, Method} from "../../shared/endpunkt";
-import {FEEDS_PATH} from "../../../global/constants";
+import {FEEDS_PATH} from "../../honey-config/constants";
 import {StatisticData} from "@huluvu424242/liona-feeds/dist/esm/feeds/statistic";
 import {EMPTY, from, lastValueFrom} from "rxjs";
 import {BackendResponse, networkService} from "../../shared/network-service";

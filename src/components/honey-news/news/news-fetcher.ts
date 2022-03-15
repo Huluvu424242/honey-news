@@ -1,5 +1,5 @@
 import {Endpunkt, Method} from "../../shared/endpunkt";
-import {FEED_PATH} from "../../../global/constants";
+import {FEED_PATH} from "../../honey-config/constants";
 import {logService} from "../../../shared/log-service";
 import {EMPTY, from, lastValueFrom, Observable} from "rxjs";
 import {BackendResponse, networkService} from "../../shared/network-service";

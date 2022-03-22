@@ -19,15 +19,9 @@ export class HoneyConfig {
 
   @State() text: string = undefined;
 
-
-  setNewText(data: { [key: string]: string }) {
-    this.text = null;
-    this.text = data[this.configKey];
-  }
-
   connectedCallback() {
     this.dataSubscription = this.config$.subscribe({
-      next: (data: Configuration) => this.setNewText(data)
+      next: (data: Configuration) => this.text = data[this.configKey]
     });
   }
 
@@ -37,23 +31,21 @@ export class HoneyConfig {
 
   componentWillLoad() {
     const configPath: string = getAssetPath('./assets/config.json');
-    logService.logMessage('### configPath ###', configPath);
+    logService.debugMessage('configPath', configPath);
 
-    const data$ = fromFetch(configPath, {
+    fromFetch(configPath, {
       selector: response => response.json()
-    });
-    data$.subscribe({
+    }).subscribe({
       next: result => {
-        logService.logMessage(result);
+        logService.debugMessage('result: ', result);
         this.config$.next(result);
       },
-      complete: () => console.log('done')
+      complete: () => console.log('fetch done')
     });
-
   }
 
   render() {
-    logService.logMessage('####DATA', this.text);
+    logService.debugMessage('render text: ', this.text);
     return this.configKey ? <span>{this.text}</span> : ''
   }
 }

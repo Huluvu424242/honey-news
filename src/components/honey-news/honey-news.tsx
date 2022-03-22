@@ -127,8 +127,8 @@ export class HoneyNews {
   public render() {
     return (
       <Host>
+        <honey-config/>
         <honey-apply-style/>
-        <honey-config config-key="HELLO_MESSAGE"/>
 
         <honey-news-header/>
 

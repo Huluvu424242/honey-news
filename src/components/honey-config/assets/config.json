@@ -1,3 +1,5 @@
-[{
-  "HELLO_MESSAGE": "Hello Dear"
-}]
+{
+  "HELLO_MESSAGE": "Hello Dear",
+  "GUEST_NAME": "Caro"
+}
+

@@ -1,9 +1,10 @@
-import {Component, getAssetPath, h, Prop, State} from '@stencil/core';
-import {ReplaySubject, Subscription} from "rxjs";
+import {Component, getAssetPath, h, Method, Prop, State} from '@stencil/core';
+import {firstValueFrom, ReplaySubject, Subscription} from "rxjs";
 import {fromFetch} from "rxjs/fetch";
 import {logService} from "../../shared/log-service";
+import {map} from "rxjs/operators";
 
-export type Configuration = { [key: string]: string };
+export type Configuration = { [key: string]: any };
 
 @Component({
   tag: 'honey-config',
@@ -42,6 +43,16 @@ export class HoneyConfig {
       },
       complete: () => console.log('fetch done')
     });
+  }
+
+  @Method()
+  async subscribeForConfig$(): Promise<Subscription> {
+    return this.config$.subscribe();
+  }
+
+  @Method()
+  async getConfigValue<T>(key: string): Promise<T> {
+    return firstValueFrom(this.config$.pipe(map((config: Configuration) => config[key])));
   }
 
   render() {

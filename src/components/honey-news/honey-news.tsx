@@ -5,6 +5,7 @@ import {router} from "./routing/SimpleRouter";
 import {newsService} from "./news/news-service";
 import {statisticService} from "./statistic/statistic-service";
 import {tap} from "rxjs/operators";
+import {configService, Configuration} from "../honey-config/config-service";
 
 @Component({
   tag: "honey-news",
@@ -16,6 +17,8 @@ export class HoneyNews {
    * Host Element
    */
   @Element() hostElement: HTMLElement;
+
+  configElement: HTMLHoneyConfigElement;
 
 
   /**
@@ -72,62 +75,83 @@ export class HoneyNews {
 
     // Properties auswerten
     logService.setLogging(this.verbose);
-    logService.logMessage("Logging: "+this.verbose);
+    logService.logMessage("Logging: " + this.verbose);
   }
 
-  public componentWillLoad() {
-    const feedURLListSubscription: Subscription = this.subscribeFeedURLList();
-    if (feedURLListSubscription) {
-      if (this.feedURLListSubscription) {
-        this.feedURLListSubscription.unsubscribe();
+  public async componentWillLoad() {
+    try {
+      const feedURLListSubscription:Subscription = configService.subscribeConfigUpdates({
+        next: (configuration:Configuration) => {
+          logService.logMessage("#### log next");
+         const predefinedURLs:string[] =  configuration["DEFAULT_FEED_LIST"];
+          from(predefinedURLs).pipe(
+            tap(
+              url => newsService.addFeedUrl(url)
+            )
+          ).subscribe();
+        }
+      });
+      if (feedURLListSubscription) {
+        if (this.feedURLListSubscription) {
+          this.feedURLListSubscription.unsubscribe();
+        }
+        this.feedURLListSubscription = feedURLListSubscription;
       }
-      this.feedURLListSubscription = feedURLListSubscription;
+    } catch (error) {
+      return new Error("Die Konfiguration konnte nicht geladen werden")
     }
   }
 
   public disconnectedCallback() {
+    this.feedURLListSubscription.unsubscribe();
     this.routerSubscription.unsubscribe();
   }
 
 
-  subscribeFeedURLList(): Subscription {
-    // http://kenfm.de/feed/ -> https://apolut.net/feed/
-    const predefinedURLs: string[] = [
-      "https://www.presseportal.de/rss/presseportal.rss2",
-      "https://www.tagesschau.de/xml/atom/",
-      "https://www.zdf.de/rss/zdf/nachrichten",
-      "http://newsrss.bbc.co.uk/rss/newsonline_uk_edition/england/london/rss.xml",
-      "https://tass.ru/en/rss/v2.xml",
-      "https://de.rt.com/feeds/news/",
-      "https://dev.to/feed/",
-      "https://blog.malwarebytes.com/feed/",
-      "https://media.ccc.de/news.atom",
-      "https://media.ccc.de/updates.rdf",
-      "https://media.ccc.de/c/wikidatacon2019/podcast/webm-hq.xml",
-      "https://media.ccc.de/podcast-hq.xml",
-      "https://www.deutschlandfunk.de/die-nachrichten.353.de.rss",
-      "https://rss.dw.com/xml/rss-de-all",
-      "http://newsfeed.zeit.de",
-      "http://www.stern.de/feed/standard/all",
-      "https://www.spiegel.de/international/index.rss",
-      "https://rss.golem.de/rss.php",
-      "https://www.heise.de/rss/heise.rdf",
-      "https://codepen.io/spark/feed",
-      "https://www.hongkiat.com/blog/feed/",
-      "https://www.tagesspiegel.de/contentexport/feed/home",
-      "https://apolut.net/feed/"
-    ];
-    return from(predefinedURLs).pipe(
-      tap(
-        url => newsService.addFeedUrl(url)
-      )
-    ).subscribe();
-  }
+  // async subscribeFeedURLList(): Promise<Subscription> {
+  //   // http://kenfm.de/feed/ -> https://apolut.net/feed/
+  //   // const predefinedURLs: string[] = [
+  //   //   "https://www.presseportal.de/rss/presseportal.rss2",
+  //   //   "https://www.tagesschau.de/xml/atom/",
+  //   //   "https://www.zdf.de/rss/zdf/nachrichten",
+  //   //   "http://newsrss.bbc.co.uk/rss/newsonline_uk_edition/england/london/rss.xml",
+  //   //   "https://tass.ru/en/rss/v2.xml",
+  //   //   "https://de.rt.com/feeds/news/",
+  //   //   "https://dev.to/feed/",
+  //   //   "https://blog.malwarebytes.com/feed/",
+  //   //   "https://media.ccc.de/news.atom",
+  //   //   "https://media.ccc.de/updates.rdf",
+  //   //   "https://media.ccc.de/c/wikidatacon2019/podcast/webm-hq.xml",
+  //   //   "https://media.ccc.de/podcast-hq.xml",
+  //   //   "https://www.deutschlandfunk.de/die-nachrichten.353.de.rss",
+  //   //   "https://rss.dw.com/xml/rss-de-all",
+  //   //   "http://newsfeed.zeit.de",
+  //   //   "http://www.stern.de/feed/standard/all",
+  //   //   "https://www.spiegel.de/international/index.rss",
+  //   //   "https://rss.golem.de/rss.php",
+  //   //   "https://www.heise.de/rss/heise.rdf",
+  //   //   "https://codepen.io/spark/feed",
+  //   //   "https://www.hongkiat.com/blog/feed/",
+  //   //   "https://www.tagesspiegel.de/contentexport/feed/home",
+  //   //   "https://apolut.net/feed/"
+  //   // ];
+  //   if( this.configElement != null){
+  //     logService.logMessage("Config !=null");
+  //   }else{
+  //     logService.logMessage("Config is NULL");
+  //   }
+  //   const predefinedURLs: string[] = await this.configElement.getConfigValue("DEFAULT_FEED_LIST");
+  //   return from(predefinedURLs).pipe(
+  //     tap(
+  //       url => newsService.addFeedUrl(url)
+  //     )
+  //   ).subscribe();
+  // }
 
   public render() {
     return (
       <Host>
-        <honey-config/>
+        <honey-config configKey="WELCOME_TEXT" ref={(el) => this.configElement = el as HTMLHoneyConfigElement}/>
         <honey-apply-style/>
 
         <honey-news-header/>

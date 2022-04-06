@@ -1,10 +1,8 @@
-import {Component, getAssetPath, h, Method, Prop, State} from '@stencil/core';
-import {firstValueFrom, ReplaySubject, Subscription} from "rxjs";
+import {Component, getAssetPath, h, Prop, State} from '@stencil/core';
+import {Subscription} from "rxjs";
 import {fromFetch} from "rxjs/fetch";
 import {logService} from "../../shared/log-service";
-import {map} from "rxjs/operators";
-
-export type Configuration = { [key: string]: any };
+import {configService, Configuration} from "./config-service";
 
 @Component({
   tag: 'honey-config',
@@ -14,14 +12,12 @@ export class HoneyConfig {
 
   @Prop() configKey: string;
 
-  config$: ReplaySubject<Configuration> = new ReplaySubject<Configuration>(1);
-
   dataSubscription: Subscription;
 
   @State() text: string = undefined;
 
   connectedCallback() {
-    this.dataSubscription = this.config$.subscribe({
+    this.dataSubscription = configService.subscribeConfigUpdates({
       next: (data: Configuration) => this.text = data[this.configKey]
     });
   }
@@ -39,20 +35,10 @@ export class HoneyConfig {
     }).subscribe({
       next: result => {
         logService.debugMessage('result: ', result);
-        this.config$.next(result);
+        configService.updateConfiguration(result);
       },
       complete: () => console.log('fetch done')
     });
-  }
-
-  @Method()
-  async subscribeForConfig$(): Promise<Subscription> {
-    return this.config$.subscribe();
-  }
-
-  @Method()
-  async getConfigValue<T>(key: string): Promise<T> {
-    return firstValueFrom(this.config$.pipe(map((config: Configuration) => config[key])));
   }
 
   render() {

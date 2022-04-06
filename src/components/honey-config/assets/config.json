@@ -1,4 +1,5 @@
 {
+  "WELCOME_TEXT": "Hallo World",
   "DEFAULT_FEED_LIST": [
     "https://www.presseportal.de/rss/presseportal.rss2",
     "https://www.tagesschau.de/xml/atom/",

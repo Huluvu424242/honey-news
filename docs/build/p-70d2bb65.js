@@ -1,0 +1,1 @@
+import{l as n}from"./p-85c8619f.js";const o=function(){n.logMessage("starting honey-news component")};export{o as g}

@@ -20,6 +20,7 @@ export namespace Components {
     interface HoneyArticlePapercss {
     }
     interface HoneyConfig {
+        "configKey": string;
     }
     interface HoneyDisclaimer {
     }
@@ -324,6 +325,7 @@ declare namespace LocalJSX {
     interface HoneyArticlePapercss {
     }
     interface HoneyConfig {
+        "configKey"?: string;
     }
     interface HoneyDisclaimer {
     }

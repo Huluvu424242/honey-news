@@ -1,1 +1,0 @@
-import{r as s,h as o,H as a}from"./p-6add324a.js";let l=class{constructor(o){s(this,o)}render(){return o(a,null,o("honey-apply-style",null),o("div",{class:"notification is-info"},o("slot",{name:"slot1"})))}};export{l as honey_infobar_bulma}

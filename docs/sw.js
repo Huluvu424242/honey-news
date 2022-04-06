@@ -35,80 +35,78 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "a4cacda36fcd1d2c0cef072f3a9cba81"
+    "revision": "aba398885fd4d1d31f2130171f14d414"
+  },
+  {
+    "url": "build/assets/config.json",
+    "revision": "1c389666fa66fffa4a82022c4ae72d61"
   },
   {
     "url": "build/index.esm.js",
     "revision": "d41d8cd98f00b204e9800998ecf8427e"
   },
   {
-    "url": "build/p-09cdb421.entry.js"
+    "url": "build/p-07c1ce7d.entry.js"
   },
   {
-    "url": "build/p-323e0f65.entry.js"
+    "url": "build/p-07d15f6c.entry.js"
   },
   {
-    "url": "build/p-390c1007.entry.js"
+    "url": "build/p-213af3df.entry.js"
   },
   {
-    "url": "build/p-3c72a7cc.entry.js"
+    "url": "build/p-21c4d90b.entry.js"
   },
   {
-    "url": "build/p-46f8da83.entry.js"
+    "url": "build/p-236809c2.entry.js"
   },
   {
-    "url": "build/p-549ce1da.entry.js"
+    "url": "build/p-2cb05c08.entry.js"
   },
   {
-    "url": "build/p-66aa876e.entry.js"
+    "url": "build/p-327a4435.entry.js"
   },
   {
-    "url": "build/p-68d0b1c9.entry.js"
+    "url": "build/p-3a5b1b52.entry.js"
   },
   {
-    "url": "build/p-6add324a.js"
+    "url": "build/p-436e4b05.entry.js"
   },
   {
-    "url": "build/p-6e58ee83.entry.js"
-  },
-  {
-    "url": "build/p-7a74d2b5.entry.js"
+    "url": "build/p-70d2bb65.js"
   },
   {
     "url": "build/p-85c8619f.js"
   },
   {
-    "url": "build/p-988523c5.entry.js"
+    "url": "build/p-89d85688.js"
   },
   {
-    "url": "build/p-9fb9206d.entry.js"
+    "url": "build/p-8c217a31.entry.js"
   },
   {
-    "url": "build/p-a3731db7.entry.js"
+    "url": "build/p-8e456657.entry.js"
   },
   {
-    "url": "build/p-c0ab4441.entry.js"
+    "url": "build/p-a1ba6326.entry.js"
   },
   {
-    "url": "build/p-c7db1c7c.entry.js"
+    "url": "build/p-a8cddc49.entry.js"
+  },
+  {
+    "url": "build/p-abcb70cb.entry.js"
+  },
+  {
+    "url": "build/p-b78ee362.js"
+  },
+  {
+    "url": "build/p-bb80cd17.entry.js"
+  },
+  {
+    "url": "build/p-d2deb915.entry.js"
   },
   {
     "url": "build/p-dad10717.js"
-  },
-  {
-    "url": "build/p-dad6c9dd.entry.js"
-  },
-  {
-    "url": "build/p-db53bce5.css"
-  },
-  {
-    "url": "build/p-df206acb.entry.js"
-  },
-  {
-    "url": "build/p-e2352f8c.entry.js"
-  },
-  {
-    "url": "build/p-e4807328.js"
   },
   {
     "url": "redirect.js",

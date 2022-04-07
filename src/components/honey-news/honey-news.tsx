@@ -107,47 +107,6 @@ export class HoneyNews {
     this.routerSubscription.unsubscribe();
   }
 
-
-  // async subscribeFeedURLList(): Promise<Subscription> {
-  //   // http://kenfm.de/feed/ -> https://apolut.net/feed/
-  //   // const predefinedURLs: string[] = [
-  //   //   "https://www.presseportal.de/rss/presseportal.rss2",
-  //   //   "https://www.tagesschau.de/xml/atom/",
-  //   //   "https://www.zdf.de/rss/zdf/nachrichten",
-  //   //   "http://newsrss.bbc.co.uk/rss/newsonline_uk_edition/england/london/rss.xml",
-  //   //   "https://tass.ru/en/rss/v2.xml",
-  //   //   "https://de.rt.com/feeds/news/",
-  //   //   "https://dev.to/feed/",
-  //   //   "https://blog.malwarebytes.com/feed/",
-  //   //   "https://media.ccc.de/news.atom",
-  //   //   "https://media.ccc.de/updates.rdf",
-  //   //   "https://media.ccc.de/c/wikidatacon2019/podcast/webm-hq.xml",
-  //   //   "https://media.ccc.de/podcast-hq.xml",
-  //   //   "https://www.deutschlandfunk.de/die-nachrichten.353.de.rss",
-  //   //   "https://rss.dw.com/xml/rss-de-all",
-  //   //   "http://newsfeed.zeit.de",
-  //   //   "http://www.stern.de/feed/standard/all",
-  //   //   "https://www.spiegel.de/international/index.rss",
-  //   //   "https://rss.golem.de/rss.php",
-  //   //   "https://www.heise.de/rss/heise.rdf",
-  //   //   "https://codepen.io/spark/feed",
-  //   //   "https://www.hongkiat.com/blog/feed/",
-  //   //   "https://www.tagesspiegel.de/contentexport/feed/home",
-  //   //   "https://apolut.net/feed/"
-  //   // ];
-  //   if( this.configElement != null){
-  //     logService.logMessage("Config !=null");
-  //   }else{
-  //     logService.logMessage("Config is NULL");
-  //   }
-  //   const predefinedURLs: string[] = await this.configElement.getConfigValue("DEFAULT_FEED_LIST");
-  //   return from(predefinedURLs).pipe(
-  //     tap(
-  //       url => newsService.addFeedUrl(url)
-  //     )
-  //   ).subscribe();
-  // }
-
   public render() {
     return (
       <Host>

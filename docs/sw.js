@@ -35,7 +35,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "aba398885fd4d1d31f2130171f14d414"
+    "revision": "ffeb6e6158ab804d1f3d01e085ab349b"
   },
   {
     "url": "build/assets/config.json",
@@ -107,6 +107,9 @@ self.__precacheManifest = [
   },
   {
     "url": "build/p-dad10717.js"
+  },
+  {
+    "url": "build/p-db53bce5.css"
   },
   {
     "url": "redirect.js",

@@ -54,11 +54,11 @@
   "dependencies": {
     "@huluvu424242/honey-style-it": "0.0.7",
     "@huluvu424242/liona-feeds": "2.3.3",
-    "axios": "0.25.0",
-    "dompurify": "2.3.5",
+    "axios": "0.26.1",
+    "dompurify": "2.3.6",
     "feedme": "2.0.2",
-    "object-hash": "2.2.0",
-    "rxjs": "7.5.4"
+    "object-hash": "3.0.0",
+    "rxjs": "7.5.5"
   },
   "devDependencies": {
     "@stencil/core": "2.15.0",

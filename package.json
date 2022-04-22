@@ -59,10 +59,13 @@
     "dompurify": "2.3.6",
     "feedme": "2.0.2",
     "object-hash": "3.0.0",
-    "rxjs": "7.5.5"
+    "rxjs": "7.5.5",
+    "ipfs": "0.62.2",
+    "orbit-db": "0.28.3"
   },
   "devDependencies": {
     "@stencil/core": "2.15.0",
+    "rollup-plugin-node-polyfills": "0.2.1",
     "npm-run-all": "4.1.5",
     "@babel/preset-env": "7.16.11",
     "@babel/preset-typescript": "7.16.7",

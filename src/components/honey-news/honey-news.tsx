@@ -6,6 +6,7 @@ import {newsService} from "./news/news-service";
 import {statisticService} from "./statistic/statistic-service";
 import {tap} from "rxjs/operators";
 import {configService, Configuration} from "../honey-config/config-service";
+import {orbitService} from "../../../src/shared/orbit-service";
 
 @Component({
   tag: "honey-news",
@@ -80,6 +81,7 @@ export class HoneyNews {
 
   public async componentWillLoad() {
     try {
+      orbitService.create();
       const feedURLListSubscription:Subscription = configService.subscribeConfigUpdates({
         next: (configuration:Configuration) => {
           logService.logMessage("#### log next");

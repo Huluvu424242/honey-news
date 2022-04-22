@@ -1,9 +1,15 @@
 import {Config} from '@stencil/core';
+import nodePolyfills from "rollup-plugin-node-polyfills"
 
 export const config: Config = {
   namespace: 'honey-news',
   globalStyle: 'src/global/variables.default.css',
   globalScript: 'src/global/app.ts',
+  rollupPlugins: {
+    after: [
+      nodePolyfills(),
+    ]
+  },
   devServer: {
     reloadStrategy: 'pageReload',
     port: 3333,
